@@ -4,7 +4,6 @@ abbrev: Digital Map Concept & Needs
 docname: draft-ietf-nmop-digital-map-concept-latest
 category: info
 
-stand_alone: true
 submissiontype: IETF
 number:
 date:
@@ -33,14 +32,17 @@ author:
     fullname: Olga Havel
     org: Huawei
     email: olga.havel@huawei.com
+
   -
     fullname: Benoit Claise
     org: Huawei
     email: benoit.claise@huawei.com
+
   -
     fullname: Oscar Gonzalez de Dios
     org: Telefonica
     email: oscar.gonzalezdedios@telefonica.com
+
   -
     fullname: Thomas Graf
     org: Swisscom
@@ -56,7 +58,6 @@ contributor:
 normative:
 
 informative:
-
 
 --- abstract
 
