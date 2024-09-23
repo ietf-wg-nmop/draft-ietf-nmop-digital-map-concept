@@ -5,10 +5,28 @@ docname: draft-ietf-nmop-digital-map-concept-latest
 category: info
 
 stand_alone: true
-submissiontype: IETF  
+submissiontype: IETF
+number:
+date:
+consensus: true
+v: 3
 area: "Operations and Management"
-wg: NMOP
-
+workgroup: "NMOP"
+keyword:
+ - Service emulation
+ - Automation
+ - Network Automation
+ - Orchestration
+ - service delivery
+ - Service provisioning
+ - service flexibility
+ - service simplification
+ - Network Service
+ - Digital twim
+ - Emulation
+ - Simulation
+ - Topology
+ - Multi-layer
 
 author:
   -
@@ -52,58 +70,58 @@ The document intends to be used as a reference for the assessment effort of the 
 
 ## Digital Twin Overview
 
-The network digital twin (referred to simply as Digital Twin) concepts and a reference architecture are discussed in 
+The network digital twin (referred to simply as Digital Twin) concepts and a reference architecture are discussed in
 the "Digital Twin Network: Concepts and Reference Architecture" {{?I-D.irtf-nmrg-network-digital-twin-arch}}.
-That reference document defines the core elements of Digital Twin: Data, Models, Interfaces, and Mapping.  
+That reference document defines the core elements of Digital Twin: Data, Models, Interfaces, and Mapping.
 
-The Digital Twin, constructed based on the four core technology elements, is intended to analyze, diagnose, emulate, 
-and control the physical network in its whole lifecycle with the help of optimization algorithms, management methods, 
+The Digital Twin, constructed based on the four core technology elements, is intended to analyze, diagnose, emulate,
+and control the physical network in its whole lifecycle with the help of optimization algorithms, management methods,
 and expert knowledge.
 
-Also, that document {{?I-D.irtf-nmrg-network-digital-twin-arch}} states that a Digital Twin can be seen as an indispensable part of the overall network system 
-and provides a general architecture involving the whole lifecycle of physical networks in the future, serving the 
-application of innovative network technologies (e.g., network planning, construction, maintenance and optimization, 
+Also, that document {{?I-D.irtf-nmrg-network-digital-twin-arch}} states that a Digital Twin can be seen as an indispensable part of the overall network system
+and provides a general architecture involving the whole lifecycle of physical networks in the future, serving the
+application of innovative network technologies (e.g., network planning, construction, maintenance and optimization,
 improving the automation and intelligence level of the network).
 
 ## Digital Map
 
-Digital Map provides the core multi-layer topology model and data for the Digital Twin and connects them to the 
+Digital Map provides the core multi-layer topology model and data for the Digital Twin and connects them to the
 other Digital Twin models and data. This includes layers from physical topology to service topology.
 
-The Digital Map modelling defines the core topological entities (network, node, link, and interface) at each layer, their role in 
+The Digital Map modelling defines the core topological entities (network, node, link, and interface) at each layer, their role in
 the network, core properties, and relationships both inside each layer and between the layers.
 
-The Digital Map model can be approached as a topological model that is linked to other functional parts of the Digital Twin and 
-connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), Traffic-Engineering (TE), 
+The Digital Map model can be approached as a topological model that is linked to other functional parts of the Digital Twin and
+connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), Traffic-Engineering (TE),
 different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
-The Digital Map data consists of virtual instances of network and service topologies at different layers.  
-The Digital Map provides the access to this data via standard APIs for both read and write operations 
-(write operations for offline simulations), with query capabilities and links to other YANG modules 
-(e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachement Points (SAPs) {{?RFC9408}}, 
+The Digital Map data consists of virtual instances of network and service topologies at different layers.
+The Digital Map provides the access to this data via standard APIs for both read and write operations
+(write operations for offline simulations), with query capabilities and links to other YANG modules
+(e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachement Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models.
 
 ## Digital Map as a Prerequisite for Digital Twin
 
-One of the important requirements for Digital Twin is to ease correlating all models and 
-data to topological entities at different layers in the layered twin network.  The Digital Map aims at providing a 
-virtual instance of the topological information of the network, based on this Digital Map Model. 
+One of the important requirements for Digital Twin is to ease correlating all models and
+data to topological entities at different layers in the layered twin network.  The Digital Map aims at providing a
+virtual instance of the topological information of the network, based on this Digital Map Model.
 **Building a Digital Map is prerequisite towards the Digital Twin.**
 
-The Digital Map model/data provide this missing correlation between the topology models/data and all other 
-models/data: KPIs, alarms, incidents, inventory (with UUIDs), configuration, traffic engineering, planning, 
+The Digital Map model/data provide this missing correlation between the topology models/data and all other
+models/data: KPIs, alarms, incidents, inventory (with UUIDs), configuration, traffic engineering, planning,
 simulation ("what-if"), emulations, actions, and behaviors.
 
-Some of these models/data provide a device view, some provide a network or subnetwork view, while others focus 
+Some of these models/data provide a device view, some provide a network or subnetwork view, while others focus
 more on the customer service perspective.  All these views are needed for both inner and outer closed-loops.
 
-It is debatable what is part of the Digital Map itself versus what are pointers from the Digital Map to some 
-other sources of information.  As an example, a Digital Map should not specifically include all information 
+It is debatable what is part of the Digital Map itself versus what are pointers from the Digital Map to some
+other sources of information.  As an example, a Digital Map should not specifically include all information
 about the device inventory (product name, vendor, product series, embedded software, and
-hardware/software versions, as specified in a Network Inventory. A pointer to another inventory system 
+hardware/software versions, as specified in a Network Inventory. A pointer to another inventory system
 might be sufficient or support of means that ease the mapping between inventory and topology.
 
-Similarly, Digital Map should not specifically contain incidents, configuration, 
+Similarly, Digital Map should not specifically contain incidents, configuration,
 data plane monitoring, or even assurance information, simply to name a few, but should provide pointers to the different data sources.
 
 ## Scope
@@ -200,7 +218,7 @@ The following are sample Digital Twin use cases that require Digital Map:
 + Simulation
 - Closed loop
 
-Overall, the Digital Map is needed to break down data islands and have a Digital Twin for emulation and closed loop, 
+Overall, the Digital Map is needed to break down data islands and have a Digital Twin for emulation and closed loop,
 which is a catalyst for autonomous networking.
 
 
@@ -221,9 +239,9 @@ REQ-PROG-OPEN-MODEL:
 : This includes "read" operations to retrieve the view of the network, typically as application-facing interface of Software Defined Networking (SDN) controllers or orchestrators.
 : It also includes "write" operations, not for the ability to directly change the Digital Map data (e.g., changing the network or service parameters), 
 but for offline simulations, also known as what-if scenarios.
-:  Running a "what-if" analysis requires the ability to take 
+:  Running a "what-if" analysis requires the ability to take
 snapshots and to switch easily between them.
-: Note that there is a need to distinguish between a change on the Digital Map 
+: Note that there is a need to distinguish between a change on the Digital Map
 for future simulation and a change that reflects the current reality of the network.
 
 REQ-STD-API-BASED:
@@ -246,12 +264,12 @@ REQ-EXTENSIBLE:
 REQ-PLUGG:
 : Digital Map must be pluggable. That is,
     
-     + Must connect to other YANG modules for inventory, configuration, assurance, etc. 
+     + Must connect to other YANG modules for inventory, configuration, assurance, etc.
      + Given that no all involved components can be available using YANG, there is a need to connect Digital Map YANG model with other modelling mechanisms.
 
 REQ-GRAPH-TRAVERSAL:
-: Digital Map must be optimized for graph traversal for paths. This means that only providing link nodes and 
-source and sink relationships to termination-points may not be sufficient, we may need to have the direct 
+: Digital Map must be optimized for graph traversal for paths. This means that only providing link nodes and
+source and sink relationships to termination-points may not be sufficient, we may need to have the direct
 relationship between the termination points or nodes.
 
 ## Design Requirements
@@ -260,15 +278,15 @@ The following are design requirements for modelling the Digital Map:
 
 REQ-TOPO-ONLY:
 : Digital Map should contain only topological information.
-:  Digital Map is not required to contain all data required for 
-all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital 
+:  Digital Map is not required to contain all data required for
+all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital
 Twin data and models to ease navigating in the overall system. For example:
 
   + ACLs and Route Policies are not required to be supported in the Digital Map, they would be linked to Digital Map
   + Dynamic paths may either be outside of the Digital Map or part of traffic engineering data/models
 
 REQ-PROPERTIES:
-: Digital Map entities should mainly contain properties used to identify topological entities at different layers, 
+: Digital Map entities should mainly contain properties used to identify topological entities at different layers,
 identify their roles, and topological relationships between them.
 
 REQ-RELATIONSHIPS:
@@ -278,7 +296,7 @@ REQ-CONDITIONAL:
 : Provide capability for conditional retrieval of parts of Digital Map.
 
 REQ-TEMPO-HISTO:
-: Must support geo-spatial, temporal, and historical data.  The temporal and historical can be supported external 
+: Must support geo-spatial, temporal, and historical data.  The temporal and historical can be supported external
 to the Digital Map.
 
 ## Architectural Requirements
