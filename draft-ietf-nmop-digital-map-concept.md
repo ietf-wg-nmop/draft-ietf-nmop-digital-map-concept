@@ -11,7 +11,7 @@ date:
 consensus: true
 v: 3
 area: "Operations and Management"
-workgroup: "NMOP"
+workgroup: "Network Management Operations"
 keyword:
  - Service emulation
  - Automation
