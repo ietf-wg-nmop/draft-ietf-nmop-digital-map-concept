@@ -167,7 +167,7 @@ Topology layer:
 :  The service layer represents
    the service view of the connectivity, that can differ for
    different types of services and for different providers/solutions.
-:  The top layer represents the application / flow view of connectivity.
+:  The top layer represents the application/flow view of connectivity.
 
 Digital Map:
 : Basis for the Digital Twin that provides a virtual instance of the
@@ -263,7 +263,7 @@ REQ-EXTENSIBLE:
 
 REQ-PLUGG:
 : Digital Map must be pluggable. That is,
-    
+
      + Must connect to other YANG modules for inventory, configuration, assurance, etc.
      + Given that no all involved components can be available using YANG, there is a need to connect Digital Map YANG model with other modelling mechanisms.
 
@@ -317,7 +317,6 @@ However, the RFC 8345 Security Considerations aspects will be useful when design
 # IANA Considerations
 
 This document has no actions for IANA.
-
 
 --- back
 
