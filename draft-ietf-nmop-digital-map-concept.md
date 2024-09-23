@@ -156,7 +156,7 @@ Topology layer:
   where each layer represents a connectivity aspect of the network
   and service that needs to be configured, controlled and monitored.
 : The topology layer can also represent what needs to be managed by a
-  specific user, for example IGP layer can be of interest to the operator 
+  specific user, for example IGP layer can be of interest to the operator
   troubleshooting or optimizating the routing, while the optical layer may be
   of interest to the user managing the optical network.
 :  Some topology layers may relate closely to OSI layers, like L1 topology
@@ -200,7 +200,7 @@ Digital Map data:
    nodes, links and termination points inside a network,
    relationships between instances belonging to different networks,
    links to functional data for the instances, including
-   configuration, health, symptoms.  
+   configuration, health, symptoms.
  :The data can be historical, real-time, or future data for 'what-if' scenarios.
 
 # Sample Digital Map Use Cases
@@ -231,13 +231,13 @@ The following are the core requirements for the Digital Map (note that some of t
 REQ-BASIC-MODEL-SUPPORT:
 : Basic model with network, node, link, and interface entity types. This means that users of the Digital Map model must be able to understand topology model at any layer via these core concepts only, without having to go to the details of the specific augmentations to understand the topology.
 
-REQ-LAYERED-MODEL: 
+REQ-LAYERED-MODEL:
 : Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to  service and intent views.
 
 REQ-PROG-OPEN-MODEL:
 : Open and programmable Digital Map.
 : This includes "read" operations to retrieve the view of the network, typically as application-facing interface of Software Defined Networking (SDN) controllers or orchestrators.
-: It also includes "write" operations, not for the ability to directly change the Digital Map data (e.g., changing the network or service parameters), 
+: It also includes "write" operations, not for the ability to directly change the Digital Map data (e.g., changing the network or service parameters),
 but for offline simulations, also known as what-if scenarios.
 :  Running a "what-if" analysis requires the ability to take
 snapshots and to switch easily between them.
@@ -246,7 +246,7 @@ for future simulation and a change that reflects the current reality of the netw
 
 REQ-STD-API-BASED:
 : Standard based Digital Map Models and APIs, for multi-vendor support.
-:  Digital Map must provide the standard YANG APIs 
+:  Digital Map must provide the standard YANG APIs
 that provide for read/write and queries.  These APIs must also provide the capability to retrieve the links to external data/models.
 
 REQ-COMMON-APP:
@@ -381,8 +381,8 @@ The Digital Map may need to link to the following models, some are already augme
 *  SAIN {{?RFC9417}} {{?RFC9418}}
 
 *  Network Inventory Model {{?I-D.ietf-ivy-network-inventory-yang}} focuses on physical and virtual inventory. Logical inventory is currently outside of the scope.
-It does not augment RFC8345 like the two Internet-Drafts that it evolved from {{?I-D.ietf-ccamp-network-inventory-yang}} 
-and {{?I-D.wzwb-opsawg-network-inventory-management}}. {{?I-D.wzwb-ivy-network-inventory-topology}} 
+It does not augment RFC8345 like the two Internet-Drafts that it evolved from {{?I-D.ietf-ccamp-network-inventory-yang}}
+and {{?I-D.wzwb-opsawg-network-inventory-management}}. {{?I-D.ietf-ivy-network-inventory-topology}}
 correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.
 
 *  KPIs: delay, jitter, loss
