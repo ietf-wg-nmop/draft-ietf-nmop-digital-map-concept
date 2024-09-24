@@ -8,7 +8,7 @@ on:
     inputs:
       email:
         description: "Submitter email"
-        default: ""
+        default: "olga.havel@huawei.com"
         type: string
 
 jobs:
