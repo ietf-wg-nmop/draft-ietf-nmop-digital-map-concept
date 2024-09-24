@@ -1,0 +1,133 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-09-24T00:59:41.925507+00:00",
+  "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "CallForAdoption",
+      "description": "",
+      "color": "B82C95"
+    },
+    {
+      "name": "DirectorateReview",
+      "description": "",
+      "color": "A57F80"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "Editorial",
+      "description": "",
+      "color": "ADA637"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "IESG Review",
+      "description": "",
+      "color": "3D11DF"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "WGLC",
+      "description": "",
+      "color": "c2e0c6"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    },
+    {
+      "name": "YANG",
+      "description": "",
+      "color": "B9B881"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOM1onH86Xfngl",
+      "title": "Scope/Goal/Intended Use (from Italo)",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/1",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> Hi Med, WG(s),\r\n> \r\n> I think the document needs some important updates, however I do support the adoption of the draft as a WG document\r\n> \r\n> The work is in the scope of NMOP WG (as explicitly stated in the charter) and I agree that NMOP WG needs to develop a common view of the definitions, use cases and requirements for digital map, which is what this I-D is aiming for\r\n> \r\n> I wished to provide more constructive and detailed comments to the draft, but I am running out of time for the adoption call so I am starting to share an high-level overview my major comments. At this moment in time, it is not fully clear to me whether the digital map is intended to be:\r\n> \r\n> \u2022\taimed at supporting the full lifecycle of network management/control (as it seems to me being stated in the draft) or just the network visualization application (as I have understood from previous discussions and PoCs)\r\n> \r\n> \u2022\taddressing only network scenarios with L2&L3 technologies (as I have understood from previous discussions) or any network scenarios where TE layers, such as WDM, OTN or MPLS-TE, are also present (as I would assume by reading the draft as technology-agnostic)\r\n> \r\n> \u2022\taddressing only the applicability of topology models in support of digital twins (as it seems to me being stated in the draft) or more than just topology (as I have understood from previous discussions)\r\n> \r\n> IMHO, the NMOP WG should take on this draft and improve it to clarify all the points as well as other doubts I have seen from other comments sent to the list(s) as replies to this WG adoption call\r\n> \r\n> Italo\r\n",
+      "createdAt": "2024-09-23T06:03:09Z",
+      "updatedAt": "2024-09-23T06:03:09Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOM1onH86XisII",
+      "title": "Vague Term (From Diego)",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/2",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "> De : Diego R. Lopez <diego.r.lopez@telefonica.com> \r\n> Envoy\u00e9 : lundi 23 septembre 2024 13:51\r\n> \u00c0 : BOUCADAIR Mohamed INNOV/NET <mohamed.boucadair@orange.com>; nmop@ietf.org\r\n> Cc : TEAS WG (teas@ietf.org) <teas@ietf.org>; nmop-chairs@ietf.org; draft-havel-nmop-digital-map-concept@ietf.org\r\n> Objet : Re: (Concluded) RE: Call for adoption: draft-havel-nmop-digital-map-concept (Ends 23/09/2024)\r\n> \r\n> Hi,\r\n> \r\n> I am afraid I have had this message in the fridge for too long, apologies for that\u2026\r\n> \r\n> Anyway, let me share my support for the adoption, and the reflection that we should discuss a fundamental terminology issue, as the term \u201cdigital map\u201d seems too vague for giving a clear idea of the purpose of the work. I think we should qualify it a little bit more, and would suggest \u201cnetwork functional map\u201d, \u201cnetwork multi-level topology map\u201d, \u201cnetwork integrated map\u201d, or any similar combination, avoiding the so much overused term \u201cdigital\u201d and emphasizing the goals of the mapping mechanisms.\r\n> \r\n> Be goode,\r\n",
+      "createdAt": "2024-09-23T12:15:41Z",
+      "updatedAt": "2024-09-23T12:15:41Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOM1onH86Xi9Il",
+      "title": "Add more description for each use case",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/3",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Add more narrative text to \"Sample Digital Map Use Cases\" section to easy digest each of these use cases. This does not to be too long.",
+      "createdAt": "2024-09-23T12:45:43Z",
+      "updatedAt": "2024-09-23T12:45:43Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": []
+}
