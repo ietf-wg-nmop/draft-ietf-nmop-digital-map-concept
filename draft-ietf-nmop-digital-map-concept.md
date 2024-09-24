@@ -21,7 +21,8 @@ keyword:
  - service flexibility
  - service simplification
  - Network Service
- - Digital twim
+ - Digital Map
+ - Digital Twin
  - Emulation
  - Simulation
  - Topology
