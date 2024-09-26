@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-24T00:59:41.925507+00:00",
+  "timestamp": "2024-09-26T00:58:50.824185+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -129,5 +129,32 @@
       "comments": []
     }
   ],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 4,
+      "id": "PR_kwDOM1onH858nPta",
+      "title": "fix reference",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/4",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-09-25T07:22:10Z",
+      "updatedAt": "2024-09-25T07:22:11Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "26260221706a09240a3eaab9fb393bfa12036790",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "fix-reference",
+      "headRefOid": "ef6a3919d8681f8b22588a048dd71111bcfb97ba",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
