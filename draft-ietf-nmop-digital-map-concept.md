@@ -392,7 +392,7 @@ correlates the network inventory with the general topology via RFC8345 augmentat
 
 *  Configuration: L2SM {{?RFC8466}}, L3SM {{?RFC8299}}, L2NM {{?RFC9291}}, and L3NM {{?RFC9182}}
 
-*  Incident Management for Network Services {{?I-D.draft-ietf-nmop-network-incident-yang}}
+*  Incident Management for Network Services {{?I-D.ietf-nmop-network-incident-yang}}
 
 # Acknowledgments
 {:numbered="false"}
