@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 28 March 2025                                     O. G. D. Dios
+Expires: 31 March 2025                                     O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                       24 September 2024
+                                                       27 September 2024
 
 
            Digital Map: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 March 2025.
+   This Internet-Draft will expire on 31 March 2025.
 
 Copyright Notice
 
@@ -432,14 +432,6 @@ Table of Contents
 
 7.2.  Informative References
 
-   [I-D.draft-ietf-nmop-network-incident-yang]
-              Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
-              "A YANG Data Model for Network Incident Management", Work
-              in Progress, Internet-Draft, draft-ietf-nmop-network-
-              incident-yang-01, 28 June 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-incident-yang-01>.
-
    [I-D.ietf-ccamp-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A YANG Data Model for Network Hardware
@@ -463,6 +455,14 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
               network-inventory-yang-03>.
 
+   [I-D.ietf-nmop-network-incident-yang]
+              Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
+              "A YANG Data Model for Network Incident Management", Work
+              in Progress, Internet-Draft, draft-ietf-nmop-network-
+              incident-yang-01, 28 June 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-incident-yang-01>.
+
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
@@ -485,9 +485,9 @@ Table of Contents
               Q., Boucadair, M., and C. Jacquenet, "Network Digital
               Twin: Concepts and Reference Architecture", Work in
               Progress, Internet-Draft, draft-irtf-nmrg-network-digital-
-              twin-arch-06, 7 July 2024,
+              twin-arch-07, 26 September 2024,
               <https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-
-              network-digital-twin-arch-06>.
+              network-digital-twin-arch-07>.
 
    [I-D.ogondio-nmop-isis-topology]
               de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
@@ -657,7 +657,7 @@ A.3.  Additional Digital Map Components
       L3NM [RFC9182]
 
    *  Incident Management for Network Services
-      [I-D.draft-ietf-nmop-network-incident-yang]
+      [I-D.ietf-nmop-network-incident-yang]
 
 Acknowledgments
 
