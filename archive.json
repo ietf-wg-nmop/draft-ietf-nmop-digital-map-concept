@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-09-26T00:58:50.824185+00:00",
+  "timestamp": "2024-09-29T01:04:09.212439+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -127,6 +127,38 @@
       "updatedAt": "2024-09-23T12:45:43Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOM1onH86YLblK",
+      "title": "Digital Map term and relation to Digital Twin",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/5",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Multiple comments, all related:\r\n\r\n- There were some comments during the IETF120 (from Diego and Dan, if my memory serves me well), about the Scenarios where Digital Map is needed even without the Digital Twin. \r\n\r\n- Brad Peters:\r\nIn my opinion I think it is best to separate the map and the twin. My thoughts for this is that people will find the map useful independent of the twin capabilities. There is a lifecycle that is described that it may form the basis of the digital twin but I suspect that will require more time to evolve than the map itself. I'd suggest the more inclusive optional. \r\n\r\n- Nacho:\r\nThere were multiple discussions with Nacho in regards to how the Digital Map needs to be better defined to understand both its scope and relationship to Twin.\r\n \r\n\r\n",
+      "createdAt": "2024-09-27T14:52:13Z",
+      "updatedAt": "2024-09-27T14:52:13Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOM1onH86YLdQz",
+      "title": "Digital Map Scope Clarification",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/6",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Nacho needed clarification on the scope of the Digital Map. We had a call and the following is clarification. \r\n\r\n Is the digital map the collection of data models in the IETF?\r\n\r\n\u2022             Clearly NO, it is a core part that you can relate to the rest of YANG models\r\n\u2022             Nacho was OK with the answer\r\n\u2022             We already have exchange on the NMOP about it with some clarification\r\n\u2022             Digital Map is the core layered topology model + links to other YANG models\r\n\r\nAction Item:\r\n\u2022             Update the draft and release a new version \r\n",
+      "createdAt": "2024-09-27T14:55:45Z",
+      "updatedAt": "2024-09-27T14:55:45Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -135,26 +167,42 @@
       "id": "PR_kwDOM1onH858nPta",
       "title": "fix reference",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/4",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-09-25T07:22:10Z",
-      "updatedAt": "2024-09-25T07:22:11Z",
+      "updatedAt": "2024-09-27T14:56:48Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "baseRefName": "main",
       "baseRefOid": "26260221706a09240a3eaab9fb393bfa12036790",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "headRefName": "fix-reference",
       "headRefOid": "ef6a3919d8681f8b22588a048dd71111bcfb97ba",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-09-27T14:56:47Z",
+      "mergedAt": "2024-09-27T14:56:47Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "740ff904ebabd9f8a7573d0a5f8e2216a228f865"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOM1onH86LHX7l",
+          "commit": {
+            "abbreviatedOid": "ef6a391"
+          },
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-09-27T14:56:37Z",
+          "updatedAt": "2024-09-27T14:56:37Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
