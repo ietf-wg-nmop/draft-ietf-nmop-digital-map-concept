@@ -22,7 +22,6 @@ keyword:
  - service simplification
  - Network Service
  - Digital Map
- - Digital Twin
  - Emulation
  - Simulation
  - Topology
@@ -62,7 +61,7 @@ informative:
 
 --- abstract
 
-This document defines the concept of Digital Map, explains its connection to the Digital Twin, and identifies a set of Digital Map requirements and use cases.
+This document defines the concept of Digital Map, and identifies a set of Digital Map requirements and use cases.
 
 The document intends to be used as a reference for the assessment effort of the various topology modules to meet Digital Map requirements.
 
@@ -70,81 +69,32 @@ The document intends to be used as a reference for the assessment effort of the 
 
 # Introduction
 
-## Digital Twin Overview
-
-The network digital twin (referred to simply as Digital Twin) concepts and a reference architecture are discussed in
-the "Digital Twin Network: Concepts and Reference Architecture" {{?I-D.irtf-nmrg-network-digital-twin-arch}}.
-That reference document defines the core elements of Digital Twin: Data, Models, Interfaces, and Mapping.
-
-The Digital Twin, constructed based on the four core technology elements, is intended to analyze, diagnose, emulate,
-and control the physical network in its whole lifecycle with the help of optimization algorithms, management methods,
-and expert knowledge.
-
-Also, that document {{?I-D.irtf-nmrg-network-digital-twin-arch}} states that a Digital Twin can be seen as an indispensable part of the overall network system
-and provides a general architecture involving the whole lifecycle of physical networks in the future, serving the
-application of innovative network technologies (e.g., network planning, construction, maintenance and optimization,
-improving the automation and intelligence level of the network).
-
-## Digital Map
-
-Digital Map provides the core multi-layer topology model and data for the Digital Twin and connects them to the
-other Digital Twin models and data. This includes layers from physical topology to service topology.
+Digital Map provides a core multi-layer topology model and data and connects them to the
+other models and data. This includes layers from physical topology to service topology.
 
 The Digital Map modelling defines the core topological entities (network, node, link, and interface) at each layer, their role in
-the network, core properties, and relationships both inside each layer and between the layers.
+the network topology, core topological properties, and topological relationships both inside each layer and between the layers.
+It also defines how to access other external models from the topology.
 
-The Digital Map model can be approached as a topological model that is linked to other functional parts of the Digital Twin and
+The Digital Map model is a topological model that is linked to the other functional models and
 connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), Traffic-Engineering (TE),
 different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
+These other models exist outside of the digital map and are not defined during digital map modelling.
 
 The Digital Map data consists of virtual instances of network and service topologies at different layers.
-The Digital Map provides the access to this data via standard APIs for both read and write operations
+The Digital Map provides access to this data via standard APIs for both read and write operations
 (write operations for offline simulations), with query capabilities and links to other YANG modules
 (e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachement Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models.
 
-## Digital Map as a Prerequisite for Digital Twin
-
-One of the important requirements for Digital Twin is to ease correlating all models and
-data to topological entities at different layers in the layered twin network.  The Digital Map aims at providing a
-virtual instance of the topological information of the network, based on this Digital Map Model.
-**Building a Digital Map is prerequisite towards the Digital Twin.**
-
-The Digital Map model/data provide this missing correlation between the topology models/data and all other
-models/data: KPIs, alarms, incidents, inventory (with UUIDs), configuration, traffic engineering, planning,
-simulation ("what-if"), emulations, actions, and behaviors.
-
-Some of these models/data provide a device view, some provide a network or subnetwork view, while others focus
-more on the customer service perspective.  All these views are needed for both inner and outer closed-loops.
-
-It is debatable what is part of the Digital Map itself versus what are pointers from the Digital Map to some
-other sources of information.  As an example, a Digital Map should not specifically include all information
-about the device inventory (product name, vendor, product series, embedded software, and
-hardware/software versions, as specified in a Network Inventory. A pointer to another inventory system
-might be sufficient or support of means that ease the mapping between inventory and topology.
-
-Similarly, Digital Map should not specifically contain incidents, configuration,
-data plane monitoring, or even assurance information, simply to name a few, but should provide pointers to the different data sources.
-
-## Scope
-
-This document defines the concept of Digital Map, explains its connection to the Digital Twin, and identifies a set of Digital Map requirements and use cases.
-
-The document intends to be used as a reference for the assessment effort of the various topology modules to meet Digital Map requirements.
 
 # Terminology
 
 The document defines the following terms:
 
-Digital Twin:
-: Virtual instance of a physical system (twin) that is continually
-  updated with the latter's performance, maintenance and health
- status data throughout the physical system's life cycle (as
- defined in  {{Section 2.2 of ?I-D.irtf-nmrg-network-digital-twin-arch}}
-
 Topology:
 : Network topology defines how physical or logical nodes, links and
-  interfaces are related and arranges.  Service topology defines how
+  interfaces are related and arranged.  Service topology defines how
   service components (e.g., VPN instances, customer interfaces, and
   customer links) between customer sites are interrelated and
   arranged.  There are at least 8 types of topologies: point to
@@ -172,25 +122,23 @@ Topology layer:
 :  The top layer represents the application/flow view of connectivity.
 
 Digital Map:
-: Basis for the Digital Twin that provides a virtual instance of the
-    topological information of the network.  It provides the core
-    multi-layer topology model and data for the Digital Twin and
-    connects them to the other Digital Twin models and data.
+: Basis for the Operator Network and Services Models that provides
+    topological information of the network.  It provides the core multi-layer
+    topology model/data and how to connect them to the other models/data.
 
 Digital Map modelling:
 : The set of principles, guidelines, and conventions to model the
       Digital Map using the IETF {{?RFC8345}} approach.  They cover the
       network types (layers and sublayers), entity types, entity roles
-      (network, node, termination point or link), entity properties and
-      relationship types between entities.
+      (network, node, termination point or link), entity properties,
+      relationship types between entities and relationships to other entities o.
 
 Digital Map model:
 : Defines the core topological entities, their role in the network,
   core properties and relationships both inside each layer and
   between the layers.
-:  It is the basic topological model that is
-   linked to other functional parts of the Digital Twin and connects
-   them all: configuration, maintenance, assurance (KPIs, status,
+:  It is the basic topological model with the
+   links to other models and connects them all: configuration, maintenance, assurance (KPIs, status,
    health, symptoms, etc.), traffic engineering, different behaviors,
    simulation, emulation, mathematical abstractions, AI algorithms,
    etc.
@@ -207,21 +155,23 @@ Digital Map data:
 
 # Sample Digital Map Use Cases
 
-The following are sample Digital Twin use cases that require Digital Map:
+The following are sample use cases that require Digital Map:
 
 * Generic inventory queries
 + Service placement feasibility checks
 + Service-> subservice -> resource
 + Resource -> subservice -> service
 + Intent/service assurance
-+ Service E2E and per-link KPIs on the Digital Map (delay, jitter, and loss)
++ Service E2E and per-link KPIs on the Digital Map (connectivity status, high-availability, delay, jitter, and loss)
 + Capacity planning
 + Network design
 + Simulation
 - Closed loop
+- Digital Twin
 
-Overall, the Digital Map is needed to break down data islands and have a Digital Twin for emulation and closed loop,
-which is a catalyst for autonomous networking.
+Overall, the Digital Map is needed to provide the mechanism to connect data islands from the core multi-layered topology.
+It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
+requirement for the Digital Twin.
 
 
 # Digital Map Requirements
@@ -280,9 +230,9 @@ The following are design requirements for modelling the Digital Map:
 
 REQ-TOPO-ONLY:
 : Digital Map should contain only topological information.
-:  Digital Map is not required to contain all data required for
-all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital
-Twin data and models to ease navigating in the overall system. For example:
+:  Digital Map is not required to contain all models and data required for
+all the management and use cases. However, it should be designed to support adequate pointers to other functional
+data and models to ease navigating in the overall system. For example:
 
   + ACLs and Route Policies are not required to be supported in the Digital Map, they would be linked to Digital Map
   + Dynamic paths may either be outside of the Digital Map or part of traffic engineering data/models
