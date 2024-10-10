@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T00:59:07.261648+00:00",
+  "timestamp": "2024-10-10T00:58:48.742301+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -225,24 +225,26 @@
       "id": "PR_kwDOM1onH859HrZo",
       "title": "Changes to the Digital Map definition, abstract and introduction as a\u2026",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/8",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "OlgaHuawei",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "\u2026 result of feedback and open issues 2 and 5",
       "createdAt": "2024-09-30T13:28:36Z",
-      "updatedAt": "2024-09-30T13:28:37Z",
+      "updatedAt": "2024-10-09T15:07:33Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "baseRefName": "main",
       "baseRefOid": "740ff904ebabd9f8a7573d0a5f8e2216a228f865",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "headRefName": "OlgaDigitalTwinChanges",
       "headRefOid": "8f25318fe21ed50d5ba3df775e13ed817e381583",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-09T15:07:33Z",
+      "mergedAt": "2024-10-09T15:07:33Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "9ce8e89fb744e30c87a08ca0e9f4d2692ea66618"
+      },
       "comments": [],
       "reviews": []
     }
