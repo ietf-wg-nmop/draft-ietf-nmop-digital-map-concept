@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 12 April 2025                                     O. G. D. Dios
+Expires: 21 April 2025                                     O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                          9 October 2024
+                                                         18 October 2024
 
 
            Digital Map: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 12 April 2025.
+   This Internet-Draft will expire on 21 April 2025.
 
 Copyright Notice
 
@@ -71,6 +71,17 @@ Table of Contents
    1.  Introduction
    2.  Terminology
    3.  Sample Digital Map Use Cases
+     3.1.  Generic inventory queries
+     3.2.  Service placement feasibility checks
+     3.3.  Service-> subservice -> resource
+     3.4.  Resource -> subservice -> service
+     3.5.  Intent/service assurance
+     3.6.  Service E2E and per-link KPIs
+     3.7.  Capacity planning
+     3.8.  Network design
+     3.9.  Simulation
+     3.10. Closed Loop
+     3.11. Digital Twin
    4.  Digital Map Requirements
      4.1.  Core Requirements
      4.2.  Design Requirements
@@ -90,9 +101,15 @@ Table of Contents
 
 1.  Introduction
 
-   Digital Map provides a core multi-layer topology model and data and
-   connects them to the other models and data.  This includes layers
-   from physical topology to service topology.
+   Digital Map is a data model that provides a view of the operator's
+   networks and services, including how it is connected to other models/
+   data (e.g. inventory, observability sources, and operational
+   knowledge).  It specifically provides an approach to model multi-
+   layered topology and appropriate mechanism to navigate amongs layers
+   and correlate between them.  This includes layers from physical
+   topology to service topology.  This model is applicable to multiple
+   domains (access, core, data centers, etc.) and technologies (Optical,
+   IP, etc.).
 
    The Digital Map modelling defines the core topological entities
    (network, node, link, and interface) at each layer, their role in the
@@ -119,22 +136,26 @@ Table of Contents
 
 2.  Terminology
 
-   The document defines the following terms:
+   The document makes use of the following terms:
 
-   Topology:  Network topology defines how physical or logical nodes,
-      links and interfaces are related and arranged.  Service topology
-      defines how service components (e.g., VPN instances, customer
-      interfaces, and customer links) between customer sites are
-      interrelated and arranged.  There are at least 8 types of
-      topologies: point to point, bus, ring, star, tree, mesh, hybrid
-      and daisy chain.  Topologies may be unidirectional or
+   Topology:  Topology in this document refers to the network and
+      service topology.  Network topology defines how physical or
+      logical nodes, links and interfaces are related and arranged.
+      Service topology defines how service components (e.g., VPN
+      instances, customer interfaces, and customer links) between
+      customer sites are interrelated and arranged.  There are at least
+      8 types of topologies: point to point, bus, ring, star, tree,
+      mesh, hybrid and daisy chain.  Topologies may be unidirectional or
       bidirectional (bus, some rings).
 
-   Topology layer:  Defines a layer in the multilayer topology.  A
-      multilayer topology models relationships between different layers
-      of connectivity, where each layer represents a connectivity aspect
-      of the network and service that needs to be configured, controlled
-      and monitored.
+   Multi-layered topology:  A multi-layered topology models
+      relationships between different layers of topology, where each
+      layer represents a connectivity aspect of the network and services
+      that needs to be configured, controlled and monitored.  Each layer
+      of topology has a separate lifecycle.
+
+   Topology layer:  Represents topology at a single layer in the multi-
+      layered topology.
 
       The topology layer can also represent what needs to be managed by
       a specific user, for example IGP layer can be of interest to the
@@ -153,24 +174,30 @@ Table of Contents
       that can differ for different types of services and for different
       providers/solutions.
 
-      The top layer represents the application/flow view of
+      The top layer represents the application/flow view of service
       connectivity.
 
-   Digital Map:  Basis for the Operator Network and Services Models that
-      provides topological information of the network.  It provides the
-      core multi-layer topology model/data and how to connect them to
-      the other models/data.
+   The document defines the following terms:
+
+   Digital Map:  Digital Map is a data model that provides a view of the
+      operator's networks and services, including how it is connected to
+      other models/data (e.g. inventory, observability sources, and
+      operational knowledge).  It specifically provides an approach to
+      model multi-layered topology and appropriate mechanism to navigate
+      amongs layers and correlate between them.  This model is
+      applicable to multiple domains (access, core, data centers, etc.)
+      and technologies (Optical, IP, etc.).
 
    Digital Map modelling:  The set of principles, guidelines, and
       conventions to model the Digital Map using the IETF [RFC8345]
       approach.  They cover the network types (layers and sublayers),
       entity types, entity roles (network, node, termination point or
       link), entity properties, relationship types between entities and
-      relationships to other entities o.
+      relationships to other entities.
 
    Digital Map model:  Defines the core topological entities, their role
-      in the network, core properties and relationships both inside each
-      layer and between the layers.
+      in the network, core topological properties and relationships both
+      inside each layer and between the layers.
 
       It is the basic topological model with the links to other models
       and connects them all: configuration, maintenance, assurance
@@ -184,8 +211,10 @@ Table of Contents
       relationships between nodes, links and termination points inside a
       network, relationships between instances belonging to different
       networks, links to functional data for the instances, including
-      configuration, health, symptoms.  :The data can be historical,
-      real-time, or future data for 'what-if' scenarios.
+      configuration, health, symptoms.
+
+      The data can be historical, real-time, or future data for 'what-
+      if' scenarios.
 
 3.  Sample Digital Map Use Cases
 
@@ -220,6 +249,70 @@ Table of Contents
    operations use cases, but it is also a requirement for the Digital
    Twin.
 
+   The following sections shows some example use case descriptions to
+   initiate the discussion what type of info is needed to describe the
+   use cases in the context of Digital Map. The next version of the
+   draft will include more info on these use cases, from the perspective
+   of what is the value of the digital map for each use case and how the
+   Digital Map API can be used.  This will also clarify if only read and
+   if/when write interface is needed per use case.
+
+3.1.  Generic inventory queries
+
+   The application will be able to retrieve physical topology from the
+   controller via Digital Map API and from the response it will be able
+   to retrieve physical inventory of individual devices and cables.
+
+   The application may request either one or multiple layers of topology
+   via the Digital Map API and and from the response it will be able to
+   retrieve both physical and logical inventory.
+
+3.2.  Service placement feasibility checks
+
+3.3.  Service-> subservice -> resource
+
+   The application will be able to retrieve all services from the
+   Digital Map API for selected network type.  The application will be
+   able to retrieve the topology for selected services via Digital Map
+   API and from the response it will be able to navigate via the
+   supporting relationship top-down to the lower layers.  That way, it
+   will be able to determine what logical resources are used by the
+   service.  The supporting relations to the lowest layer will help
+   application to determine what physical resources are used by the
+   service.
+
+3.4.  Resource -> subservice -> service
+
+   The application will be able to navigate from the Physical, L2 or L3
+   topology to the services that use specific resources.  For example,
+   the application will be able to select the resouce and by navigation
+   the supporting relationship bottom-up come to the service and its
+   nodes, tps and links.
+
+3.5.  Intent/service assurance
+
+   The application will be able to retrieve topology layer and any
+   network/node/tp/link instances from the controller via Digital Map
+   API and from the response it will be able to determine the health of
+   each instance by navigating to the SAIN subservices and its symptoms.
+
+3.6.  Service E2E and per-link KPIs
+
+   The application will be able to retieve the topology at any layer
+   from the controller via Digital Map API and from the response it will
+   be able to navigate any retrieve any KPIs for selected topology
+   entity.
+
+3.7.  Capacity planning
+
+3.8.  Network design
+
+3.9.  Simulation
+
+3.10.  Closed Loop
+
+3.11.  Digital Twin
+
 4.  Digital Map Requirements
 
 4.1.  Core Requirements
@@ -228,10 +321,12 @@ Table of Contents
    that some of them are supported by default by [RFC8345]):
 
    REQ-BASIC-MODEL-SUPPORT:  Basic model with network, node, link, and
-      interface entity types.  This means that users of the Digital Map
-      model must be able to understand topology model at any layer via
-      these core concepts only, without having to go to the details of
-      the specific augmentations to understand the topology.
+      interface entity types.
+
+      This means that users of the Digital Map model must be able to
+      understand topology model at any layer via these core concepts
+      only, without having to go to the details of the specific
+      augmentations to understand the topology.
 
    REQ-LAYERED-MODEL:  Layered Digital Map, from physical network
       (ideally optical, layer 2, layer 3) up to service and intent
@@ -263,8 +358,9 @@ Table of Contents
       capability to retrieve the links to external data/models.
 
    REQ-COMMON-APP:  Digital Map models and APIs must be common over
-      different network domains (campus, core, data center, etc.).  This
-      means that clients of the Digital Map API must be able to
+      different network domains (campus, core, data center, etc.).
+
+      This means that clients of the Digital Map API must be able to
       understand the topology model of layers of any domain without
       having to understand the details of any technologies and domains.
 
@@ -293,7 +389,10 @@ Table of Contents
 
 4.2.  Design Requirements
 
-   The following are design requirements for modelling the Digital Map:
+   The following are design requirements for modelling the Digital Map.
+   Theey are derived from the core requerements collected from the
+   operators and although there is some duplication, these are focused
+   on summarizing the requirements for the design of the model and API:
 
    REQ-TOPO-ONLY:  Digital Map should contain only topological
       information.
@@ -314,20 +413,24 @@ Table of Contents
       layers, identify their roles, and topological relationships
       between them.
 
-   REQ-RELATIONSHIPS:  Digital Map should contain only topological
+   REQ-RELATIONSHIPS:  Digital Map should contain all topological
       relationships inside each layer or between the layers (underlay/
-      overlay).
+      overlay)
+
+      Digital Map should contain links to other models/data to enable
+      generic navigation to other YANG models in generic way.
 
    REQ-CONDITIONAL:  Provide capability for conditional retrieval of
       parts of Digital Map.
 
    REQ-TEMPO-HISTO:  Must support geo-spatial, temporal, and historical
-      data.  The temporal and historical can be supported external to
-      the Digital Map.
+      data.  The temporal and historical can also be supported external
+      to the Digital Map.
 
 4.3.  Architectural Requirements
 
-   The following are the architectural requirements for the Digital Map:
+   The following are the architectural requirements for the controller
+   that provides Digital Map API:
 
    REQ-DM-SCALES:  Scale, performance, ease of integration.
 
@@ -383,9 +486,9 @@ Table of Contents
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
               "A YANG Data Model for Network Incident Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-network-
-              incident-yang-01, 28 June 2024,
+              incident-yang-02, 10 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-incident-yang-01>.
+              network-incident-yang-02>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
@@ -400,9 +503,9 @@ Table of Contents
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              16, 10 September 2024,
+              17, 10 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-16>.
+              teas-attachment-circuit-17>.
 
    [I-D.ogondio-nmop-isis-topology]
               de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
