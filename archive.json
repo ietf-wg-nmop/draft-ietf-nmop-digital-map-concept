@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-17T00:59:34.017472+00:00",
+  "timestamp": "2024-10-20T01:04:50.374967+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -175,6 +175,30 @@
       "updatedAt": "2024-09-29T13:03:50Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOM1onH86a1swE",
+      "title": "Is DM supporting the full lifecycle",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/9",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\r\nItalo had several questions in his email and Med created issue 1 for multiple questions. This issue is created for one outstanding bullet from Issue 1, and Issue 1 has been closed.\r\n\r\nItalo says is not fully clear to me whether the digital map is intended to be:\r\n\u2022 aimed at supporting the full lifecycle of network management/control (as it seems to me being stated in the draft) or just the network visualization application (as I have understood from previous discussions and PoCs)\r\n",
+      "createdAt": "2024-10-18T14:57:35Z",
+      "updatedAt": "2024-10-18T14:59:04Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The Digital Map API is used in multiple use cases and can support all the functions in the lifecycle. The analysis and examples of if/when write interface is needed will be done in the future versions when we add more content into how use cases are using Digital Map API. \r\n",
+          "createdAt": "2024-10-18T14:59:03Z",
+          "updatedAt": "2024-10-18T14:59:03Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -244,6 +268,34 @@
       "mergedBy": "OlgaHuawei",
       "mergeCommit": {
         "oid": "9ce8e89fb744e30c87a08ca0e9f4d2692ea66618"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOM1onH85_IIxK",
+      "title": "THREAD1, THREAD2 and THREAD3, Issues 1-7",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/10",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addressed discussion on the nmop group for THREAD1, THREAD2 and THREAD3 as well as issues 1, 2, 3 (partial, just examples), 5, 6, 7",
+      "createdAt": "2024-10-18T16:54:57Z",
+      "updatedAt": "2024-10-18T16:56:11Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "9ce8e89fb744e30c87a08ca0e9f4d2692ea66618",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "ietf121-olga",
+      "headRefOid": "c08a86ecc1c57c32b312ecb6036f82da304ee8c6",
+      "closedAt": "2024-10-18T16:56:11Z",
+      "mergedAt": "2024-10-18T16:56:11Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "9290bccbc427bf8c4153f89bf1f291b2a3f96b36"
       },
       "comments": [],
       "reviews": []
