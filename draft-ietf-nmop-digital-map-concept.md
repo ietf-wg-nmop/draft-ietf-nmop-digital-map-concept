@@ -184,10 +184,10 @@ Overall, the Digital Map is needed to provide the mechanism to connect data isla
 It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
 requirement for the Digital Twin.
 
-The following sections includes some example use case descriptions to initiate the discussion about what type of info
+The following sections includes some initial use case descriptions to initiate the discussion about what type of info
 is needed to describe the use cases in the context of Digital Map.
-The next version of the draft will include more info on these use cases, from the perspective of what the value of
-the digital map for each use case is and how the Digital Map API can be used.
+The next version of the draft will include more info on these use cases and more input from the operaotors,
+from the perspective of what the value of the digital map for each use case is and how the Digital Map API can be used.
 This will also clarify if only read and if/when write interface is needed per use case.
 
 ## Generic inventory queries
