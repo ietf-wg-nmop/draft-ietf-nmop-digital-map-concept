@@ -1046,7 +1046,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 21 April 2025</td>
+<td class="center">Expires 24 April 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1059,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-digital-map-concept-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-10-18" class="published">18 October 2024</time>
+<time datetime="2024-10-21" class="published">21 October 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-04-21">21 April 2025</time></dd>
+<dd class="expires"><time datetime="2025-04-24">24 April 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ Digital Map requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 April 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1317,7 +1317,7 @@ Each layer of topology has a separate lifecycle.<a href="#section-2-2.4.1" class
         <dd style="margin-left: 1.5em" id="section-2-2.8">
           <p id="section-2-2.8.1">The topology layer can also represent what needs to be managed by a
 specific user, for example IGP layer can be of interest to the operator
-troubleshooting or optimizating the routing, while the optical layer may be
+troubleshooting or optimizing the routing, while the optical layer may be
 of interest to the user managing the optical network.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1443,10 +1443,10 @@ different behaviors, simulation, emulation, mathematical abstractions, AI algori
 <p id="section-3-3">Overall, the Digital Map is needed to provide the mechanism to connect data islands from the core multi-layered topology.
 It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
 requirement for the Digital Twin.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">The following sections shows some example use case descriptions to initiate the discussion what type of info is needed
-to describe the use cases in the context of Digital Map.
-The next version of the draft will include more info on these use cases, from the perspective of what is the value of
-the digital map for each use case and how the Digital Map API can be used.
+<p id="section-3-4">The following sections includes some initial use case descriptions to initiate the discussion about what type of info
+is needed to describe the use cases in the context of Digital Map.
+The next version of the draft will include more info on these use cases and more input from the operaotors,
+from the perspective of what the value of the digital map for each use case is and how the Digital Map API can be used.
 This will also clarify if only read and if/when write interface is needed per use case.<a href="#section-3-4" class="pilcrow">¶</a></p>
 <div id="generic-inventory-queries">
 <section id="section-3.1">
@@ -1471,7 +1471,7 @@ it will be able to retrieve both physical and logical inventory.<a href="#sectio
         <h3 id="name-service-subservice-resource">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-service-subservice-resource" class="section-name selfRef">Service-&gt; subservice -&gt; resource</a>
         </h3>
-<p id="section-3.3-1">The application will be able to retrieve all services from the Digital Map API for selected network type.
+<p id="section-3.3-1">The application will be able to retrieve all services from the Digital Map API for selected network types.
 The application will be able to retrieve the topology for selected services via Digital Map API and from the response
 it will be able to navigate via the supporting relationship top-down to the lower layers. That way, it will be able to
 determine what logical resources are used by the service. The supporting relations to the lowest layer will help
@@ -1484,7 +1484,7 @@ application to determine what physical resources are used by the service.<a href
 <a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-resource-subservice-service" class="section-name selfRef">Resource -&gt; subservice -&gt; service</a>
         </h3>
 <p id="section-3.4-1">The application will be able to navigate from the Physical, L2 or L3 topology to the services that use specific
-resources. For example, the application will be able to select the resouce and by navigation the supporting relationship
+resources. For example, the application will be able to select the resouce and by navigating the supporting relationship
 bottom-up come to the service and its nodes, tps and links.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
