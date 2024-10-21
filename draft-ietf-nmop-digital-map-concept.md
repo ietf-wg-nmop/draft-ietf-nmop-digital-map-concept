@@ -119,7 +119,7 @@ Topology layer:
 : Represents topology at a single layer in the multi-layered topology.
 : The topology layer can also represent what needs to be managed by a
   specific user, for example IGP layer can be of interest to the operator
-  troubleshooting or optimizating the routing, while the optical layer may be
+  troubleshooting or optimizing the routing, while the optical layer may be
   of interest to the user managing the optical network.
 : Some topology layers may relate closely to OSI layers, like L1 topology
   for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
@@ -184,10 +184,10 @@ Overall, the Digital Map is needed to provide the mechanism to connect data isla
 It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
 requirement for the Digital Twin.
 
-The following sections shows some example use case descriptions to initiate the discussion what type of info is needed
-to describe the use cases in the context of Digital Map.
-The next version of the draft will include more info on these use cases, from the perspective of what is the value of
-the digital map for each use case and how the Digital Map API can be used.
+The following sections includes some example use case descriptions to initiate the discussion about what type of info
+is needed to describe the use cases in the context of Digital Map.
+The next version of the draft will include more info on these use cases, from the perspective of what the value of
+the digital map for each use case is and how the Digital Map API can be used.
 This will also clarify if only read and if/when write interface is needed per use case.
 
 ## Generic inventory queries
@@ -200,7 +200,7 @@ it will be able to retrieve both physical and logical inventory.
 ## Service placement feasibility checks
 
 ## Service-> subservice -> resource
-The application will be able to retrieve all services from the Digital Map API for selected network type.
+The application will be able to retrieve all services from the Digital Map API for selected network types.
 The application will be able to retrieve the topology for selected services via Digital Map API and from the response
 it will be able to navigate via the supporting relationship top-down to the lower layers. That way, it will be able to
 determine what logical resources are used by the service. The supporting relations to the lowest layer will help
@@ -208,7 +208,7 @@ application to determine what physical resources are used by the service.
 
 ## Resource -> subservice -> service
 The application will be able to navigate from the Physical, L2 or L3 topology to the services that use specific
-resources. For example, the application will be able to select the resouce and by navigation the supporting relationship
+resources. For example, the application will be able to select the resouce and by navigating the supporting relationship
 bottom-up come to the service and its nodes, tps and links.
 
 ## Intent/service assurance
@@ -420,3 +420,4 @@ correlates the network inventory with the general topology via RFC8345 augmentat
 Many thanks to Mohamed Boucadair (<mohamed.boucadair@orange.com>) for his valuable contributions, reviews, and comments.
 
 Many thanks to Nigel Davis <ndavis@ciena.com> for the valuable discussions and his confirmation of the modelling requirements.
+
