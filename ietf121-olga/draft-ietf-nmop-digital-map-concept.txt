@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 21 April 2025                                     O. G. D. Dios
+Expires: 24 April 2025                                     O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         18 October 2024
+                                                         21 October 2024
 
 
            Digital Map: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 April 2025.
+   This Internet-Draft will expire on 24 April 2025.
 
 Copyright Notice
 
@@ -159,7 +159,7 @@ Table of Contents
 
       The topology layer can also represent what needs to be managed by
       a specific user, for example IGP layer can be of interest to the
-      operator troubleshooting or optimizating the routing, while the
+      operator troubleshooting or optimizing the routing, while the
       optical layer may be of interest to the user managing the optical
       network.
 
@@ -249,13 +249,14 @@ Table of Contents
    operations use cases, but it is also a requirement for the Digital
    Twin.
 
-   The following sections shows some example use case descriptions to
-   initiate the discussion what type of info is needed to describe the
-   use cases in the context of Digital Map. The next version of the
-   draft will include more info on these use cases, from the perspective
-   of what is the value of the digital map for each use case and how the
-   Digital Map API can be used.  This will also clarify if only read and
-   if/when write interface is needed per use case.
+   The following sections includes some initial use case descriptions to
+   initiate the discussion about what type of info is needed to describe
+   the use cases in the context of Digital Map. The next version of the
+   draft will include more info on these use cases and more input from
+   the operaotors, from the perspective of what the value of the digital
+   map for each use case is and how the Digital Map API can be used.
+   This will also clarify if only read and if/when write interface is
+   needed per use case.
 
 3.1.  Generic inventory queries
 
@@ -272,7 +273,7 @@ Table of Contents
 3.3.  Service-> subservice -> resource
 
    The application will be able to retrieve all services from the
-   Digital Map API for selected network type.  The application will be
+   Digital Map API for selected network types.  The application will be
    able to retrieve the topology for selected services via Digital Map
    API and from the response it will be able to navigate via the
    supporting relationship top-down to the lower layers.  That way, it
@@ -285,7 +286,7 @@ Table of Contents
 
    The application will be able to navigate from the Physical, L2 or L3
    topology to the services that use specific resources.  For example,
-   the application will be able to select the resouce and by navigation
+   the application will be able to select the resouce and by navigating
    the supporting relationship bottom-up come to the service and its
    nodes, tps and links.
 
