@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-20T01:04:50.374967+00:00",
+  "timestamp": "2024-10-22T01:00:34.255073+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -199,6 +199,22 @@
           "updatedAt": "2024-10-18T14:59:03Z"
         }
       ]
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOM1onH86bEh5D",
+      "title": "Coin a name for the concept",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/11",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Pick one name from the list\r\n\r\n(1) Digital map\r\n(2) Topology map\r\n(3) Multi-layer topology map\r\n(4) Multi-layer network map\r\n(5) Network map\r\n(6) Trust the authors to make the right choice\r\n",
+      "createdAt": "2024-10-21T07:43:15Z",
+      "updatedAt": "2024-10-21T07:43:15Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -296,6 +312,34 @@
       "mergedBy": "OlgaHuawei",
       "mergeCommit": {
         "oid": "9290bccbc427bf8c4153f89bf1f291b2a3f96b36"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOM1onH85_SteU",
+      "title": "Ietf121 olga",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/12",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Addressed discussion on the nmop group for THREAD1, THREAD2 and THREAD3 as well as issues 1, 2, 3, 5, 6, 7 + some minor changes. 3 commits",
+      "createdAt": "2024-10-21T09:49:47Z",
+      "updatedAt": "2024-10-21T09:53:27Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "9290bccbc427bf8c4153f89bf1f291b2a3f96b36",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "ietf121-olga",
+      "headRefOid": "e81a139243701f056d2b5df168debb9cca831311",
+      "closedAt": "2024-10-21T09:53:27Z",
+      "mergedAt": "2024-10-21T09:53:27Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "f31a9c8983a4acd0edffdd0cee5c308b91559519"
       },
       "comments": [],
       "reviews": []
