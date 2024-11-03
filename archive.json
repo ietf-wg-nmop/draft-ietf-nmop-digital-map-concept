@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-31T01:00:46.583306+00:00",
+  "timestamp": "2024-11-03T01:04:13.900914+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -213,6 +213,22 @@
       "body": "Pick one name from the list\r\n\r\n(1) Digital map\r\n(2) Topology map\r\n(3) Multi-layer topology map\r\n(4) Multi-layer network map\r\n(5) Network map\r\n(6) Trust the authors to make the right choice\r\n",
       "createdAt": "2024-10-21T07:43:15Z",
       "updatedAt": "2024-10-21T07:43:15Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOM1onH86cmrYH",
+      "title": "Multi-layered topology versus topology hierarchy (Nacho)",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/13",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From Nacho:, I would avoid using the \u201cmulti-layered topology\u201d term, unless you agree that the whole figure 2 (from RFC8345) represents a topology in itself (i.e., a topology composed of topologies from different layers).\r\n\r\n",
+      "createdAt": "2024-10-31T17:05:57Z",
+      "updatedAt": "2024-10-31T17:05:57Z",
       "closedAt": null,
       "comments": []
     }
