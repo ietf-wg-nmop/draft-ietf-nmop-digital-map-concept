@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-05T00:58:40.021574+00:00",
+  "timestamp": "2024-11-07T00:58:52.857177+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -229,6 +229,22 @@
       "body": "From Nacho:, I would avoid using the \u201cmulti-layered topology\u201d term, unless you agree that the whole figure 2 (from RFC8345) represents a topology in itself (i.e., a topology composed of topologies from different layers).\r\n\r\n",
       "createdAt": "2024-10-31T17:05:57Z",
       "updatedAt": "2024-10-31T17:05:57Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOM1onH86dFkXs",
+      "title": "Adrian's comments about the terminology",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/14",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "draft-ietf-nmop-digital-map-concept\r\nThe following are sample use cases that require Digital Map:\r\n* Service-> subservice -> resource\r\n* Resource -> subservice -> service\r\nBut the terms service, subservice, and resource are not defined.\r\n\r\n\r\n== Advice from Adrian==\r\nConsider defining \"service\" and \"subservice\" in\r\ndraft-ietf-nmop-digital-map-concept, and importing \"resource\" from\r\ndraft-ietf-nmop-terminology.\r\nResource: A component, commodity, service, or capability that can be\r\nused to support the delivery of some function.\r\n\r\n",
+      "createdAt": "2024-11-05T13:34:05Z",
+      "updatedAt": "2024-11-05T13:34:05Z",
       "closedAt": null,
       "comments": []
     }
