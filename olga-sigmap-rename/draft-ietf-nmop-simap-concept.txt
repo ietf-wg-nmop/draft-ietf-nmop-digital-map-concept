@@ -18,7 +18,9 @@ Expires: 2 June 2025                                       O. G. D. Dios
 Abstract
 
    This document defines the concept of Service & Infrastructure Maps
-   (SIMAP), and identifies a set of SIMAP requirements and use cases.
+   (SIMAP) and identifies a set of SIMAP requirements and use cases.
+   The SIMAP was previously known as Digital Map in the old draft
+   versions (draft-ietf-nmop-digital-map-concept).
 
    The document intends to be used as a reference for the assessment
    effort of the various topology modules to meet SIMAP requirements.
