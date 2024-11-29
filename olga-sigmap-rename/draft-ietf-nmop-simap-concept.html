@@ -4,16 +4,19 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Digital Map: Concept, Requirements, and Use Cases</title>
+<title>SIMAP: Concept, Requirements, and Use Cases</title>
 <meta content="Olga Havel" name="author">
 <meta content="Benoit Claise" name="author">
 <meta content="Oscar Gonzalez de Dios" name="author">
 <meta content="Thomas Graf" name="author">
 <meta content="
-       This document defines the concept of Digital Map, explains its connection to the Digital Twin, and identifies a set of Digital Map requirements and use cases. 
-       The document intends to be used as a reference for the assessment effort of the various topology modules to meet Digital Map requirements. 
+       This document defines the concept of Service &amp; Infrastructure Maps (SIMAP), and identifies a set of SIMAP
+requirements and use cases. 
+       The document intends to be used as a reference for the assessment effort of the various topology modules to meet
+SIMAP requirements. 
     " name="description">
-<meta content="xml2rfc 3.23.1" name="generator">
+<meta content="xml2rfc 3.24.0" name="generator">
+<meta content="Service &amp; Infrastructure Maps" name="keyword">
 <meta content="Service emulation" name="keyword">
 <meta content="Automation" name="keyword">
 <meta content="Network Automation" name="keyword">
@@ -24,20 +27,19 @@
 <meta content="service simplification" name="keyword">
 <meta content="Network Service" name="keyword">
 <meta content="Digital Map" name="keyword">
-<meta content="Digital Twin" name="keyword">
 <meta content="Emulation" name="keyword">
 <meta content="Simulation" name="keyword">
 <meta content="Topology" name="keyword">
 <meta content="Multi-layer" name="keyword">
-<meta content="draft-ietf-nmop-digital-map-concept-latest" name="ietf.draft">
+<meta content="draft-ietf-nmop-simap-concept-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.23.1
-    Python 3.12.6
+  xml2rfc 3.24.0
+    Python 3.12.7
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.4
-    lxml 4.9.4
+    lxml 5.3.0
     platformdirs 4.3.6
     pycountry 22.3.5
     PyYAML 6.0.1
@@ -45,7 +47,7 @@
     setuptools 70.3.0
     wcwidth 0.2.13
 -->
-<link href="draft-ietf-nmop-digital-map-concept.xml" rel="alternate" type="application/rfc+xml">
+<link href="draft-ietf-nmop-simap-concept.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@font-face {
   font-family: 'Lora';
@@ -179,31 +181,6 @@
 }
 
 @font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Cabin Condensed';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-@font-face {
   font-family: 'Oxygen Mono';
   font-style: normal;
   font-weight: 400;
@@ -220,6 +197,77 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light dark;
   --background-color: #fff;
@@ -232,6 +280,7 @@
   --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
   --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
   scrollbar-color: #bbb #eee;
 }
 body {
@@ -249,9 +298,15 @@ body {
 }
 
 /* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: 600;
+  font-family: var(--font-title);
+  font-weight: 680;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
@@ -280,6 +335,7 @@ h4, h5, h6 {
 /* general structure */
 .author {
   padding-bottom: 0.3em;
+  vertical-align: top;
 }
 #abstract+p {
   font-size: 18px;
@@ -357,25 +413,26 @@ svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
 ol, ul {
   padding: 0;
   margin: 0 0 0.5em 2em;
-}
-:is(ol, ul) :is(ol, ul) {
-  margin-left: 1em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
 }
 li {
   margin: 0 0 0.25em 0;
 }
-.ulCompact li {
-  margin: 0;
-}
 ul.empty, .ulEmpty {
   list-style-type: none;
-}
-ul.empty li, .ulEmpty li {
-  margin-top: 0.5em;
+  & li {
+    margin-top: 0.5em;
+  }
 }
 :is(ul, ol).compact, .ulCompact, .olCompact {
-  line-height: 1;
   margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
 }
 
 /* definition lists */
@@ -383,38 +440,39 @@ dl {
   clear: left;
   --indent: 3ch;
   /* --indent: attr(indent ch); not supported in any browser, but we can dream */
-}
-dl.olPercent {
-  --indent: 5ch;
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
 }
 dl > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
 }
-dl.dlNewline > dt {
-  float: none;
-}
 dl > dd {
   margin-bottom: .8em;
   margin-left: var(--indent) !important; /* stupid element overrides */
   min-height: 2ex;
 }
-dl.olPercent > dt {
-  min-width: calc(var(--indent) - 2ch);
-}
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
-  margin-top: 0;
-}
-:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
-  margin-bottom: 0;
-}
-dl > dd > dl {
-  margin-top: 0.5em;
-  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
 }
 :is(dd, span).break {
   display: none;
@@ -478,6 +536,7 @@ figcaption, caption {
   font-style: italic;
   margin: 0.5em 1.5em;
   text-align: left;
+  caption-side: bottom;
 }
 @media screen {
   /* Auto-collapse boilerplate. */
@@ -532,6 +591,7 @@ cite {
 
 /* tables */
 table {
+  width: auto;
   max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
@@ -546,6 +606,16 @@ table.center {
 table.left {
   margin-right: auto;
 }
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
 thead, tbody {
   border: 1px solid var(--line-color);
 }
@@ -576,9 +646,11 @@ a.pilcrow {
   margin-left: 3px;
   opacity: 0.2;
   user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
 }
-a.pilcrow[href] { color: var(--pilcrow-weak); }
-a.pilcrow[href]:hover { text-decoration: none; }
 @media not print {
   :hover > a.pilcrow {
     opacity: 1;
@@ -618,26 +690,28 @@ sub, sup {
   font-size: var(--small-font-size);
   line-height: 18px;
   --identifier-width: 15ch;
-}
-#identifiers dt {
-  width: var(--identifier-width);
-  min-width: var(--identifier-width);
-  clear: left;
-  float: left;
-  text-align: right;
-  margin-right: 1ch;
-}
-#identifiers dd {
-  margin: 0;
-  margin-left: calc(1em + var(--identifier-width)) !important;
-  min-width: 5em;
-}
-#identifiers .authors .author {
-  display: inline-block;
-  margin-right: 1.5em;
-}
-#identifiers .authors .org {
-  font-style: italic;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
 }
 
 /* The prepared/rendered info at the very bottom of the page */
@@ -648,9 +722,6 @@ sub, sup {
   margin-top: 2em;
 }
 .docInfo .prepared {
-  float: left;
-}
-.docInfo .prepared {
   float: right;
 }
 
@@ -658,47 +729,48 @@ sub, sup {
 #toc {
   padding: 0.75em 0 2em 0;
   margin-bottom: 1em;
-}
-#toc nav ul {
-  margin: 0 0.5em 0 0;
-  padding: 0;
-  list-style: none;
-}
-#toc nav li {
-  line-height: 1.3em;
-  margin: 2px 0;
-  padding-left: 1.2em;
-  text-indent: -1.2em;
-}
-#toc a.xref {
-  white-space: normal;
-}
-/* references */
-.references dt {
-  text-align: right;
-  font-weight: bold;
-  min-width: 10ch;
-  margin-right: 1.5ch;
-}
-.references dt:target::before {
-  content: "⇒";
-  width: 15px;
-  margin: 0 10px 0 -25px;
-}
-.references dd {
-  margin-left: 12ch !important;
-  overflow: auto;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
 }
 
-.refInstance {
-  margin-bottom: 1.25em;
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
 }
 
-.references .ascii {
-  margin-bottom: 0.25em;
-}
-
-/* index */
 #rfc\.index\.index + ul {
   margin-left: 0;
 }
@@ -706,21 +778,33 @@ sub, sup {
 /* authors */
 address.vcard {
   font-style: normal;
-  margin: 1em 0;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
 }
-address.vcard .nameRole {
-  font-weight: 700;
-  margin-left: 0;
-}
-address.vcard .label {
-  margin: 0.5em 0;
-}
-address.vcard .type {
-  display: none;
-}
-.alternative-contact {
-  margin: 1.5em 0 1em;
-}
+
 hr.addr {
   border-top: 1px dashed;
   margin: 0;
@@ -742,6 +826,7 @@ hr.addr {
   }
 }
 
+/* Comments */
 .rfcEditorRemove p:first-of-type {
   font-style: italic;
 }
@@ -752,7 +837,31 @@ hr.addr {
 .crefSource {
   font-style: italic;
 }
-/* alternative layout for smaller screens */
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
 @media screen and (max-width: 929px) {
   #toc {
     position: fixed;
@@ -763,9 +872,6 @@ hr.addr {
     margin: 0;
     border-bottom: 1px solid #ccc;
     opacity: 0.6;
-  }
-  #toc.active {
-      opacity: 1;
   }
   #toc h2 {
     margin: 0;
@@ -778,17 +884,17 @@ hr.addr {
     background-color: #444;
     color: white;
     cursor: pointer;
-  }
-  #toc h2::before { /* css hamburger */
-    float: right;
-    position: relative;
-    width: 1em;
-    height: 1px;
-    left: -164px;
-    margin: 8px 0 0 0;
-    background: white none repeat scroll 0 0;
-    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
-    content: "";
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
   }
   #toc nav {
     display: none;
@@ -799,14 +905,13 @@ hr.addr {
     height: calc(100vh - 48px);
     border-left: 1px solid #ddd;
   }
-  #toc.active nav {
-    display: block;
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
   }
   /* Make the collapsed ToC header render white on gray also when it's a link */
   #toc h2 a,
-  #toc h2 a:link,
-  #toc h2 a:focus,
-  #toc h2 a:hover,
+  #toc h2 a:is(:link, :focus, :hover),
   #toc a.toplink,
   #toc a.toplink:hover {
     color: white;
@@ -814,11 +919,11 @@ hr.addr {
     text-decoration: none;
   }
   #toc a.toplink {
-    margin-top: 2px;
+    margin: 2px 0.5em 0;
   }
 }
 
-/* alternative layout for wide screens */
+/* TOC layout for wide screens */
 @media screen and (min-width: 930px) {
   body {
     padding-right: 360px;
@@ -847,20 +952,12 @@ hr.addr {
     overscroll-behavior: contain;
     scrollbar-width: thin;
   }
-  #toc nav > ul  {
-    margin-bottom: 2em;
-  }
-  #toc ul {
-    margin: 0 0 0 4px;
-    font-size: var(--small-font-size);
-  }
-  #toc ul :is(p, li) {
-    margin: 2px 0;
-    line-height: 22px;
-  }
   img { /* future proofing */
     max-width: 100%;
     height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
   }
 }
 
@@ -903,9 +1000,6 @@ hr.addr {
   td {
     border-top: 1px solid #ddd;
   }
-  .toplink {
-    display: none;
-  }
 }
 
 @page :first {
@@ -928,82 +1022,6 @@ hr.addr {
   size: A4;
   margin-bottom: 45mm;
   padding-top: 20px;
-}
-
-/* Changes introduced to fix issues found during implementation */
-
-/* Separate body from document info even without intervening H1 */
-section {
-  clear: both;
-}
-
-/* Top align author divs, to avoid names without organization dropping level with org names */
-.author {
-  vertical-align: top;
-}
-
-/* Style section numbers with more space between number and title */
-.section-number {
-  padding-right: 0.5em;
-}
-
-/* Add styling for a link in the ToC that points to the top of the document */
-a.toplink {
-  float: right;
-  margin: 8px 0.5em 0;
-}
-
-/* Provide styling for table cell text alignment */
-table .text-left {
-  text-align: left;
-}
-table .text-center {
-  text-align: center;
-}
-table .text-right {
-  text-align: right;
-}
-
-/* Make the alternative author contact information look less like just another
-   author, and group it closer with the primary author contact information */
-.alternative-contact {
-  margin: 0.5em 0 0.25em 0;
-}
-address .non-ascii {
-  margin: 0 0 0 2em;
-}
-
-/* With it being possible to set tables with alignment
-  left, center, and right, { width: 100%; } does not make sense */
-table {
-  width: auto;
-}
-
-/* Avoid reference text that sits in a block with very wide left margin,
-   because of a long floating dt label.*/
-.references dd {
-  overflow: visible;
-}
-
-/* Control caption placement */
-caption {
-  caption-side: bottom;
-}
-
-/* Limit the width of the author address vcard, so names in right-to-left
-   script don't end up on the other side of the page. */
-
-address.vcard {
-  max-width: 20em;
-  margin-right: auto;
-}
-
-/* For address alignment dependent on LTR or RTL scripts */
-address div.left {
-  text-align: left;
-}
-address div.right {
-  text-align: right;
 }
 
 /* Dark mode. */
@@ -1041,12 +1059,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
-<td class="center">Digital Map Concept &amp; Needs</td>
-<td class="right">September 2024</td>
+<td class="center">SIMAP Concept &amp; Needs</td>
+<td class="right">November 2024</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 29 March 2025</td>
+<td class="center">Expires 2 June 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1056,15 +1074,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">Network Management Operations</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-ietf-nmop-digital-map-concept-latest</dd>
+<dd class="internet-draft">draft-ietf-nmop-simap-concept-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-09-25" class="published">25 September 2024</time>
+<time datetime="2024-11-29" class="published">29 November 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-03-29">29 March 2025</time></dd>
+<dd class="expires"><time datetime="2025-06-02">2 June 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1086,11 +1104,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">Digital Map: Concept, Requirements, and Use Cases</h1>
+<h1 id="title">SIMAP: Concept, Requirements, and Use Cases</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines the concept of Digital Map, explains its connection to the Digital Twin, and identifies a set of Digital Map requirements and use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">The document intends to be used as a reference for the assessment effort of the various topology modules to meet Digital Map requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines the concept of Service &amp; Infrastructure Maps (SIMAP), and identifies a set of SIMAP
+requirements and use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">The document intends to be used as a reference for the assessment effort of the various topology modules to meet
+SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1122,7 +1142,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 29 March 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 2 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1152,30 +1172,51 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </h2>
 <nav class="toc"><ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-sample-simap-use-cases" class="internal xref">Sample SIMAP Use Cases</a></p>
 <ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.1">
-                <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="auto internal xref">1.1</a>.  <a href="#name-digital-twin-overview" class="internal xref">Digital Twin Overview</a></p>
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-generic-inventory-queries" class="internal xref">Generic inventory queries</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.2">
-                <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="auto internal xref">1.2</a>.  <a href="#name-digital-map" class="internal xref">Digital Map</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-service-placement-feasibili" class="internal xref">Service placement feasibility checks</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.3">
-                <p id="section-toc.1-1.1.2.3.1" class="keepWithNext"><a href="#section-1.3" class="auto internal xref">1.3</a>.  <a href="#name-digital-map-as-a-prerequisi" class="internal xref">Digital Map as a Prerequisite for Digital Twin</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-service-subservice-resource" class="internal xref">Service-&gt; subservice -&gt; resource</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1.2.4">
-                <p id="section-toc.1-1.1.2.4.1"><a href="#section-1.4" class="auto internal xref">1.4</a>.  <a href="#name-scope" class="internal xref">Scope</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-resource-subservice-service" class="internal xref">Resource -&gt; subservice -&gt; service</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-intent-service-assurance" class="internal xref">Intent/service assurance</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-service-e2e-and-per-link-kp" class="internal xref">Service E2E and per-link KPIs</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
+                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-capacity-planning" class="internal xref">Capacity planning</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8">
+                <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="auto internal xref">3.8</a>.  <a href="#name-network-design" class="internal xref">Network design</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.9">
+                <p id="section-toc.1-1.3.2.9.1"><a href="#section-3.9" class="auto internal xref">3.9</a>.  <a href="#name-simulation" class="internal xref">Simulation</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.10">
+                <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-closed-loop" class="internal xref">Closed Loop</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.11">
+                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-digital-twin" class="internal xref">Digital Twin</a></p>
 </li>
             </ul>
 </li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
-</li>
-          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-sample-digital-map-use-case" class="internal xref">Sample Digital Map Use Cases</a></p>
-</li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-digital-map-requirements" class="internal xref">Digital Map Requirements</a></p>
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-simap-requirements" class="internal xref">SIMAP Requirements</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-core-requirements" class="internal xref">Core Requirements</a></p>
@@ -1212,10 +1253,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.8.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-network-topology" class="internal xref">Network Topology</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-core-digital-map-components" class="internal xref">Core Digital Map Components</a></p>
+                <p id="section-toc.1-1.8.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-core-simap-components" class="internal xref">Core SIMAP Components</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-additional-digital-map-comp" class="internal xref">Additional Digital Map Components</a></p>
+                <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-additional-simap-components" class="internal xref">Additional SIMAP Components</a></p>
 </li>
             </ul>
 </li>
@@ -1237,74 +1278,25 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<div id="digital-twin-overview">
-<section id="section-1.1">
-        <h3 id="name-digital-twin-overview">
-<a href="#section-1.1" class="section-number selfRef">1.1. </a><a href="#name-digital-twin-overview" class="section-name selfRef">Digital Twin Overview</a>
-        </h3>
-<p id="section-1.1-1">The network digital twin (referred to simply as Digital Twin) concepts and a reference architecture are discussed in
-the "Digital Twin Network: Concepts and Reference Architecture" <span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>.
-That reference document defines the core elements of Digital Twin: Data, Models, Interfaces, and Mapping.<a href="#section-1.1-1" class="pilcrow">¶</a></p>
-<p id="section-1.1-2">The Digital Twin, constructed based on the four core technology elements, is intended to analyze, diagnose, emulate,
-and control the physical network in its whole lifecycle with the help of optimization algorithms, management methods,
-and expert knowledge.<a href="#section-1.1-2" class="pilcrow">¶</a></p>
-<p id="section-1.1-3">Also, that document <span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> states that a Digital Twin can be seen as an indispensable part of the overall network system
-and provides a general architecture involving the whole lifecycle of physical networks in the future, serving the
-application of innovative network technologies (e.g., network planning, construction, maintenance and optimization,
-improving the automation and intelligence level of the network).<a href="#section-1.1-3" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="digital-map">
-<section id="section-1.2">
-        <h3 id="name-digital-map">
-<a href="#section-1.2" class="section-number selfRef">1.2. </a><a href="#name-digital-map" class="section-name selfRef">Digital Map</a>
-        </h3>
-<p id="section-1.2-1">Digital Map provides the core multi-layer topology model and data for the Digital Twin and connects them to the
-other Digital Twin models and data. This includes layers from physical topology to service topology.<a href="#section-1.2-1" class="pilcrow">¶</a></p>
-<p id="section-1.2-2">The Digital Map modelling defines the core topological entities (network, node, link, and interface) at each layer, their role in
-the network, core properties, and relationships both inside each layer and between the layers.<a href="#section-1.2-2" class="pilcrow">¶</a></p>
-<p id="section-1.2-3">The Digital Map model can be approached as a topological model that is linked to other functional parts of the Digital Twin and
+<p id="section-1-1">Service &amp; Infrastructure Maps (SIMAP) is a data model that provides a view of the operator's networks and services,
+including how it is connected to other models/data (e.g. inventory, observability sources, and
+operational knowledge). It specifically provides an approach to model multi-layered topology
+and appropriate mechanism to navigate amongs layers and correlate between them.
+This includes layers from physical topology to service topology.
+This model is applicable to multiple domains (access, core, data centers, etc.) and
+technologies (Optical, IP, etc.).<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The SIMAP modelling defines the core topological entities (network, node, link, and interface) at each layer,
+their role in the network topology, core topological properties, and topological relationships both inside each
+layer and between the layers. It also defines how to access other external models from the topology.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The SIMAP model is a topological model that is linked to the other functional models and
 connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), Traffic-Engineering (TE),
-different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.<a href="#section-1.2-3" class="pilcrow">¶</a></p>
-<p id="section-1.2-4">The Digital Map data consists of virtual instances of network and service topologies at different layers.
-The Digital Map provides the access to this data via standard APIs for both read and write operations
+different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
+These other models exist outside of the SIMAP and are not defined during SIMAP modelling.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The SIMAP data consists of virtual instances of network and service topologies at different layers.
+The SIMAP provides access to this data via standard APIs for both read and write operations
 (write operations for offline simulations), with query capabilities and links to other YANG modules
-(e.g., Service Assurance for Intent-based Networking (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, Service Attachement Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
-Inventory <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>, and non-YANG models.<a href="#section-1.2-4" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="digital-map-as-a-prerequisite-for-digital-twin">
-<section id="section-1.3">
-        <h3 id="name-digital-map-as-a-prerequisi">
-<a href="#section-1.3" class="section-number selfRef">1.3. </a><a href="#name-digital-map-as-a-prerequisi" class="section-name selfRef">Digital Map as a Prerequisite for Digital Twin</a>
-        </h3>
-<p id="section-1.3-1">One of the important requirements for Digital Twin is to ease correlating all models and
-data to topological entities at different layers in the layered twin network.  The Digital Map aims at providing a
-virtual instance of the topological information of the network, based on this Digital Map Model.
-<strong>Building a Digital Map is prerequisite towards the Digital Twin.</strong><a href="#section-1.3-1" class="pilcrow">¶</a></p>
-<p id="section-1.3-2">The Digital Map model/data provide this missing correlation between the topology models/data and all other
-models/data: KPIs, alarms, incidents, inventory (with UUIDs), configuration, traffic engineering, planning,
-simulation ("what-if"), emulations, actions, and behaviors.<a href="#section-1.3-2" class="pilcrow">¶</a></p>
-<p id="section-1.3-3">Some of these models/data provide a device view, some provide a network or subnetwork view, while others focus
-more on the customer service perspective.  All these views are needed for both inner and outer closed-loops.<a href="#section-1.3-3" class="pilcrow">¶</a></p>
-<p id="section-1.3-4">It is debatable what is part of the Digital Map itself versus what are pointers from the Digital Map to some
-other sources of information.  As an example, a Digital Map should not specifically include all information
-about the device inventory (product name, vendor, product series, embedded software, and
-hardware/software versions, as specified in a Network Inventory. A pointer to another inventory system
-might be sufficient or support of means that ease the mapping between inventory and topology.<a href="#section-1.3-4" class="pilcrow">¶</a></p>
-<p id="section-1.3-5">Similarly, Digital Map should not specifically contain incidents, configuration,
-data plane monitoring, or even assurance information, simply to name a few, but should provide pointers to the different data sources.<a href="#section-1.3-5" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="scope">
-<section id="section-1.4">
-        <h3 id="name-scope">
-<a href="#section-1.4" class="section-number selfRef">1.4. </a><a href="#name-scope" class="section-name selfRef">Scope</a>
-        </h3>
-<p id="section-1.4-1">This document defines the concept of Digital Map, explains its connection to the Digital Twin, and identifies a set of Digital Map requirements and use cases.<a href="#section-1.4-1" class="pilcrow">¶</a></p>
-<p id="section-1.4-2">The document intends to be used as a reference for the assessment effort of the various topology modules to meet Digital Map requirements.<a href="#section-1.4-2" class="pilcrow">¶</a></p>
-</section>
-</div>
+(e.g., Service Assurance for Intent-based Networking (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>,
+Service Attachement Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, Inventory <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>, and non-YANG models.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1312,41 +1304,39 @@ data plane monitoring, or even assurance information, simply to name a few, but 
       <h2 id="name-terminology">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
       </h2>
-<p id="section-2-1">The document defines the following terms:<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-1">The document makes use of the following terms:<a href="#section-2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-2-2">
-        <dt id="section-2-2.1">Digital Twin:</dt>
+        <dt id="section-2-2.1">Topology:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.2">
-          <p id="section-2-2.2.1">Virtual instance of a physical system (twin) that is continually
-updated with the latter's performance, maintenance and health
- status data throughout the physical system's life cycle (as
- defined in  <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-06#section-2.2" class="relref">Section 2.2</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span><a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.3">Topology:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.4">
-          <p id="section-2-2.4.1">Network topology defines how physical or logical nodes, links and
-interfaces are related and arranges.  Service topology defines how
+          <p id="section-2-2.2.1">Topology in this document refers to the network and service topology.
+Network topology defines how physical or logical nodes, links and
+interfaces are related and arranged.  Service topology defines how
 service components (e.g., VPN instances, customer interfaces, and
 customer links) between customer sites are interrelated and
 arranged.  There are at least 8 types of topologies: point to
 point, bus, ring, star, tree, mesh, hybrid and daisy chain.
 Topologies may be unidirectional or bidirectional (bus, some
-rings).<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
+rings).<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.3">Multi-layered topology:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.4">
+          <p id="section-2-2.4.1">A multi-layered topology models relationships between different layers of topology,
+where each layer represents a connectivity aspect of the network
+and services that needs to be configured, controlled and monitored.
+Each layer of topology has a separate lifecycle.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.5">Topology layer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.6">
-          <p id="section-2-2.6.1">Defines a layer in the multilayer topology.  A multilayer topology
-models relationships between different layers of connectivity,
-where each layer represents a connectivity aspect of the network
-and service that needs to be configured, controlled and monitored.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.6.1">Represents topology at a single layer in the multi-layered topology.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.7"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.8">
           <p id="section-2-2.8.1">The topology layer can also represent what needs to be managed by a
 specific user, for example IGP layer can be of interest to the operator
-troubleshooting or optimizating the routing, while the optical layer may be
+troubleshooting or optimizing the routing, while the optical layer may be
 of interest to the user managing the optical network.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
@@ -1359,77 +1349,82 @@ IPv6 topologies.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
         <dd class="break"></dd>
 <dt id="section-2-2.11"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.12">
-          <p id="section-2-2.12.1">Some topology layers represent the control
- aspects of Layer 3, like OSPF, IS-IS, or BGP.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.12.1">Some topology layers represent the control aspects of Layer 3, like OSPF, IS-IS, or BGP.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.13"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.14">
-          <p id="section-2-2.14.1">The service layer represents
-the service view of the connectivity, that can differ for
+          <p id="section-2-2.14.1">The service layer represents the service view of the connectivity, that can differ for
 different types of services and for different providers/solutions.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.15"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.16">
-          <p id="section-2-2.16.1">The top layer represents the application/flow view of connectivity.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.16.1">The top layer represents the application/flow view of service connectivity.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-2-3">The document defines the following terms:<a href="#section-2-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-4">
+        <dt id="section-2-4.1">Service &amp; Infrastructure Maps (SIMAP):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.2">
+          <p id="section-2-4.2.1">SIMAP is a data model that provides a view of the operator's networks and services,
+including how it is connected to other models/data (e.g. inventory, observability sources, and
+operational knowledge). It specifically provides an approach to model multi-layered topology
+and appropriate mechanism to navigate amongs layers and correlate between them.
+This includes layers from physical topology to service topology.<a href="#section-2-4.2.1" class="pilcrow">¶</a></p>
+<p id="section-2-4.2.2">This model is applicable to multiple domains (access, core, data centers, etc.) and
+technologies (Optical, IP, etc.).<a href="#section-2-4.2.2" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.17">Digital Map:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.18">
-          <p id="section-2-2.18.1">Basis for the Digital Twin that provides a virtual instance of the
-  topological information of the network.  It provides the core
-  multi-layer topology model and data for the Digital Twin and
-  connects them to the other Digital Twin models and data.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+<dt id="section-2-4.3">SIMAP modelling:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.4">
+          <p id="section-2-4.4.1">The set of principles, guidelines, and conventions to model the
+Service &amp; Infrastructure Maps (SIMAP) using the IETF <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> approach.  They cover the
+network types (layers and sublayers), entity types, entity roles
+(network, node, termination point or link), entity properties,
+relationship types between entities and relationships to other entities.<a href="#section-2-4.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.19">Digital Map modelling:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.20">
-          <p id="section-2-2.20.1">The set of principles, guidelines, and conventions to model the
-    Digital Map using the IETF <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> approach.  They cover the
-    network types (layers and sublayers), entity types, entity roles
-    (network, node, termination point or link), entity properties and
-    relationship types between entities.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
+<dt id="section-2-4.5">SIMAP model:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.6">
+          <p id="section-2-4.6.1">Defines the core topological entities, their role in the network,
+core topological properties and relationships both inside each layer and
+between the layers.<a href="#section-2-4.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.21">Digital Map model:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.22">
-          <p id="section-2-2.22.1">Defines the core topological entities, their role in the network,
-core properties and relationships both inside each layer and
-between the layers.<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
+<dt id="section-2-4.7"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.8">
+          <p id="section-2-4.8.1">It is the basic topological model with the links to other models and connects them all:
+configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
+different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.<a href="#section-2-4.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.23"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.24">
-          <p id="section-2-2.24.1">It is the basic topological model that is
-linked to other functional parts of the Digital Twin and connects
-them all: configuration, maintenance, assurance (KPIs, status,
-health, symptoms, etc.), traffic engineering, different behaviors,
-simulation, emulation, mathematical abstractions, AI algorithms,
-etc.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.25">Digital Map data:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.26">
-          <p id="section-2-2.26.1">Consists of instances of network and service topologies at
+<dt id="section-2-4.9">SIMAP data:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.10">
+          <p id="section-2-4.10.1">Consists of instances of network and service topologies at
  different layers.  This includes instances of networks, nodes,
  links and termination points, topological relationships between
  nodes, links and termination points inside a network,
  relationships between instances belonging to different networks,
  links to functional data for the instances, including
- configuration, health, symptoms.
- :The data can be historical, real-time, or future data for 'what-if' scenarios.<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
+ configuration, health, symptoms.<a href="#section-2-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.11"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.12">
+          <p id="section-2-4.12.1">The data can be historical, real-time, or future data for 'what-if' scenarios.<a href="#section-2-4.12.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
 </section>
 </div>
-<div id="sample-digital-map-use-cases">
+<div id="sample-simap-use-cases">
 <section id="section-3">
-      <h2 id="name-sample-digital-map-use-case">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sample-digital-map-use-case" class="section-name selfRef">Sample Digital Map Use Cases</a>
+      <h2 id="name-sample-simap-use-cases">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sample-simap-use-cases" class="section-name selfRef">Sample SIMAP Use Cases</a>
       </h2>
-<p id="section-3-1">The following are sample Digital Twin use cases that require Digital Map:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">The following are sample use cases that require SIMAP:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-2.1">
           <p id="section-3-2.1.1">Generic inventory queries<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
@@ -1447,7 +1442,7 @@ etc.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
           <p id="section-3-2.5.1">Intent/service assurance<a href="#section-3-2.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.6">
-          <p id="section-3-2.6.1">Service E2E and per-link KPIs on the Digital Map (delay, jitter, and loss)<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.6.1">Service E2E and per-link KPIs on SIMAP (connectivity status, high-availability, delay, jitter, and loss)<a href="#section-3-2.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.7">
           <p id="section-3-2.7.1">Capacity planning<a href="#section-3-2.7.1" class="pilcrow">¶</a></p>
@@ -1461,110 +1456,245 @@ etc.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
         <li class="normal" id="section-3-2.10">
           <p id="section-3-2.10.1">Closed loop<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
 </li>
+        <li class="normal" id="section-3-2.11">
+          <p id="section-3-2.11.1">Digital Twin<a href="#section-3-2.11.1" class="pilcrow">¶</a></p>
+</li>
       </ul>
-<p id="section-3-3">Overall, the Digital Map is needed to break down data islands and have a Digital Twin for emulation and closed loop,
-which is a catalyst for autonomous networking.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-3">Overall, the SIMAP is needed to provide the mechanism to connect data islands from the core multi-layered topology.
+It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
+requirement for the SIMAP.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">The following sections includes some initial use case descriptions to initiate the discussion about what type of info
+is needed to describe the use cases in the context of SIMAP.
+The next version of the draft will include more info on these use cases and more input from the operators,
+from the perspective of what the value of the SIMAP for each use case is and how the SIMAP API can be used.
+This will also clarify if only read and if/when write interface is needed per use case.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<div id="generic-inventory-queries">
+<section id="section-3.1">
+        <h3 id="name-generic-inventory-queries">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-generic-inventory-queries" class="section-name selfRef">Generic inventory queries</a>
+        </h3>
+<p id="section-3.1-1">The application will be able to retrieve physical topology from the controller via SIMAP API and from the
+response it will be able to retrieve physical inventory of individual devices and cables.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">The application may request either one or multiple layers of topology via the SIMAP API and and from the response
+it will be able to retrieve both physical and logical inventory.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
+through truck roll reduction.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="digital-map-requirements">
+<div id="service-placement-feasibility-checks">
+<section id="section-3.2">
+        <h3 id="name-service-placement-feasibili">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-service-placement-feasibili" class="section-name selfRef">Service placement feasibility checks</a>
+      </h3>
+</section>
+</div>
+<div id="service-subservice-resource">
+<section id="section-3.3">
+        <h3 id="name-service-subservice-resource">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-service-subservice-resource" class="section-name selfRef">Service-&gt; subservice -&gt; resource</a>
+        </h3>
+<p id="section-3.3-1">The application will be able to retrieve all services from the SIMAP API for selected network types.
+The application will be able to retrieve the topology for selected services via SIMAP API and from the response
+it will be able to navigate via the supporting relationship top-down to the lower layers. That way, it will be able to
+determine what logical resources are used by the service. The supporting relations to the lowest layer will help
+application to determine what physical resources are used by the service.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="resource-subservice-service">
+<section id="section-3.4">
+        <h3 id="name-resource-subservice-service">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-resource-subservice-service" class="section-name selfRef">Resource -&gt; subservice -&gt; service</a>
+        </h3>
+<p id="section-3.4-1">The application will be able to navigate from the Physical, L2 or L3 topology to the services that use specific
+resources. For example, the application will be able to select the resouce and by navigating the supporting relationship
+bottom-up come to the service and its nodes, tps and links.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="intentservice-assurance">
+<section id="section-3.5">
+        <h3 id="name-intent-service-assurance">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-intent-service-assurance" class="section-name selfRef">Intent/service assurance</a>
+        </h3>
+<p id="section-3.5-1">The application will be able to retrieve topology layer and any network/node/tp/link instances from the controller
+via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the
+SAIN subservices and its symptoms.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="service-e2e-and-per-link-kpis">
+<section id="section-3.6">
+        <h3 id="name-service-e2e-and-per-link-kp">
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-service-e2e-and-per-link-kp" class="section-name selfRef">Service E2E and per-link KPIs</a>
+        </h3>
+<p id="section-3.6-1">The application will be able to retieve the topology at any layer from the controller via the SIMAP API and from the
+response it will be able to navigate any retrieve any KPIs for selected topology entity.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="capacity-planning">
+<section id="section-3.7">
+        <h3 id="name-capacity-planning">
+<a href="#section-3.7" class="section-number selfRef">3.7. </a><a href="#name-capacity-planning" class="section-name selfRef">Capacity planning</a>
+      </h3>
+</section>
+</div>
+<div id="network-design">
+<section id="section-3.8">
+        <h3 id="name-network-design">
+<a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-network-design" class="section-name selfRef">Network design</a>
+      </h3>
+</section>
+</div>
+<div id="simulation">
+<section id="section-3.9">
+        <h3 id="name-simulation">
+<a href="#section-3.9" class="section-number selfRef">3.9. </a><a href="#name-simulation" class="section-name selfRef">Simulation</a>
+      </h3>
+</section>
+</div>
+<div id="closed-loop">
+<section id="section-3.10">
+        <h3 id="name-closed-loop">
+<a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-closed-loop" class="section-name selfRef">Closed Loop</a>
+      </h3>
+</section>
+</div>
+<div id="digital-twin">
+<section id="section-3.11">
+        <h3 id="name-digital-twin">
+<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-digital-twin" class="section-name selfRef">Digital Twin</a>
+      </h3>
+</section>
+</div>
+</section>
+</div>
+<div id="simap-requirements">
 <section id="section-4">
-      <h2 id="name-digital-map-requirements">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-digital-map-requirements" class="section-name selfRef">Digital Map Requirements</a>
+      <h2 id="name-simap-requirements">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-simap-requirements" class="section-name selfRef">SIMAP Requirements</a>
       </h2>
 <div id="core-requirements">
 <section id="section-4.1">
         <h3 id="name-core-requirements">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-core-requirements" class="section-name selfRef">Core Requirements</a>
         </h3>
-<p id="section-4.1-1">The following are the core requirements for the Digital Map (note that some of them are supported by default by <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>):<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">The following are the core requirements for the SIMAP (note that some of them are supported by
+default by <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>):<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.1-2">
           <dt id="section-4.1-2.1">REQ-BASIC-MODEL-SUPPORT:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.2">
-            <p id="section-4.1-2.2.1">Basic model with network, node, link, and interface entity types. This means that users of the Digital Map model must be able to understand topology model at any layer via these core concepts only, without having to go to the details of the specific augmentations to understand the topology.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.2.1">Basic model with network, node, link, and interface entity types.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.3">REQ-LAYERED-MODEL:</dt>
+<dt id="section-4.1-2.3"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.4">
-            <p id="section-4.1-2.4.1">Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to  service and intent views.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.4.1">This means that users of the SIMAP model
+must be able to understand topology model at any layer via these core concepts only,
+without having to go to the details of the specific augmentations to understand the topology.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.5">REQ-PROG-OPEN-MODEL:</dt>
+<dt id="section-4.1-2.5">REQ-LAYERED-MODEL:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.6">
-            <p id="section-4.1-2.6.1">Open and programmable Digital Map.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.6.1">Layered SIMAP, from physical network (ideally optical, layer 2, layer 3) up to  service and intent views.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.7"></dt>
+<dt id="section-4.1-2.7">REQ-PASSIVE-TOPO:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.8">
-            <p id="section-4.1-2.8.1">This includes "read" operations to retrieve the view of the network, typically as application-facing interface of Software Defined Networking (SDN) controllers or orchestrators.<a href="#section-4.1-2.8.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.8.1">SIMAP must support topology of the complete network, including active and passive parts.<a href="#section-4.1-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.9"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.10">
-            <p id="section-4.1-2.10.1">It also includes "write" operations, not for the ability to directly change the Digital Map data (e.g., changing the network or service parameters),
-but for offline simulations, also known as what-if scenarios.<a href="#section-4.1-2.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.10.1">For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
+through truck roll reduction.<a href="#section-4.1-2.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.11"></dt>
+<dt id="section-4.1-2.11">REQ-PROG-OPEN-MODEL:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.12">
-            <p id="section-4.1-2.12.1">Running a "what-if" analysis requires the ability to take
-snapshots and to switch easily between them.<a href="#section-4.1-2.12.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.12.1">Open and programmable SIMAP.<a href="#section-4.1-2.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.13"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.14">
-            <p id="section-4.1-2.14.1">Note that there is a need to distinguish between a change on the Digital Map
-for future simulation and a change that reflects the current reality of the network.<a href="#section-4.1-2.14.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.14.1">This includes "read" operations to retrieve the view of the network, typically as application-facing interface of
+Software Defined Networking (SDN) controllers or orchestrators.<a href="#section-4.1-2.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.15">REQ-STD-API-BASED:</dt>
+<dt id="section-4.1-2.15"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.16">
-            <p id="section-4.1-2.16.1">Standard based Digital Map Models and APIs, for multi-vendor support.<a href="#section-4.1-2.16.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.16.1">It also includes "write" operations, not for the ability to directly change the SIMAP data
+(e.g., changing the network or service parameters), but for offline simulations, also known as what-if scenarios.<a href="#section-4.1-2.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.17"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.18">
-            <p id="section-4.1-2.18.1">Digital Map must provide the standard YANG APIs
-that provide for read/write and queries.  These APIs must also provide the capability to retrieve the links to external data/models.<a href="#section-4.1-2.18.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.18.1">Running a "what-if" analysis requires the ability to take
+snapshots and to switch easily between them.<a href="#section-4.1-2.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.19">REQ-COMMON-APP:</dt>
+<dt id="section-4.1-2.19"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.20">
-            <p id="section-4.1-2.20.1">Digital Map models and APIs must be common over different network domains (campus, core, data center, etc.). This means that clients of the Digital Map API must be able to understand the topology model of layers of any domain without having to understand the details of any technologies and domains.<a href="#section-4.1-2.20.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.20.1">Note that there is a need to distinguish between a change on the SIMAP
+for future simulation and a change that reflects the current reality of the network.<a href="#section-4.1-2.20.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.21">REQ-SEMANTIC:</dt>
+<dt id="section-4.1-2.21">REQ-STD-API-BASED:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.22">
-            <p id="section-4.1-2.22.1">Digital Map must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.22.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.22.1">Standard based SIMAP Models and APIs, for multi-vendor support.<a href="#section-4.1-2.22.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.23">REQ-LAYER-NAVIGATE:</dt>
+<dt id="section-4.1-2.23"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.24">
-            <p id="section-4.1-2.24.1">Digital Map must provide intra-layer and inter-layer relationships.<a href="#section-4.1-2.24.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.24.1">SIMAP must provide the standard YANG APIs
+that provide for read/write and queries.  These APIs must also provide the capability to retrieve the
+links to external data/models.<a href="#section-4.1-2.24.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.25">REQ-EXTENSIBLE:</dt>
+<dt id="section-4.1-2.25">REQ-COMMON-APP:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.26">
-            <p id="section-4.1-2.26.1">Digital Map must be extensible with metadata.<a href="#section-4.1-2.26.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.26.1">SIMAP models and APIs must be common over different network domains (campus, core, data center, etc.).<a href="#section-4.1-2.26.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.27">REQ-PLUGG:</dt>
+<dt id="section-4.1-2.27"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.28">
-            <p id="section-4.1-2.28.1">Digital Map must be pluggable. That is,<a href="#section-4.1-2.28.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.28.1">This means that clients of the SIMAP API must be able to understand the topology model of layers of any
+domain without having to understand the details of any technologies and domains.<a href="#section-4.1-2.28.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.29">REQ-SEMANTIC:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.30">
+            <p id="section-4.1-2.30.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.30.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.31">REQ-LAYER-NAVIGATE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.32">
+            <p id="section-4.1-2.32.1">SIMAP must provide intra-layer and inter-layer relationships.<a href="#section-4.1-2.32.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.33">REQ-EXTENSIBLE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.34">
+            <p id="section-4.1-2.34.1">SIMAP must be extensible with metadata.<a href="#section-4.1-2.34.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.35">REQ-PLUGG:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.36">
+            <p id="section-4.1-2.36.1">SIMAP must be pluggable. That is,<a href="#section-4.1-2.36.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1-2.28.2.1">
-                <p id="section-4.1-2.28.2.1.1">Must connect to other YANG modules for inventory, configuration, assurance, etc.<a href="#section-4.1-2.28.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.1-2.36.2.1">
+                <p id="section-4.1-2.36.2.1.1">Must connect to other YANG modules for inventory, configuration, assurance, etc.<a href="#section-4.1-2.36.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.1-2.28.2.2">
-                <p id="section-4.1-2.28.2.2.1">Given that no all involved components can be available using YANG, there is a need to connect Digital Map YANG model with other modelling mechanisms.<a href="#section-4.1-2.28.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.1-2.36.2.2">
+                <p id="section-4.1-2.36.2.2.1">Given that no all involved components can be available using YANG, there is a need to connect
+SIMAP YANG model with other modelling mechanisms.<a href="#section-4.1-2.36.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.29">REQ-GRAPH-TRAVERSAL:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.30">
-            <p id="section-4.1-2.30.1">Digital Map must be optimized for graph traversal for paths. This means that only providing link nodes and
+<dt id="section-4.1-2.37">REQ-GRAPH-TRAVERSAL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.38">
+            <p id="section-4.1-2.38.1">SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
-relationship between the termination points or nodes.<a href="#section-4.1-2.30.1" class="pilcrow">¶</a></p>
+relationship between the termination points or nodes.<a href="#section-4.1-2.38.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1575,50 +1705,56 @@ relationship between the termination points or nodes.<a href="#section-4.1-2.30.
         <h3 id="name-design-requirements">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-design-requirements" class="section-name selfRef">Design Requirements</a>
         </h3>
-<p id="section-4.2-1">The following are design requirements for modelling the Digital Map:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">The following are design requirements for modelling the SIMAP. Theey are derived from the core requerements
+collected from the operators and although there is some duplication, these are focused on summarizing the requirements
+for the design of the model and API:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.2-2">
           <dt id="section-4.2-2.1">REQ-TOPO-ONLY:</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.2">
-            <p id="section-4.2-2.2.1">Digital Map should contain only topological information.<a href="#section-4.2-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-2.2.1">SIMAP should contain only topological information.<a href="#section-4.2-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.2-2.3"></dt>
           <dd style="margin-left: 1.5em" id="section-4.2-2.4">
-            <p id="section-4.2-2.4.1">Digital Map is not required to contain all data required for
-all the management and use cases. However, it should be designed to support adequate pointers to other functional Digital
-Twin data and models to ease navigating in the overall system. For example:<a href="#section-4.2-2.4.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-</dl>
+            <p id="section-4.2-2.4.1">SIMAP is not required to contain all models and data required for
+all the management and use cases. However, it should be designed to support adequate pointers to other functional
+data and models to ease navigating in the overall system. For example:<a href="#section-4.2-2.4.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.2-3.1">
-            <p id="section-4.2-3.1.1">ACLs and Route Policies are not required to be supported in the Digital Map, they would be linked to Digital Map<a href="#section-4.2-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4.2-2.4.2.1">
+                <p id="section-4.2-2.4.2.1.1">ACLs and Route Policies are not required to be supported in the SIMAP, they would be linked to the SIMAP<a href="#section-4.2-2.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-4.2-3.2">
-            <p id="section-4.2-3.2.1">Dynamic paths may either be outside of the Digital Map or part of traffic engineering data/models<a href="#section-4.2-3.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.2-2.4.2.2">
+                <p id="section-4.2-2.4.2.2.1">Dynamic paths may either be outside of the SIMAP or part of traffic engineering data/models<a href="#section-4.2-2.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
-        </ul>
-<span class="break"></span><dl class="dlParallel" id="section-4.2-4">
-          <dt id="section-4.2-4.1">REQ-PROPERTIES:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.2-4.2">
-            <p id="section-4.2-4.2.1">Digital Map entities should mainly contain properties used to identify topological entities at different layers,
-identify their roles, and topological relationships between them.<a href="#section-4.2-4.2.1" class="pilcrow">¶</a></p>
+            </ul>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-4.3">REQ-RELATIONSHIPS:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.2-4.4">
-            <p id="section-4.2-4.4.1">Digital Map should contain only topological relationships inside each layer or between the layers (underlay/overlay).<a href="#section-4.2-4.4.1" class="pilcrow">¶</a></p>
+<dt id="section-4.2-2.5">REQ-PROPERTIES:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.6">
+            <p id="section-4.2-2.6.1">SIMAP entities should mainly contain properties used to identify topological entities at different layers,
+identify their roles, and topological relationships between them.<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-4.5">REQ-CONDITIONAL:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.2-4.6">
-            <p id="section-4.2-4.6.1">Provide capability for conditional retrieval of parts of Digital Map.<a href="#section-4.2-4.6.1" class="pilcrow">¶</a></p>
+<dt id="section-4.2-2.7">REQ-RELATIONSHIPS:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.8">
+            <p id="section-4.2-2.8.1">SIMAP should contain all topological relationships inside each layer or between the layers (underlay/overlay)<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.2-4.7">REQ-TEMPO-HISTO:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.2-4.8">
-            <p id="section-4.2-4.8.1">Must support geo-spatial, temporal, and historical data.  The temporal and historical can be supported external
-to the Digital Map.<a href="#section-4.2-4.8.1" class="pilcrow">¶</a></p>
+<dt id="section-4.2-2.9"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.10">
+            <p id="section-4.2-2.10.1">SIMAP should contain links to other models/data to enable generic navigation to other YANG models in
+generic way.<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.11">REQ-CONDITIONAL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.12">
+            <p id="section-4.2-2.12.1">Provide capability for conditional retrieval of parts of SIMAP.<a href="#section-4.2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.13">REQ-TEMPO-HISTO:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.14">
+            <p id="section-4.2-2.14.1">Must support geo-spatial, temporal, and historical data.  The temporal and historical can also be supported
+external to the SIMAP.<a href="#section-4.2-2.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -1629,7 +1765,7 @@ to the Digital Map.<a href="#section-4.2-4.8.1" class="pilcrow">¶</a></p>
         <h3 id="name-architectural-requirements">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-architectural-requirements" class="section-name selfRef">Architectural Requirements</a>
         </h3>
-<p id="section-4.3-1">The following are the architectural requirements for the Digital Map:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">The following are the architectural requirements for the controller that provides SIMAP API:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.3-2">
           <dt id="section-4.3-2.1">REQ-DM-SCALES:</dt>
           <dd style="margin-left: 1.5em" id="section-4.3-2.2">
@@ -1651,7 +1787,7 @@ to the Digital Map.<a href="#section-4.2-4.8.1" class="pilcrow">¶</a></p>
       <h2 id="name-security-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-5-1">As this document covers the Digital Map concepts, requirements, and use cases, there is no specific security considerations.
+<p id="section-5-1">As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations.
 However, the RFC 8345 Security Considerations aspects will be useful when designing the solution.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1697,23 +1833,19 @@ However, the RFC 8345 Security Considerations aspects will be useful when design
 <dd class="break"></dd>
 <dt id="I-D.ietf-ivy-network-inventory-yang">[I-D.ietf-ivy-network-inventory-yang]</dt>
         <dd>
-<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-03</span>, <time datetime="2024-07-07" class="refDate">7 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-03">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-03</a>&gt;</span>. </dd>
+<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-04</span>, <time datetime="2024-11-05" class="refDate">5 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-04">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-incident-yang">[I-D.ietf-nmop-network-incident-yang]</dt>
         <dd>
-<span class="refAuthor">Hu, T.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Davis, N.</span>, and <span class="refAuthor">C. Feng</span>, <span class="refTitle">"A YANG Data Model for Network Incident Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-incident-yang-01</span>, <time datetime="2024-06-28" class="refDate">28 June 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-incident-yang-01">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-incident-yang-01</a>&gt;</span>. </dd>
+<span class="refAuthor">Hu, T.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Davis, N.</span>, and <span class="refAuthor">C. Feng</span>, <span class="refTitle">"A YANG Data Model for Network Incident Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-incident-yang-02</span>, <time datetime="2024-10-10" class="refDate">10 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-incident-yang-02">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-incident-yang-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-13</span>, <time datetime="2024-09-05" class="refDate">5 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-13">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-13</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-14</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
         <dd>
-<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-16</span>, <time datetime="2024-09-10" class="refDate">10 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-16">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-16</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="I-D.irtf-nmrg-network-digital-twin-arch">[I-D.irtf-nmrg-network-digital-twin-arch]</dt>
-        <dd>
-<span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Yang, H.</span>, <span class="refAuthor">Duan, X.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Pastor, A.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">C. Jacquenet</span>, <span class="refTitle">"Network Digital Twin: Concepts and Reference Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-network-digital-twin-arch-06</span>, <time datetime="2024-07-07" class="refDate">7 July 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-06">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-18</span>, <time datetime="2024-11-07" class="refDate">7 November 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-18</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ogondio-nmop-isis-topology">[I-D.ogondio-nmop-isis-topology]</dt>
         <dd>
@@ -1830,10 +1962,10 @@ However, the RFC 8345 Security Considerations aspects will be useful when design
 </div>
 <div id="sec-core">
 <section id="appendix-A.2">
-        <h3 id="name-core-digital-map-components">
-<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-core-digital-map-components" class="section-name selfRef">Core Digital Map Components</a>
+        <h3 id="name-core-simap-components">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-core-simap-components" class="section-name selfRef">Core SIMAP Components</a>
         </h3>
-<p id="appendix-A.2-1">The following specifications are core for the Digital Map:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">The following specifications are core for the SIMAP:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A.2-2.1">
             <p id="appendix-A.2-2.1.1">IETF network model and network topology model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#appendix-A.2-2.1.1" class="pilcrow">¶</a></p>
@@ -1863,10 +1995,10 @@ However, the RFC 8345 Security Considerations aspects will be useful when design
 </div>
 <div id="sec-add">
 <section id="appendix-A.3">
-        <h3 id="name-additional-digital-map-comp">
-<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-additional-digital-map-comp" class="section-name selfRef">Additional Digital Map Components</a>
+        <h3 id="name-additional-simap-components">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-additional-simap-components" class="section-name selfRef">Additional SIMAP Components</a>
         </h3>
-<p id="appendix-A.3-1">The Digital Map may need to link to the following models, some are already augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>:<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-1">The SIMAP may need to link to the following models, some are already augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>:<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A.3-2.1">
             <p id="appendix-A.3-2.1.1">Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, augments 'ietf-network' data model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> by adding the SAP.<a href="#appendix-A.3-2.1.1" class="pilcrow">¶</a></p>
@@ -1875,7 +2007,8 @@ However, the RFC 8345 Security Considerations aspects will be useful when design
             <p id="appendix-A.3-2.2.1">SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> <span>[<a href="#RFC9418" class="cite xref">RFC9418</a>]</span><a href="#appendix-A.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.3-2.3">
-            <p id="appendix-A.3-2.3.1">Network Inventory Model <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span> focuses on physical and virtual inventory. Logical inventory is currently outside of the scope.
+            <p id="appendix-A.3-2.3.1">Network Inventory Model <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span> focuses on physical and virtual inventory.
+Logical inventory is currently outside of the scope.
 It does not augment RFC8345 like the two Internet-Drafts that it evolved from <span>[<a href="#I-D.ietf-ccamp-network-inventory-yang" class="cite xref">I-D.ietf-ccamp-network-inventory-yang</a>]</span>
 and <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span>. <span>[<a href="#I-D.ietf-ivy-network-inventory-topology" class="cite xref">I-D.ietf-ivy-network-inventory-topology</a>]</span>
 correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.<a href="#appendix-A.3-2.3.1" class="pilcrow">¶</a></p>
@@ -1902,8 +2035,13 @@ correlates the network inventory with the general topology via RFC8345 augmentat
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">Many thanks to Mohamed Boucadair (<a href="mailto:mohamed.boucadair@orange.com">mohamed.boucadair@orange.com</a>) for his valuable contributions, reviews, and comments.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">Many thanks to Nigel Davis <a href="mailto:ndavis@ciena.com">ndavis@ciena.com</a> for the valuable discussions and his confirmation of the modelling requirements.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-1">Many thanks to Mohamed Boucadair for his valuable contributions, reviews, and comments.
+Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
+Many thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, Italo Busi, Wu Bo,
+Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, and many others for their contributions, suggestions
+and comments.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Many thanks to Nigel Davis <a href="mailto:ndavis@ciena.com">ndavis@ciena.com</a> for the valuable discussions and his confirmation of the
+modelling requirements.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="contributors">
