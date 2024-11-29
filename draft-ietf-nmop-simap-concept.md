@@ -1,7 +1,7 @@
 ---
-title: "Digital Map: Concept, Requirements, and Use Cases"
-abbrev: Digital Map Concept & Needs
-docname: draft-ietf-nmop-digital-map-concept-latest
+title: "SIMAP: Concept, Requirements, and Use Cases"
+abbrev: SIMAP Concept & Needs
+docname: draft-ietf-nmop-simap-concept-latest
 category: info
 
 submissiontype: IETF
@@ -12,6 +12,7 @@ v: 3
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
+ - Service & Infrastructure Maps
  - Service emulation
  - Automation
  - Network Automation
@@ -61,16 +62,17 @@ informative:
 
 --- abstract
 
-This document defines the concept of Digital Map, and identifies a set of Digital Map requirements and use cases.
+This document defines the concept of Service & Infrastructure Maps (SIMAP), and identifies a set of SIMAP
+requirements and use cases.
 
 The document intends to be used as a reference for the assessment effort of the various topology modules to meet
-Digital Map requirements.
+SIMAP requirements.
 
 --- middle
 
 # Introduction
 
-Digital Map is a data model that provides a view of the operator's networks and services,
+Service & Infrastructure Maps (SIMAP) is a data model that provides a view of the operator's networks and services,
 including how it is connected to other models/data (e.g. inventory, observability sources, and
 operational knowledge). It specifically provides an approach to model multi-layered topology
 and appropriate mechanism to navigate amongs layers and correlate between them.
@@ -78,20 +80,20 @@ This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data centers, etc.) and
 technologies (Optical, IP, etc.).
 
-The Digital Map modelling defines the core topological entities (network, node, link, and interface) at each layer,
+The SIMAP modelling defines the core topological entities (network, node, link, and interface) at each layer,
 their role in the network topology, core topological properties, and topological relationships both inside each
 layer and between the layers. It also defines how to access other external models from the topology.
 
-The Digital Map model is a topological model that is linked to the other functional models and
+The SIMAP model is a topological model that is linked to the other functional models and
 connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), Traffic-Engineering (TE),
 different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
-These other models exist outside of the digital map and are not defined during digital map modelling.
+These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
-The Digital Map data consists of virtual instances of network and service topologies at different layers.
-The Digital Map provides access to this data via standard APIs for both read and write operations
+The SIMAP data consists of virtual instances of network and service topologies at different layers.
+The SIMAP provides access to this data via standard APIs for both read and write operations
 (write operations for offline simulations), with query capabilities and links to other YANG modules
-(e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachement Points (SAPs) {{?RFC9408}},
-Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models.
+(e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}},
+Service Attachement Points (SAPs) {{?RFC9408}}, Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models.
 
 
 # Terminology
@@ -131,22 +133,24 @@ Topology layer:
 
 The document defines the following terms:
 
-Digital Map:
-: Digital Map is a data model that provides a view of the operator's networks and services,
+Service & Infrastructure Maps (SIMAP):
+: SIMAP is a data model that provides a view of the operator's networks and services,
   including how it is connected to other models/data (e.g. inventory, observability sources, and
   operational knowledge). It specifically provides an approach to model multi-layered topology
   and appropriate mechanism to navigate amongs layers and correlate between them.
+  This includes layers from physical topology to service topology.
+
   This model is applicable to multiple domains (access, core, data centers, etc.) and
   technologies (Optical, IP, etc.).
 
-Digital Map modelling:
+SIMAP modelling:
 : The set of principles, guidelines, and conventions to model the
-  Digital Map using the IETF {{?RFC8345}} approach.  They cover the
+  Service & Infrastructure Maps (SIMAP) using the IETF {{?RFC8345}} approach.  They cover the
   network types (layers and sublayers), entity types, entity roles
   (network, node, termination point or link), entity properties,
   relationship types between entities and relationships to other entities.
 
-Digital Map model:
+SIMAP model:
 : Defines the core topological entities, their role in the network,
   core topological properties and relationships both inside each layer and
   between the layers.
@@ -154,7 +158,7 @@ Digital Map model:
   configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
   different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
-Digital Map data:
+SIMAP data:
 : Consists of instances of network and service topologies at
    different layers.  This includes instances of networks, nodes,
    links and termination points, topological relationships between
@@ -164,44 +168,48 @@ Digital Map data:
    configuration, health, symptoms.
 : The data can be historical, real-time, or future data for 'what-if' scenarios.
 
-# Sample Digital Map Use Cases
+# Sample SIMAP Use Cases
 
-The following are sample use cases that require Digital Map:
+The following are sample use cases that require SIMAP:
 
 * Generic inventory queries
 + Service placement feasibility checks
 + Service-> subservice -> resource
 + Resource -> subservice -> service
 + Intent/service assurance
-+ Service E2E and per-link KPIs on the Digital Map (connectivity status, high-availability, delay, jitter, and loss)
++ Service E2E and per-link KPIs on SIMAP (connectivity status, high-availability, delay, jitter, and loss)
 + Capacity planning
 + Network design
 + Simulation
 + Closed loop
 - Digital Twin
 
-Overall, the Digital Map is needed to provide the mechanism to connect data islands from the core multi-layered topology.
+Overall, the SIMAP is needed to provide the mechanism to connect data islands from the core multi-layered topology.
 It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
-requirement for the Digital Twin.
+requirement for the SIMAP.
 
 The following sections includes some initial use case descriptions to initiate the discussion about what type of info
-is needed to describe the use cases in the context of Digital Map.
-The next version of the draft will include more info on these use cases and more input from the operaotors,
-from the perspective of what the value of the digital map for each use case is and how the Digital Map API can be used.
+is needed to describe the use cases in the context of SIMAP.
+The next version of the draft will include more info on these use cases and more input from the operators,
+from the perspective of what the value of the SIMAP for each use case is and how the SIMAP API can be used.
 This will also clarify if only read and if/when write interface is needed per use case.
 
 ## Generic inventory queries
-The application will be able to retrieve physical topology from the controller via Digital Map API and from the
+The application will be able to retrieve physical topology from the controller via SIMAP API and from the
 response it will be able to retrieve physical inventory of individual devices and cables.
 
-The application may request either one or multiple layers of topology via the Digital Map API and and from the response
+The application may request either one or multiple layers of topology via the SIMAP API and and from the response
 it will be able to retrieve both physical and logical inventory.
+
+For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
+through truck roll reduction.
 
 ## Service placement feasibility checks
 
 ## Service-> subservice -> resource
-The application will be able to retrieve all services from the Digital Map API for selected network types.
-The application will be able to retrieve the topology for selected services via Digital Map API and from the response
+The application will be able to retrieve all services from the SIMAP API for selected network types.
+The application will be able to retrieve the topology for selected services via SIMAP API and from the response
 it will be able to navigate via the supporting relationship top-down to the lower layers. That way, it will be able to
 determine what logical resources are used by the service. The supporting relations to the lowest layer will help
 application to determine what physical resources are used by the service.
@@ -213,11 +221,11 @@ bottom-up come to the service and its nodes, tps and links.
 
 ## Intent/service assurance
 The application will be able to retrieve topology layer and any network/node/tp/link instances from the controller
-via Digital Map API and from the response it will be able to determine the health of each instance by navigating to the
+via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the
 SAIN subservices and its symptoms.
 
 ## Service E2E and per-link KPIs
-The application will be able to retieve the topology at any layer from the controller via Digital Map API and from the
+The application will be able to retieve the topology at any layer from the controller via the SIMAP API and from the
 response it will be able to navigate any retrieve any KPIs for selected topology entity.
 
 ## Capacity planning
@@ -230,99 +238,105 @@ response it will be able to navigate any retrieve any KPIs for selected topology
 
 ## Digital Twin
 
-# Digital Map Requirements
+# SIMAP Requirements
 
 ## Core Requirements
 
-The following are the core requirements for the Digital Map (note that some of them are supported by
+The following are the core requirements for the SIMAP (note that some of them are supported by
 default by {{!RFC8345}}):
 
 REQ-BASIC-MODEL-SUPPORT:
 : Basic model with network, node, link, and interface entity types.
-: This means that users of the Digital Map model
+: This means that users of the SIMAP model
 must be able to understand topology model at any layer via these core concepts only,
 without having to go to the details of the specific augmentations to understand the topology.
 
 REQ-LAYERED-MODEL:
-: Layered Digital Map, from physical network (ideally optical, layer 2, layer 3) up to  service and intent views.
+: Layered SIMAP, from physical network (ideally optical, layer 2, layer 3) up to  service and intent views.
+
+REQ-PASSIVE-TOPO:
+: SIMAP must support topology of the complete network, including active and passive parts.
+: For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
+through truck roll reduction.
 
 REQ-PROG-OPEN-MODEL:
-: Open and programmable Digital Map.
+: Open and programmable SIMAP.
 : This includes "read" operations to retrieve the view of the network, typically as application-facing interface of
 Software Defined Networking (SDN) controllers or orchestrators.
-: It also includes "write" operations, not for the ability to directly change the Digital Map data
+: It also includes "write" operations, not for the ability to directly change the SIMAP data
 (e.g., changing the network or service parameters), but for offline simulations, also known as what-if scenarios.
 :  Running a "what-if" analysis requires the ability to take
 snapshots and to switch easily between them.
-: Note that there is a need to distinguish between a change on the Digital Map
+: Note that there is a need to distinguish between a change on the SIMAP
 for future simulation and a change that reflects the current reality of the network.
 
 REQ-STD-API-BASED:
-: Standard based Digital Map Models and APIs, for multi-vendor support.
-:  Digital Map must provide the standard YANG APIs
+: Standard based SIMAP Models and APIs, for multi-vendor support.
+:  SIMAP must provide the standard YANG APIs
 that provide for read/write and queries.  These APIs must also provide the capability to retrieve the
 links to external data/models.
 
 REQ-COMMON-APP:
-: Digital Map models and APIs must be common over different network domains (campus, core, data center, etc.).
-: This means that clients of the Digital Map API must be able to understand the topology model of layers of any
+: SIMAP models and APIs must be common over different network domains (campus, core, data center, etc.).
+: This means that clients of the SIMAP API must be able to understand the topology model of layers of any
 domain without having to understand the details of any technologies and domains.
 
 REQ-SEMANTIC:
-: Digital Map must provide semantics for layered network topologies and for linking external models/data.
+: SIMAP must provide semantics for layered network topologies and for linking external models/data.
 
 REQ-LAYER-NAVIGATE:
-: Digital Map must provide intra-layer and inter-layer relationships.
+: SIMAP must provide intra-layer and inter-layer relationships.
 
 REQ-EXTENSIBLE:
-: Digital Map must be extensible with metadata.
+: SIMAP must be extensible with metadata.
 
 REQ-PLUGG:
-: Digital Map must be pluggable. That is,
+: SIMAP must be pluggable. That is,
 
      + Must connect to other YANG modules for inventory, configuration, assurance, etc.
      + Given that no all involved components can be available using YANG, there is a need to connect
-       Digital Map YANG model with other modelling mechanisms.
+       SIMAP YANG model with other modelling mechanisms.
 
 REQ-GRAPH-TRAVERSAL:
-: Digital Map must be optimized for graph traversal for paths. This means that only providing link nodes and
+: SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
 relationship between the termination points or nodes.
 
 ## Design Requirements
 
-The following are design requirements for modelling the Digital Map. Theey are derived from the core requerements
+The following are design requirements for modelling the SIMAP. Theey are derived from the core requerements
 collected from the operators and although there is some duplication, these are focused on summarizing the requirements
 for the design of the model and API:
 
 REQ-TOPO-ONLY:
-: Digital Map should contain only topological information.
-:  Digital Map is not required to contain all models and data required for
+: SIMAP should contain only topological information.
+: SIMAP is not required to contain all models and data required for
 all the management and use cases. However, it should be designed to support adequate pointers to other functional
 data and models to ease navigating in the overall system. For example:
 
-  + ACLs and Route Policies are not required to be supported in the Digital Map, they would be linked to Digital Map
-  + Dynamic paths may either be outside of the Digital Map or part of traffic engineering data/models
+  + ACLs and Route Policies are not required to be supported in the SIMAP, they would be linked to the SIMAP
+  + Dynamic paths may either be outside of the SIMAP or part of traffic engineering data/models
 
 REQ-PROPERTIES:
-: Digital Map entities should mainly contain properties used to identify topological entities at different layers,
+: SIMAP entities should mainly contain properties used to identify topological entities at different layers,
 identify their roles, and topological relationships between them.
 
 REQ-RELATIONSHIPS:
-: Digital Map should contain all topological relationships inside each layer or between the layers (underlay/overlay)
-: Digital Map should contain links to other models/data to enable generic navigation to other YANG models in
+: SIMAP should contain all topological relationships inside each layer or between the layers (underlay/overlay)
+: SIMAP should contain links to other models/data to enable generic navigation to other YANG models in
 generic way.
 
 REQ-CONDITIONAL:
-: Provide capability for conditional retrieval of parts of Digital Map.
+: Provide capability for conditional retrieval of parts of SIMAP.
 
 REQ-TEMPO-HISTO:
 : Must support geo-spatial, temporal, and historical data.  The temporal and historical can also be supported
-external to the Digital Map.
+external to the SIMAP.
 
 ## Architectural Requirements
 
-The following are the architectural requirements for the controller that provides Digital Map API:
+The following are the architectural requirements for the controller that provides SIMAP API:
 
 REQ-DM-SCALES:
 : Scale, performance, ease of integration.
@@ -332,7 +346,7 @@ REQ-DM-DISCOVERY:
 
 # Security Considerations
 
-As this document covers the Digital Map concepts, requirements, and use cases, there is no specific security considerations.
+As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations.
 However, the RFC 8345 Security Considerations aspects will be useful when designing the solution.
 
 # IANA Considerations
@@ -374,9 +388,9 @@ This document has no actions for IANA.
    > Topology information may also be derived from servers that monitor
    network state, and from servers that perform provisioning functions.
 
-##  Core Digital Map Components {#sec-core}
+##  Core SIMAP Components {#sec-core}
 
-   The following specifications are core for the Digital Map:
+   The following specifications are core for the SIMAP:
 
    *  IETF network model and network topology model {{?RFC8345}}
 
@@ -392,9 +406,9 @@ This document has no actions for IANA.
 
        *  A YANG data model for IS-IS topology {{?I-D.ogondio-nmop-isis-topology}}
 
-##  Additional Digital Map Components {#sec-add}
+##  Additional SIMAP Components {#sec-add}
 
-The Digital Map may need to link to the following models, some are already augmenting {{?RFC8345}}:
+The SIMAP may need to link to the following models, some are already augmenting {{?RFC8345}}:
 
 *  Service Attachment Point (SAP) {{?RFC9408}}, augments 'ietf-network' data model {{?RFC8345}} by adding the SAP.
 
@@ -417,7 +431,14 @@ correlates the network inventory with the general topology via RFC8345 augmentat
 # Acknowledgments
 {:numbered="false"}
 
-Many thanks to Mohamed Boucadair (<mohamed.boucadair@orange.com>) for his valuable contributions, reviews, and comments.
+Many thanks to Mohamed Boucadair for his valuable contributions, reviews, and comments.
+Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
+Many thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, Italo Busi, Wu Bo,
+Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, and many others for their contributions, suggestions
+and comments.
 
-Many thanks to Nigel Davis <ndavis@ciena.com> for the valuable discussions and his confirmation of the modelling requirements.
+Many thanks to Nigel Davis <ndavis@ciena.com> for the valuable discussions and his confirmation of the
+modelling requirements.
+
+
 
