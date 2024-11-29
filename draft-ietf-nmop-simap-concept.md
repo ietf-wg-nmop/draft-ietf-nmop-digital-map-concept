@@ -8,7 +8,7 @@ submissiontype: IETF
 number:
 date:
 consensus: true
-v: 3
+v: 0
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
@@ -62,8 +62,9 @@ informative:
 
 --- abstract
 
-This document defines the concept of Service & Infrastructure Maps (SIMAP), and identifies a set of SIMAP
-requirements and use cases.
+This document defines the concept of Service & Infrastructure Maps (SIMAP) and identifies a set of SIMAP
+requirements and use cases. The SIMAP was previously known as Digital Map in the old draft versions
+(draft-ietf-nmop-digital-map-concept).
 
 The document intends to be used as a reference for the assessment effort of the various topology modules to meet
 SIMAP requirements.
