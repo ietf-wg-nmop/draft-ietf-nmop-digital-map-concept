@@ -1,0 +1,734 @@
+
+
+
+
+Network Management Operations                                   O. Havel
+Internet-Draft                                                 B. Claise
+Intended status: Informational                                    Huawei
+Expires: 2 June 2025                                       O. G. D. Dios
+                                                              Telefonica
+                                                                 T. Graf
+                                                                Swisscom
+                                                        29 November 2024
+
+
+              SIMAP: Concept, Requirements, and Use Cases
+                  draft-ietf-nmop-simap-concept-latest
+
+Abstract
+
+   This document defines the concept of Service & Infrastructure Maps
+   (SIMAP) and identifies a set of SIMAP requirements and use cases.
+   The SIMAP was previously known as Digital Map in the old draft
+   versions (draft-ietf-nmop-digital-map-concept).
+
+   The document intends to be used as a reference for the assessment
+   effort of the various topology modules to meet SIMAP requirements.
+
+Discussion Venues
+
+   This note is to be removed before publishing as an RFC.
+
+   Discussion of this document takes place on the Network Management
+   Operations Working Group mailing list (nmop@ietf.org), which is
+   archived at https://mailarchive.ietf.org/arch/browse/nmop/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 2 June 2025.
+
+Copyright Notice
+
+   Copyright (c) 2024 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Terminology
+   3.  Sample SIMAP Use Cases
+     3.1.  Generic inventory queries
+     3.2.  Service placement feasibility checks
+     3.3.  Service-> subservice -> resource
+     3.4.  Resource -> subservice -> service
+     3.5.  Intent/service assurance
+     3.6.  Service E2E and per-link KPIs
+     3.7.  Capacity planning
+     3.8.  Network design
+     3.9.  Simulation
+     3.10. Closed Loop
+     3.11. Digital Twin
+   4.  SIMAP Requirements
+     4.1.  Core Requirements
+     4.2.  Design Requirements
+     4.3.  Architectural Requirements
+   5.  Security Considerations
+   6.  IANA Considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
+   Appendix A.  Related IETF Activities
+     A.1.  Network Topology
+     A.2.  Core SIMAP Components
+     A.3.  Additional SIMAP Components
+   Acknowledgments
+   Contributors
+   Authors' Addresses
+
+1.  Introduction
+
+   Service & Infrastructure Maps (SIMAP) is a data model that provides a
+   view of the operator's networks and services, including how it is
+   connected to other models/data (e.g. inventory, observability
+   sources, and operational knowledge).  It specifically provides an
+   approach to model multi-layered topology and appropriate mechanism to
+   navigate amongs layers and correlate between them.  This includes
+   layers from physical topology to service topology.  This model is
+   applicable to multiple domains (access, core, data centers, etc.) and
+   technologies (Optical, IP, etc.).
+
+   The SIMAP modelling defines the core topological entities (network,
+   node, link, and interface) at each layer, their role in the network
+   topology, core topological properties, and topological relationships
+   both inside each layer and between the layers.  It also defines how
+   to access other external models from the topology.
+
+   The SIMAP model is a topological model that is linked to the other
+   functional models and connects them all: configuration, maintenance,
+   assurance (KPIs, status, health, and symptoms), Traffic-Engineering
+   (TE), different behaviors and actions, simulation, emulation,
+   mathematical abstractions, AI algorithms, etc.  These other models
+   exist outside of the SIMAP and are not defined during SIMAP
+   modelling.
+
+   The SIMAP data consists of virtual instances of network and service
+   topologies at different layers.  The SIMAP provides access to this
+   data via standard APIs for both read and write operations (write
+   operations for offline simulations), with query capabilities and
+   links to other YANG modules (e.g., Service Assurance for Intent-based
+   Networking (SAIN) [RFC9417], Service Attachement Points (SAPs)
+   [RFC9408], Inventory [I-D.ietf-ivy-network-inventory-yang], and non-
+   YANG models.
+
+2.  Terminology
+
+   The document makes use of the following terms:
+
+   Topology:  Topology in this document refers to the network and
+      service topology.  Network topology defines how physical or
+      logical nodes, links and interfaces are related and arranged.
+      Service topology defines how service components (e.g., VPN
+      instances, customer interfaces, and customer links) between
+      customer sites are interrelated and arranged.  There are at least
+      8 types of topologies: point to point, bus, ring, star, tree,
+      mesh, hybrid and daisy chain.  Topologies may be unidirectional or
+      bidirectional (bus, some rings).
+
+   Multi-layered topology:  A multi-layered topology models
+      relationships between different layers of topology, where each
+      layer represents a connectivity aspect of the network and services
+      that needs to be configured, controlled and monitored.  Each layer
+      of topology has a separate lifecycle.
+
+   Topology layer:  Represents topology at a single layer in the multi-
+      layered topology.
+
+      The topology layer can also represent what needs to be managed by
+      a specific user, for example IGP layer can be of interest to the
+      operator troubleshooting or optimizing the routing, while the
+      optical layer may be of interest to the user managing the optical
+      network.
+
+      Some topology layers may relate closely to OSI layers, like L1
+      topology for physical topology, Layer 2 for link topology and
+      Layer 3 for IPv4 and IPv6 topologies.
+
+      Some topology layers represent the control aspects of Layer 3,
+      like OSPF, IS-IS, or BGP.
+
+      The service layer represents the service view of the connectivity,
+      that can differ for different types of services and for different
+      providers/solutions.
+
+      The top layer represents the application/flow view of service
+      connectivity.
+
+   The document defines the following terms:
+
+   Service & Infrastructure Maps (SIMAP):  SIMAP is a data model that
+      provides a view of the operator's networks and services, including
+      how it is connected to other models/data (e.g. inventory,
+      observability sources, and operational knowledge).  It
+      specifically provides an approach to model multi-layered topology
+      and appropriate mechanism to navigate amongs layers and correlate
+      between them.  This includes layers from physical topology to
+      service topology.
+
+      This model is applicable to multiple domains (access, core, data
+      centers, etc.) and technologies (Optical, IP, etc.).
+
+   SIMAP modelling:  The set of principles, guidelines, and conventions
+      to model the Service & Infrastructure Maps (SIMAP) using the IETF
+      [RFC8345] approach.  They cover the network types (layers and
+      sublayers), entity types, entity roles (network, node, termination
+      point or link), entity properties, relationship types between
+      entities and relationships to other entities.
+
+   SIMAP model:  Defines the core topological entities, their role in
+      the network, core topological properties and relationships both
+      inside each layer and between the layers.
+
+      It is the basic topological model with the links to other models
+      and connects them all: configuration, maintenance, assurance
+      (KPIs, status, health, symptoms, etc.), traffic engineering,
+      different behaviors, simulation, emulation, mathematical
+      abstractions, AI algorithms, etc.
+
+   SIMAP data:  Consists of instances of network and service topologies
+      at different layers.  This includes instances of networks, nodes,
+      links and termination points, topological relationships between
+      nodes, links and termination points inside a network,
+      relationships between instances belonging to different networks,
+      links to functional data for the instances, including
+      configuration, health, symptoms.
+
+      The data can be historical, real-time, or future data for 'what-
+      if' scenarios.
+
+3.  Sample SIMAP Use Cases
+
+   The following are sample use cases that require SIMAP:
+
+   *  Generic inventory queries
+
+   *  Service placement feasibility checks
+
+   *  Service-> subservice -> resource
+
+   *  Resource -> subservice -> service
+
+   *  Intent/service assurance
+
+   *  Service E2E and per-link KPIs on SIMAP (connectivity status, high-
+      availability, delay, jitter, and loss)
+
+   *  Capacity planning
+
+   *  Network design
+
+   *  Simulation
+
+   *  Closed loop
+
+   *  Digital Twin
+
+   Overall, the SIMAP is needed to provide the mechanism to connect data
+   islands from the core multi-layered topology.  It is a solution
+   feasible and useful in the short-term for the existing operations use
+   cases, but it is also a requirement for the SIMAP.
+
+   The following sections includes some initial use case descriptions to
+   initiate the discussion about what type of info is needed to describe
+   the use cases in the context of SIMAP.  The next version of the draft
+   will include more info on these use cases and more input from the
+   operators, from the perspective of what the value of the SIMAP for
+   each use case is and how the SIMAP API can be used.  This will also
+   clarify if only read and if/when write interface is needed per use
+   case.
+
+3.1.  Generic inventory queries
+
+   The application will be able to retrieve physical topology from the
+   controller via SIMAP API and from the response it will be able to
+   retrieve physical inventory of individual devices and cables.
+
+   The application may request either one or multiple layers of topology
+   via the SIMAP API and and from the response it will be able to
+   retrieve both physical and logical inventory.
+
+   For Access network providers the ability to have linkage in the SIMAP
+   of the complete network (active + passive) is essential as it
+   provides many advantages for optimized customer service, reduced
+   MTTR, and lower operational costs through truck roll reduction.
+
+3.2.  Service placement feasibility checks
+
+3.3.  Service-> subservice -> resource
+
+   The application will be able to retrieve all services from the SIMAP
+   API for selected network types.  The application will be able to
+   retrieve the topology for selected services via SIMAP API and from
+   the response it will be able to navigate via the supporting
+   relationship top-down to the lower layers.  That way, it will be able
+   to determine what logical resources are used by the service.  The
+   supporting relations to the lowest layer will help application to
+   determine what physical resources are used by the service.
+
+3.4.  Resource -> subservice -> service
+
+   The application will be able to navigate from the Physical, L2 or L3
+   topology to the services that use specific resources.  For example,
+   the application will be able to select the resouce and by navigating
+   the supporting relationship bottom-up come to the service and its
+   nodes, tps and links.
+
+3.5.  Intent/service assurance
+
+   The application will be able to retrieve topology layer and any
+   network/node/tp/link instances from the controller via the SIMAP API
+   and from the response it will be able to determine the health of each
+   instance by navigating to the SAIN subservices and its symptoms.
+
+3.6.  Service E2E and per-link KPIs
+
+   The application will be able to retieve the topology at any layer
+   from the controller via the SIMAP API and from the response it will
+   be able to navigate any retrieve any KPIs for selected topology
+   entity.
+
+3.7.  Capacity planning
+
+3.8.  Network design
+
+3.9.  Simulation
+
+3.10.  Closed Loop
+
+3.11.  Digital Twin
+
+4.  SIMAP Requirements
+
+4.1.  Core Requirements
+
+   The following are the core requirements for the SIMAP (note that some
+   of them are supported by default by [RFC8345]):
+
+   REQ-BASIC-MODEL-SUPPORT:  Basic model with network, node, link, and
+      interface entity types.
+
+      This means that users of the SIMAP model must be able to
+      understand topology model at any layer via these core concepts
+      only, without having to go to the details of the specific
+      augmentations to understand the topology.
+
+   REQ-LAYERED-MODEL:  Layered SIMAP, from physical network (ideally
+      optical, layer 2, layer 3) up to service and intent views.
+
+   REQ-PASSIVE-TOPO:  SIMAP must support topology of the complete
+      network, including active and passive parts.
+
+      For Access network providers the ability to have linkage in the
+      SIMAP of the complete network (active + passive) is essential as
+      it provides many advantages for optimized customer service,
+      reduced MTTR, and lower operational costs through truck roll
+      reduction.
+
+   REQ-PROG-OPEN-MODEL:  Open and programmable SIMAP.
+
+      This includes "read" operations to retrieve the view of the
+      network, typically as application-facing interface of Software
+      Defined Networking (SDN) controllers or orchestrators.
+
+      It also includes "write" operations, not for the ability to
+      directly change the SIMAP data (e.g., changing the network or
+      service parameters), but for offline simulations, also known as
+      what-if scenarios.
+
+      Running a "what-if" analysis requires the ability to take
+      snapshots and to switch easily between them.
+
+      Note that there is a need to distinguish between a change on the
+      SIMAP for future simulation and a change that reflects the current
+      reality of the network.
+
+   REQ-STD-API-BASED:  Standard based SIMAP Models and APIs, for multi-
+      vendor support.
+
+      SIMAP must provide the standard YANG APIs that provide for read/
+      write and queries.  These APIs must also provide the capability to
+      retrieve the links to external data/models.
+
+   REQ-COMMON-APP:  SIMAP models and APIs must be common over different
+      network domains (campus, core, data center, etc.).
+
+      This means that clients of the SIMAP API must be able to
+      understand the topology model of layers of any domain without
+      having to understand the details of any technologies and domains.
+
+   REQ-SEMANTIC:  SIMAP must provide semantics for layered network
+      topologies and for linking external models/data.
+
+   REQ-LAYER-NAVIGATE:  SIMAP must provide intra-layer and inter-layer
+      relationships.
+
+   REQ-EXTENSIBLE:  SIMAP must be extensible with metadata.
+
+   REQ-PLUGG:  SIMAP must be pluggable.  That is,
+
+      *  Must connect to other YANG modules for inventory,
+         configuration, assurance, etc.
+
+      *  Given that no all involved components can be available using
+         YANG, there is a need to connect SIMAP YANG model with other
+         modelling mechanisms.
+
+   REQ-GRAPH-TRAVERSAL:  SIMAP must be optimized for graph traversal for
+      paths.  This means that only providing link nodes and source and
+      sink relationships to termination-points may not be sufficient, we
+      may need to have the direct relationship between the termination
+      points or nodes.
+
+4.2.  Design Requirements
+
+   The following are design requirements for modelling the SIMAP.  Theey
+   are derived from the core requerements collected from the operators
+   and although there is some duplication, these are focused on
+   summarizing the requirements for the design of the model and API:
+
+   REQ-TOPO-ONLY:  SIMAP should contain only topological information.
+
+      SIMAP is not required to contain all models and data required for
+      all the management and use cases.  However, it should be designed
+      to support adequate pointers to other functional data and models
+      to ease navigating in the overall system.  For example:
+
+      *  ACLs and Route Policies are not required to be supported in the
+         SIMAP, they would be linked to the SIMAP
+
+      *  Dynamic paths may either be outside of the SIMAP or part of
+         traffic engineering data/models
+
+   REQ-PROPERTIES:  SIMAP entities should mainly contain properties used
+      to identify topological entities at different layers, identify
+      their roles, and topological relationships between them.
+
+   REQ-RELATIONSHIPS:  SIMAP should contain all topological
+      relationships inside each layer or between the layers (underlay/
+      overlay)
+
+      SIMAP should contain links to other models/data to enable generic
+      navigation to other YANG models in generic way.
+
+   REQ-CONDITIONAL:  Provide capability for conditional retrieval of
+      parts of SIMAP.
+
+   REQ-TEMPO-HISTO:  Must support geo-spatial, temporal, and historical
+      data.  The temporal and historical can also be supported external
+      to the SIMAP.
+
+4.3.  Architectural Requirements
+
+   The following are the architectural requirements for the controller
+   that provides SIMAP API:
+
+   REQ-DM-SCALES:  Scale, performance, ease of integration.
+
+   REQ-DM-DISCOVERY:  Initial discovery and dynamic (change only) synch
+      with the physical network.
+
+5.  Security Considerations
+
+   As this document covers the SIMAP concepts, requirements, and use
+   cases, there is no specific security considerations.  However, the
+   RFC 8345 Security Considerations aspects will be useful when
+   designing the solution.
+
+6.  IANA Considerations
+
+   This document has no actions for IANA.
+
+7.  References
+
+7.1.  Normative References
+
+   [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
+              Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
+              Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
+              2018, <https://www.rfc-editor.org/rfc/rfc8345>.
+
+7.2.  Informative References
+
+   [I-D.ietf-ccamp-network-inventory-yang]
+              Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
+              Bedard, "A YANG Data Model for Network Hardware
+              Inventory", Work in Progress, Internet-Draft, draft-ietf-
+              ccamp-network-inventory-yang-02, 9 July 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
+              network-inventory-yang-02>.
+
+   [I-D.ietf-ivy-network-inventory-topology]
+              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A Network
+              Inventory Topology Model", Work in Progress, Internet-
+              Draft, draft-ietf-ivy-network-inventory-topology-00, 7
+              August 2024, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-ivy-network-inventory-topology-00>.
+
+   [I-D.ietf-ivy-network-inventory-yang]
+              Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
+              Bedard, "A Base YANG Data Model for Network Inventory",
+              Work in Progress, Internet-Draft, draft-ietf-ivy-network-
+              inventory-yang-04, 5 November 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
+              network-inventory-yang-04>.
+
+   [I-D.ietf-nmop-network-incident-yang]
+              Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
+              "A YANG Data Model for Network Incident Management", Work
+              in Progress, Internet-Draft, draft-ietf-nmop-network-
+              incident-yang-02, 10 October 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-incident-yang-02>.
+
+   [I-D.ietf-opsawg-ntw-attachment-circuit]
+              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
+              and B. Wu, "A Network YANG Data Model for Attachment
+              Circuits", Work in Progress, Internet-Draft, draft-ietf-
+              opsawg-ntw-attachment-circuit-14, 7 November 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              ntw-attachment-circuit-14>.
+
+   [I-D.ietf-opsawg-teas-attachment-circuit]
+              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
+              and B. Wu, "YANG Data Models for Bearers and 'Attachment
+              Circuits'-as-a-Service (ACaaS)", Work in Progress,
+              Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
+              18, 7 November 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
+              teas-attachment-circuit-18>.
+
+   [I-D.ogondio-nmop-isis-topology]
+              de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
+              and B. Claise, "A YANG Data Model for Intermediate System
+              to intermediate System (IS-IS) Topology", Work in
+              Progress, Internet-Draft, draft-ogondio-nmop-isis-
+              topology-00, 4 March 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ogondio-nmop-
+              isis-topology-00>.
+
+   [I-D.ogondio-opsawg-ospf-topology]
+              de Dios, O. G., Barguil, S., and V. Lopez, "A YANG Data
+              Model for Open Shortest Path First (OSPF) Topology", Work
+              in Progress, Internet-Draft, draft-ogondio-opsawg-ospf-
+              topology-01, 23 October 2023,
+              <https://datatracker.ietf.org/doc/html/draft-ogondio-
+              opsawg-ospf-topology-01>.
+
+   [I-D.wzwb-opsawg-network-inventory-management]
+              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
+              Network Data Model of Network Inventory", Work in
+              Progress, Internet-Draft, draft-wzwb-opsawg-network-
+              inventory-management-04, 19 October 2023,
+              <https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-
+              network-inventory-management-04>.
+
+   [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
+              "YANG Data Model for L3VPN Service Delivery", RFC 8299,
+              DOI 10.17487/RFC8299, January 2018,
+              <https://www.rfc-editor.org/rfc/rfc8299>.
+
+   [RFC8466]  Wen, B., Fioccola, G., Ed., Xie, C., and L. Jalil, "A YANG
+              Data Model for Layer 2 Virtual Private Network (L2VPN)
+              Service Delivery", RFC 8466, DOI 10.17487/RFC8466, October
+              2018, <https://www.rfc-editor.org/rfc/rfc8466>.
+
+   [RFC8795]  Liu, X., Bryskin, I., Beeram, V., Saad, T., Shah, H., and
+              O. Gonzalez de Dios, "YANG Data Model for Traffic
+              Engineering (TE) Topologies", RFC 8795,
+              DOI 10.17487/RFC8795, August 2020,
+              <https://www.rfc-editor.org/rfc/rfc8795>.
+
+   [RFC8944]  Dong, J., Wei, X., Wu, Q., Boucadair, M., and A. Liu, "A
+              YANG Data Model for Layer 2 Network Topologies", RFC 8944,
+              DOI 10.17487/RFC8944, November 2020,
+              <https://www.rfc-editor.org/rfc/rfc8944>.
+
+   [RFC9179]  Hopps, C., "A YANG Grouping for Geographic Locations",
+              RFC 9179, DOI 10.17487/RFC9179, February 2022,
+              <https://www.rfc-editor.org/rfc/rfc9179>.
+
+   [RFC9182]  Barguil, S., Gonzalez de Dios, O., Ed., Boucadair, M.,
+              Ed., Munoz, L., and A. Aguado, "A YANG Network Data Model
+              for Layer 3 VPNs", RFC 9182, DOI 10.17487/RFC9182,
+              February 2022, <https://www.rfc-editor.org/rfc/rfc9182>.
+
+   [RFC9291]  Boucadair, M., Ed., Gonzalez de Dios, O., Ed., Barguil,
+              S., and L. Munoz, "A YANG Network Data Model for Layer 2
+              VPNs", RFC 9291, DOI 10.17487/RFC9291, September 2022,
+              <https://www.rfc-editor.org/rfc/rfc9291>.
+
+   [RFC9408]  Boucadair, M., Ed., Gonzalez de Dios, O., Barguil, S., Wu,
+              Q., and V. Lopez, "A YANG Network Data Model for Service
+              Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
+              June 2023, <https://www.rfc-editor.org/rfc/rfc9408>.
+
+   [RFC9417]  Claise, B., Quilbeuf, J., Lopez, D., Voyer, D., and T.
+              Arumugam, "Service Assurance for Intent-Based Networking
+              Architecture", RFC 9417, DOI 10.17487/RFC9417, July 2023,
+              <https://www.rfc-editor.org/rfc/rfc9417>.
+
+   [RFC9418]  Claise, B., Quilbeuf, J., Lucente, P., Fasano, P., and T.
+              Arumugam, "A YANG Data Model for Service Assurance",
+              RFC 9418, DOI 10.17487/RFC9418, July 2023,
+              <https://www.rfc-editor.org/rfc/rfc9418>.
+
+   [RFC9522]  Farrel, A., Ed., "Overview and Principles of Internet
+              Traffic Engineering", RFC 9522, DOI 10.17487/RFC9522,
+              January 2024, <https://www.rfc-editor.org/rfc/rfc9522>.
+
+Appendix A.  Related IETF Activities
+
+A.1.  Network Topology
+
+   Interestingly, we could not find any network topology definition in
+   IETF RFCs (not even in [RFC8345]) or Internet-Drafts.  However, it is
+   mentioned in multiple documents.  As an example, in Overview and
+   Principles of Internet Traffic Engineering [RFC9522], which mentions:
+
+   |  To conduct performance studies and to support planning of existing
+   |  and future networks, a routing analysis may be performed to
+   |  determine the paths the routing protocols will choose for various
+   |  traffic demands, and to ascertain the utilization of network
+   |  resources as traffic is routed through the network.  Routing
+   |  analysis captures the selection of paths through the network, the
+   |  assignment of traffic across multiple feasible routes, and the
+   |  multiplexing of IP traffic over traffic trunks (if such constructs
+   |  exist) and over the underlying network infrastructure.  A model of
+   |  network topology is necessary to perform routing analysis.  A
+   |  network topology model may be extracted from:
+   |  
+   |  *  Network architecture documents
+   |  
+   |  *  Network designs
+   |  
+   |  *  Information contained in router configuration files
+   |  
+   |  *  Routing databases such as the link state database of an
+   |     interior gateway protocol (IGP)
+   |  
+   |  *  Routing tables
+   |  
+   |  *  Automated tools that discover and collate network topology
+   |     information.
+   |  
+   |  Topology information may also be derived from servers that monitor
+   |  network state, and from servers that perform provisioning
+   |  functions.
+
+A.2.  Core SIMAP Components
+
+   The following specifications are core for the SIMAP:
+
+   *  IETF network model and network topology model [RFC8345]
+
+   *  A YANG grouping for geographic location [RFC9179]
+
+   *  IETF modules that augment [RFC8345] for different technologies:
+
+      -  A YANG data model for Traffic Engineering (TE) Topologies
+         [RFC8795]
+
+      -  A YANG data model for Layer 2 network topologies [RFC8944]
+
+      -  A YANG data model for OSFP topology
+         [I-D.ogondio-opsawg-ospf-topology]
+
+      -  A YANG data model for IS-IS topology
+         [I-D.ogondio-nmop-isis-topology]
+
+A.3.  Additional SIMAP Components
+
+   The SIMAP may need to link to the following models, some are already
+   augmenting [RFC8345]:
+
+   *  Service Attachment Point (SAP) [RFC9408], augments 'ietf-network'
+      data model [RFC8345] by adding the SAP.
+
+   *  SAIN [RFC9417] [RFC9418]
+
+   *  Network Inventory Model [I-D.ietf-ivy-network-inventory-yang]
+      focuses on physical and virtual inventory.  Logical inventory is
+      currently outside of the scope.  It does not augment RFC8345 like
+      the two Internet-Drafts that it evolved from
+      [I-D.ietf-ccamp-network-inventory-yang] and
+      [I-D.wzwb-opsawg-network-inventory-management].
+      [I-D.ietf-ivy-network-inventory-topology] correlates the network
+      inventory with the general topology via RFC8345 augmentations that
+      reference inventory.
+
+   *  KPIs: delay, jitter, loss
+
+   *  Attachment Circuits (ACs) [I-D.ietf-opsawg-ntw-attachment-circuit]
+      and [I-D.ietf-opsawg-teas-attachment-circuit]
+
+   *  Configuration: L2SM [RFC8466], L3SM [RFC8299], L2NM [RFC9291], and
+      L3NM [RFC9182]
+
+   *  Incident Management for Network Services
+      [I-D.ietf-nmop-network-incident-yang]
+
+Acknowledgments
+
+   Many thanks to Mohamed Boucadair for his valuable contributions,
+   reviews, and comments.  Many thanks to Adrian Farrel for his SIMAP
+   suggestion and helping to agree the terminology.  Many thanks to Dan
+   Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-
+   Casanueva, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob
+   Evans, Danielle Ceccarelli, and many others for their contributions,
+   suggestions and comments.
+
+   Many thanks to Nigel Davis ndavis@ciena.com (mailto:ndavis@ciena.com)
+   for the valuable discussions and his confirmation of the modelling
+   requirements.
+
+Contributors
+
+   Ahmed Elhassany
+   Swisscom
+   Email: Ahmed.Elhassany@swisscom.com
+
+
+Authors' Addresses
+
+   Olga Havel
+   Huawei
+   Email: olga.havel@huawei.com
+
+
+   Benoit Claise
+   Huawei
+   Email: benoit.claise@huawei.com
+
+
+   Oscar Gonzalez de Dios
+   Telefonica
+   Email: oscar.gonzalezdedios@telefonica.com
+
+
+   Thomas Graf
+   Swisscom
+   Email: thomas.graf@swisscom.com
