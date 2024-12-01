@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-28T01:04:11.592554+00:00",
+  "timestamp": "2024-12-01T01:14:51.954381+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -101,16 +101,24 @@
       "id": "I_kwDOM1onH86XisII",
       "title": "Vague Term (From Diego)",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "> De : Diego R. Lopez <diego.r.lopez@telefonica.com> \r\n> Envoy\u00e9 : lundi 23 septembre 2024 13:51\r\n> \u00c0 : BOUCADAIR Mohamed INNOV/NET <mohamed.boucadair@orange.com>; nmop@ietf.org\r\n> Cc : TEAS WG (teas@ietf.org) <teas@ietf.org>; nmop-chairs@ietf.org; draft-havel-nmop-digital-map-concept@ietf.org\r\n> Objet : Re: (Concluded) RE: Call for adoption: draft-havel-nmop-digital-map-concept (Ends 23/09/2024)\r\n> \r\n> Hi,\r\n> \r\n> I am afraid I have had this message in the fridge for too long, apologies for that\u2026\r\n> \r\n> Anyway, let me share my support for the adoption, and the reflection that we should discuss a fundamental terminology issue, as the term \u201cdigital map\u201d seems too vague for giving a clear idea of the purpose of the work. I think we should qualify it a little bit more, and would suggest \u201cnetwork functional map\u201d, \u201cnetwork multi-level topology map\u201d, \u201cnetwork integrated map\u201d, or any similar combination, avoiding the so much overused term \u201cdigital\u201d and emphasizing the goals of the mapping mechanisms.\r\n> \r\n> Be goode,\r\n",
       "createdAt": "2024-09-23T12:15:41Z",
-      "updatedAt": "2024-09-23T12:15:41Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-11-29T16:18:23Z",
+      "closedAt": "2024-11-29T16:18:23Z",
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The new term has been agreed at IETF121 - Service & Infrastructure Maps (SIMAP). The draft has been renamed and updated as a result of this",
+          "createdAt": "2024-11-29T16:18:23Z",
+          "updatedAt": "2024-11-29T16:18:23Z"
+        }
+      ]
     },
     {
       "number": 3,
@@ -133,32 +141,48 @@
       "id": "I_kwDOM1onH86YLblK",
       "title": "Digital Map term and relation to Digital Twin",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OlgaHuawei",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Multiple comments, all related:\r\n\r\n- There were some comments during the IETF120 (from Diego and Dan, if my memory serves me well), about the Scenarios where Digital Map is needed even without the Digital Twin. \r\n\r\n- Brad Peters:\r\nIn my opinion I think it is best to separate the map and the twin. My thoughts for this is that people will find the map useful independent of the twin capabilities. There is a lifecycle that is described that it may form the basis of the digital twin but I suspect that will require more time to evolve than the map itself. I'd suggest the more inclusive optional. \r\n\r\n- Nacho:\r\nThere were multiple discussions with Nacho in regards to how the Digital Map needs to be better defined to understand both its scope and relationship to Twin.\r\n \r\n\r\n",
       "createdAt": "2024-09-27T14:52:13Z",
-      "updatedAt": "2024-09-27T14:52:13Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-11-29T17:29:00Z",
+      "closedAt": "2024-11-29T17:28:59Z",
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The draft has been updated and the Digital Map (now SIMAP) has been decoupled from the Digital Twin. The definition has also been agreed on the mailing list and at IETF121",
+          "createdAt": "2024-11-29T17:28:59Z",
+          "updatedAt": "2024-11-29T17:28:59Z"
+        }
+      ]
     },
     {
       "number": 6,
       "id": "I_kwDOM1onH86YLdQz",
       "title": "Digital Map Scope Clarification",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/6",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OlgaHuawei",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Nacho needed clarification on the scope of the Digital Map. We had a call and the following is clarification. \r\n\r\n Is the digital map the collection of data models in the IETF?\r\n\r\n\u2022             Clearly NO, it is a core part that you can relate to the rest of YANG models\r\n\u2022             Nacho was OK with the answer\r\n\u2022             We already have exchange on the NMOP about it with some clarification\r\n\u2022             Digital Map is the core layered topology model + links to other YANG models\r\n\r\nAction Item:\r\n\u2022             Update the draft and release a new version \r\n",
       "createdAt": "2024-09-27T14:55:45Z",
-      "updatedAt": "2024-09-27T14:55:45Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-11-29T17:27:13Z",
+      "closedAt": "2024-11-29T17:27:13Z",
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The draft has been updated prior to IETF121. It includes the change of the name from Digital Map to SIMAP, and the definition with the high level scope has been agreed on the mailing list and at the IETF121 meeting.",
+          "createdAt": "2024-11-29T17:27:13Z",
+          "updatedAt": "2024-11-29T17:27:13Z"
+        }
+      ]
     },
     {
       "number": 7,
@@ -205,16 +229,24 @@
       "id": "I_kwDOM1onH86bEh5D",
       "title": "Coin a name for the concept",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/11",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Pick one name from the list\r\n\r\n(1) Digital map\r\n(2) Topology map\r\n(3) Multi-layer topology map\r\n(4) Multi-layer network map\r\n(5) Network map\r\n(6) Trust the authors to make the right choice\r\n",
       "createdAt": "2024-10-21T07:43:15Z",
-      "updatedAt": "2024-10-21T07:43:15Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-11-29T16:17:04Z",
+      "closedAt": "2024-11-29T16:17:04Z",
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Agreed to use the term Service & Infrastructure Maps (SIMAP) at IETF121. The draft has been renamed and updated",
+          "createdAt": "2024-11-29T16:16:54Z",
+          "updatedAt": "2024-11-29T16:16:54Z"
+        }
+      ]
     },
     {
       "number": 13,
@@ -245,6 +277,22 @@
       "body": "draft-ietf-nmop-digital-map-concept\r\nThe following are sample use cases that require Digital Map:\r\n* Service-> subservice -> resource\r\n* Resource -> subservice -> service\r\nBut the terms service, subservice, and resource are not defined.\r\n\r\n\r\n== Advice from Adrian==\r\nConsider defining \"service\" and \"subservice\" in\r\ndraft-ietf-nmop-digital-map-concept, and importing \"resource\" from\r\ndraft-ietf-nmop-terminology.\r\nResource: A component, commodity, service, or capability that can be\r\nused to support the delivery of some function.\r\n\r\n",
       "createdAt": "2024-11-05T13:34:05Z",
       "updatedAt": "2024-11-05T13:34:05Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOM1onH86hOGmK",
+      "title": "Navigation across the abstraction levels inside a single network layer (Italo)",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/15",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Italo: \r\n\r\nMy point is that in a multi-layer network you need to navigate across layers, but also in case of a single layer, it is possible to define multiple abstraction levels (as defined in RFC8795) and then there is a need to navigate across multiple abstraction levels\r\n\r\nI am  not sure my comment at the mike today about topology abstraction has been fully understood\r\n\r\nIf you are not fully familiar with the concept of topology abstraction, I would suggest the following background reading for the definition of topology abstraction:\r\n\r\n  *   RFC 8453 (in particular section 5)\r\n  *   RFC 8795 (and in particular sections 3.13, 4.1 and 4.4)\r\n  *   draft-ietf-teas-te-topo-and-tunnel-modeling (in particular section 1.3)\r\n\r\nIn a nutshell a network (even a single-layer network) can be represented in multiple ways providing different abstraction view of the same network. In such a case, it would be beneficial being able to navigate among the different level of abstractions (e.g., to understand which set of nodes in the native topology are actually represented as a single node in an abstract topology being built on top of the native topology).\r\n\r\nThis navigation is different and orthogonal to the multi-layer navigation where for example we need to report which L2 path is supporting a given L3 node\r\n\r\nMy question is therefore: is SIMAP only dealing with native topologies and navigation among the different networking layers (L3, L2, optical, ...) or also dealing with abstract topologies and navigation among the different level of abstraction?\r\n",
+      "createdAt": "2024-11-29T11:26:13Z",
+      "updatedAt": "2024-11-29T11:26:13Z",
       "closedAt": null,
       "comments": []
     }
@@ -372,6 +420,62 @@
       "mergedBy": "OlgaHuawei",
       "mergeCommit": {
         "oid": "f31a9c8983a4acd0edffdd0cee5c308b91559519"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOM1onH86DkJvl",
+      "title": "Changed Digital map to SIMAP, added 1 new requirement for passive topo",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/16",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added Service & Infrastructure Maps (SIMAP) terminology\r\nUpdated inventory use case to mention passive inventory\r\nAdded requirements REQ-PASSIVE-TOPO: to include passive topology based on input from Brad Peters\r\n",
+      "createdAt": "2024-11-29T12:27:20Z",
+      "updatedAt": "2024-11-29T16:15:34Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "f31a9c8983a4acd0edffdd0cee5c308b91559519",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "olga-sigmap-rename",
+      "headRefOid": "67ef20b6dec302f9bff556efdea4c5e8511faed3",
+      "closedAt": "2024-11-29T16:15:33Z",
+      "mergedAt": "2024-11-29T16:15:33Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "862b3c03bf082ffcfc8afcbd2884cd85b211a430"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOM1onH86Dl5eV",
+      "title": "Renamed to draft-ietf-nmop-simap-concept and added the requirement to\u2026",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/17",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\u2026 include topology with both active and passive network components",
+      "createdAt": "2024-11-29T17:19:52Z",
+      "updatedAt": "2024-11-29T17:20:06Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "862b3c03bf082ffcfc8afcbd2884cd85b211a430",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "olga-sigmap-rename",
+      "headRefOid": "bf5dabbb1122d69e34448099f0c9dbf6a3343b98",
+      "closedAt": "2024-11-29T17:20:06Z",
+      "mergedAt": "2024-11-29T17:20:06Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "60c1dec00ba45c246296e53cb1993fef78701c0c"
       },
       "comments": [],
       "reviews": []
