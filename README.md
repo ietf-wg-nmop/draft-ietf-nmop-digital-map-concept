@@ -1,11 +1,11 @@
-# Digital Map: Concept, Requirements, and Use Cases
+# SIMAP: Concept, Requirements, and Use Cases
 
-This is the working area for the IETF [NMOP Working Group](https://datatracker.ietf.org/wg/nmop/documents/) Internet-Draft, "Digital Map: Concept, Requirements, and Use Cases".
+This is the working area for the IETF [NMOP Working Group](https://datatracker.ietf.org/wg/nmop/documents/) Internet-Draft, "SIMAP: Concept, Requirements, and Use Cases".
 
-* [Editor's Copy](https://ietf-wg-nmop.github.io/draft-ietf-nmop-digital-map-concept/#go.draft-ietf-nmop-digital-map-concept.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-nmop-digital-map-concept)
-* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-nmop-digital-map-concept)
-* [Compare Editor's Copy to Working Group Draft](https://ietf-wg-nmop.github.io/draft-ietf-nmop-digital-map-concept/#go.draft-ietf-nmop-digital-map-concept.diff)
+* [Editor's Copy](https://ietf-wg-nmop.github.io/draft-ietf-nmop-digital-map-concept/#go.draft-ietf-nmop-simap-concept.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-nmop-simap-concept)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-nmop-simap-concept)
+* [Compare Editor's Copy to Working Group Draft](https://ietf-wg-nmop.github.io/draft-ietf-nmop-digital-map-concept/#go.draft-ietf-nmop-simap-concept.diff)
 
 
 ## Contributing
