@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-26T01:00:32.488986+00:00",
+  "timestamp": "2025-01-28T00:58:31.100676+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -189,15 +189,15 @@
       "id": "I_kwDOM1onH86YSQgw",
       "title": "Is topology definition needed",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OlgaHuawei",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "There were multiple comments about the topology definition and Olga's statement at IETF120 that we ere not able to ind terminology definition in IETF:\r\n\r\nAdrian: \r\n        This surprised me, but even mapping this to: there is no definition of \"network topology\" she appears to be right.\r\n        The best I could find was in RFC 7399, but that is still woolly.\r\n        Looking back and back and back, the concept of a topology of a network seems to predate the RFC series. \r\n        Wikipedia seems to be fairly accurate, but not completely concise.\r\n        So, my conclusion, adding a definition will be helpful.\r\n        But, it might need to be scoped to the work for fear that you are redefining a term widely used in many previous RFCs.\r\n\r\nPedro:\r\n        A redefinition can be a bit controversial. If there is any concept or nuance not included in the definition of \"network topology\" \r\n        as derived from the basic (dictionary?) definitions of \"network\" and \"topology\", it should be denoted in the name and not by \r\n        redefining the term. Otherwise, it is fair to \"recall\" other sources but no more than that.\r\n\r\nDan:\r\n        Section 2 of RFC7399 is what I though digital map definition was - augmented by nodes relationships, LSDB basically.  \r\n        What should be added for digital map definition ?\r\n\r\nAdrian:\r\n          We wrote 7399 partly because there were some ambiguities in the TE world. Funnily (?) we failed to address the \r\n          issue of a  definition for \"topology\" in 9522.\r\n          Places I might have hoped to see topology defined include 5212, 5440, 5693, 7926, and 9552. But, sadly not.\r\n          I suppose my concern is that 7399 defines \"topology\" only by an indirection through the definition of \"TED\".\r\n          Anything we do in NMOP should certainly be compatible with that text, and ideally not perturbate the many RFCs \r\n          that use the  term \"network topology\". But a short, precise definition \r\n          (perhaps together with a pointer to 7399) might be helpful.",
       "createdAt": "2024-09-29T13:00:09Z",
-      "updatedAt": "2024-09-29T13:03:50Z",
-      "closedAt": null,
+      "updatedAt": "2025-01-27T15:24:28Z",
+      "closedAt": "2025-01-27T15:24:28Z",
       "comments": []
     },
     {
