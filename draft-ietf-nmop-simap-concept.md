@@ -82,11 +82,11 @@ This model is applicable to multiple domains (access, core, data center, etc.) a
 technologies (Optical, IP, etc.).
 
 The SIMAP modelling defines the core topological entities (network, node, link, and interface) at each layer,
-their role in the network topology, core topological properties, and topological relationships 
-both inside each layer and between the layers. It also defines how to access other external models 
-from the topology.The SIMAP model is a topological model that is linked to the other functional 
-models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), 
-Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions, 
+their role in the network topology, core topological properties, and topological relationships
+both inside each layer and between the layers. It also defines how to access other external models
+from the topology.The SIMAP model is a topological model that is linked to the other functional
+models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms),
+Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
 AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
 The SIMAP data consists of virtual instances of network and service topologies at different layers.
@@ -229,6 +229,40 @@ The application will be able to retrieve the topology at any layer from the cont
 response it will be able to navigate any retrieve any KPIs for selected topology entity.
 
 ## Capacity planning
+
+Network Capacity Planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
+bandwidth, resources, and infrastructure to meet current and future demands. It involves evaluating the network's ability
+to handle increasing amounts of data, traffic, and user activity, while maintaining acceptable levels of performance,
+reliability, and security.
+
+The capacity planning primary goal is to ensure that the network can support business operations, applications, and
+services without interruptions, delays, or degradation in quality. This requires a thorough understanding of the
+network's current state, as well as future requirements and growth projections.
+
+Key aspects of network capacity planning include:
+* Traffic analysis: Monitoring and analyzing network traffic patterns to identify trends, peak usage periods, and areas
+of congestion. For example, by generating a core traffic matrix with IPFIX flow record (RFC 7011)
+* Resource utilization: Evaluating the link utilization throughout the network for the current demand.
+* Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in user
+behavior.
+* What if scenarios: Creating models to simulate network behavior under different scenarios, such as increased traffic,
+failure conditions (link or router), new application deployments.
+* Upgrade planning: Identifying areas where upgrades or additions are needed to ensure the network can minimize the
+ effect of network failure, or simply to support growing demands.
+* Cost-benefit analysis: Evaluating the costs and benefits of upgrading or adding new resources to determine the most
+cost-effective solutions.
+
+By implementing a robust capacity planning process, organizations can:
+* Ensure network reliability: Minimize downtime and ensure that the network is always available when needed.
+* Improve performance: Optimize network resources to support business-critical applications and services.
+* Reduce costs: Avoid unnecessary over-provisioning by making informed decisions based on data-driven insights.
+* Support business growth: Scale the network to meet increasing demands and support business expansion.
+
+The application will be able to retrieve topology layer and any network/node/termination point/link instances from
+the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities
+(typically links and router), evaluate their current utilization, based on the grow forecasting evaluate which elements
+to add to the network, and finally perform the what-if failure analysis by simulating the removal of link(s) and/or
+router(s) while evaluating the network performance.
 
 ## Network design
 
