@@ -86,7 +86,7 @@ their role in the network topology, core topological properties, and topological
 layer and between the layers. It also defines how to access other external models from the topology.
 
 The SIMAP model is a topological model that is linked to the other functional models and
-connects them all: configuration, maintenance, assurance (Key Performance Indicators (KPI), status, health, and symptoms), 
+connects them all: configuration, maintenance, assurance (Key Performance Indicators - KPI, status, health, and symptoms), 
 Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
