@@ -76,25 +76,24 @@ SIMAP requirements.
 Service & Infrastructure Maps (SIMAP) is a data model that provides a view of the operator's networks and services,
 including how it is connected to other models/data (e.g. inventory, observability sources, and
 operational knowledge). It specifically provides an approach to model multi-layered topology
-and appropriate mechanism to navigate amongs layers and correlate between them.
+and appropriate mechanism to navigate amongst layers and correlate between them.
 This includes layers from physical topology to service topology.
-This model is applicable to multiple domains (access, core, data centers, etc.) and
+This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.).
 
 The SIMAP modelling defines the core topological entities (network, node, link, and interface) at each layer,
-their role in the network topology, core topological properties, and topological relationships both inside each
-layer and between the layers. It also defines how to access other external models from the topology.
-
-The SIMAP model is a topological model that is linked to the other functional models and
-connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), Traffic-Engineering (TE),
-different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
-These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
+their role in the network topology, core topological properties, and topological relationships 
+both inside each layer and between the layers. It also defines how to access other external models 
+from the topology.The SIMAP model is a topological model that is linked to the other functional 
+models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), 
+Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions, 
+AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
 The SIMAP data consists of virtual instances of network and service topologies at different layers.
 The SIMAP provides access to this data via standard APIs for both read and write operations
 (write operations for offline simulations), with query capabilities and links to other YANG modules
 (e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}},
-Service Attachement Points (SAPs) {{?RFC9408}}, Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models.
+Service Attachment Points (SAPs) {{?RFC9408}}, Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models.
 
 
 # Terminology
@@ -113,7 +112,7 @@ Topology:
   rings).
 
 Multi-layered topology:
-: A multi-layered topology models relationships between different layers of topology,
+: A multi-layered topology models relationships between different topology layers,
   where each layer represents a connectivity aspect of the network
   and services that needs to be configured, controlled and monitored.
   Each layer of topology has a separate lifecycle.
@@ -121,7 +120,7 @@ Multi-layered topology:
 Topology layer:
 : Represents topology at a single layer in the multi-layered topology.
 : The topology layer can also represent what needs to be managed by a
-  specific user, for example IGP layer can be of interest to the operator
+  specific user or application, for example IGP layer can be of interest to the operator
   troubleshooting or optimizing the routing, while the optical layer may be
   of interest to the user managing the optical network.
 : Some topology layers may relate closely to OSI layers, like L1 topology
@@ -138,7 +137,7 @@ Service & Infrastructure Maps (SIMAP):
 : SIMAP is a data model that provides a view of the operator's networks and services,
   including how it is connected to other models/data (e.g. inventory, observability sources, and
   operational knowledge). It specifically provides an approach to model multi-layered topology
-  and appropriate mechanism to navigate amongs layers and correlate between them.
+  and appropriate mechanism to navigate amongst layers and correlate between them.
   This includes layers from physical topology to service topology.
 
   This model is applicable to multiple domains (access, core, data centers, etc.) and
@@ -199,7 +198,7 @@ This will also clarify if only read and if/when write interface is needed per us
 The application will be able to retrieve physical topology from the controller via SIMAP API and from the
 response it will be able to retrieve physical inventory of individual devices and cables.
 
-The application may request either one or multiple layers of topology via the SIMAP API and and from the response
+The application may request either one or multiple layers of topology via the SIMAP API and from the response
 it will be able to retrieve both physical and logical inventory.
 
 For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
@@ -217,7 +216,7 @@ application to determine what physical resources are used by the service.
 
 ## Resource -> subservice -> service
 The application will be able to navigate from the Physical, L2 or L3 topology to the services that use specific
-resources. For example, the application will be able to select the resouce and by navigating the supporting relationship
+resources. For example, the application will be able to select the resource and by navigating the supporting relationship
 bottom-up come to the service and its nodes, tps and links.
 
 ## Intent/service assurance
@@ -226,7 +225,7 @@ via the SIMAP API and from the response it will be able to determine the health 
 SAIN subservices and its symptoms.
 
 ## Service E2E and per-link KPIs
-The application will be able to retieve the topology at any layer from the controller via the SIMAP API and from the
+The application will be able to retrieve the topology at any layer from the controller via the SIMAP API and from the
 response it will be able to navigate any retrieve any KPIs for selected topology entity.
 
 ## Capacity planning
@@ -306,7 +305,7 @@ relationship between the termination points or nodes.
 
 ## Design Requirements
 
-The following are design requirements for modelling the SIMAP. Theey are derived from the core requerements
+The following are design requirements for modelling the SIMAP. They are derived from the core requirements
 collected from the operators and although there is some duplication, these are focused on summarizing the requirements
 for the design of the model and API:
 
