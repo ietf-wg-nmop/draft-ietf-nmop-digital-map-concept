@@ -82,13 +82,12 @@ This model is applicable to multiple domains (access, core, data center, etc.) a
 technologies (Optical, IP, etc.).
 
 The SIMAP modelling defines the core topological entities (network, node, link, and interface) at each layer,
-their role in the network topology, core topological properties, and topological relationships both inside each
-layer and between the layers. It also defines how to access other external models from the topology.
-
-The SIMAP model is a topological model that is linked to the other functional models and
-connects them all: configuration, maintenance, assurance (Key Performance Indicators - KPI, status, health, and symptoms), 
-Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions, AI algorithms, etc.
-These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
+their role in the network topology, core topological properties, and topological relationships 
+both inside each layer and between the layers. It also defines how to access other external models 
+from the topology.The SIMAP model is a topological model that is linked to the other functional 
+models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms), 
+Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions, 
+AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
 The SIMAP data consists of virtual instances of network and service topologies at different layers.
 The SIMAP provides access to this data via standard APIs for both read and write operations
