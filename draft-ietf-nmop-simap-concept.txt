@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 2 June 2025                                       O. G. D. Dios
+Expires: 10 August 2025                                    O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        29 November 2024
+                                                         6 February 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,11 +51,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 June 2025.
+   This Internet-Draft will expire on 10 August 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -107,31 +107,29 @@ Table of Contents
    connected to other models/data (e.g. inventory, observability
    sources, and operational knowledge).  It specifically provides an
    approach to model multi-layered topology and appropriate mechanism to
-   navigate amongs layers and correlate between them.  This includes
+   navigate amongst layers and correlate between them.  This includes
    layers from physical topology to service topology.  This model is
-   applicable to multiple domains (access, core, data centers, etc.) and
+   applicable to multiple domains (access, core, data center, etc.) and
    technologies (Optical, IP, etc.).
 
    The SIMAP modelling defines the core topological entities (network,
    node, link, and interface) at each layer, their role in the network
    topology, core topological properties, and topological relationships
    both inside each layer and between the layers.  It also defines how
-   to access other external models from the topology.
-
-   The SIMAP model is a topological model that is linked to the other
-   functional models and connects them all: configuration, maintenance,
-   assurance (KPIs, status, health, and symptoms), Traffic-Engineering
-   (TE), different behaviors and actions, simulation, emulation,
-   mathematical abstractions, AI algorithms, etc.  These other models
-   exist outside of the SIMAP and are not defined during SIMAP
-   modelling.
+   to access other external models from the topology.The SIMAP model is
+   a topological model that is linked to the other functional models and
+   connects them all: configuration, maintenance, assurance (KPIs,
+   status, health, and symptoms), Traffic-Engineering (TE), different
+   behaviors and actions, simulation, emulation, mathematical
+   abstractions, AI algorithms, etc.  These other models exist outside
+   of the SIMAP and are not defined during SIMAP modelling.
 
    The SIMAP data consists of virtual instances of network and service
    topologies at different layers.  The SIMAP provides access to this
    data via standard APIs for both read and write operations (write
    operations for offline simulations), with query capabilities and
    links to other YANG modules (e.g., Service Assurance for Intent-based
-   Networking (SAIN) [RFC9417], Service Attachement Points (SAPs)
+   Networking (SAIN) [RFC9417], Service Attachment Points (SAPs)
    [RFC9408], Inventory [I-D.ietf-ivy-network-inventory-yang], and non-
    YANG models.
 
@@ -150,19 +148,19 @@ Table of Contents
       bidirectional (bus, some rings).
 
    Multi-layered topology:  A multi-layered topology models
-      relationships between different layers of topology, where each
-      layer represents a connectivity aspect of the network and services
-      that needs to be configured, controlled and monitored.  Each layer
-      of topology has a separate lifecycle.
+      relationships between different topology layers, where each layer
+      represents a connectivity aspect of the network and services that
+      needs to be configured, controlled and monitored.  Each layer of
+      topology has a separate lifecycle.
 
    Topology layer:  Represents topology at a single layer in the multi-
       layered topology.
 
       The topology layer can also represent what needs to be managed by
-      a specific user, for example IGP layer can be of interest to the
-      operator troubleshooting or optimizing the routing, while the
-      optical layer may be of interest to the user managing the optical
-      network.
+      a specific user or application, for example IGP layer can be of
+      interest to the operator troubleshooting or optimizing the
+      routing, while the optical layer may be of interest to the user
+      managing the optical network.
 
       Some topology layers may relate closely to OSI layers, like L1
       topology for physical topology, Layer 2 for link topology and
@@ -185,7 +183,7 @@ Table of Contents
       how it is connected to other models/data (e.g. inventory,
       observability sources, and operational knowledge).  It
       specifically provides an approach to model multi-layered topology
-      and appropriate mechanism to navigate amongs layers and correlate
+      and appropriate mechanism to navigate amongst layers and correlate
       between them.  This includes layers from physical topology to
       service topology.
 
@@ -268,8 +266,8 @@ Table of Contents
    retrieve physical inventory of individual devices and cables.
 
    The application may request either one or multiple layers of topology
-   via the SIMAP API and and from the response it will be able to
-   retrieve both physical and logical inventory.
+   via the SIMAP API and from the response it will be able to retrieve
+   both physical and logical inventory.
 
    For Access network providers the ability to have linkage in the SIMAP
    of the complete network (active + passive) is essential as it
@@ -293,7 +291,7 @@ Table of Contents
 
    The application will be able to navigate from the Physical, L2 or L3
    topology to the services that use specific resources.  For example,
-   the application will be able to select the resouce and by navigating
+   the application will be able to select the resource and by navigating
    the supporting relationship bottom-up come to the service and its
    nodes, tps and links.
 
@@ -306,12 +304,60 @@ Table of Contents
 
 3.6.  Service E2E and per-link KPIs
 
-   The application will be able to retieve the topology at any layer
+   The application will be able to retrieve the topology at any layer
    from the controller via the SIMAP API and from the response it will
    be able to navigate any retrieve any KPIs for selected topology
    entity.
 
 3.7.  Capacity planning
+
+   Network Capacity Planning refers to the process of analyzing,
+   predicting, and ensuring that the network has sufficient bandwidth,
+   resources, and infrastructure to meet current and future demands.  It
+   involves evaluating the network's ability to handle increasing
+   amounts of data, traffic, and user activity, while maintaining
+   acceptable levels of performance, reliability, and security.
+
+   The capacity planning primary goal is to ensure that the network can
+   support business operations, applications, and services without
+   interruptions, delays, or degradation in quality.  This requires a
+   thorough understanding of the network's current state, as well as
+   future requirements and growth projections.
+
+   Key aspects of network capacity planning include: * Traffic analysis:
+   Monitoring and analyzing network traffic patterns to identify trends,
+   peak usage periods, and areas of congestion.  For example, by
+   generating a core traffic matrix with IPFIX flow record (RFC 7011) *
+   Resource utilization: Evaluating the link utilization throughout the
+   network for the current demand. * Growth forecasting: Predicting
+   future network growth based on business expansion, new applications,
+   or changes in user behavior. * What if scenarios: Creating models to
+   simulate network behavior under different scenarios, such as
+   increased traffic, failure conditions (link or router), new
+   application deployments. * Upgrade planning: Identifying areas where
+   upgrades or additions are needed to ensure the network can minimize
+   the effect of network failure, or simply to support growing demands.
+   * Cost-benefit analysis: Evaluating the costs and benefits of
+   upgrading or adding new resources to determine the most cost-
+   effective solutions.
+
+   By implementing a robust capacity planning process, organizations
+   can: * Ensure network reliability: Minimize downtime and ensure that
+   the network is always available when needed. * Improve performance:
+   Optimize network resources to support business-critical applications
+   and services. * Reduce costs: Avoid unnecessary over-provisioning by
+   making informed decisions based on data-driven insights. * Support
+   business growth: Scale the network to meet increasing demands and
+   support business expansion.
+
+   The application will be able to retrieve topology layer and any
+   network/node/termination point/link instances from the controller via
+   the SIMAP API and from the response it will be able to map the
+   traffic analysis to the entities (typically links and router),
+   evaluate their current utilization, based on the grow forecasting
+   evaluate which elements to add to the network, and finally perform
+   the what-if failure analysis by simulating the removal of link(s)
+   and/or router(s) while evaluating the network performance.
 
 3.8.  Network design
 
@@ -405,8 +451,8 @@ Table of Contents
 
 4.2.  Design Requirements
 
-   The following are design requirements for modelling the SIMAP.  Theey
-   are derived from the core requerements collected from the operators
+   The following are design requirements for modelling the SIMAP.  They
+   are derived from the core requirements collected from the operators
    and although there is some duplication, these are focused on
    summarizing the requirements for the design of the model and API:
 
@@ -482,11 +528,12 @@ Table of Contents
               network-inventory-yang-02>.
 
    [I-D.ietf-ivy-network-inventory-topology]
-              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A Network
-              Inventory Topology Model", Work in Progress, Internet-
-              Draft, draft-ietf-ivy-network-inventory-topology-00, 7
-              August 2024, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-ivy-network-inventory-topology-00>.
+              Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A Network
+              Data Model for Inventory Topology Mapping", Work in
+              Progress, Internet-Draft, draft-ietf-ivy-network-
+              inventory-topology-01, 4 February 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
+              network-inventory-topology-01>.
 
    [I-D.ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -508,18 +555,18 @@ Table of Contents
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "A Network YANG Data Model for Attachment
               Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-14, 7 November 2024,
+              opsawg-ntw-attachment-circuit-16, 23 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-14>.
+              ntw-attachment-circuit-16>.
 
    [I-D.ietf-opsawg-teas-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
               and B. Wu, "YANG Data Models for Bearers and 'Attachment
               Circuits'-as-a-Service (ACaaS)", Work in Progress,
               Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              18, 7 November 2024,
+              20, 23 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-18>.
+              teas-attachment-circuit-20>.
 
    [I-D.ogondio-nmop-isis-topology]
               de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
