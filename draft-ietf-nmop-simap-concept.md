@@ -63,8 +63,7 @@ informative:
 --- abstract
 
 This document defines the concept of Service & Infrastructure Maps (SIMAP) and identifies a set of SIMAP
-requirements and use cases. The SIMAP was previously known as Digital Map in the old draft versions
-(draft-ietf-nmop-digital-map-concept).
+requirements and use cases. The SIMAP was previously known as Digital Map.
 
 The document intends to be used as a reference for the assessment effort of the various topology modules to meet
 SIMAP requirements.
@@ -74,7 +73,7 @@ SIMAP requirements.
 # Introduction
 
 Service & Infrastructure Maps (SIMAP) is a data model that provides a view of the operator's networks and services,
-including how it is connected to other models/data (e.g. inventory, observability sources, and
+including how it is connected to other models/data (e.g., inventory, observability sources, and
 operational knowledge). It specifically provides an approach to model multi-layered topology
 and appropriate mechanism to navigate amongst layers and correlate between them.
 This includes layers from physical topology to service topology.
@@ -84,16 +83,16 @@ technologies (Optical, IP, etc.).
 The SIMAP modelling defines the core topological entities (network, node, link, and interface) at each layer,
 their role in the network topology, core topological properties, and topological relationships
 both inside each layer and between the layers. It also defines how to access other external models
-from the topology.The SIMAP model is a topological model that is linked to the other functional
+from a topology. The SIMAP model is a topological model that is linked to the other functional
 models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms),
 Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
 AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
 The SIMAP data consists of virtual instances of network and service topologies at different layers.
 The SIMAP provides access to this data via standard APIs for both read and write operations
-(write operations for offline simulations), with query capabilities and links to other YANG modules
+(write operations for offline simulations, typically), with query capabilities and links to other YANG modules
 (e.g., Service Assurance for Intent-based Networking (SAIN) {{?RFC9417}},
-Service Attachment Points (SAPs) {{?RFC9408}}, Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models.
+Service Attachment Points (SAPs) {{?RFC9408}}, Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and non-YANG models).
 
 
 # Terminology
@@ -102,20 +101,21 @@ The document makes use of the following terms:
 
 Topology:
 : Topology in this document refers to the network and service topology.
-  Network topology defines how physical or logical nodes, links and
-  interfaces are related and arranged.  Service topology defines how
+  A network topology defines how physical or logical nodes, links and
+  interfaces are related and arranged. A Service topology defines how
   service components (e.g., VPN instances, customer interfaces, and
   customer links) between customer sites are interrelated and
-  arranged.  There are at least 8 types of topologies: point to
-  point, bus, ring, star, tree, mesh, hybrid and daisy chain.
-  Topologies may be unidirectional or bidirectional (bus, some
+  arranged.
+: There are several types of topologies: point-to-point,
+  bus, ring, star, tree, mesh, hybrid, and daisy chain.
+: Topologies may be unidirectional or bidirectional (bus, some
   rings).
 
 Multi-layered topology:
 : A multi-layered topology models relationships between different topology layers,
   where each layer represents a connectivity aspect of the network
   and services that needs to be configured, controlled and monitored.
-  Each layer of topology has a separate lifecycle.
+  Each topology layer has a separate lifecycle.
 
 Topology layer:
 : Represents topology at a single layer in the multi-layered topology.
@@ -135,26 +135,25 @@ The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
 : SIMAP is a data model that provides a view of the operator's networks and services,
-  including how it is connected to other models/data (e.g. inventory, observability sources, and
+  including how it is connected to other models/data (e.g., inventory, observability sources, and
   operational knowledge). It specifically provides an approach to model multi-layered topology
   and appropriate mechanism to navigate amongst layers and correlate between them.
   This includes layers from physical topology to service topology.
-
-  This model is applicable to multiple domains (access, core, data centers, etc.) and
+: This model is applicable to multiple domains (access, core, data centers, etc.) and
   technologies (Optical, IP, etc.).
 
 SIMAP modelling:
-: The set of principles, guidelines, and conventions to model the
-  Service & Infrastructure Maps (SIMAP) using the IETF {{?RFC8345}} approach.  They cover the
+: The set of principles, guidelines, and conventions to model the SIMAP
+  using the IETF modelling approach {{?RFC8345}}. They cover the
   network types (layers and sublayers), entity types, entity roles
-  (network, node, termination point or link), entity properties,
+  (network, node, termination point, or link), entity properties,
   relationship types between entities and relationships to other entities.
 
 SIMAP model:
 : Defines the core topological entities, their role in the network,
-  core topological properties and relationships both inside each layer and
+  core topological properties, and relationships both inside each layer and
   between the layers.
-: It is the basic topological model with the links to other models and connects them all:
+: It is the basic topological model with references/pointers to other models and connects them all:
   configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
   different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
@@ -166,7 +165,7 @@ SIMAP data:
    relationships between instances belonging to different networks,
    links to functional data for the instances, including
    configuration, health, symptoms.
-: The data can be historical, real-time, or future data for 'what-if' scenarios.
+: The SIMAP data can be historical, real-time, or future data for 'what-if' scenarios.
 
 # Sample SIMAP Use Cases
 
@@ -181,87 +180,93 @@ The following are sample use cases that require SIMAP:
 + Capacity planning
 + Network design
 + Simulation
-+ Closed loop
-- Digital Twin
++ Closed-loop
+- Network Digital Twin (NDT)
 
 Overall, the SIMAP is needed to provide the mechanism to connect data islands from the core multi-layered topology.
 It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
 requirement for the SIMAP.
 
-The following sections includes some initial use case descriptions to initiate the discussion about what type of info
-is needed to describe the use cases in the context of SIMAP.
-The next version of the draft will include more info on these use cases and more input from the operators,
-from the perspective of what the value of the SIMAP for each use case is and how the SIMAP API can be used.
-This will also clarify if only read and if/when write interface is needed per use case.
+> The following subsections include some initial use case descriptions to initiate the discussion about what type of info
+> is needed to describe the use cases in the context of SIMAP.
+> The next version of the draft will include more info on these use cases and more input from the operators,
+> from the perspective of what the value of the SIMAP for each use case is and how the SIMAP API can be used.
+> This will also clarify if only read and if/when write interface is needed per use case.
 
-## Generic inventory queries
-The application will be able to retrieve physical topology from the controller via SIMAP API and from the
+## Generic Inventory Queries
+
+The application will be able to retrieve physical topology from the controller via the SIMAP API and from the
 response it will be able to retrieve physical inventory of individual devices and cables.
 
-The application may request either one or multiple layers of topology via the SIMAP API and from the response
+The application may request either one or multiple topology layers via the SIMAP API and from the response
 it will be able to retrieve both physical and logical inventory.
 
 For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
-essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
-through truck roll reduction.
+essential as it provides many advantages for optimized customer service, reduced Mean Time To Repair (MTTR), and lower operational costs
+through truck roll reduction. For example, operators may use custom-tags that are readily available for a customer-facing device and then query
+the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology. The mapping and correlation can be then used for triggering apprpriate service checks.
 
-## Service placement feasibility checks
+## Service Placement Feasibility Checks
 
-## Service-> subservice -> resource
+## Service-> Subservice -> Resource
+
 The application will be able to retrieve all services from the SIMAP API for selected network types.
 The application will be able to retrieve the topology for selected services via SIMAP API and from the response
 it will be able to navigate via the supporting relationship top-down to the lower layers. That way, it will be able to
 determine what logical resources are used by the service. The supporting relations to the lowest layer will help
 application to determine what physical resources are used by the service.
 
-## Resource -> subservice -> service
+## Resource -> Subservice -> Service
+
 The application will be able to navigate from the Physical, L2 or L3 topology to the services that use specific
 resources. For example, the application will be able to select the resource and by navigating the supporting relationship
 bottom-up come to the service and its nodes, tps and links.
 
-## Intent/service assurance
+## Intent/Service Assurance
+
 The application will be able to retrieve topology layer and any network/node/tp/link instances from the controller
 via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the
 SAIN subservices and its symptoms.
 
-## Service E2E and per-link KPIs
+## Service E2E and Per-link KPIs
+
 The application will be able to retrieve the topology at any layer from the controller via the SIMAP API and from the
 response it will be able to navigate any retrieve any KPIs for selected topology entity.
 
-## Capacity planning
+## Capacity Planning
 
 Network Capacity Planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
-bandwidth, resources, and infrastructure to meet current and future demands. It involves evaluating the network's ability
-to handle increasing amounts of data, traffic, and user activity, while maintaining acceptable levels of performance,
+capacity (e.g., {{?RFC5136}}), resources, and infrastructure to meet current and future demands. It involves evaluating the network's ability
+to handle increasing (including forecast) amounts of data, traffic, and users activity, while maintaining acceptable levels of performance,
 reliability, and security.
 
-The capacity planning primary goal is to ensure that the network can support business operations, applications, and
+The capacity planning primary goal is to ensure that a network can support business operations, applications, and
 services without interruptions, delays, or degradation in quality. This requires a thorough understanding of the
 network's current state, as well as future requirements and growth projections.
 
 Key aspects of network capacity planning include:
 * Traffic analysis: Monitoring and analyzing network traffic patterns to identify trends, peak usage periods, and areas
-of congestion. For example, by generating a core traffic matrix with IPFIX flow record (RFC 7011)
+of congestion. For example, by generating a core traffic matrix with IPFIX flow record {{?RFC7011}}.
 * Resource utilization: Evaluating the link utilization throughout the network for the current demand.
-* Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in user
+* Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in users
 behavior.
-* What if scenarios: Creating models to simulate network behavior under different scenarios, such as increased traffic,
-failure conditions (link or router), new application deployments.
-* Upgrade planning: Identifying areas where upgrades or additions are needed to ensure the network can minimize the
- effect of network failure, or simply to support growing demands.
+* What-if scenarios: Creating models to assess the network behavior under different scenarios, such as increased traffic,
+failure conditions (link or router), and new application deployments.
+* Upgrade planning: Identifying areas where upgrades or additions are needed to ensure that the network can minimize the
+ effect of node/link failures, or simply to support growing demands.
 * Cost-benefit analysis: Evaluating the costs and benefits of upgrading or adding new resources to determine the most
 cost-effective solutions.
 
 By implementing a robust capacity planning process, organizations can:
-* Ensure network reliability: Minimize downtime and ensure that the network is always available when needed.
+* Ensure better network reliability: Minimize downtime and ensure that the network is always available when needed.
 * Improve performance: Optimize network resources to support business-critical applications and services.
-* Reduce costs: Avoid unnecessary over-provisioning by making informed decisions based on data-driven insights.
+* Optimize costs: Avoid unnecessary over-provisioning by making informed decisions based on data-driven insights.
 * Support business growth: Scale the network to meet increasing demands and support business expansion.
 
 The application will be able to retrieve topology layer and any network/node/termination point/link instances from
 the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities
 (typically links and router), evaluate their current utilization, based on the grow forecasting evaluate which elements
-to add to the network, and finally perform the what-if failure analysis by simulating the removal of link(s) and/or
+to add to the network, and finally perform the 'what-if' failure analysis by simulating the removal of link(s) and/or
 router(s) while evaluating the network performance.
 
 ## Network design
