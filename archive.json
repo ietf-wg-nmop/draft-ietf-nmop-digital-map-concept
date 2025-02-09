@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-06T00:59:37.306345+00:00",
+  "timestamp": "2025-02-09T01:02:44.031983+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -476,6 +476,90 @@
       "mergedBy": "OlgaHuawei",
       "mergeCommit": {
         "oid": "60c1dec00ba45c246296e53cb1993fef78701c0c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOM1onH86KTRg-",
+      "title": "editorial changes",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/18",
+      "state": "MERGED",
+      "author": "bclaise",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Pure editorial",
+      "createdAt": "2025-02-06T16:10:11Z",
+      "updatedAt": "2025-02-06T16:20:34Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "c5411d157a18d93b2c62c886b6dab4692b33aa64",
+      "headRepository": "bclaise/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "main",
+      "headRefOid": "cdea737c54a0d35f217d4d0c6b6cc5e103d84e9f",
+      "closedAt": "2025-02-06T16:20:34Z",
+      "mergedAt": "2025-02-06T16:20:34Z",
+      "mergedBy": "bclaise",
+      "mergeCommit": {
+        "oid": "8201f7faa3564f5a19a5c0b879edfc57c9e18287"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOM1onH86KTf_g",
+      "title": "capacity planning use case",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/19",
+      "state": "MERGED",
+      "author": "bclaise",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "New section content",
+      "createdAt": "2025-02-06T16:33:14Z",
+      "updatedAt": "2025-02-06T16:38:42Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "8201f7faa3564f5a19a5c0b879edfc57c9e18287",
+      "headRepository": "bclaise/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "main",
+      "headRefOid": "c975f2c5b3936c08118a3ecdb6d75d0aff010538",
+      "closedAt": "2025-02-06T16:38:41Z",
+      "mergedAt": "2025-02-06T16:38:41Z",
+      "mergedBy": "bclaise",
+      "mergeCommit": {
+        "oid": "f206d9ea5a060a1e8be7aeb2a8b0fe272d9d4b08"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOM1onH86KYbgn",
+      "title": "Some edits",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/20",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-07T07:40:10Z",
+      "updatedAt": "2025-02-07T11:48:26Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "f206d9ea5a060a1e8be7aeb2a8b0fe272d9d4b08",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "Some-edits",
+      "headRefOid": "381c61c334a2b34ddc1f2b122d942a60854866f7",
+      "closedAt": "2025-02-07T11:48:25Z",
+      "mergedAt": "2025-02-07T11:48:25Z",
+      "mergedBy": "bclaise",
+      "mergeCommit": {
+        "oid": "293a655469d3e233eb683fa6ef89cf04d47af956"
       },
       "comments": [],
       "reviews": []
