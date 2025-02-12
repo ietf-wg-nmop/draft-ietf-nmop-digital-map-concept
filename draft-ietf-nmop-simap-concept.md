@@ -204,7 +204,7 @@ Key elements typically found in a network inventory include:
 
 Network inventory lifecycle refers to the stages a network device or component goes through from its introduction to the network until its removal or replacement. It encompasses everything from acquisition and deployment to maintenance, upgrade, and eventually decommissioning. Managing the network inventory lifecycle efficiently is crucial for maintaining a secure, functional, and cost-effective network.
 
-A well-maintained network inventory helps organizations with network management, troubleshooting, asset tracking, security, and ensuring compliance with regulations. It also helps in scaling the network, planning upgrades, and responding to issues quickly.
+A well-maintained network inventory helps organizations with network management, troubleshooting, asset tracking, security, and ensuring compliance with regulations. It also helps in scaling the network, planning upgrades, and responding to issues quickly.  In order to facilitate the planning and troubleshooting processes it is necessary to be able to navigate from network inventory to network topology and services. 
 
 The application will be able to retrieve physical topology from the controller via the SIMAP API and from the
 response it will be able to retrieve physical inventory of individual devices and cables.
