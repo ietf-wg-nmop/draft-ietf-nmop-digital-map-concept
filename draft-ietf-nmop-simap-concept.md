@@ -235,9 +235,20 @@ bottom-up come to the service and its nodes, tps and links.
 
 ## Intent/Service Assurance
 
-The application will be able to retrieve topology layer and any network/node/tp/link instances from the controller
-via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the
-SAIN subservices and its symptoms.
+Network intent and service assurance work together to ensure that the network aligns with business goals and that the services provided meet the agreed-upon service level agreements (SLAs).
+
+The Service Assurance for Intent-Based Networking Architecture (SAIN) {{?RFC9417}} approach emphasizes a comprehensive view of all components involved in service delivery, including network devices and functions, to effectively monitor and maintain service health.
+
+The key objectives of this architecture:
+* Holistic Service Monitoring: By considering all elements involved in service delivery, the architecture enables a thorough assessment of service health.
+* Correlation of Service Degradation: It assists in linking service performance issues to specific network components, facilitating precise identification of faults.
+* Impact Assessment: The architecture identifies which services are affected by the failure or degradation of particular network components, aiding in prioritizing remediation efforts.
+
+When a service is degraded, the SAIN architecture will highlight where in the assurance service graph to look, as opposed to going hop by hop to troubleshoot the issue.
+More precisely, the SAIN architecture will associate to each service instance a list of symptoms originating from specific subservices, corresponding to components of the network.
+These components are good candidates for explaining the source of a service degradation.
+
+The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the SAIN subservices and its symptoms.
 
 ## Service E2E and Per-link KPIs
 
