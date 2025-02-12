@@ -248,11 +248,11 @@ Key aspects of network capacity planning include:
 
 * Traffic analysis: Monitoring and analyzing network traffic patterns to identify trends, peak usage periods, and areas
 of congestion. For example, by generating a core traffic matrix with IPFIX flow record {{?RFC7011}} or deducting an approximate traffic matrix from the link utilization data.
-* Resource utilization: Evaluating the link utilization throughout the network for the current demand identifying bottelnecks and potential QoS peformance issues.
+* Resource utilization: Evaluating the link utilization throughout the network for the current demand identifying bottlenecks and potential QoS peformance issues.
 * Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in users
 behavior.
 * What-if scenarios: Creating models to assess the network behavior under different scenarios, such as increased traffic,
-failure conditions (link, router or SRLG), and new application deployments (such as a new CDN source, a new peering point, a new data center...).
+failure conditions (link, router or Shared Risk Resource Group), and new application deployments (such as a new Content Delivery Network source, a new peering point, a new data center...).
 * Upgrade planning: Identifying areas where upgrades or additions are needed to ensure that the network can minimize the
  effect of node/link failures, mitigate QoS problems, or simply to support growing demands.
 * Cost-benefit analysis: Evaluating the costs and benefits of upgrading or adding new resources to determine the most
