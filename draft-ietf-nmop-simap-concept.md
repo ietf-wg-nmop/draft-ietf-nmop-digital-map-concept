@@ -245,19 +245,21 @@ services without interruptions, delays, or degradation in quality. This requires
 network's current state, as well as future requirements and growth projections.
 
 Key aspects of network capacity planning include:
+
 * Traffic analysis: Monitoring and analyzing network traffic patterns to identify trends, peak usage periods, and areas
-of congestion. For example, by generating a core traffic matrix with IPFIX flow record {{?RFC7011}}.
-* Resource utilization: Evaluating the link utilization throughout the network for the current demand.
+of congestion. For example, by generating a core traffic matrix with IPFIX flow record {{?RFC7011}} or deducting an approximate traffic matrix from the link utilization data.
+* Resource utilization: Evaluating the link utilization throughout the network for the current demand identifying bottlenecks and potential QoS peformance issues.
 * Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in users
 behavior.
 * What-if scenarios: Creating models to assess the network behavior under different scenarios, such as increased traffic,
-failure conditions (link or router), and new application deployments.
+failure conditions (link, router or Shared Risk Resource Group), and new application deployments (such as a new Content Delivery Network source, a new peering point, a new data center...).
 * Upgrade planning: Identifying areas where upgrades or additions are needed to ensure that the network can minimize the
- effect of node/link failures, or simply to support growing demands.
+ effect of node/link failures, mitigate QoS problems, or simply to support growing demands.
 * Cost-benefit analysis: Evaluating the costs and benefits of upgrading or adding new resources to determine the most
 cost-effective solutions.
 
 By implementing a robust capacity planning process, organizations can:
+
 * Ensure better network reliability: Minimize downtime and ensure that the network is always available when needed.
 * Improve performance: Optimize network resources to support business-critical applications and services.
 * Optimize costs: Avoid unnecessary over-provisioning by making informed decisions based on data-driven insights.
@@ -271,7 +273,31 @@ router(s) while evaluating the network performance.
 
 ## Network design
 
-## Simulation
+## Network Simulation and Network Emulation
+
+Network simulation is a process used to analyse the behaviour of networks via software. It allows network engineers and researchers to study how the network protocols work under different conditions, such as diffenet topologies, traffic loads, network failures, or the introduction of new devices. Network emulation, on the other hand, replicates the behavior of a real-world network, allowing for more realistic analysis compared to network simulation. While network simulation focuses on modeling and approximating network behavior, network emulation involves creating a real-time, functional network environment whose protocol behaves exactly like a real network. Ideally, network emulation uses the same software images as in the real network, but it could also be peformed (with less accuracy) using generic software.
+
+### Types of Network simulation
+There are several types of network simulations, each designed to address specific needs and use cases. Below are the main categories of network simulation:
+1. Discrete Event Simulation (DES):
+This is the most common type of network simulation. It models a series of events that occur at specific points in time. Each event triggers a change in the state of a network component (e.g. a link is down, a card fails, a packet arrives…).
+ 2. Continuous Simulation:
+In contrast to discrete event simulation, continuous simulation models systems where variables change continuously over time. Network parameters like bandwidth, congestion, and throughput can be treated as continuous functions.
+The main use case is to model certain aspects of network performance that evolve continuously, such as link speeds or delay distributions in links that are impacted by envirnnmental conditions (such as microwave or satellite links).
+3. Monte Carlo Simulation:
+This type of simulation uses statistical methods to model and analyze networks under uncertain or variable conditions. Monte Carlo simulations generate a large number of random samples to predict the performance of a network across multiple scenarios. It is used for probabilistic analysis, risk assessment, and performance evaluation under uncertain conditions.
+### Goals of Network simulation
+The simulations can be also classified depending on the goal of the simulation
+####  Network Protocol Analysis
+This type of simulation focuses on simulating specific networking protocols (IS-IS, OSPF, BGP, SR) to understand how they perform under different conditions. It models the protocol operations and interactions among devices in the network. For example, simulation can be used to asses the impact of changing a link metric. Morever, specific features of the networking protocol can be tested. For example, how fast-reroute performs in a given network topology.
+
+#### Traffic Simulation
+This simulation focuses on modelling traffic flow across the network, including packet generation, flow control, routing, and congestion. It aims to evaluate traffic's impact on network performance.
+
+The main use is to model the impact of different types of traffic (e.g., voice, video, mobile data, web browsing) and understand how they affect the network's bandwidth and congestion levels. It can be used to identify bottelnecks and assist the capacity planning process.
+
+#### Simulation of different topologies under normal and failure scenarios
+This type of simulation focuses on the structure and layout of the network itself. It simulates different network topologies, such as mesh, horse-shoe, bus, star, or tree topologies, and their impact on the network's performance.  It can be used, together with the traffic simualtion to evaluate the most efficient topology for a network, under normal conditions and considering factors like fault tolerance.
 
 ## Closed Loop
 
