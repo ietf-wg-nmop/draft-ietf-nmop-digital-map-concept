@@ -193,7 +193,18 @@ requirement for the SIMAP.
 > from the perspective of what the value of the SIMAP for each use case is and how the SIMAP API can be used.
 > This will also clarify if only read and if/when write interface is needed per use case.
 
-## Generic Inventory Queries
+## Inventory Queries
+
+Network inventory refers to a comprehensive record or database that tracks and documents all the network components and devices within an organization's IT infrastructure.
+
+Key elements typically found in a network inventory include:
+* Hardware Details: Descriptions of physical devices such as routers (and its line cards), switches, servers, network cables, , including model numbers, serial numbers, and manufacturer information.
+* Software and Firmware: Versions of operating systems, network management tools, and firmware running on network devices.
+* Licensing Information: For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.
+
+Network inventory lifecycle refers to the stages a network device or component goes through from its introduction to the network until its removal or replacement. It encompasses everything from acquisition and deployment to maintenance, upgrade, and eventually decommissioning. Managing the network inventory lifecycle efficiently is crucial for maintaining a secure, functional, and cost-effective network.
+
+A well-maintained network inventory helps organizations with network management, troubleshooting, asset tracking, security, and ensuring compliance with regulations. It also helps in scaling the network, planning upgrades, and responding to issues quickly.
 
 The application will be able to retrieve physical topology from the controller via the SIMAP API and from the
 response it will be able to retrieve physical inventory of individual devices and cables.
