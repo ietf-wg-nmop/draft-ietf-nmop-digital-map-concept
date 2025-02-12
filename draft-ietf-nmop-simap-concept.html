@@ -1185,7 +1185,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-sample-simap-use-cases" class="internal xref">Sample SIMAP Use Cases</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-generic-inventory-queries" class="internal xref">Generic Inventory Queries</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-inventory-queries" class="internal xref">Inventory Queries</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-service-placement-feasibili" class="internal xref">Service Placement Feasibility Checks</a></p>
@@ -1494,19 +1494,26 @@ from the perspective of what the value of the SIMAP for each use case is and how
 This will also clarify if only read and if/when write interface is needed per use case.<a href="#section-3-4.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<div id="generic-inventory-queries">
+<div id="inventory-queries">
 <section id="section-3.1">
-        <h3 id="name-generic-inventory-queries">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-generic-inventory-queries" class="section-name selfRef">Generic Inventory Queries</a>
+        <h3 id="name-inventory-queries">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-inventory-queries" class="section-name selfRef">Inventory Queries</a>
         </h3>
-<p id="section-3.1-1">The application will be able to retrieve physical topology from the controller via the SIMAP API and from the
-response it will be able to retrieve physical inventory of individual devices and cables.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">The application may request either one or multiple topology layers via the SIMAP API and from the response
-it will be able to retrieve both physical and logical inventory.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.1-3">For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+<p id="section-3.1-1">Network inventory refers to a comprehensive record or database that tracks and documents all the network components and devices within an organization's IT infrastructure.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Key elements typically found in a network inventory include:
+* Hardware Details: Descriptions of physical devices such as routers (including its internal components such as cards, power supply units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer information. These information will facilitate locating additional details of the hadware in the manufacturer systems and the correlation with the purchase catalog of the company.
+* Software and Firmware: Versions of operating systems, network management tools, and firmware running on network devices. Note that a network device can have components with their own software and firmware.
+* Licensing Information: For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Network inventory lifecycle refers to the stages a network device or component goes through from its introduction to the network until its removal or replacement. It encompasses everything from acquisition and deployment to maintenance, upgrade, and eventually decommissioning. Managing the network inventory lifecycle efficiently is crucial for maintaining a secure, functional, and cost-effective network.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">A well-maintained network inventory helps organizations with network management, troubleshooting, asset tracking, security, and ensuring compliance with regulations. It also helps in scaling the network, planning upgrades, and responding to issues quickly.  In order to facilitate the planning and troubleshooting processes it is necessary to be able to navigate from network inventory to network topology and services.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1-5">The application will be able to retrieve physical topology from the controller via the SIMAP API and from the
+response it will be able to retrieve physical inventory of individual devices and cables.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1-6">The application may request either one or multiple topology layers via the SIMAP API and from the response
+it will be able to retrieve both physical and logical inventory.<a href="#section-3.1-6" class="pilcrow">¶</a></p>
+<p id="section-3.1-7">For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
 essential as it provides many advantages for optimized customer service, reduced Mean Time To Repair (MTTR), and lower operational costs
 through truck roll reduction. For example, operators may use custom-tags that are readily available for a customer-facing device and then query
-the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology. The mapping and correlation can be then used for triggering apprpriate service checks.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology. The mapping and correlation can be then used for triggering apprpriate service checks.<a href="#section-3.1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="service-placement-feasibility-checks">
@@ -1543,9 +1550,16 @@ bottom-up come to the service and its nodes, tps and links.<a href="#section-3.4
         <h3 id="name-intent-service-assurance">
 <a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-intent-service-assurance" class="section-name selfRef">Intent/Service Assurance</a>
         </h3>
-<p id="section-3.5-1">The application will be able to retrieve topology layer and any network/node/tp/link instances from the controller
-via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the
-SAIN subservices and its symptoms.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-1">Network intent and service assurance work together to ensure that the network aligns with business goals and that the services provided meet the agreed-upon service level agreements (SLAs).<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+<p id="section-3.5-2">The Service Assurance for Intent-Based Networking Architecture (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> approach emphasizes a comprehensive view of all components involved in service delivery, including network devices and functions, to effectively monitor and maintain service health.<a href="#section-3.5-2" class="pilcrow">¶</a></p>
+<p id="section-3.5-3">The key objectives of this architecture:
+* Holistic Service Monitoring: By considering all elements involved in service delivery, the architecture enables a thorough assessment of service health.
+* Correlation of Service Degradation: It assists in linking service performance issues to specific network components, facilitating precise identification of faults.
+* Impact Assessment: The architecture identifies which services are affected by the failure or degradation of particular network components, aiding in prioritizing remediation efforts.<a href="#section-3.5-3" class="pilcrow">¶</a></p>
+<p id="section-3.5-4">When a service is degraded, the SAIN architecture will highlight where in the assurance service graph to look, as opposed to going hop by hop to troubleshoot the issue.
+More precisely, the SAIN architecture will associate to each service instance a list of symptoms originating from specific subservices, corresponding to components of the network.
+These components are good candidates for explaining the source of a service degradation.<a href="#section-3.5-4" class="pilcrow">¶</a></p>
+<p id="section-3.5-5">The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the SAIN subservices and its symptoms.<a href="#section-3.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="service-e2e-and-per-link-kpis">

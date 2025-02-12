@@ -71,7 +71,7 @@ Table of Contents
    1.  Introduction
    2.  Terminology
    3.  Sample SIMAP Use Cases
-     3.1.  Generic Inventory Queries
+     3.1.  Inventory Queries
      3.2.  Service Placement Feasibility Checks
      3.3.  Service-> Subservice -> Resource
      3.4.  Resource -> Subservice -> Service
@@ -262,7 +262,41 @@ Table of Contents
       API can be used.  This will also clarify if only read and if/when
       write interface is needed per use case.
 
-3.1.  Generic Inventory Queries
+3.1.  Inventory Queries
+
+   Network inventory refers to a comprehensive record or database that
+   tracks and documents all the network components and devices within an
+   organization's IT infrastructure.
+
+   Key elements typically found in a network inventory include: *
+   Hardware Details: Descriptions of physical devices such as routers
+   (including its internal components such as cards, power supply units,
+   pluggables), switches, servers, network cables, including model
+   numbers, serial numbers, and manufacturer information.  These
+   information will facilitate locating additional details of the
+   hadware in the manufacturer systems and the correlation with the
+   purchase catalog of the company. * Software and Firmware: Versions of
+   operating systems, network management tools, and firmware running on
+   network devices.  Note that a network device can have components with
+   their own software and firmware. * Licensing Information: For any
+   licensed software or devices, the network inventory will track
+   license numbers, expiry dates, and compliance.
+
+   Network inventory lifecycle refers to the stages a network device or
+   component goes through from its introduction to the network until its
+   removal or replacement.  It encompasses everything from acquisition
+   and deployment to maintenance, upgrade, and eventually
+   decommissioning.  Managing the network inventory lifecycle
+   efficiently is crucial for maintaining a secure, functional, and
+   cost-effective network.
+
+   A well-maintained network inventory helps organizations with network
+   management, troubleshooting, asset tracking, security, and ensuring
+   compliance with regulations.  It also helps in scaling the network,
+   planning upgrades, and responding to issues quickly.  In order to
+   facilitate the planning and troubleshooting processes it is necessary
+   to be able to navigate from network inventory to network topology and
+   services.
 
    The application will be able to retrieve physical topology from the
    controller via the SIMAP API and from the response it will be able to
@@ -306,10 +340,38 @@ Table of Contents
 
 3.5.  Intent/Service Assurance
 
+   Network intent and service assurance work together to ensure that the
+   network aligns with business goals and that the services provided
+   meet the agreed-upon service level agreements (SLAs).
+
+   The Service Assurance for Intent-Based Networking Architecture (SAIN)
+   [RFC9417] approach emphasizes a comprehensive view of all components
+   involved in service delivery, including network devices and
+   functions, to effectively monitor and maintain service health.
+
+   The key objectives of this architecture: * Holistic Service
+   Monitoring: By considering all elements involved in service delivery,
+   the architecture enables a thorough assessment of service health. *
+   Correlation of Service Degradation: It assists in linking service
+   performance issues to specific network components, facilitating
+   precise identification of faults. * Impact Assessment: The
+   architecture identifies which services are affected by the failure or
+   degradation of particular network components, aiding in prioritizing
+   remediation efforts.
+
+   When a service is degraded, the SAIN architecture will highlight
+   where in the assurance service graph to look, as opposed to going hop
+   by hop to troubleshoot the issue.  More precisely, the SAIN
+   architecture will associate to each service instance a list of
+   symptoms originating from specific subservices, corresponding to
+   components of the network.  These components are good candidates for
+   explaining the source of a service degradation.
+
    The application will be able to retrieve topology layer and any
-   network/node/tp/link instances from the controller via the SIMAP API
-   and from the response it will be able to determine the health of each
-   instance by navigating to the SAIN subservices and its symptoms.
+   network/node/termination point/link instances from the controller via
+   the SIMAP API and from the response it will be able to determine the
+   health of each instance by navigating to the SAIN subservices and its
+   symptoms.
 
 3.6.  Service E2E and Per-link KPIs
 
