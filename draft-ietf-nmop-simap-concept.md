@@ -198,7 +198,7 @@ requirement for the SIMAP.
 Network inventory refers to a comprehensive record or database that tracks and documents all the network components and devices within an organization's IT infrastructure.
 
 Key elements typically found in a network inventory include:
-* Hardware Details: Descriptions of physical devices such as routers (and its line cards), switches, servers, network cables, , including model numbers, serial numbers, and manufacturer information.
+* Hardware Details: Descriptions of physical devices such as routers (including its internal components such as cards, power supply units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer information. These information will facilitate locating additional details of the hadware in the manufacturer systems and the correlation with the purchase catalog of the company. 
 * Software and Firmware: Versions of operating systems, network management tools, and firmware running on network devices.
 * Licensing Information: For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.
 
