@@ -181,6 +181,20 @@ Table of Contents
       The top layer represents the application/flow view of service
       connectivity.
 
+   Service:  Represents network connectivity service provided over a
+      network that enables devices, systems, or networks to communicate
+      and exchange data with each other.  It provides the underlying
+      infrastructure and mechanisms necessary for establishing,
+      maintaining, and managing connections between different endpoints.
+      The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,
+
+   Subservice:  Represents component of the service that can be
+      independently managed but is not provided as a service.  The
+      example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN
+      Links, IGP Links.
+
+   Resource:  Defined in [I-D.ietf-nmop-terminology]
+
    The document defines the following terms:
 
    Service & Infrastructure Maps (SIMAP):  SIMAP is a data model that
@@ -798,6 +812,14 @@ Table of Contents
               incident-yang-02, 10 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
               network-incident-yang-02>.
+
+   [I-D.ietf-nmop-terminology]
+              Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
+              Key Terms for Network Fault and Problem Management", Work
+              in Progress, Internet-Draft, draft-ietf-nmop-terminology-
+              10, 21 January 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              terminology-10>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
