@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-11T00:59:26.214770+00:00",
+  "timestamp": "2025-02-13T00:59:53.254708+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -92,9 +92,17 @@
       "labels": [],
       "body": "> Hi Med, WG(s),\r\n> \r\n> I think the document needs some important updates, however I do support the adoption of the draft as a WG document\r\n> \r\n> The work is in the scope of NMOP WG (as explicitly stated in the charter) and I agree that NMOP WG needs to develop a common view of the definitions, use cases and requirements for digital map, which is what this I-D is aiming for\r\n> \r\n> I wished to provide more constructive and detailed comments to the draft, but I am running out of time for the adoption call so I am starting to share an high-level overview my major comments. At this moment in time, it is not fully clear to me whether the digital map is intended to be:\r\n> \r\n> \u2022\taimed at supporting the full lifecycle of network management/control (as it seems to me being stated in the draft) or just the network visualization application (as I have understood from previous discussions and PoCs)\r\n> \r\n> \u2022\taddressing only network scenarios with L2&L3 technologies (as I have understood from previous discussions) or any network scenarios where TE layers, such as WDM, OTN or MPLS-TE, are also present (as I would assume by reading the draft as technology-agnostic)\r\n> \r\n> \u2022\taddressing only the applicability of topology models in support of digital twins (as it seems to me being stated in the draft) or more than just topology (as I have understood from previous discussions)\r\n> \r\n> IMHO, the NMOP WG should take on this draft and improve it to clarify all the points as well as other doubts I have seen from other comments sent to the list(s) as replies to this WG adoption call\r\n> \r\n> Italo\r\n",
       "createdAt": "2024-09-23T06:03:09Z",
-      "updatedAt": "2024-09-23T06:03:09Z",
+      "updatedAt": "2025-02-12T18:28:27Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I believe we addressed all issues except lifecycle clarification, which is opened as a separate issue. Can we close this?",
+          "createdAt": "2025-02-12T18:28:25Z",
+          "updatedAt": "2025-02-12T18:28:25Z"
+        }
+      ]
     },
     {
       "number": 2,
@@ -212,7 +220,7 @@
       "labels": [],
       "body": "\r\nItalo had several questions in his email and Med created issue 1 for multiple questions. This issue is created for one outstanding bullet from Issue 1, and Issue 1 has been closed.\r\n\r\nItalo says is not fully clear to me whether the digital map is intended to be:\r\n\u2022 aimed at supporting the full lifecycle of network management/control (as it seems to me being stated in the draft) or just the network visualization application (as I have understood from previous discussions and PoCs)\r\n",
       "createdAt": "2024-10-18T14:57:35Z",
-      "updatedAt": "2024-10-18T14:59:04Z",
+      "updatedAt": "2025-02-12T16:18:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -221,6 +229,13 @@
           "body": "The Digital Map API is used in multiple use cases and can support all the functions in the lifecycle. The analysis and examples of if/when write interface is needed will be done in the future versions when we add more content into how use cases are using Digital Map API. \r\n",
           "createdAt": "2024-10-18T14:59:03Z",
           "updatedAt": "2024-10-18T14:59:03Z"
+        },
+        {
+          "author": "bclaise",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I added some text about the network inventory lifecyle in https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/25. It's just a question of linking the lifecycle information (for service up/down, device stagging, etc.) to the digital map entities.\n\nCan we closed this one?\n",
+          "createdAt": "2025-02-12T16:10:35Z",
+          "updatedAt": "2025-02-12T16:18:55Z"
         }
       ]
     },
@@ -295,6 +310,78 @@
       "updatedAt": "2024-11-29T11:26:13Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 21,
+      "id": "I_kwDOM1onH86plCO6",
+      "title": "termination point vs interface",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/21",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "The topology model (RFC 8345) is based on termination points NOT interfaces.\n\nHowever, throught the document we mix both.... \n\nI believe SIMAP could be the place to clarify the relationship between both. \n\n",
+      "createdAt": "2025-02-11T11:08:40Z",
+      "updatedAt": "2025-02-12T18:24:07Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Well spotted - we really do that. The RFC8345 models it in a generic way via termination points and these can be interfaces. But termination points can be other entities as well.\n\nWe have interface in the requirements as this is the most common example of termination point, and the terminology that operators use. And in most of the cases tps are related to interfaces or sub interfaces at different levels. But I think we can potentially have TPs abstracted without having interface there, for example in the SRv6 initial PoC we proposed to use SIDs as termination points. We will review during the hackathon if there is better approach.\n\nSome quotes from RFC8345:\n   A node has a list of termination points that are used to terminate\n   links.  An example of a termination point might be a physical or\n   logical port or, more generally, an interface.\n\n   Termination points can ultimately be mapped to interfaces.",
+          "createdAt": "2025-02-12T18:24:05Z",
+          "updatedAt": "2025-02-12T18:24:05Z"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "id": "I_kwDOM1onH86plIGm",
+      "title": "Models to which the core SIMAP should navigate to",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/22",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Do we need to document which models the core SIMAP should navigate to? E.g. ivy physical inventory.\n\n",
+      "createdAt": "2025-02-11T11:17:19Z",
+      "updatedAt": "2025-02-12T18:10:57Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think we wanted to have a generic approach as part of SIMAP. But we also have some external YANG modules that are doing it via augmentation of RFC8345. \n\nMaybe we can have a list of models that are priority and try to include them in the future Hackathons",
+          "createdAt": "2025-02-12T18:10:55Z",
+          "updatedAt": "2025-02-12T18:10:55Z"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "id": "I_kwDOM1onH86plh4S",
+      "title": "Is there a neeed to point SIMAP to a \"logical configuration inventory\"?",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/23",
+      "state": "OPEN",
+      "author": "oscargdd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "SIMAP does not contain the detailed configuration per device. However..... should SIMAP be able to be linked to a \"logical configuration inventory\"? \n\nSeveral examples of the type of logical configuration information to be linked from SIMAP:\n\n- Inventory of logical interfaces  \n- Inventory of ACLs\n- Inventory of Routing policies.\n\nIn my view, it would be great to have such information available and linked from the base model, to keep the base models more abstracted and only with the relevant info for the main use cases. When required, or when the use case requires more detailed, it can go the next level of abstraction.\n\n\n\n",
+      "createdAt": "2025-02-11T12:03:43Z",
+      "updatedAt": "2025-02-12T18:08:16Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Oscar, would our generic approach for links to any external YANG modules cater for this? Or do you think that different approach is needed?",
+          "createdAt": "2025-02-12T18:08:15Z",
+          "updatedAt": "2025-02-12T18:08:15Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -563,6 +650,122 @@
       },
       "comments": [],
       "reviews": []
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOM1onH86K1Ud0",
+      "title": "Proposal of Network Simulation and some edits on capacity planning",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/24",
+      "state": "MERGED",
+      "author": "oscargdd",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-11T16:47:06Z",
+      "updatedAt": "2025-02-12T16:34:19Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "293a655469d3e233eb683fa6ef89cf04d47af956",
+      "headRepository": "oscargdd/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "main",
+      "headRefOid": "06cecc4b0962e6a29cb3d6f5a05980257e867965",
+      "closedAt": "2025-02-12T16:34:19Z",
+      "mergedAt": "2025-02-12T16:34:19Z",
+      "mergedBy": "bclaise",
+      "mergeCommit": {
+        "oid": "065fce9dbec4828541743b9804648c43ab1d0426"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOM1onH86bs8hM",
+          "commit": {
+            "abbreviatedOid": "dbfcf2a"
+          },
+          "author": "bclaise",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-12T15:04:39Z",
+          "updatedAt": "2025-02-12T15:04:39Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOM1onH86buGoY",
+          "commit": {
+            "abbreviatedOid": "c69b549"
+          },
+          "author": "bclaise",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-12T16:33:35Z",
+          "updatedAt": "2025-02-12T16:33:35Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "id": "PR_kwDOM1onH86K-qbD",
+      "title": "inventory use case",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/25",
+      "state": "MERGED",
+      "author": "bclaise",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "I went from Generic Inventory Queries to Inventory Queries. \r\nI even considered Network Inventory. Feel free to change it. ",
+      "createdAt": "2025-02-12T15:53:44Z",
+      "updatedAt": "2025-02-12T18:06:10Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "293a655469d3e233eb683fa6ef89cf04d47af956",
+      "headRepository": "bclaise/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "main",
+      "headRefOid": "ded2a1b6b332dd43609ef869b196a96c7750d4f8",
+      "closedAt": "2025-02-12T18:06:10Z",
+      "mergedAt": "2025-02-12T18:06:10Z",
+      "mergedBy": "bclaise",
+      "mergeCommit": {
+        "oid": "9dec020d0667bf09960c1fa9a27926188e475e90"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOM1onH86bualG",
+          "commit": {
+            "abbreviatedOid": "fd30284"
+          },
+          "author": "oscargdd",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Some few additions. In addition, I would suggest linking the inventory to the network design process (for example, for designinig a router upgrade it is key to retrieve the real time inventory). ",
+          "createdAt": "2025-02-12T17:01:11Z",
+          "updatedAt": "2025-02-12T17:10:36Z",
+          "comments": [
+            {
+              "originalPosition": 10,
+              "body": "```suggestion\r\n* Hardware Details: Descriptions of physical devices such as routers (including its internal components such as cards, power supply units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer information. These information will facilitate locating additional details of the hadware in the manufacturer systems and the correlation with the purchase catalog of the company. \r\n```",
+              "createdAt": "2025-02-12T17:01:11Z",
+              "updatedAt": "2025-02-12T17:10:36Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n* Software and Firmware: Versions of operating systems, network management tools, and firmware running on network devices. Note that a network device can have components with their own software and firmware. \r\n```",
+              "createdAt": "2025-02-12T17:04:04Z",
+              "updatedAt": "2025-02-12T17:10:36Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\nA well-maintained network inventory helps organizations with network management, troubleshooting, asset tracking, security, and ensuring compliance with regulations. It also helps in scaling the network, planning upgrades, and responding to issues quickly.  In order to facilitate the planning and troubleshooting processes it is necessary to be able to navigate from network inventory to network topology and services. \r\n```",
+              "createdAt": "2025-02-12T17:08:01Z",
+              "updatedAt": "2025-02-12T17:18:47Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
