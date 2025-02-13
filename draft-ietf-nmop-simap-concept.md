@@ -131,6 +131,19 @@ Topology layer:
   different types of services and for different providers/solutions.
 : The top layer represents the application/flow view of service connectivity.
 
+Service:
+: Represents network connectivity service provided over a network that enables devices, systems, or networks to
+communicate and exchange data with each other. It provides the underlying infrastructure and mechanisms
+necessary for establishing, maintaining, and managing connections between different endpoints.
+The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,
+
+Subservice:
+: Represents component of the service that can be independently managed but is not provided as a service.
+The example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN Links, IGP Links.
+
+Resource:
+: Defined in {{?I-D.ietf-nmop-terminology}}
+
 The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
@@ -349,7 +362,7 @@ Note that this use case may serve as a component of Service Disruption Detection
 A network closed loop refers to an automated and intelligent system where network operations are continuously monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance without manual intervention.
 
 Key Characteristics of a Network Closed Loop:
-* Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build a comprehensive view of network health and performance. 
+* Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build a comprehensive view of network health and performance.
 * Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures, or detect security threats.
 * Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating compromised endpoints, or rerouting traffic.
 * Continuous Optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
