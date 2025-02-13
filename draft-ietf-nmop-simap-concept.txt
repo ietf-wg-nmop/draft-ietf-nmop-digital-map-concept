@@ -84,7 +84,7 @@ Table of Contents
      3.10. Traffic Engineering
      3.11. Postmortem Replay
      3.12. Closed Loop
-     3.13. Digital Twin
+     3.13. Network Digital Twin (NDT)
    4.  SIMAP Requirements
      4.1.  Core Requirements
      4.2.  Design Requirements
@@ -267,7 +267,7 @@ Table of Contents
 
    *  Network design
 
-   *  Simulation
+   *  Network Simulation and Emulation
 
    *  Traffic Engineering
 
@@ -347,6 +347,26 @@ Table of Contents
    checks.
 
 3.2.  Service Placement Feasibility Checks
+
+   Service placement feasibility checks refers to the process of
+   evaluating whether a specific service can be deployed and operated
+   effectively in a given network.  This includes accessing the various
+   factors to ensure that the service will function as indended (based
+   on the QoS requirements), without causing network disruptions or
+   innefficiencies and effecting other services already provisioned on
+   the network.
+
+   Some of the factors that need assesing are network capabilities,
+   status, limitations, resource usage and availability.  The service
+   could be simulated during the feasibility checks to identify if there
+   are any potential issues.  The load testing could be done to evaluate
+   performance under stress.
+
+   The Service Feasibility Check application will be able to retrieve
+   the topology at any layer from the controller via the SIMAP API and
+   from the response it will be able to navigate to any other YANG
+   modules outside of the core SIMAP topology to retrive any other
+   information needed: resource usage, availability, status, etc.
 
 3.3.  Service-> Subservice -> Resource
 
@@ -481,6 +501,25 @@ Table of Contents
    and/or router(s) while evaluating the network performance.
 
 3.8.  Network design
+
+   Network design involves defining both the logical structure—such as
+   access, aggregation, and core layers and the physical layout,
+   including devices and links.
+
+   It serves as a blueprint, detailing how these elements interconnect
+   to deliver the intended network behavior and functionality.  The
+   application will retrieve the proposed network topology as the
+   initial design, which can then undergo critical analyses—such as
+   traffic flow simulations to identify bottlenecks and redundancy
+   checks to ensure resilience—before being transformed into actionable
+   intent and, eventually, deployment configurations.  Throughout the
+   network's lifecycle, the design rules embedded within the topology
+   can be continuously validated.  For example, a link rule might
+   specify that a connection etween core and aggregation layers must
+   have its source and destination located within the same data center.
+   Another example to declare that specific link type should only exist
+   between CORE<>Aggregation layer with certain constrains on port optic
+   speed, type (LR vs SR for instance) etc."
 
 3.9.  Network Simulation and Network Emulation
 
@@ -628,7 +667,7 @@ Table of Contents
    corrective measure in an offline simulation (see the simulation and
    traffic engineering use cases).
 
-3.13.  Digital Twin
+3.13.  Network Digital Twin (NDT)
 
 4.  SIMAP Requirements
 

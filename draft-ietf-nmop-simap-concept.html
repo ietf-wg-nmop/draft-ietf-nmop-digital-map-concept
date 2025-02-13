@@ -1226,7 +1226,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.3.2.12.1"><a href="#section-3.12" class="auto internal xref">3.12</a>. <a href="#name-closed-loop" class="internal xref">Closed Loop</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.13">
-                <p id="section-toc.1-1.3.2.13.1"><a href="#section-3.13" class="auto internal xref">3.13</a>. <a href="#name-digital-twin" class="internal xref">Digital Twin</a></p>
+                <p id="section-toc.1-1.3.2.13.1"><a href="#section-3.13" class="auto internal xref">3.13</a>. <a href="#name-network-digital-twin-ndt" class="internal xref">Network Digital Twin (NDT)</a></p>
 </li>
             </ul>
 </li>
@@ -1497,7 +1497,7 @@ different behaviors, simulation, emulation, mathematical abstractions, AI algori
           <p id="section-3-2.8.1">Network design<a href="#section-3-2.8.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.9">
-          <p id="section-3-2.9.1">Simulation<a href="#section-3-2.9.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.9.1">Network Simulation and Emulation<a href="#section-3-2.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.10">
           <p id="section-3-2.10.1">Traffic Engineering<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
@@ -1550,7 +1550,17 @@ the inventory based on that tag to correlate it with the inventory and then map 
 <section id="section-3.2">
         <h3 id="name-service-placement-feasibili">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-service-placement-feasibili" class="section-name selfRef">Service Placement Feasibility Checks</a>
-      </h3>
+        </h3>
+<p id="section-3.2-1">Service placement feasibility checks refers to the process of evaluating whether a specific service can be deployed
+and operated effectively in a given network. This includes accessing the various factors to ensure that the
+service will function as indended (based on the QoS requirements), without causing network disruptions or
+innefficiencies and effecting other services already provisioned on the network.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Some of the factors that need assesing are network capabilities, status, limitations, resource usage and availability.
+The service could be simulated during the feasibility checks to identify if there are any potential issues.
+The load testing could be done to evaluate performance under stress.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">The Service Feasibility Check application will be able to retrieve the topology at any layer from the controller
+via the SIMAP API and from the response it will be able to navigate to any other YANG modules outside of the
+core SIMAP topology to retrive any other information needed: resource usage, availability, status, etc.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="service-subservice-resource">
@@ -1665,7 +1675,18 @@ router(s) while evaluating the network performance.<a href="#section-3.7-7" clas
 <section id="section-3.8">
         <h3 id="name-network-design">
 <a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-network-design" class="section-name selfRef">Network design</a>
-      </h3>
+        </h3>
+<p id="section-3.8-1">Network design involves defining both the logical structure—such as access, aggregation, and core layers and
+the physical layout, including devices and links.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
+<p id="section-3.8-2">It serves as a blueprint, detailing how these elements
+interconnect to deliver the intended network behavior and functionality. The application will retrieve the
+proposed network topology as the initial design, which can then undergo critical analyses—such as traffic flow
+simulations to identify bottlenecks and redundancy checks to ensure resilience—before being transformed into
+actionable intent and, eventually, deployment configurations. Throughout the network's lifecycle, the design rules
+embedded within the topology can be continuously validated. For example, a link rule might specify that a connection
+etween core and aggregation layers must have its source and destination located within the same data center.
+Another example to declare that specific link type should only exist between CORE&lt;&gt;Aggregation layer with
+certain constrains on port optic speed, type (LR vs SR for instance) etc."<a href="#section-3.8-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="network-simulation-and-network-emulation">
@@ -1749,10 +1770,10 @@ Further than centralizing and correlating such various sources of information, t
 <p id="section-3.12-3">The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities (typically links and router), for automated analysis. The corrective measures would be applied, either directly to the network by managed the SIMAP entities (network/node/termination point/link instances) or by validating first the corrective measure in an offline simulation (see the simulation and traffic engineering use cases).<a href="#section-3.12-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="digital-twin">
+<div id="network-digital-twin-ndt">
 <section id="section-3.13">
-        <h3 id="name-digital-twin">
-<a href="#section-3.13" class="section-number selfRef">3.13. </a><a href="#name-digital-twin" class="section-name selfRef">Digital Twin</a>
+        <h3 id="name-network-digital-twin-ndt">
+<a href="#section-3.13" class="section-number selfRef">3.13. </a><a href="#name-network-digital-twin-ndt" class="section-name selfRef">Network Digital Twin (NDT)</a>
       </h3>
 </section>
 </div>
