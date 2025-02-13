@@ -192,7 +192,7 @@ The following are sample use cases that require SIMAP:
 + Service E2E and per-link KPIs on SIMAP (connectivity status, high-availability, delay, jitter, and loss)
 + Capacity planning
 + Network design
-+ Simulation
++ Network Simulation and Emulation
 + Traffic Engineering
 + Postmortem Replay
 + Closed-loop
@@ -233,6 +233,18 @@ through truck roll reduction. For example, operators may use custom-tags that ar
 the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology. The mapping and correlation can be then used for triggering apprpriate service checks.
 
 ## Service Placement Feasibility Checks
+Service placement feasibility checks refers to the process of evaluating whether a specific service can be deployed
+and operated effectively in a given network. This includes accessing the various factors to ensure that the
+service will function as indended (based on the QoS requirements), without causing network disruptions or
+innefficiencies and effecting other services already provisioned on the network.
+
+Some of the factors that need assesing are network capabilities, status, limitations, resource usage and availability.
+The service could be simulated during the feasibility checks to identify if there are any potential issues.
+The load testing could be done to evaluate performance under stress.
+
+The Service Feasibility Check application will be able to retrieve the topology at any layer from the controller
+via the SIMAP API and from the response it will be able to navigate to any other YANG modules outside of the
+core SIMAP topology to retrive any other information needed: resource usage, availability, status, etc.
 
 ## Service-> Subservice -> Resource
 
@@ -309,6 +321,18 @@ to add to the network, and finally perform the 'what-if' failure analysis by sim
 router(s) while evaluating the network performance.
 
 ## Network design
+Network design involves defining both the logical structure—such as access, aggregation, and core layers and
+the physical layout, including devices and links.
+
+It serves as a blueprint, detailing how these elements
+interconnect to deliver the intended network behavior and functionality. The application will retrieve the
+proposed network topology as the initial design, which can then undergo critical analyses—such as traffic flow
+simulations to identify bottlenecks and redundancy checks to ensure resilience—before being transformed into
+actionable intent and, eventually, deployment configurations. Throughout the network's lifecycle, the design rules
+embedded within the topology can be continuously validated. For example, a link rule might specify that a connection
+etween core and aggregation layers must have its source and destination located within the same data center.
+Another example to declare that specific link type should only exist between CORE<>Aggregation layer with
+certain constrains on port optic speed, type (LR vs SR for instance) etc."
 
 ## Network Simulation and Network Emulation
 
@@ -370,7 +394,7 @@ Key Characteristics of a Network Closed Loop:
 
 The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities (typically links and router), for automated analysis. The corrective measures would be applied, either directly to the network by managed the SIMAP entities (network/node/termination point/link instances) or by validating first the corrective measure in an offline simulation (see the simulation and traffic engineering use cases).
 
-## Digital Twin
+## Network Digital Twin (NDT)
 
 # SIMAP Requirements
 
