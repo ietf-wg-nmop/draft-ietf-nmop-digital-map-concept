@@ -131,6 +131,19 @@ Topology layer:
   different types of services and for different providers/solutions.
 : The top layer represents the application/flow view of service connectivity.
 
+Service:
+: Represents network connectivity service provided over a network that enables devices, systems, or networks to
+communicate and exchange data with each other. It provides the underlying infrastructure and mechanisms
+necessary for establishing, maintaining, and managing connections between different endpoints.
+The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,
+
+Subservice:
+: Represents component of the service that can be independently managed but is not provided as a service.
+The example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN Links, IGP Links.
+
+Resource:
+: Defined in {{?I-D.ietf-nmop-terminology}}
+
 The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
