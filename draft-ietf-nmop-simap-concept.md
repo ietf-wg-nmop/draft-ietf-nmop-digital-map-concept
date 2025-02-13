@@ -171,7 +171,7 @@ SIMAP data:
 
 The following are sample use cases that require SIMAP:
 
-* Generic inventory queries
+* Inventory queries
 + Service placement feasibility checks
 + Service-> subservice -> resource
 + Resource -> subservice -> service
@@ -180,6 +180,8 @@ The following are sample use cases that require SIMAP:
 + Capacity planning
 + Network design
 + Simulation
++ Postmortem Replay
++ Traffic Engineering
 + Closed-loop
 - Network Digital Twin (NDT)
 
@@ -320,6 +322,21 @@ The main use is to model the impact of different types of traffic (e.g., voice, 
 
 #### Simulation of different topologies under normal and failure scenarios
 This type of simulation focuses on the structure and layout of the network itself. It simulates different network topologies, such as mesh, horse-shoe, bus, star, or tree topologies, and their impact on the network's performance.  It can be used, together with the traffic simualtion to evaluate the most efficient topology for a network, under normal conditions and considering factors like fault tolerance.
+
+## Postmortem Replay
+
+The postmortem replay use case consists in using SIMAPs for the purpose of analysis of network service property evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates, configuration changes, link status modifications, traffic metrics evolution, and service characteristics, is being made accessible from and/or within a SIMAP to support investigation and automated processing.
+Using a structured format, the stored data can be replayed in sequence, allowing network operators to examine historical network behavior, diagnose issues, and assess the impact of such events on service assurance.
+
+The mechanism supports correlation with external data sources to facilitate comprehensive post-mortem analysis.
+Further than centralizing and correlating such various sources of information, the SIMAP can provide simulation of the network behaviour to assist investigations.
+
+In essence, this use case builds upon a collection of other SIMAP use cases, such as, inventory queries, intent/service assurance, Service KPIs, capacity planning, and simulation to provide a thorough understanding of a network event impacting service assurance.
+
+Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in {{?I-D.draft-ietf-nmop-network-anomaly-architecture}}.
+
+
+## Traffic Engineering
 
 ## Closed Loop
 
