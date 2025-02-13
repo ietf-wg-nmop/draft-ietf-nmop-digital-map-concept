@@ -346,6 +346,17 @@ Note that this use case may serve as a component of Service Disruption Detection
 
 ## Closed Loop
 
+A network closed loop refers to an automated and intelligent system where network operations are continuously monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance without manual intervention.
+
+Key Characteristics of a Network Closed Loop:
+* Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build a comprehensive view of network health and performance. 
+* Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures, or detect security threats.
+* Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating compromised endpoints, or rerouting traffic.
+* Continuous Optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
+
+
+The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities (typically links and router), for automated analysis. The corrective measures would be applied, either directly to the network by managed the SIMAP entities (network/node/termination point/link instances) or by validating first the corrective measure in an offline simulation (see the simulation and traffic engineering use cases).
+
 ## Digital Twin
 
 # SIMAP Requirements
