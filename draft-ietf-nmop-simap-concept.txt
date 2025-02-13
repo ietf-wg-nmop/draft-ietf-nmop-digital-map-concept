@@ -711,6 +711,49 @@ Table of Contents
       may need to have the direct relationship between the termination
       points or nodes.
 
+   REQ-BIDIR:  SIMAP must provide a mechanism to model bidirectional
+      links One of the core characteristics of any network topology is
+      the link directionality.  While data flows are unidirectional, the
+      bidirectional links are also common in networking.  Examples are
+      Ethernet cables, bidirectional SONET rings, socket connection to
+      the server, etc.  We also encounter requirements for simplified
+      service layer topology, where we want to model link as
+      bidirectional to be supported by unidirectional links at the lower
+      layer.
+
+   REQ-MULTI-POINT:  SIMAP must provide a mechanism to model multipoint
+      links One of the core characteristics of any network topology is
+      its type and link cardinality.  Any topology model should be able
+      to model any topology type in a simple and explicit way, including
+      point to multipoint, bus, ring, star, tree, mesh, hybrid and daisy
+      chain.  Any topology model should also be able to model any link
+      cardinality in a simple and explicit way, including point to
+      point, point to multipoint, multipoint to multipoint or hybrid.
+
+   REQ-MULTI-DOMAIN:  SIMAP must provide a mechanism to model links
+      between the network/domains One of the core characteristics of any
+      topology is connectivity between different network, subnetworks or
+      domains.
+
+   REQ-SUBNETWORK:  SIMAP must provide a mechanism to model network
+      decomposition into sub-networks.  This would allow modelling
+      hierarchical network domains, Autonomous System with multiple
+      Areas or e2e network with multiple domains.
+
+   REQ-SHARED:  SIMAP must provide a mechanism to share nodes, links and
+      termination points between different networks.
+
+   REQ-SUPPORTING:  SIMAP must provide a mechanism to model supporting
+      relationships between different types of topological entities
+      (e.g., tp is supported by the node).  This may be required in the
+      cases when tp is not supported by the underlying tp, but by the
+      node (e.g., loopback does not have physical representation, so it
+      is supported by physical device).
+
+   REQ-STATUS:  Links and nodes that are down must appear in the
+      topology.  The status of the nodes and links must be either
+      implemented in the SIMAP model or accessible from the SIMAP model.
+
 4.2.  Design Requirements
 
    The following are design requirements for modelling the SIMAP.  They
