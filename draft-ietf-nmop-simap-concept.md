@@ -180,8 +180,8 @@ The following are sample use cases that require SIMAP:
 + Capacity planning
 + Network design
 + Simulation
-+ Postmortem Replay
 + Traffic Engineering
++ Postmortem Replay
 + Closed-loop
 - Network Digital Twin (NDT)
 
@@ -323,6 +323,14 @@ The main use is to model the impact of different types of traffic (e.g., voice, 
 #### Simulation of different topologies under normal and failure scenarios
 This type of simulation focuses on the structure and layout of the network itself. It simulates different network topologies, such as mesh, horse-shoe, bus, star, or tree topologies, and their impact on the network's performance.  It can be used, together with the traffic simualtion to evaluate the most efficient topology for a network, under normal conditions and considering factors like fault tolerance.
 
+## Traffic Engineering
+
+Traffic Engineering (TE) is a network optimization technique designed to enhance network performance and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path selection based on constraints such as bandwidth availability, latency, and link costs.
+
+Its primary goal is to prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting QoS requirements.
+
+The TE use case is a combination of the both the capacity planning and the simulation use case. Therefore there are no SIMAP requirements.
+
 ## Postmortem Replay
 
 The postmortem replay use case consists in using SIMAPs for the purpose of analysis of network service property evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates, configuration changes, link status modifications, traffic metrics evolution, and service characteristics, is being made accessible from and/or within a SIMAP to support investigation and automated processing.
@@ -335,8 +343,6 @@ In essence, this use case builds upon a collection of other SIMAP use cases, suc
 
 Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in {{?I-D.draft-ietf-nmop-network-anomaly-architecture}}.
 
-
-## Traffic Engineering
 
 ## Closed Loop
 
