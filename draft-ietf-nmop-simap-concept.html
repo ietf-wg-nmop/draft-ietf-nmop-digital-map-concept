@@ -1068,7 +1068,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 16 August 2025</td>
+<td class="center">Expires 17 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1081,12 +1081,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-simap-concept-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-02-12" class="published">12 February 2025</time>
+<time datetime="2025-02-13" class="published">13 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-08-16">16 August 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-17">17 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1146,7 +1146,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 16 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 17 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1217,10 +1217,16 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.10">
-                <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-closed-loop" class="internal xref">Closed Loop</a></p>
+                <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-traffic-engineering" class="internal xref">Traffic Engineering</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.11">
-                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-digital-twin" class="internal xref">Digital Twin</a></p>
+                <p id="section-toc.1-1.3.2.11.1"><a href="#section-3.11" class="auto internal xref">3.11</a>. <a href="#name-postmortem-replay" class="internal xref">Postmortem Replay</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.12">
+                <p id="section-toc.1-1.3.2.12.1"><a href="#section-3.12" class="auto internal xref">3.12</a>. <a href="#name-closed-loop" class="internal xref">Closed Loop</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.13">
+                <p id="section-toc.1-1.3.2.13.1"><a href="#section-3.13" class="auto internal xref">3.13</a>. <a href="#name-digital-twin" class="internal xref">Digital Twin</a></p>
 </li>
             </ul>
 </li>
@@ -1449,7 +1455,7 @@ different behaviors, simulation, emulation, mathematical abstractions, AI algori
 <p id="section-3-1">The following are sample use cases that require SIMAP:<a href="#section-3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3-2.1">
-          <p id="section-3-2.1.1">Generic inventory queries<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.1.1">Inventory queries<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.2">
           <p id="section-3-2.2.1">Service placement feasibility checks<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
@@ -1476,10 +1482,16 @@ different behaviors, simulation, emulation, mathematical abstractions, AI algori
           <p id="section-3-2.9.1">Simulation<a href="#section-3-2.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.10">
-          <p id="section-3-2.10.1">Closed-loop<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.10.1">Traffic Engineering<a href="#section-3-2.10.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.11">
-          <p id="section-3-2.11.1">Network Digital Twin (NDT)<a href="#section-3-2.11.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.11.1">Postmortem Replay<a href="#section-3-2.11.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.12">
+          <p id="section-3-2.12.1">Closed-loop<a href="#section-3-2.12.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.13">
+          <p id="section-3-2.13.1">Network Digital Twin (NDT)<a href="#section-3-2.13.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-3-3">Overall, the SIMAP is needed to provide the mechanism to connect data islands from the core multi-layered topology.
@@ -1682,17 +1694,47 @@ This type of simulation focuses on simulating specific networking protocols (IS-
 </div>
 </section>
 </div>
-<div id="closed-loop">
+<div id="traffic-engineering">
 <section id="section-3.10">
+        <h3 id="name-traffic-engineering">
+<a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-traffic-engineering" class="section-name selfRef">Traffic Engineering</a>
+        </h3>
+<p id="section-3.10-1">Traffic Engineering (TE) is a network optimization technique designed to enhance network performance and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path selection based on constraints such as bandwidth availability, latency, and link costs.<a href="#section-3.10-1" class="pilcrow">¶</a></p>
+<p id="section-3.10-2">Its primary goal is to prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting QoS requirements.<a href="#section-3.10-2" class="pilcrow">¶</a></p>
+<p id="section-3.10-3">The TE use case is a combination of the both the capacity planning and the simulation use case. Therefore there are no SIMAP requirements.<a href="#section-3.10-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="postmortem-replay">
+<section id="section-3.11">
+        <h3 id="name-postmortem-replay">
+<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-postmortem-replay" class="section-name selfRef">Postmortem Replay</a>
+        </h3>
+<p id="section-3.11-1">The postmortem replay use case consists in using SIMAPs for the purpose of analysis of network service property evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates, configuration changes, link status modifications, traffic metrics evolution, and service characteristics, is being made accessible from and/or within a SIMAP to support investigation and automated processing.
+Using a structured format, the stored data can be replayed in sequence, allowing network operators to examine historical network behavior, diagnose issues, and assess the impact of such events on service assurance.<a href="#section-3.11-1" class="pilcrow">¶</a></p>
+<p id="section-3.11-2">The mechanism supports correlation with external data sources to facilitate comprehensive post-mortem analysis.
+Further than centralizing and correlating such various sources of information, the SIMAP can provide simulation of the network behaviour to assist investigations.<a href="#section-3.11-2" class="pilcrow">¶</a></p>
+<p id="section-3.11-3">In essence, this use case builds upon a collection of other SIMAP use cases, such as, inventory queries, intent/service assurance, Service KPIs, capacity planning, and simulation to provide a thorough understanding of a network event impacting service assurance.<a href="#section-3.11-3" class="pilcrow">¶</a></p>
+<p id="section-3.11-4">Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in <span>[<a href="#I-D.draft-ietf-nmop-network-anomaly-architecture" class="cite xref">I-D.draft-ietf-nmop-network-anomaly-architecture</a>]</span>.<a href="#section-3.11-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="closed-loop">
+<section id="section-3.12">
         <h3 id="name-closed-loop">
-<a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-closed-loop" class="section-name selfRef">Closed Loop</a>
-      </h3>
+<a href="#section-3.12" class="section-number selfRef">3.12. </a><a href="#name-closed-loop" class="section-name selfRef">Closed Loop</a>
+        </h3>
+<p id="section-3.12-1">A network closed loop refers to an automated and intelligent system where network operations are continuously monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance without manual intervention.<a href="#section-3.12-1" class="pilcrow">¶</a></p>
+<p id="section-3.12-2">Key Characteristics of a Network Closed Loop:
+* Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build a comprehensive view of network health and performance.
+* Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures, or detect security threats.
+* Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating compromised endpoints, or rerouting traffic.
+* Continuous Optimization: Uses feedback from previous cycles to refine network policies and improve future responses.<a href="#section-3.12-2" class="pilcrow">¶</a></p>
+<p id="section-3.12-3">The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities (typically links and router), for automated analysis. The corrective measures would be applied, either directly to the network by managed the SIMAP entities (network/node/termination point/link instances) or by validating first the corrective measure in an offline simulation (see the simulation and traffic engineering use cases).<a href="#section-3.12-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="digital-twin">
-<section id="section-3.11">
+<section id="section-3.13">
         <h3 id="name-digital-twin">
-<a href="#section-3.11" class="section-number selfRef">3.11. </a><a href="#name-digital-twin" class="section-name selfRef">Digital Twin</a>
+<a href="#section-3.13" class="section-number selfRef">3.13. </a><a href="#name-digital-twin" class="section-name selfRef">Digital Twin</a>
       </h3>
 </section>
 </div>
@@ -1954,6 +1996,10 @@ However, the RFC 8345 Security Considerations aspects will be useful when design
 <a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="I-D.draft-ietf-nmop-network-anomaly-architecture">[I-D.draft-ietf-nmop-network-anomaly-architecture]</dt>
+        <dd>
+<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, and <span class="refAuthor">P. Francois</span>, <span class="refTitle">"An Architecture for a Network Anomaly Detection Framework"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-architecture-01</span>, <time datetime="2024-10-20" class="refDate">20 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-01">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-ccamp-network-inventory-yang">[I-D.ietf-ccamp-network-inventory-yang]</dt>
         <dd>
 <span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A YANG Data Model for Network Hardware Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ccamp-network-inventory-yang-02</span>, <time datetime="2023-07-09" class="refDate">9 July 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02">https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-network-inventory-yang-02</a>&gt;</span>. </dd>

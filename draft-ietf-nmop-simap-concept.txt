@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 16 August 2025                                    O. G. D. Dios
+Expires: 17 August 2025                                    O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        12 February 2025
+                                                        13 February 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 August 2025.
+   This Internet-Draft will expire on 17 August 2025.
 
 Copyright Notice
 
@@ -81,8 +81,10 @@ Table of Contents
      3.8.  Network design
      3.9.  Network Simulation and Network Emulation
        3.9.1.  Types of Network simulation
-     3.10. Closed Loop
-     3.11. Digital Twin
+     3.10. Traffic Engineering
+     3.11. Postmortem Replay
+     3.12. Closed Loop
+     3.13. Digital Twin
    4.  SIMAP Requirements
      4.1.  Core Requirements
      4.2.  Design Requirements
@@ -225,7 +227,7 @@ Table of Contents
 
    The following are sample use cases that require SIMAP:
 
-   *  Generic inventory queries
+   *  Inventory queries
 
    *  Service placement feasibility checks
 
@@ -243,6 +245,10 @@ Table of Contents
    *  Network design
 
    *  Simulation
+
+   *  Traffic Engineering
+
+   *  Postmortem Replay
 
    *  Closed-loop
 
@@ -524,9 +530,82 @@ Table of Contents
    simualtion to evaluate the most efficient topology for a network,
    under normal conditions and considering factors like fault tolerance.
 
-3.10.  Closed Loop
+3.10.  Traffic Engineering
 
-3.11.  Digital Twin
+   Traffic Engineering (TE) is a network optimization technique designed
+   to enhance network performance and resource utilization by
+   intelligently controlling the flow of data, for example by enabling
+   dynamic path selection based on constraints such as bandwidth
+   availability, latency, and link costs.
+
+   Its primary goal is to prevent network congestion, balance traffic
+   loads, and ensure efficient use of bandwidth while meeting QoS
+   requirements.
+
+   The TE use case is a combination of the both the capacity planning
+   and the simulation use case.  Therefore there are no SIMAP
+   requirements.
+
+3.11.  Postmortem Replay
+
+   The postmortem replay use case consists in using SIMAPs for the
+   purpose of analysis of network service property evolution based on
+   recorded changes.  A collection of relevant timestamped network
+   events, such as routing updates, configuration changes, link status
+   modifications, traffic metrics evolution, and service
+   characteristics, is being made accessible from and/or within a SIMAP
+   to support investigation and automated processing.  Using a
+   structured format, the stored data can be replayed in sequence,
+   allowing network operators to examine historical network behavior,
+   diagnose issues, and assess the impact of such events on service
+   assurance.
+
+   The mechanism supports correlation with external data sources to
+   facilitate comprehensive post-mortem analysis.  Further than
+   centralizing and correlating such various sources of information, the
+   SIMAP can provide simulation of the network behaviour to assist
+   investigations.
+
+   In essence, this use case builds upon a collection of other SIMAP use
+   cases, such as, inventory queries, intent/service assurance, Service
+   KPIs, capacity planning, and simulation to provide a thorough
+   understanding of a network event impacting service assurance.
+
+   Note that this use case may serve as a component of Service
+   Disruption Detection fine tuning as described in
+   [I-D.draft-ietf-nmop-network-anomaly-architecture].
+
+3.12.  Closed Loop
+
+   A network closed loop refers to an automated and intelligent system
+   where network operations are continuously monitored, analyzed, and
+   optimized in real time through feedback mechanisms.  This self-
+   adjusting cycle ensures that the network dynamically adapts to
+   changes, resolves issues proactively, and maintains optimal
+   performance without manual intervention.
+
+   Key Characteristics of a Network Closed Loop: * Real-Time Monitoring:
+   Collects data from network devices, traffic flows, and applications
+   to build a comprehensive view of network health and performance. *
+   Automated Analysis: Ideally leverages AI and machine learning to
+   identify anomalies, predict potential failures, or detect security
+   threats. * Proactive Action: Automatically triggers corrective
+   measures, such as reconfiguring devices, isolating compromised
+   endpoints, or rerouting traffic. * Continuous Optimization: Uses
+   feedback from previous cycles to refine network policies and improve
+   future responses.
+
+   The application will be able to retrieve topology layer and any
+   network/node/termination point/link instances from the controller via
+   the SIMAP API and from the response it will be able to map the
+   traffic analysis to the entities (typically links and router), for
+   automated analysis.  The corrective measures would be applied, either
+   directly to the network by managed the SIMAP entities (network/node/
+   termination point/link instances) or by validating first the
+   corrective measure in an offline simulation (see the simulation and
+   traffic engineering use cases).
+
+3.13.  Digital Twin
 
 4.  SIMAP Requirements
 
@@ -679,6 +758,14 @@ Table of Contents
               2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
 7.2.  Informative References
+
+   [I-D.draft-ietf-nmop-network-anomaly-architecture]
+              Graf, T., Du, W., and P. Francois, "An Architecture for a
+              Network Anomaly Detection Framework", Work in Progress,
+              Internet-Draft, draft-ietf-nmop-network-anomaly-
+              architecture-01, 20 October 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-architecture-01>.
 
    [I-D.ietf-ccamp-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
