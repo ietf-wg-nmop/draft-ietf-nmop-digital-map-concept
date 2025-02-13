@@ -80,7 +80,7 @@ This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.).
 
-The SIMAP modelling defines the core topological entities (network, node, link, and interface) at each layer,
+The SIMAP modelling defines the core topological entities (network, node, link, and termination point) at each layer,
 their role in the network topology, core topological properties, and topological relationships
 both inside each layer and between the layers. It also defines how to access other external models
 from a topology. The SIMAP model is a topological model that is linked to the other functional
@@ -102,7 +102,7 @@ The document makes use of the following terms:
 Topology:
 : Topology in this document refers to the network and service topology.
   A network topology defines how physical or logical nodes, links and
-  interfaces are related and arranged. A Service topology defines how
+  termination points are related and arranged. A Service topology defines how
   service components (e.g., VPN instances, customer interfaces, and
   customer links) between customer sites are interrelated and
   arranged.
@@ -380,7 +380,8 @@ The following are the core requirements for the SIMAP (note that some of them ar
 default by {{!RFC8345}}):
 
 REQ-BASIC-MODEL-SUPPORT:
-: Basic model with network, node, link, and interface entity types.
+: Basic model with network, node, link, and termination point entity types.
+
 : This means that users of the SIMAP model
 must be able to understand topology model at any layer via these core concepts only,
 without having to go to the details of the specific augmentations to understand the topology.
