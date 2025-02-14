@@ -50,10 +50,12 @@ author:
     email: thomas.graf@swisscom.com
 
 contributor:
+
   -
-    fullname: Pierre Francois
-    org: INSA Lyon
-    email: pierre.francois@insa-lyon.fr
+    fullname: Ahmed Elhassany
+    org: Swisscom
+    email: Ahmed.Elhassany@swisscom.com
+
 
 normative:
 
@@ -181,7 +183,25 @@ SIMAP data:
 
 # Sample SIMAP Use Cases
 
-Overall, the SIMAP is needed to provide the mechanism to connect data islands from the core multi-layered topology. This section provides a non-comprehensive list of use cases to illustrate the use of SIMAP.
+The following are sample use cases that require SIMAP:
+
+* Inventory queries
++ Service placement feasibility checks
++ Service-> subservice -> resource
++ Resource -> subservice -> service
++ Intent/service assurance
++ Service E2E and per-link KPIs on SIMAP (connectivity status, high-availability, delay, jitter, and loss)
++ Capacity planning
++ Network design
++ Network Simulation and Emulation
++ Traffic Engineering
++ Postmortem Replay
++ Closed-loop
+- Network Digital Twin (NDT)
+
+Overall, the SIMAP is needed to provide the mechanism to connect data islands from the core multi-layered topology.
+It is a solution feasible and useful in the short-term for the existing operations use cases, but it is also a
+requirement for the SIMAP.
 
 > The following subsections include some initial use case descriptions to initiate the discussion about what type of info
 > is needed to describe the use cases in the context of SIMAP.
