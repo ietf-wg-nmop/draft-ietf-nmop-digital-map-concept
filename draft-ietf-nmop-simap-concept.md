@@ -51,20 +51,9 @@ author:
 
 contributor:
   -
-    fullname: Pierre Francois
-    org: INSA Lyon
-    email: pierre.francois@insa-lyon.fr
-
-  -
-    fullname: Vivekananda Boudia
-    org: INSA Lyon
-    email: vivekananda.boudia.ietf@gmail.com
-
-  -
     fullname: Ahmed Elhassany
     org: Swisscom
     email: Ahmed.Elhassany@swisscom.com
-
 
 normative:
 
