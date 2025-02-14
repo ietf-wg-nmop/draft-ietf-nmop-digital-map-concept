@@ -8,7 +8,7 @@ submissiontype: IETF
 number:
 date:
 consensus: true
-v: 0
+v: 2
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
@@ -50,6 +50,16 @@ author:
     email: thomas.graf@swisscom.com
 
 contributor:
+  -
+    fullname: Pierre Francois
+    org: INSA Lyon
+    email: pierre.francois@insa-lyon.fr
+
+  -
+    fullname: Vivekananda Boudia
+    org: INSA Lyon
+    email: vivekananda.boudia.ietf@gmail.com
+
   -
     fullname: Ahmed Elhassany
     org: Swisscom
