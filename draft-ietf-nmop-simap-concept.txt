@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 17 August 2025                                    O. G. D. Dios
+Expires: 18 August 2025                                    O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        13 February 2025
+                                                        14 February 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 August 2025.
+   This Internet-Draft will expire on 18 August 2025.
 
 Copyright Notice
 
@@ -81,6 +81,7 @@ Table of Contents
      3.8.  Network design
      3.9.  Network Simulation and Network Emulation
        3.9.1.  Types of Network simulation
+       3.9.2.  Goals of Network Simulation
      3.10. Traffic Engineering
      3.11. Postmortem Replay
      3.12. Closed Loop
@@ -297,19 +298,24 @@ Table of Contents
    tracks and documents all the network components and devices within an
    organization's IT infrastructure.
 
-   Key elements typically found in a network inventory include: *
-   Hardware Details: Descriptions of physical devices such as routers
-   (including its internal components such as cards, power supply units,
-   pluggables), switches, servers, network cables, including model
-   numbers, serial numbers, and manufacturer information.  These
-   information will facilitate locating additional details of the
-   hadware in the manufacturer systems and the correlation with the
-   purchase catalog of the company. * Software and Firmware: Versions of
-   operating systems, network management tools, and firmware running on
-   network devices.  Note that a network device can have components with
-   their own software and firmware. * Licensing Information: For any
-   licensed software or devices, the network inventory will track
-   license numbers, expiry dates, and compliance.
+   Key elements typically found in a network inventory include:
+
+   *  Hardware Details:  Descriptions of physical devices such as
+         routers (including its internal components such as cards, power
+         supply units, pluggables), switches, servers, network cables,
+         including model numbers, serial numbers, and manufacturer
+         information.  These information will facilitate locating
+         additional details of the hadware in the manufacturer systems
+         and the correlation with the purchase catalog of the company.
+
+   *  Software and Firmware:  Versions of operating systems, network
+         management tools, and firmware running on network devices.
+         Note that a network device can have components with their own
+         software and firmware.
+
+   *  Licensing Information:  For any licensed software or devices, the
+         network inventory will track license numbers, expiry dates, and
+         compliance.
 
    Network inventory lifecycle refers to the stages a network device or
    component goes through from its introduction to the network until its
@@ -351,10 +357,10 @@ Table of Contents
    Service placement feasibility checks refers to the process of
    evaluating whether a specific service can be deployed and operated
    effectively in a given network.  This includes accessing the various
-   factors to ensure that the service will function as indended (based
-   on the QoS requirements), without causing network disruptions or
-   innefficiencies and effecting other services already provisioned on
-   the network.
+   factors to ensure that the service will function as indended (e.g.,
+   based on traffic performance requirements), without causing network
+   disruptions or innefficiencies and effecting other services already
+   provisioned on the network.
 
    Some of the factors that need assesing are network capabilities,
    status, limitations, resource usage and availability.  The service
@@ -370,7 +376,7 @@ Table of Contents
 
 3.3.  Service-> Subservice -> Resource
 
-   The application will be able to retrieve all services from the SIMAP
+   The application will be able to retrieve all services using the SIMAP
    API for selected network types.  The application will be able to
    retrieve the topology for selected services via SIMAP API and from
    the response it will be able to navigate via the supporting
@@ -391,22 +397,26 @@ Table of Contents
 
    Network intent and service assurance work together to ensure that the
    network aligns with business goals and that the services provided
-   meet the agreed-upon service level agreements (SLAs).
+   meet the agreed-upon Service Level Agreements (SLAs).
 
    The Service Assurance for Intent-Based Networking Architecture (SAIN)
-   [RFC9417] approach emphasizes a comprehensive view of all components
+   [RFC9417] approach emphasizes a comprehensive view of components
    involved in service delivery, including network devices and
    functions, to effectively monitor and maintain service health.
 
-   The key objectives of this architecture: * Holistic Service
-   Monitoring: By considering all elements involved in service delivery,
-   the architecture enables a thorough assessment of service health. *
-   Correlation of Service Degradation: It assists in linking service
-   performance issues to specific network components, facilitating
-   precise identification of faults. * Impact Assessment: The
-   architecture identifies which services are affected by the failure or
-   degradation of particular network components, aiding in prioritizing
-   remediation efforts.
+   The key objectives of this architecture:
+
+   *  Holistic Service Monitoring:  By considering all elements involved
+         in service delivery, the architecture enables a thorough
+         assessment of service health.
+
+   *  Correlation of Service Degradation:  It assists in linking service
+         performance issues to specific network components, facilitating
+         precise identification of faults.
+
+   *  Impact Assessment:  The architecture identifies which services are
+         affected by the failure or degradation of particular network
+         components, aiding in prioritizing remediation efforts.
 
    When a service is degraded, the SAIN architecture will highlight
    where in the assurance service graph to look, as opposed to going hop
@@ -518,14 +528,14 @@ Table of Contents
    specify that a connection etween core and aggregation layers must
    have its source and destination located within the same data center.
    Another example to declare that specific link type should only exist
-   between CORE<>Aggregation layer with certain constrains on port optic
-   speed, type (LR vs SR for instance) etc."
+   between Core <> Aggregation layer with certain constrains on port
+   optic speed, type (LR vs SR for instance) etc."
 
 3.9.  Network Simulation and Network Emulation
 
    Network simulation is a process used to analyse the behaviour of
    networks via software.  It allows network engineers and researchers
-   to study how the network protocols work under different conditions,
+   to assess how the network protocols work under different conditions,
    such as diffenet topologies, traffic loads, network failures, or the
    introduction of new devices.  Network emulation, on the other hand,
    replicates the behavior of a real-world network, allowing for more
@@ -541,36 +551,50 @@ Table of Contents
 
    There are several types of network simulations, each designed to
    address specific needs and use cases.  Below are the main categories
-   of network simulation: 1.  Discrete Event Simulation (DES): This is
-   the most common type of network simulation.  It models a series of
-   events that occur at specific points in time.  Each event triggers a
-   change in the state of a network component (e.g. a link is down, a
-   card fails, a packet arrives…).  2.  Continuous Simulation: In
-   contrast to discrete event simulation, continuous simulation models
-   systems where variables change continuously over time.  Network
-   parameters like bandwidth, congestion, and throughput can be treated
-   as continuous functions.  The main use case is to model certain
-   aspects of network performance that evolve continuously, such as link
-   speeds or delay distributions in links that are impacted by
-   envirnnmental conditions (such as microwave or satellite links). 3.
-   Monte Carlo Simulation: This type of simulation uses statistical
-   methods to model and analyze networks under uncertain or variable
-   conditions.  Monte Carlo simulations generate a large number of
-   random samples to predict the performance of a network across
-   multiple scenarios.  It is used for probabilistic analysis, risk
-   assessment, and performance evaluation under uncertain conditions.
-   ### Goals of Network simulation The simulations can be also
-   classified depending on the goal of the simulation #### Network
-   Protocol Analysis This type of simulation focuses on simulating
-   specific networking protocols (IS-IS, OSPF, BGP, SR) to understand
-   how they perform under different conditions.  It models the protocol
-   operations and interactions among devices in the network.  For
-   example, simulation can be used to asses the impact of changing a
-   link metric.  Morever, specific features of the networking protocol
-   can be tested.  For example, how fast-reroute performs in a given
-   network topology.
+   of network simulation:
 
-3.9.1.1.  Traffic Simulation
+   1.  Discrete Event Simulation (DES):  This is the most common type of
+          network simulation.  It models a series of events that occur
+          at specific points in time.  Each event triggers a change in
+          the state of a network component (e.g., a link is down, a card
+          fails, or a packet arrives).
+
+   2.  Continuous Simulation:  In contrast to discrete event simulation,
+          continuous simulation models systems where variables change
+          continuously over time.  Network parameters like bandwidth,
+          congestion, and throughput can be treated as continuous
+          functions.
+
+          The main use case is to model certain aspects of network
+          performance that evolve continuously, such as link speeds or
+          delay distributions in links that are impacted by
+          envirnnmental conditions (such as microwave or satellite
+          links).
+
+   3.  Monte Carlo Simulation:  This type of simulation uses statistical
+          methods to model and analyze networks under uncertain or
+          variable conditions.  Monte Carlo simulations generate a large
+          number of random samples to predict the performance of a
+          network across multiple scenarios.  It is used for
+          probabilistic analysis, risk assessment, and performance
+          evaluation under uncertain conditions.
+
+3.9.2.  Goals of Network Simulation
+
+   The simulations can be also classified depending on the goal of the
+   simulation.
+
+3.9.2.1.  Network Protocol Analysis
+
+   This type of simulation focuses on simulating specific networking
+   protocols (IS-IS, OSPF, BGP, SR) to understand how they perform under
+   different conditions.  It models the protocol operations and
+   interactions among devices in the network.  For example, simulation
+   can be used to asses the impact of changing a link metric.  Morever,
+   specific features of the networking protocol can be tested.  For
+   example, how fast-reroute performs in a given network topology.
+
+3.9.2.2.  Traffic Simulation
 
    This simulation focuses on modelling traffic flow across the network,
    including packet generation, flow control, routing, and congestion.
@@ -582,8 +606,8 @@ Table of Contents
    used to identify bottelnecks and assist the capacity planning
    process.
 
-3.9.1.2.  Simulation of different topologies under normal and failure
-          scenarios
+3.9.2.3.  Simulation of Different Topologies Under Normal and Failure
+          Scenarios
 
    This type of simulation focuses on the structure and layout of the
    network itself.  It simulates different network topologies, such as
@@ -594,18 +618,18 @@ Table of Contents
 
 3.10.  Traffic Engineering
 
-   Traffic Engineering (TE) is a network optimization technique designed
-   to enhance network performance and resource utilization by
-   intelligently controlling the flow of data, for example by enabling
-   dynamic path selection based on constraints such as bandwidth
-   availability, latency, and link costs.
+   Traffic Engineering (TE) [RFC9522] is a network optimization
+   technique designed to enhance network performance and resource
+   utilization by intelligently controlling the flow of data, for
+   example by enabling dynamic path selection based on constraints such
+   as bandwidth availability, latency, and link costs.
 
    Its primary goal is to prevent network congestion, balance traffic
-   loads, and ensure efficient use of bandwidth while meeting QoS
-   requirements.
+   loads, and ensure efficient use of bandwidth while meeting
+   performance requirements.
 
    The TE use case is a combination of the both the capacity planning
-   and the simulation use case.  Therefore there are no SIMAP
+   and the simulation use case.  Therefore there are no specific SIMAP
    requirements.
 
 3.11.  Postmortem Replay
@@ -635,7 +659,7 @@ Table of Contents
 
    Note that this use case may serve as a component of Service
    Disruption Detection fine tuning as described in
-   [I-D.draft-ietf-nmop-network-anomaly-architecture].
+   [I-D.ietf-nmop-network-anomaly-architecture].
 
 3.12.  Closed Loop
 
@@ -646,16 +670,22 @@ Table of Contents
    changes, resolves issues proactively, and maintains optimal
    performance without manual intervention.
 
-   Key Characteristics of a Network Closed Loop: * Real-Time Monitoring:
-   Collects data from network devices, traffic flows, and applications
-   to build a comprehensive view of network health and performance. *
-   Automated Analysis: Ideally leverages AI and machine learning to
-   identify anomalies, predict potential failures, or detect security
-   threats. * Proactive Action: Automatically triggers corrective
-   measures, such as reconfiguring devices, isolating compromised
-   endpoints, or rerouting traffic. * Continuous Optimization: Uses
-   feedback from previous cycles to refine network policies and improve
-   future responses.
+   Key Characteristics of a Network Closed Loop:
+
+   *  Real-Time Monitoring: Collects data from network devices, traffic
+      flows, and applications to build a comprehensive view of network
+      health and performance.
+
+   *  Automated Analysis: Ideally leverages AI and machine learning to
+      identify anomalies, predict potential failures, or detect security
+      threats.
+
+   *  Proactive Action: Automatically triggers corrective measures, such
+      as reconfiguring devices, isolating compromised endpoints, or
+      rerouting traffic.
+
+   *  Continuous Optimization: Uses feedback from previous cycles to
+      refine network policies and improve future responses.
 
    The application will be able to retrieve topology layer and any
    network/node/termination point/link instances from the controller via
@@ -864,14 +894,6 @@ Table of Contents
 
 7.2.  Informative References
 
-   [I-D.draft-ietf-nmop-network-anomaly-architecture]
-              Graf, T., Du, W., and P. Francois, "An Architecture for a
-              Network Anomaly Detection Framework", Work in Progress,
-              Internet-Draft, draft-ietf-nmop-network-anomaly-
-              architecture-01, 20 October 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-01>.
-
    [I-D.ietf-ccamp-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A YANG Data Model for Network Hardware
@@ -895,6 +917,14 @@ Table of Contents
               inventory-yang-04, 5 November 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
               network-inventory-yang-04>.
+
+   [I-D.ietf-nmop-network-anomaly-architecture]
+              Graf, T., Du, W., and P. Francois, "An Architecture for a
+              Network Anomaly Detection Framework", Work in Progress,
+              Internet-Draft, draft-ietf-nmop-network-anomaly-
+              architecture-01, 20 October 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
+              network-anomaly-architecture-01>.
 
    [I-D.ietf-nmop-network-incident-yang]
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
