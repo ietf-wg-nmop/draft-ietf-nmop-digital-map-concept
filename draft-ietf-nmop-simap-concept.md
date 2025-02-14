@@ -213,9 +213,15 @@ requirement for the SIMAP.
 Network inventory refers to a comprehensive record or database that tracks and documents all the network components and devices within an organization's IT infrastructure.
 
 Key elements typically found in a network inventory include:
-* Hardware Details: Descriptions of physical devices such as routers (including its internal components such as cards, power supply units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer information. These information will facilitate locating additional details of the hadware in the manufacturer systems and the correlation with the purchase catalog of the company.
-* Software and Firmware: Versions of operating systems, network management tools, and firmware running on network devices. Note that a network device can have components with their own software and firmware.
-* Licensing Information: For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.
+
+* Hardware Details:
+: Descriptions of physical devices such as routers (including its internal components such as cards, power supply units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer information. These information will facilitate locating additional details of the hadware in the manufacturer systems and the correlation with the purchase catalog of the company.
+
+* Software and Firmware:
+: Versions of operating systems, network management tools, and firmware running on network devices. Note that a network device can have components with their own software and firmware.
+
+* Licensing Information:
+: For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.
 
 Network inventory lifecycle refers to the stages a network device or component goes through from its introduction to the network until its removal or replacement. It encompasses everything from acquisition and deployment to maintenance, upgrade, and eventually decommissioning. Managing the network inventory lifecycle efficiently is crucial for maintaining a secure, functional, and cost-effective network.
 
@@ -233,9 +239,10 @@ through truck roll reduction. For example, operators may use custom-tags that ar
 the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology. The mapping and correlation can be then used for triggering apprpriate service checks.
 
 ## Service Placement Feasibility Checks
+
 Service placement feasibility checks refers to the process of evaluating whether a specific service can be deployed
 and operated effectively in a given network. This includes accessing the various factors to ensure that the
-service will function as indended (based on the QoS requirements), without causing network disruptions or
+service will function as indended (e.g., based on traffic performance requirements), without causing network disruptions or
 innefficiencies and effecting other services already provisioned on the network.
 
 Some of the factors that need assesing are network capabilities, status, limitations, resource usage and availability.
@@ -248,7 +255,7 @@ core SIMAP topology to retrive any other information needed: resource usage, ava
 
 ## Service-> Subservice -> Resource
 
-The application will be able to retrieve all services from the SIMAP API for selected network types.
+The application will be able to retrieve all services using the SIMAP API for selected network types.
 The application will be able to retrieve the topology for selected services via SIMAP API and from the response
 it will be able to navigate via the supporting relationship top-down to the lower layers. That way, it will be able to
 determine what logical resources are used by the service. The supporting relations to the lowest layer will help
@@ -262,14 +269,20 @@ bottom-up come to the service and its nodes, tps and links.
 
 ## Intent/Service Assurance
 
-Network intent and service assurance work together to ensure that the network aligns with business goals and that the services provided meet the agreed-upon service level agreements (SLAs).
+Network intent and service assurance work together to ensure that the network aligns with business goals and that the services provided meet the agreed-upon Service Level Agreements (SLAs).
 
-The Service Assurance for Intent-Based Networking Architecture (SAIN) {{?RFC9417}} approach emphasizes a comprehensive view of all components involved in service delivery, including network devices and functions, to effectively monitor and maintain service health.
+The Service Assurance for Intent-Based Networking Architecture (SAIN) {{?RFC9417}} approach emphasizes a comprehensive view of components involved in service delivery, including network devices and functions, to effectively monitor and maintain service health.
 
 The key objectives of this architecture:
-* Holistic Service Monitoring: By considering all elements involved in service delivery, the architecture enables a thorough assessment of service health.
-* Correlation of Service Degradation: It assists in linking service performance issues to specific network components, facilitating precise identification of faults.
-* Impact Assessment: The architecture identifies which services are affected by the failure or degradation of particular network components, aiding in prioritizing remediation efforts.
+
+* Holistic Service Monitoring:
+: By considering all elements involved in service delivery, the architecture enables a thorough assessment of service health.
+
+* Correlation of Service Degradation:
+: It assists in linking service performance issues to specific network components, facilitating precise identification of faults.
+
+* Impact Assessment:
+: The architecture identifies which services are affected by the failure or degradation of particular network components, aiding in prioritizing remediation efforts.
 
 When a service is degraded, the SAIN architecture will highlight where in the assurance service graph to look, as opposed to going hop by hop to troubleshoot the issue.
 More precisely, the SAIN architecture will associate to each service instance a list of symptoms originating from specific subservices, corresponding to components of the network.
@@ -321,6 +334,7 @@ to add to the network, and finally perform the 'what-if' failure analysis by sim
 router(s) while evaluating the network performance.
 
 ## Network design
+
 Network design involves defining both the logical structure—such as access, aggregation, and core layers and
 the physical layout, including devices and links.
 
@@ -331,42 +345,52 @@ simulations to identify bottlenecks and redundancy checks to ensure resilience�
 actionable intent and, eventually, deployment configurations. Throughout the network's lifecycle, the design rules
 embedded within the topology can be continuously validated. For example, a link rule might specify that a connection
 etween core and aggregation layers must have its source and destination located within the same data center.
-Another example to declare that specific link type should only exist between CORE<>Aggregation layer with
+Another example to declare that specific link type should only exist between Core <> Aggregation layer with
 certain constrains on port optic speed, type (LR vs SR for instance) etc."
 
 ## Network Simulation and Network Emulation
 
-Network simulation is a process used to analyse the behaviour of networks via software. It allows network engineers and researchers to study how the network protocols work under different conditions, such as diffenet topologies, traffic loads, network failures, or the introduction of new devices. Network emulation, on the other hand, replicates the behavior of a real-world network, allowing for more realistic analysis compared to network simulation. While network simulation focuses on modeling and approximating network behavior, network emulation involves creating a real-time, functional network environment whose protocol behaves exactly like a real network. Ideally, network emulation uses the same software images as in the real network, but it could also be peformed (with less accuracy) using generic software.
+Network simulation is a process used to analyse the behaviour of networks via software. It allows network engineers and researchers to assess how the network protocols work under different conditions, such as diffenet topologies, traffic loads, network failures, or the introduction of new devices. Network emulation, on the other hand, replicates the behavior of a real-world network, allowing for more realistic analysis compared to network simulation. While network simulation focuses on modeling and approximating network behavior, network emulation involves creating a real-time, functional network environment whose protocol behaves exactly like a real network. Ideally, network emulation uses the same software images as in the real network, but it could also be peformed (with less accuracy) using generic software.
 
 ### Types of Network simulation
+
 There are several types of network simulations, each designed to address specific needs and use cases. Below are the main categories of network simulation:
+
 1. Discrete Event Simulation (DES):
-This is the most common type of network simulation. It models a series of events that occur at specific points in time. Each event triggers a change in the state of a network component (e.g. a link is down, a card fails, a packet arrives…).
- 2. Continuous Simulation:
-In contrast to discrete event simulation, continuous simulation models systems where variables change continuously over time. Network parameters like bandwidth, congestion, and throughput can be treated as continuous functions.
-The main use case is to model certain aspects of network performance that evolve continuously, such as link speeds or delay distributions in links that are impacted by envirnnmental conditions (such as microwave or satellite links).
+: This is the most common type of network simulation. It models a series of events that occur at specific points in time. Each event triggers a change in the state of a network component (e.g., a link is down, a card fails, or a packet arrives).
+
+2. Continuous Simulation:
+: In contrast to discrete event simulation, continuous simulation models systems where variables change continuously over time. Network parameters like bandwidth, congestion, and throughput can be treated as continuous functions.
+: The main use case is to model certain aspects of network performance that evolve continuously, such as link speeds or delay distributions in links that are impacted by envirnnmental conditions (such as microwave or satellite links).
+
 3. Monte Carlo Simulation:
-This type of simulation uses statistical methods to model and analyze networks under uncertain or variable conditions. Monte Carlo simulations generate a large number of random samples to predict the performance of a network across multiple scenarios. It is used for probabilistic analysis, risk assessment, and performance evaluation under uncertain conditions.
-### Goals of Network simulation
-The simulations can be also classified depending on the goal of the simulation
+: This type of simulation uses statistical methods to model and analyze networks under uncertain or variable conditions. Monte Carlo simulations generate a large number of random samples to predict the performance of a network across multiple scenarios. It is used for probabilistic analysis, risk assessment, and performance evaluation under uncertain conditions.
+
+### Goals of Network Simulation
+
+The simulations can be also classified depending on the goal of the simulation.
+
 ####  Network Protocol Analysis
+
 This type of simulation focuses on simulating specific networking protocols (IS-IS, OSPF, BGP, SR) to understand how they perform under different conditions. It models the protocol operations and interactions among devices in the network. For example, simulation can be used to asses the impact of changing a link metric. Morever, specific features of the networking protocol can be tested. For example, how fast-reroute performs in a given network topology.
 
 #### Traffic Simulation
+
 This simulation focuses on modelling traffic flow across the network, including packet generation, flow control, routing, and congestion. It aims to evaluate traffic's impact on network performance.
 
 The main use is to model the impact of different types of traffic (e.g., voice, video, mobile data, web browsing) and understand how they affect the network's bandwidth and congestion levels. It can be used to identify bottelnecks and assist the capacity planning process.
 
-#### Simulation of different topologies under normal and failure scenarios
+#### Simulation of Different Topologies Under Normal and Failure Scenarios
+
 This type of simulation focuses on the structure and layout of the network itself. It simulates different network topologies, such as mesh, horse-shoe, bus, star, or tree topologies, and their impact on the network's performance.  It can be used, together with the traffic simualtion to evaluate the most efficient topology for a network, under normal conditions and considering factors like fault tolerance.
 
 ## Traffic Engineering
 
-Traffic Engineering (TE) is a network optimization technique designed to enhance network performance and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path selection based on constraints such as bandwidth availability, latency, and link costs.
+Traffic Engineering (TE) {{?RFC9522}} is a network optimization technique designed to enhance network performance and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path selection based on constraints such as bandwidth availability, latency, and link costs.
 
-Its primary goal is to prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting QoS requirements.
+Its primary goal is to prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting performance requirements.
 
-The TE use case is a combination of the both the capacity planning and the simulation use case. Therefore there are no SIMAP requirements.
+The TE use case is a combination of the both the capacity planning and the simulation use case. Therefore there are no specific SIMAP requirements.
 
 ## Postmortem Replay
 
@@ -378,7 +402,7 @@ Further than centralizing and correlating such various sources of information, t
 
 In essence, this use case builds upon a collection of other SIMAP use cases, such as, inventory queries, intent/service assurance, Service KPIs, capacity planning, and simulation to provide a thorough understanding of a network event impacting service assurance.
 
-Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in {{?I-D.draft-ietf-nmop-network-anomaly-architecture}}.
+Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in {{?I-D.ietf-nmop-network-anomaly-architecture}}.
 
 
 ## Closed Loop
@@ -386,6 +410,7 @@ Note that this use case may serve as a component of Service Disruption Detection
 A network closed loop refers to an automated and intelligent system where network operations are continuously monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance without manual intervention.
 
 Key Characteristics of a Network Closed Loop:
+
 * Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build a comprehensive view of network health and performance.
 * Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures, or detect security threats.
 * Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating compromised endpoints, or rerouting traffic.
