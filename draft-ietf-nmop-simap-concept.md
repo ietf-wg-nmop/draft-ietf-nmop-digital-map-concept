@@ -335,13 +335,13 @@ router(s) while evaluating the network performance.
 
 ## Network design
 
-Network design involves defining both the logical structure—such as access, aggregation, and core layers and
+Network design involves defining both the logical structure-such as access, aggregation, and core layers and
 the physical layout, including devices and links.
 
 It serves as a blueprint, detailing how these elements
 interconnect to deliver the intended network behavior and functionality. The application will retrieve the
-proposed network topology as the initial design, which can then undergo critical analyses—such as traffic flow
-simulations to identify bottlenecks and redundancy checks to ensure resilience—before being transformed into
+proposed network topology as the initial design, which can then undergo critical analyses-such as traffic flow
+simulations to identify bottlenecks and redundancy checks to ensure resilience-before being transformed into
 actionable intent and, eventually, deployment configurations. Throughout the network's lifecycle, the design rules
 embedded within the topology can be continuously validated. For example, a link rule might specify that a connection
 etween core and aggregation layers must have its source and destination located within the same data center.
