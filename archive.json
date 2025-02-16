@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-13T00:59:53.254708+00:00",
+  "timestamp": "2025-02-16T01:04:45.662184+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -291,9 +291,17 @@
       "labels": [],
       "body": "draft-ietf-nmop-digital-map-concept\r\nThe following are sample use cases that require Digital Map:\r\n* Service-> subservice -> resource\r\n* Resource -> subservice -> service\r\nBut the terms service, subservice, and resource are not defined.\r\n\r\n\r\n== Advice from Adrian==\r\nConsider defining \"service\" and \"subservice\" in\r\ndraft-ietf-nmop-digital-map-concept, and importing \"resource\" from\r\ndraft-ietf-nmop-terminology.\r\nResource: A component, commodity, service, or capability that can be\r\nused to support the delivery of some function.\r\n\r\n",
       "createdAt": "2024-11-05T13:34:05Z",
-      "updatedAt": "2024-11-05T13:34:05Z",
+      "updatedAt": "2025-02-13T15:17:16Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Updated in the draft as follow, to be reviewed by others:\n\nService:\n: Represents network connectivity service provided over a network that enables devices, systems, or networks to\ncommunicate and exchange data with each other. It provides the underlying infrastructure and mechanisms\nnecessary for establishing, maintaining, and managing connections between different endpoints.\nThe example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,\n\nSubservice:\n: Represents component of the service that can be independently managed but is not provided as a service.\nThe example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN Links, IGP Links.\n\nResource:\n: Defined in {{?I-D.ietf-nmop-terminology}}",
+          "createdAt": "2025-02-13T15:17:14Z",
+          "updatedAt": "2025-02-13T15:17:14Z"
+        }
+      ]
     },
     {
       "number": 15,
@@ -307,9 +315,17 @@
       "labels": [],
       "body": "Italo: \r\n\r\nMy point is that in a multi-layer network you need to navigate across layers, but also in case of a single layer, it is possible to define multiple abstraction levels (as defined in RFC8795) and then there is a need to navigate across multiple abstraction levels\r\n\r\nI am  not sure my comment at the mike today about topology abstraction has been fully understood\r\n\r\nIf you are not fully familiar with the concept of topology abstraction, I would suggest the following background reading for the definition of topology abstraction:\r\n\r\n  *   RFC 8453 (in particular section 5)\r\n  *   RFC 8795 (and in particular sections 3.13, 4.1 and 4.4)\r\n  *   draft-ietf-teas-te-topo-and-tunnel-modeling (in particular section 1.3)\r\n\r\nIn a nutshell a network (even a single-layer network) can be represented in multiple ways providing different abstraction view of the same network. In such a case, it would be beneficial being able to navigate among the different level of abstractions (e.g., to understand which set of nodes in the native topology are actually represented as a single node in an abstract topology being built on top of the native topology).\r\n\r\nThis navigation is different and orthogonal to the multi-layer navigation where for example we need to report which L2 path is supporting a given L3 node\r\n\r\nMy question is therefore: is SIMAP only dealing with native topologies and navigation among the different networking layers (L3, L2, optical, ...) or also dealing with abstract topologies and navigation among the different level of abstraction?\r\n",
       "createdAt": "2024-11-29T11:26:13Z",
-      "updatedAt": "2024-11-29T11:26:13Z",
+      "updatedAt": "2025-02-13T16:55:36Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I think there is no need to have different basic topology models for abstract and native topologies. But we need to be driven by use cases, so we should discuss with operators. If there is a use case that requires both native and abstract topologies and relations between them, we should add a new requirement for SIMAP to be able to model both abstract and native topologies and layers between them.",
+          "createdAt": "2025-02-13T16:47:06Z",
+          "updatedAt": "2025-02-13T16:55:36Z"
+        }
+      ]
     },
     {
       "number": 21,
@@ -323,7 +339,7 @@
       "labels": [],
       "body": "The topology model (RFC 8345) is based on termination points NOT interfaces.\n\nHowever, throught the document we mix both.... \n\nI believe SIMAP could be the place to clarify the relationship between both. \n\n",
       "createdAt": "2025-02-11T11:08:40Z",
-      "updatedAt": "2025-02-12T18:24:07Z",
+      "updatedAt": "2025-02-13T16:21:48Z",
       "closedAt": null,
       "comments": [
         {
@@ -332,6 +348,13 @@
           "body": "Well spotted - we really do that. The RFC8345 models it in a generic way via termination points and these can be interfaces. But termination points can be other entities as well.\n\nWe have interface in the requirements as this is the most common example of termination point, and the terminology that operators use. And in most of the cases tps are related to interfaces or sub interfaces at different levels. But I think we can potentially have TPs abstracted without having interface there, for example in the SRv6 initial PoC we proposed to use SIDs as termination points. We will review during the hackathon if there is better approach.\n\nSome quotes from RFC8345:\n   A node has a list of termination points that are used to terminate\n   links.  An example of a termination point might be a physical or\n   logical port or, more generally, an interface.\n\n   Termination points can ultimately be mapped to interfaces.",
           "createdAt": "2025-02-12T18:24:05Z",
           "updatedAt": "2025-02-12T18:24:05Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I updated the draft, just changed interface to termination point. There is already some clarification in RFC8345 about the relation, so I did not add it here. \nI suggest we close",
+          "createdAt": "2025-02-13T16:21:47Z",
+          "updatedAt": "2025-02-13T16:21:47Z"
         }
       ]
     },
@@ -382,6 +405,93 @@
           "updatedAt": "2025-02-12T18:08:15Z"
         }
       ]
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOM1onH86p6Dtj",
+      "title": "SIMAP must ensure that links and nodes that are down must appear in topology",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/26",
+      "state": "CLOSED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is the new requirement based on Oscar's requirement: \n- When sending topology to visualisation / planning service, SIMAP must be able to indicate the status of a node or link\n\nThis must be explicitly stated in the document",
+      "createdAt": "2025-02-13T10:07:36Z",
+      "updatedAt": "2025-02-13T16:18:02Z",
+      "closedAt": "2025-02-13T16:18:01Z",
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I added the requirement to the draft as REQ-STATUS.\n",
+          "createdAt": "2025-02-13T16:18:01Z",
+          "updatedAt": "2025-02-13T16:18:01Z"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "id": "I_kwDOM1onH86p6HSE",
+      "title": "Operational Status must be accessible from SIMAP",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/27",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This is the new requirement based on Oscar's requirement:\n\nWhen sending topology to visualisation / planning service, SIMAP must be able to indicate the status of a node or link.\n\nThere are 2 approaches and we should discuss and select the one:\n\nOperational Status must be accessible from SIMAP:\nApproach 1: via base mode\nApproach 2: via linking to external YANG modules \n",
+      "createdAt": "2025-02-13T10:13:23Z",
+      "updatedAt": "2025-02-13T16:17:10Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "We need to discuss pros and cons and select the SIMAP approach",
+          "createdAt": "2025-02-13T10:14:13Z",
+          "updatedAt": "2025-02-13T10:14:13Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I added it to the draft as requirement, but we still want to agree on the approach",
+          "createdAt": "2025-02-13T16:17:08Z",
+          "updatedAt": "2025-02-13T16:17:08Z"
+        }
+      ]
+    },
+    {
+      "number": 37,
+      "id": "I_kwDOM1onH86qIg67",
+      "title": "REQ-LAYER-NAVIGATE vs REQ-RELATIONSHIPS",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/37",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": " \nAt least, it is better to move the note you quoted to be positioned early in the doc + add some more narrative text to explain the rationale and how these pieces should be used/interpreted. I think that it is better to change \u201ccore\u201d to operator requirements or similar.\n \nThe proposed change to REQ-LAYER-NAVIGATE works for me.\n \nThank you\n \nCheers,\nMed\n \nDe : Olga Havel [<olga.havel@huawei.com>](mailto:olga.havel@huawei.com) \nEnvoy\u00e9 : mercredi 4 d\u00e9cembre 2024 12:11\n\u00c0 : BOUCADAIR Mohamed INNOV/NET [<mohamed.boucadair@orange.com>](mailto:mohamed.boucadair@orange.com); [nmop@ietf.org](mailto:nmop@ietf.org)\nObjet : RE: SIMAP: REQ-LAYER-NAVIGATE vs REQ-RELATIONSHIPS\n \nHi Med,\n \nThe current requirements were split into 3 groups:\n1.\tCore requirements \u2013 collected requirements from the operators, they are really functional requirements based on the operator input \n2.\tDesign requirements \u2013 requirements derived from the core requirements, that are the requirements for how to design the YANG module and SIMAP API. These are functional requirements translated into the requirements for the model designer. The reason for doing this is to ensure that the YANG module is designed according to the core requirements, and that it could be used for both design and review of the proposed YANG module. I agree there is some duplication and we at one interim meeting did mention to remove REQ-RELATIONSHIP. I suggest to change the REQ-LAYER-NAVIGATE description to: SIMAP must provide capability to navigate inside the topology layer and between the topology layers. That would translate into REQ-RELATIONSHIP and some other. \n \n1.\tThe following is the quote from the draft: \nThe following are design requirements for modelling the SIMAP.  Theey\nare derived from the core requerements collected from the operators\n                                                      and although there is some duplication, these are focused on\n                                                    summarizing the requirements for the design of the model and API:\n \n3.\tArchitecture requirements \u2013 it was added as some operators were mentioning performance, scale and network discovery \u2013 which are really not requirements for the YANG module and API itself, they are more requirements on the controller that provides the SIMAP API. They are commons sense requirements for any controller, therefore I am not sure if we want to keep them here as well. \n \nWe can discuss if we need to keep the different categories of requirements as this or merge them. I personally think that it can be useful to have the functional requirements as collected from the operators and design requirements (or  model requirements) derived specifically for how the model the SIMAP YANG.\n \nThere may be some missing, we need to see if we want to add the ones we found during the PoC as gaps to the design requirements (bdir, mtptp, cross-domain, etc).\n \nBest regards,\nOlga\n \n \nFrom: [mohamed.boucadair@orange.com](mailto:mohamed.boucadair@orange.com) <[mohamed.boucadair@orange.com](mailto:mohamed.boucadair@orange.com)> \nSent: Tuesday, December 3, 2024 2:58 PM\nTo: [nmop@ietf.org](mailto:nmop@ietf.org)\nSubject: [NMOP] SIMAP: REQ-LAYER-NAVIGATE vs REQ-RELATIONSHIPS\n \nHi SIMAP Authors, all,\n(as a contributor)\n \nIs there a value in keeping these two req as they seems to be redundant?\n \n \n   REQ-LAYER-NAVIGATE:  SIMAP must provide intra-layer and inter-layer\n      relationships.\n \nvs.\n \n   REQ-RELATIONSHIPS:  SIMAP should contain all topological\n      relationships inside each layer or between the layers (underlay/\n      overlay)\n \n      SIMAP should contain links to other models/data to enable generic\n      navigation to other YANG models in generic way.\n \nCheers,\nMed",
+      "createdAt": "2025-02-14T17:31:40Z",
+      "updatedAt": "2025-02-14T17:31:40Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 38,
+      "id": "I_kwDOM1onH86qIhSR",
+      "title": "REQ-SEMANTIC",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/38",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\nFrom @graf3net:\n\nFrom a network operators requirements perspective, I think the requirements list is pretty much complete. \n\nI only have one comment:\n\nREQ-SEMANTIC:\nSIMAP must provide semantics for layered network topologies and for linking external models/data.\n\nI think we need to expand or add additional requirements to ensure that the following is covered:\n\n\u2022\tProvider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology \n\u2022\tUnderlay control plane routing state needs to be correlatable to underlay L3 topology. Overlay control-plane routing state needs to be correlate-able to overlay L3 network topology \n\nAs an example:\n\nhttps://datatracker.ietf.org/doc/html/rfc7011#section-8\n\n   If an Information Element is required more than once in a Template,\n   the different occurrences of this Information Element SHOULD follow\n   the logical order of their treatments by the Metering Process.  For\n   example, if a selected packet goes through two hash functions, and if\n   the two hash values are sent within a single Template, the first\n   occurrence of the hash value should belong to the first hash function\n   in the Metering Process.  For example, when exporting the two source\n   IP addresses of an IPv4-in-IPv4 packet, the first sourceIPv4Address\n   Information Element occurrence should be the IPv4 address of the\n   outer header, while the second occurrence should be the address of\n   the inner header.  Collecting Processes MUST properly handle\n   Templates with multiple identical Information Elements.\n\n\nIn a SRv6 enabled network, sourceIPv6Address appears in a IPFIX data-template/data-record for a captured flow on a SRv6 enabled provider interface twice. Once in relation to provider data plane in the underlay, and once as relation to the customer data plane in the overlay.\n\nSIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and underlay network topology. Both topologies might not be uniquely addressed, the VPN context (in SRv6 these are the SID's, https://datatracker.ietf.org/doc/html/rfc8986#name-srv6-sid) needs to be considered therefore as well.\n\nThe same requirement also applies to the control plane. Taking BMP/BGP as an example. The BMP peer distinguisher (https://datatracker.ietf.org/doc/html/rfc7854#section-4.2) needs to be correlateable to the VRF of a node and the next-hop attribute of the NLRI in the BMP route-monitoring (https://datatracker.ietf.org/doc/html/rfc7854#section-4.6) encapsulated message to the underlay network topology while the path attribute of the NLRI in the BMP route-monitoring encapsulated message to the overlay topology.\n\nI think REQ-SEMANTIC describes that requirement very high level, but I suggest to expand the description, maybe with examples I described to establish more clarity.\n\nI agree with REQ-TOPO-ONLY that dynamic paths are outside of SIMAP scope. However as part of REQ-SEMANTIC, it lays the foundation to map it as external data.\n\nI hope that makes sense.\n\nBest wishes\nThomas\n",
+      "createdAt": "2025-02-14T17:32:37Z",
+      "updatedAt": "2025-02-14T17:32:37Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -766,6 +876,266 @@
           ]
         }
       ]
+    },
+    {
+      "number": 28,
+      "id": "PR_kwDOM1onH86LG_oa",
+      "title": "postmortem replay use case",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/28",
+      "state": "MERGED",
+      "author": "bclaise",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-13T13:57:20Z",
+      "updatedAt": "2025-02-13T15:12:36Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "9dec020d0667bf09960c1fa9a27926188e475e90",
+      "headRepository": "bclaise/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "main",
+      "headRefOid": "6a9a58a9539af7c50ee032b5bd45186f8ab1d83f",
+      "closedAt": "2025-02-13T15:12:36Z",
+      "mergedAt": "2025-02-13T15:12:36Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "c83d44b8df44d9a2908c74af595e2bd4aef27c56"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 29,
+      "id": "PR_kwDOM1onH86LHyCF",
+      "title": "Added definition for service and subservice and added reference to de\u2026",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/29",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\u2026finition of resource",
+      "createdAt": "2025-02-13T15:15:28Z",
+      "updatedAt": "2025-02-13T15:16:15Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "c83d44b8df44d9a2908c74af595e2bd4aef27c56",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "Issue14",
+      "headRefOid": "50d87229f171bc0babb47452dca7c7c75178e816",
+      "closedAt": "2025-02-13T15:16:15Z",
+      "mergedAt": "2025-02-13T15:16:14Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "2d1430df3efb3fd8d5bf621185925242f576d0fe"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 30,
+      "id": "PR_kwDOM1onH86LH6MW",
+      "title": "Med's issue about read and write instances",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/30",
+      "state": "MERGED",
+      "author": "bclaise",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-13T15:28:19Z",
+      "updatedAt": "2025-02-13T16:05:38Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "2d1430df3efb3fd8d5bf621185925242f576d0fe",
+      "headRepository": "bclaise/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "main",
+      "headRefOid": "fb8daf6a4efb64be2d0d75b5df74948d38ea0f12",
+      "closedAt": "2025-02-13T16:05:38Z",
+      "mergedAt": "2025-02-13T16:05:38Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "9e3ab0bea76ee2c3c3e775a563af79170337de1c"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 31,
+      "id": "PR_kwDOM1onH86LIPN7",
+      "title": "Added additional requirements - for gaps we identified and Oscar's st\u2026",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/31",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\u2026atus requirement",
+      "createdAt": "2025-02-13T16:06:16Z",
+      "updatedAt": "2025-02-13T16:06:29Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "9e3ab0bea76ee2c3c3e775a563af79170337de1c",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "NewRequirements",
+      "headRefOid": "eb6654d4755839fe167926ddc569bf4b20a0d7df",
+      "closedAt": "2025-02-13T16:06:29Z",
+      "mergedAt": "2025-02-13T16:06:29Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "43fbf553919f5c3cd45db8d1923fd3c6de0e0943"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 32,
+      "id": "PR_kwDOM1onH86LIVNa",
+      "title": "Changed interface to termination point",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/32",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-13T16:16:22Z",
+      "updatedAt": "2025-02-13T16:16:31Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "43fbf553919f5c3cd45db8d1923fd3c6de0e0943",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "InterfaceTerminationPoint",
+      "headRefOid": "c46861914d76cc8852314950e8920c17b5e44b8d",
+      "closedAt": "2025-02-13T16:16:30Z",
+      "mergedAt": "2025-02-13T16:16:30Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "16730b3493f664f2622b6f8266555d5602a578ef"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 33,
+      "id": "PR_kwDOM1onH86LMrvZ",
+      "title": "fix broken formatting in many sections",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/33",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-14T06:45:04Z",
+      "updatedAt": "2025-02-14T07:48:09Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "15c96707fc874e62728a82bb1c9b8bdbf52b8486",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "boucadair-patch-1",
+      "headRefOid": "6c3b1d79c1c75c47f3ec4d931ac7565265550900",
+      "closedAt": "2025-02-14T07:48:09Z",
+      "mergedAt": "2025-02-14T07:48:08Z",
+      "mergedBy": "bclaise",
+      "mergeCommit": {
+        "oid": "5c4e4a11204254daf174136c0a50c134daaec92a"
+      },
+      "comments": [
+        {
+          "author": "bclaise",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Thanks Med. Merged",
+          "createdAt": "2025-02-14T07:48:04Z",
+          "updatedAt": "2025-02-14T07:48:04Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 34,
+      "id": "PR_kwDOM1onH86LNHtc",
+      "title": "non ASCII characters",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/34",
+      "state": "MERGED",
+      "author": "bclaise",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Just nits, to pass the submission tool",
+      "createdAt": "2025-02-14T08:02:38Z",
+      "updatedAt": "2025-02-14T09:10:23Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "5c4e4a11204254daf174136c0a50c134daaec92a",
+      "headRepository": "bclaise/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "main",
+      "headRefOid": "e5470e6790ad56eed09a9fed002ecdda57822d66",
+      "closedAt": "2025-02-14T09:10:23Z",
+      "mergedAt": "2025-02-14T09:10:23Z",
+      "mergedBy": "bclaise",
+      "mergeCommit": {
+        "oid": "509b41606f668de7c5c3b7a8c85975187159e248"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 35,
+      "id": "PR_kwDOM1onH86LP3eX",
+      "title": "Version fixed for submission",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/35",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Trying to fix error during the release",
+      "createdAt": "2025-02-14T13:34:17Z",
+      "updatedAt": "2025-02-14T13:34:25Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "509b41606f668de7c5c3b7a8c85975187159e248",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "interim-fix-submission",
+      "headRefOid": "77094756cdcd53ff9ba165df26bc6d1b5665d58b",
+      "closedAt": "2025-02-14T13:34:25Z",
+      "mergedAt": "2025-02-14T13:34:25Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "773f48f1e35884c9a0df6f4da7746d3e6ef5fbd0"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 36,
+      "id": "PR_kwDOM1onH86LP798",
+      "title": "simplify the intro of SIMAP use cases section",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/36",
+      "state": "MERGED",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-14T13:42:26Z",
+      "updatedAt": "2025-02-14T13:51:16Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "773f48f1e35884c9a0df6f4da7746d3e6ef5fbd0",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "simplify-the-intro-of-SIMAP-use-cases-section",
+      "headRefOid": "585b88b41f562febc865416fdcf7f902c84c0b24",
+      "closedAt": "2025-02-14T13:51:15Z",
+      "mergedAt": "2025-02-14T13:51:15Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "7404546eb2c9720f787366de77b93a7d81edf012"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
