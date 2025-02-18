@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-16T01:04:45.662184+00:00",
+  "timestamp": "2025-02-18T00:59:44.965106+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -275,9 +275,17 @@
       "labels": [],
       "body": "From Nacho:, I would avoid using the \u201cmulti-layered topology\u201d term, unless you agree that the whole figure 2 (from RFC8345) represents a topology in itself (i.e., a topology composed of topologies from different layers).\r\n\r\n",
       "createdAt": "2024-10-31T17:05:57Z",
-      "updatedAt": "2024-10-31T17:05:57Z",
+      "updatedAt": "2025-02-17T16:54:51Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "@OlgaHuawei Just a few thoughts...\n\nWe need to be careful with the term \"layer\", there are various granularities (e.g., marketing layers L0, L1, L2 etc. technology layer ODU, Ethernet etc. OSI layers: Transport, network... ), a layer at one granularity is multiple layers at another. We also found it challenging separating network partitioning,\n\nIn TAPI we concluded that several technology layers could be grouped into a single toplology (hence multi-layer). There are degrees of this, some very obvious and some not so.\n\nWhen you get IP over IP, this can be considered as one layer because of technology or several because of partitioning.\n\nThis may lead us to viewpoint, where from one viewpoint it is a single layer whereas from another it is multople layers.",
+          "createdAt": "2025-02-17T16:54:50Z",
+          "updatedAt": "2025-02-17T16:54:50Z"
+        }
+      ]
     },
     {
       "number": 14,
@@ -291,7 +299,7 @@
       "labels": [],
       "body": "draft-ietf-nmop-digital-map-concept\r\nThe following are sample use cases that require Digital Map:\r\n* Service-> subservice -> resource\r\n* Resource -> subservice -> service\r\nBut the terms service, subservice, and resource are not defined.\r\n\r\n\r\n== Advice from Adrian==\r\nConsider defining \"service\" and \"subservice\" in\r\ndraft-ietf-nmop-digital-map-concept, and importing \"resource\" from\r\ndraft-ietf-nmop-terminology.\r\nResource: A component, commodity, service, or capability that can be\r\nused to support the delivery of some function.\r\n\r\n",
       "createdAt": "2024-11-05T13:34:05Z",
-      "updatedAt": "2025-02-13T15:17:16Z",
+      "updatedAt": "2025-02-17T17:12:09Z",
       "closedAt": null,
       "comments": [
         {
@@ -300,6 +308,13 @@
           "body": "Updated in the draft as follow, to be reviewed by others:\n\nService:\n: Represents network connectivity service provided over a network that enables devices, systems, or networks to\ncommunicate and exchange data with each other. It provides the underlying infrastructure and mechanisms\nnecessary for establishing, maintaining, and managing connections between different endpoints.\nThe example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,\n\nSubservice:\n: Represents component of the service that can be independently managed but is not provided as a service.\nThe example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN Links, IGP Links.\n\nResource:\n: Defined in {{?I-D.ietf-nmop-terminology}}",
           "createdAt": "2025-02-13T15:17:14Z",
           "updatedAt": "2025-02-13T15:17:14Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "@OlgaHuawei we need to be very careful with \"sub\". We have the same issue with slot. I have recently been trying to untangle that.\n\nIn the case of service I think we should model just service and have a \"supportedBy\" type relationships that gives the sub (and sub-sub and sub-sub-sub :) and the protected forms etc.). A service is a service. ",
+          "createdAt": "2025-02-17T17:12:07Z",
+          "updatedAt": "2025-02-17T17:12:07Z"
         }
       ]
     },
@@ -339,7 +354,7 @@
       "labels": [],
       "body": "The topology model (RFC 8345) is based on termination points NOT interfaces.\n\nHowever, throught the document we mix both.... \n\nI believe SIMAP could be the place to clarify the relationship between both. \n\n",
       "createdAt": "2025-02-11T11:08:40Z",
-      "updatedAt": "2025-02-13T16:21:48Z",
+      "updatedAt": "2025-02-17T16:46:00Z",
       "closedAt": null,
       "comments": [
         {
@@ -355,6 +370,13 @@
           "body": "I updated the draft, just changed interface to termination point. There is already some clarification in RFC8345 about the relation, so I did not add it here. \nI suggest we close",
           "createdAt": "2025-02-13T16:21:47Z",
           "updatedAt": "2025-02-13T16:21:47Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "@OlgaHuawei @oscargdd \nI think, at this stage, only using termination point in the draft is correct. But I think there are still challenges with the two concepts. I see in RFC8345 there are statements, but I find them ambiguous. For example \" An example of a termination point might be a physical or logical port or, more generally, an interface.\". I think we need to be much clearer here. \n\nPhysical should be something that has spatial dimensions. A termination point never has. It can be an abstraction that always represents some logical view. \n\nI also think that an interface as defined in other RFCs has a different definition to termination point in RFC8345. This relates to the challenge we had recently on whether termination should represent the same concept as the ONF/ITU-T LTP (G.7711) and hence could be specialized to both TAPI NEP (Link End) and TAPI CEP (termination functions) or just the TAPI NEP. \n\nIf the latter, then the generalized representation of generalized function is missing in IETF. If it is both NEP and CEP etc. then it could be quite similar to the full ONF LTP (which is a multi-layer full functionality representation of termination which can take a variety of subset forms including the CEP and the NEP forms) although more skeletal. We could argue that this then represents the skeleton of an interface which is a multi-layer, multi-function termination capability (where there is a restriction as to which subsets are allowed). \n\nWe found in ONF and ITU-T that it was vital to clarify this. We need to be clear on this. I have previously engaged in this challenge and we were successful in clarifying. I could take a shot here if other think beneficial.",
+          "createdAt": "2025-02-17T16:45:59Z",
+          "updatedAt": "2025-02-17T16:45:59Z"
         }
       ]
     },
