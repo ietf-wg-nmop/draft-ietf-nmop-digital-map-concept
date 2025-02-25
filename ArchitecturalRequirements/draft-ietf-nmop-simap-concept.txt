@@ -878,7 +878,7 @@ Table of Contents
       with the client applications, whose developers may not be
       networking experts.
 
-   REQ-DM-DISCOVERY:  The SIMAP API must be simple and easy to integrate
+   REQ-DISCOVERY:  The SIMAP API must be simple and easy to integrate
       with the client applications, whose developers may not be
       networking experts.
 
