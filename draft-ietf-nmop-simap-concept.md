@@ -575,7 +575,7 @@ REQ-USABILITY:
 : The SIMAP API must be simple and easy to integrate with the client applications, whose developers
 may not be networking experts.
 
-REQ-DM-DISCOVERY:
+REQ-DISCOVERY:
 : The SIMAP API must be simple and easy to integrate with the client applications, whose developers
 may not be networking experts.
 
