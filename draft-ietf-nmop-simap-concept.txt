@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 18 August 2025                                    O. G. D. Dios
+Expires: 29 August 2025                                    O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        14 February 2025
+                                                        25 February 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 August 2025.
+   This Internet-Draft will expire on 29 August 2025.
 
 Copyright Notice
 
@@ -865,12 +865,26 @@ Table of Contents
 4.3.  Architectural Requirements
 
    The following are the architectural requirements for the controller
-   that provides SIMAP API:
+   that provides SIMAP API, they are the non-functional requirements for
+   the SIMAP API:
 
-   REQ-DM-SCALES:  Scale, performance, ease of integration.
+   REQ-SCALES:  The SIMAP API must be scalable, it must support any
+      provider network, independent of its size.
 
-   REQ-DM-DISCOVERY:  Initial discovery and dynamic (change only) synch
-      with the physical network.
+   REQ-PERFORMANCE:  The SIMAP API must be performant, and have
+      acceptable response-time.
+
+   REQ-USABILITY:  The SIMAP API must be simple and easy to integrate
+      with the client applications, whose developers may not be
+      networking experts.
+
+   REQ-DISCOVERY:  The SIMAP API must be simple and easy to integrate
+      with the client applications, whose developers may not be
+      networking experts.
+
+   REQ-SYNCH:  The controller must perform the sync with the network in
+      order to provide up to date layered topology via SIMAP API to the
+      client/application
 
 5.  Security Considerations
 
@@ -930,17 +944,17 @@ Table of Contents
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
               "A YANG Data Model for Network Incident Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-network-
-              incident-yang-02, 10 October 2024,
+              incident-yang-03, 19 February 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-incident-yang-02>.
+              network-incident-yang-03>.
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              10, 21 January 2025,
+              12, 22 February 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-10>.
+              terminology-12>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
