@@ -562,13 +562,26 @@ external to the SIMAP.
 
 ## Architectural Requirements
 
-The following are the architectural requirements for the controller that provides SIMAP API:
+The following are the architectural requirements for the controller that provides SIMAP API, they are the
+non-functional requirements for the SIMAP API:
 
-REQ-DM-SCALES:
-: Scale, performance, ease of integration.
+REQ-SCALES:
+: The SIMAP API must be scalable, it must support any provider network, independent of its size.
+
+REQ-PERFORMANCE:
+: The SIMAP API must be  performant, and have acceptable response-time.
+
+REQ-USABILITY:
+: The SIMAP API must be simple and easy to integrate with the client applications, whose developers
+may not be networking experts.
 
 REQ-DM-DISCOVERY:
-: Initial discovery and dynamic (change only) synch with the physical network.
+: The SIMAP API must be simple and easy to integrate with the client applications, whose developers
+may not be networking experts.
+
+REQ-SYNCH:
+: The controller must perform the sync with the network in order to provide up to date layered topology
+via SIMAP API to the client/application
 
 # Security Considerations
 
