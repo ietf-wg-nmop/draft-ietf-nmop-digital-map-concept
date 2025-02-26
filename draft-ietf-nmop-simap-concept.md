@@ -596,6 +596,235 @@ This document has no actions for IANA.
 
 #  Related IETF Activities
 
+## Positioning in regards to RFC8199, RFC7426, RFC8309 and RFC8453
+
+We refer to some abstraction layers (for interfaces, models and YANG modules) described in different IETF RFCs and
+we position SIMAP in regards to those.
+
+### RFC8199
+
+The {{?RFC8199}} proposes the consistent classification of YANG modules and suggests 2 abstraction layers for
+YANG modules:
+
++ Network Element YANG Modules describe the configuration, state data, operations, and notifications of
+specific device-centric technologies or features. They are best developed the teams that include developers
+with experience implementing network protocols
++ Network Service YANG Modules describe the configuration, state data, operations, and notifications of
+abstract representations of services implemented on one or multiple network elements. They are best developed by
+network operators experienced in defining network services for consumption by programmers, e.g., those developing
+flow-through provisioning systems or self-service portals.
+
+The {{?RFC8199}} shows the YANG Module Abstraction Layers on the following figure.
+
+{: #rfc8199-yang-module-abstraction-layers}
+~~~~
+                        +--------------------------+
+                        |  Operations and Business |
+                        |      Support Systems     |
+                        |      (OSSs and BSSs)     |
+                        +--------------------------+
+
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        Network Service YANG Modules
+
+             +------------+      +-------------+      +-------------+
+             |            |      |             |      |             |
+             |  - L2VPN   |      |   - L2VPN   |      |    L3VPN    |
+             |  - VPWS    |      |   - VPLS    |      |             |
+             |            |      |             |      |             |
+             +------------+      +-------------+      +-------------+
+
+        - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        Network Element YANG Modules
+
+        +------------+  +------------+  +-------------+  +------------+
+        |            |  |            |  |             |  |            |
+        |    MPLS    |  |    BGP     |  | IPv4 / IPv6 |  |  Ethernet  |
+        |            |  |            |  |             |  |            |
+        +------------+  +------------+  +-------------+  +------------+
+
+                 Figure 1: YANG Module Abstraction Layers
+
+~~~~
+{: #fig-rfc8199-yang-module-abstraction-layers title="RFC8199 YANG Module Abstraction Layers"}
+
+### RFC7246
+
+The {{?RFC7426}} defines the SDN layers and architecture as shown in the following figure.
+
+{: #rfc7426-sdn-layer-architecture}
+~~~~
+                  o--------------------------------o
+                   |                                |
+                   | +-------------+   +----------+ |
+                   | | Application |   |  Service | |
+                   | +-------------+   +----------+ |
+                   |       Application Plane        |
+                   o---------------Y----------------o
+                                   |
+     *-----------------------------Y---------------------------------*
+     |           Network Services Abstraction Layer (NSAL)           |
+     *------Y------------------------------------------------Y-------*
+            |                                                |
+            |               Service Interface                |
+            |                                                |
+     o------Y------------------o       o---------------------Y------o
+     |      |    Control Plane |       | Management Plane    |      |
+     | +----Y----+   +-----+   |       |  +-----+       +----Y----+ |
+     | | Service |   | App |   |       |  | App |       | Service | |
+     | +----Y----+   +--Y--+   |       |  +--Y--+       +----Y----+ |
+     |      |           |      |       |     |               |      |
+     | *----Y-----------Y----* |       | *---Y---------------Y----* |
+     | | Control Abstraction | |       | | Management Abstraction | |
+     | |     Layer (CAL)     | |       | |      Layer (MAL)       | |
+     | *----------Y----------* |       | *----------Y-------------* |
+     |            |            |       |            |               |
+     o------------|------------o       o------------|---------------o
+                  |                                 |
+                  | CP                              | MP
+                  | Southbound                      | Southbound
+                  | Interface                       | Interface
+                  |                                 |
+     *------------Y---------------------------------Y----------------*
+     |         Device and resource Abstraction Layer (DAL)           |
+     *------------Y---------------------------------Y----------------*
+     |            |                                 |                |
+     |    o-------Y----------o   +-----+   o--------Y----------o     |
+     |    | Forwarding Plane |   | App |   | Operational Plane |     |
+     |    o------------------o   +-----+   o-------------------o     |
+     |                       Network Device                          |
+     +---------------------------------------------------------------+
+~~~~
+{: #fig-rfc7426-sdn-layer-architecture title="RFC7426 SDN Layer Architecture"}
+
+The {{?RFC7426}} states that
+
++ YANG model {{?RFC6020}} is suitable for specifying DAL for the forwarding and
+operational planes
++ NETCONF {{?RFC6241}} is suitable for MP Southbound interface
++ NETCONF {{?RFC6241}} is not suitable CP southbound interface
+
+### RFC8309
+
+The {{?RFC8309}} defines where service model might fit into the SDN Architecture, although the service model
+does not require or preclude the use of SDN. The following figure shows an example SDN Architecture with a
+Service Orchestrator.
+
+{: #rfc8309-sdn-arch-service-orchestrator}
+~~~~
+                                                 Customer
+                            ------------------   Service  ----------
+                           |                  |  Model   |          |
+                           |     Service      |<-------->| Customer |
+                           |   Orchestrator   |    (a)   |          |
+                           |                  |           ----------
+                            ------------------
+                               .          .
+                              .            .        (b)   -----------
+                             . (b)          .      ......|Application|
+                            .                .     :     |  BSS/OSS  |
+                           .                  .    :      -----------
+                          .  Service Delivery  .   :
+                          .       Model        .   :
+                 ------------------    ------------------
+                |                  |  |                  |
+                |     Network      |  |     Network      |
+                |   Orchestrator   |  |   Orchestrator   |
+                |                  |  |                  |
+                .------------------    ------------------.
+               .         :                       :        .
+              .          : Network Configuration :         .
+              .          :        Model          :         .
+      ------------     ------------     ------------    ------------
+     |            |   |            |   |            |  |            |
+     | Controller |   | Controller |   | Controller |  | Controller |
+     |            |   |            |   |            |  |            |
+      ------------     ------------     ------------    ------------
+         :              .       .                 :            :
+         :             .         .      Device    :            :
+         :            .           . Configuration :            :
+         :            .           .     Model     :            :
+     ---------     ---------   ---------     ---------      ---------
+    | Network |   | Network | | Network |   | Network |    | Network |
+    | Element |   | Element | | Element |   | Element |    | Element |
+     ---------     ---------   ---------     ---------      ---------
+~~~~
+{: #fig-rfc8309-sdn-arch-service-orchestrator title="RFC8309 An Example SDN Architecture with a Service Orchestrator"}
+
+The {{?RFC8309}} shows the following models at different layers of abstraction:
+
++ device model, between Network Elements and Controllers
++ network model, between Controllers and Network Orchestrators
++ service model, between Network Orchestrators and Service Orchestrators
++ customer service model, between Service Orchestrators and Customer
+
+### RFC8453
+
+The {{?RFC8453}} describes the ACTN Architecture in the context of the YANG Service Models. The following figure from
+the document shows how the ACTN interfaces may map to YANG data models.
+
+{: #rfc8453-actn-arch-yang-service-models}
+~~~~
+
+                                +--------------------+
+                                |           Customer |
+                                |   +-----+          |
+                                |   | CNC |          |
+                                |   +-----+          |
+                                +--------------------+
+                                         CMI |  Customer Service Model
+                                             |
+                        +---------------------------------------+
+                        |                          Service      |
+                ********|***********************   Orchestrator |
+                * MDSC  |  +-----------------+ *                |
+                *       |  | Service-related | *                |
+                *       |  |    Functions    | *                |
+                *       |  +-----------------+ *                |
+                *       +----------------------*----------------+
+                *                              *  |  Service Delivery
+                *                              *  |  Model
+                *       +----------------------*----------------+
+                *       |                      *   Network      |
+                *       |  +-----------------+ *   Orchestrator |
+                *       |  | Network-related | *                |
+                *       |  |    Functions    | *                |
+                *       |  +-----------------+ *                |
+                ********|***********************                |
+                        +---------------------------------------+
+                                         MPI |  Network Configuration
+                                             |  Model
+                               +------------------------+
+                               |            Domain      |
+                               |  +------+  Controller  |
+                               |  | PNC  |              |
+                               |  +------+              |
+                               +------------------------+
+                                         SBI |  Device Configuration
+                                             |  Model
+                                         +--------+
+                                         | Device |
+                                         +--------+
+~~~~
+{: #fig-rfc8453-actn-arch-yang-service-models title="RFC8453 ACTN Architecture in the Context of the YANG Service Models"}
+
+### SIMAP Positioning
+The previous sections show different examples of interface layering (SDN, Service Model, ACTN) and where YANG modules
+can be used. The SIMAP YANG Module can be used at different layers of abstraction and SIMAP can provide topology at
+different interfaces. Although the SIMAP Module and API is primarily positioned as norhbound multi-layered topology
+model from (SDN) Controllers, it can also be positioned as follows:
+
++ In the context of {{?RFC8199}}, SIMAP can provide multi-layered topology YANG module as part of both network element
+and network service YANG modules
++ In the context of {{?RFC7426}}, SIMAP can provide multi-layered topology interface as part of both Southbound and
+Service Interfaces
++ In the context of {{?RFC8309}}, SIMAP can provide multi-layered topology model as part of device model, network model,
+service model and customer service model
++ In the context of {{?RFC8453}}, SIMAP can provide multi-layered topology model as part of SBI (southbound interface to
+network), MPI (interface between multi-domain service coordinator and network controller) and CMI (interface between
+customer network controller and multi-domain service controller)
+
+
 ##  Network Topology {#sec-ntw-topo}
 
    Interestingly, we could not find any network topology definition in
@@ -626,6 +855,9 @@ This document has no actions for IANA.
    >
    > Topology information may also be derived from servers that monitor
    network state, and from servers that perform provisioning functions.
+
+   Another example is {{?RFC8453}} that defines native topology, abstract topology, black topology, grey topology,
+   but all in the context of actual topology and physical topology that are not specifically defined.
 
 ##  Core SIMAP Components {#sec-core}
 
