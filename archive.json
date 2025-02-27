@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-25T01:01:54.423535+00:00",
+  "timestamp": "2025-02-27T01:01:31.895720+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -1197,6 +1197,228 @@
       "mergedBy": "OlgaHuawei",
       "mergeCommit": {
         "oid": "7404546eb2c9720f787366de77b93a7d81edf012"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 39,
+      "id": "PR_kwDOM1onH86MebrU",
+      "title": "Architectural requirements",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/39",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Split architectural requirements into individual ones:\r\n- Scalability\r\n- Performance\r\n- Usability\r\n- Discovery\r\n- Synch",
+      "createdAt": "2025-02-25T13:55:41Z",
+      "updatedAt": "2025-02-25T13:56:18Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "b9d9978c329c3dd9d3b0a858c756bbb612ea50ee",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "ArchitecturalRequirements",
+      "headRefOid": "60f25f144e392e92cad059926d309c4c2fb6432a",
+      "closedAt": "2025-02-25T13:56:17Z",
+      "mergedAt": "2025-02-25T13:56:17Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "8752d416478e21c7bc37d9db093a0476d9701ab8"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 40,
+      "id": "PR_kwDOM1onH86Mp8e8",
+      "title": "Added SIMAP positining in regards to some IETF abstraction layers",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/40",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-26T14:29:28Z",
+      "updatedAt": "2025-02-26T16:20:21Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "8752d416478e21c7bc37d9db093a0476d9701ab8",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "simap-positioning",
+      "headRefOid": "f3f6e1a1f7247a17b7a94ea6512fb4bf143d99ab",
+      "closedAt": "2025-02-26T14:50:40Z",
+      "mergedAt": "2025-02-26T14:50:40Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "808fea834b6206126ead65779d0a5f931e244e6b"
+      },
+      "comments": [
+        {
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@OlgaHuawei, seems that the review comments are not integrated in the merged version.",
+          "createdAt": "2025-02-26T14:53:18Z",
+          "updatedAt": "2025-02-26T14:53:18Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@boucadair Please check the latest pull request",
+          "createdAt": "2025-02-26T16:20:19Z",
+          "updatedAt": "2025-02-26T16:20:19Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOM1onH86do1wY",
+          "commit": {
+            "abbreviatedOid": "f3f6e1a"
+          },
+          "author": "boucadair",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "CHANGES_REQUESTED",
+          "body": "Thanks.\r\n\r\nI would keep only the section \"SIMAP Positioning\" and remove the ones mirroring content from the other RFCs.",
+          "createdAt": "2025-02-26T14:33:15Z",
+          "updatedAt": "2025-02-26T14:43:58Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "```suggestion\r\n## Positioning in Reference to RFCs 8199, 7426, 8309, and 8453\r\n```",
+              "createdAt": "2025-02-26T14:33:15Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 11,
+              "body": "```suggestion\r\n{{?RFC8199}} advocates for a consistent classification of YANG modules and introduces two abstraction layers for\r\n```",
+              "createdAt": "2025-02-26T14:34:27Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 16,
+              "body": "```suggestion\r\nwith experience implementing network protocols.\r\n\r\n```",
+              "createdAt": "2025-02-26T14:35:11Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 22,
+              "body": "```suggestion\r\nThe YANG Module Abstraction Layers defined in {{?RFC8199}} are shown in {{fig-rfc8199-yang-module-abstraction-layers}}.\r\n```",
+              "createdAt": "2025-02-26T14:36:21Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 58,
+              "body": "```suggestion\r\nThe IRTF {{?RFC7426}} defines the SDN layers and architecture as shown in {{fig-rfc7426-sdn-layer-architecture}}.\r\n```",
+              "createdAt": "2025-02-26T14:37:26Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 62,
+              "body": "```suggestion\r\n                   o--------------------------------o\r\n```",
+              "createdAt": "2025-02-26T14:37:33Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 25,
+              "body": "```suggestion\r\n~~~~ aasvg\r\n```",
+              "createdAt": "2025-02-26T14:37:46Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 61,
+              "body": "```suggestion\r\n~~~~ aasvg\r\n```",
+              "createdAt": "2025-02-26T14:38:06Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 105,
+              "body": "```suggestion\r\n{{?RFC7426}} states that:\r\n```",
+              "createdAt": "2025-02-26T14:38:20Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 107,
+              "body": "```suggestion\r\n+ YANG model is suitable for specifying DAL for the forwarding and\r\n```",
+              "createdAt": "2025-02-26T14:38:34Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 114,
+              "body": "```suggestion\r\n{{?RFC8309}} defines where service models might fit into an SDN Architecture, although the service model\r\n```",
+              "createdAt": "2025-02-26T14:39:07Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 115,
+              "body": "```suggestion\r\ndoes not require or preclude the use of SDN.  {{rfc8309-sdn-arch-service-orchestrator}} shows an example SDN Architecture with a\r\n```",
+              "createdAt": "2025-02-26T14:39:28Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 119,
+              "body": "```suggestion\r\n~~~~ aasvg\r\n```",
+              "createdAt": "2025-02-26T14:39:38Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 159,
+              "body": "```suggestion\r\n{{?RFC8309}} shows the following models at different layers of abstraction:\r\n```",
+              "createdAt": "2025-02-26T14:39:50Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 168,
+              "body": "```suggestion\r\n{{?RFC8453}} describes the ACTN Architecture in the context of the YANG Service Models. {{rfc8453-actn-arch-yang-service-models}}\r\n```",
+              "createdAt": "2025-02-26T14:40:20Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 169,
+              "body": "```suggestion\r\nshows how the ACTN interfaces may map to YANG data models.\r\n```",
+              "createdAt": "2025-02-26T14:40:34Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 217,
+              "body": "```suggestion\r\n\r\nThe previous sections show different examples of interface layering (SDN, Service Model, ACTN) and where YANG modules\r\n```",
+              "createdAt": "2025-02-26T14:41:01Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            },
+            {
+              "originalPosition": 218,
+              "body": "```suggestion\r\ncan be used. The SIMAP can be used at different layers of abstraction and SIMAP can provide topology at\r\n```",
+              "createdAt": "2025-02-26T14:41:15Z",
+              "updatedAt": "2025-02-26T14:43:58Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 41,
+      "id": "PR_kwDOM1onH86Mqttu",
+      "title": "Added SIMAP positining in regards to some IETF abstraction layers",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/41",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-02-26T15:43:28Z",
+      "updatedAt": "2025-02-26T15:43:37Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "808fea834b6206126ead65779d0a5f931e244e6b",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "simap-positioning",
+      "headRefOid": "9e9a4a92f7293ae868612240c3da8ac1642e33b1",
+      "closedAt": "2025-02-26T15:43:37Z",
+      "mergedAt": "2025-02-26T15:43:37Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "dc809187134b587939fff3224d94d0b6f460fffb"
       },
       "comments": [],
       "reviews": []
