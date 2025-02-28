@@ -1206,7 +1206,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-capacity-planning" class="internal xref">Capacity Planning</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8">
-                <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="auto internal xref">3.8</a>.  <a href="#name-network-design" class="internal xref">Network design</a></p>
+                <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="auto internal xref">3.8</a>.  <a href="#name-network-design" class="internal xref">Network Design</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.9">
                 <p id="section-toc.1-1.3.2.9.1"><a href="#section-3.9" class="auto internal xref">3.9</a>.  <a href="#name-network-simulation-and-netw" class="internal xref">Network Simulation and Network Emulation</a></p>
@@ -1679,19 +1679,20 @@ router(s) while evaluating the network performance.<a href="#section-3.7-7" clas
 <div id="network-design">
 <section id="section-3.8">
         <h3 id="name-network-design">
-<a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-network-design" class="section-name selfRef">Network design</a>
+<a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-network-design" class="section-name selfRef">Network Design</a>
         </h3>
-<p id="section-3.8-1">Network design involves defining both the logical structure-such as access, aggregation, and core layers and
+<p id="section-3.8-1">Network design involves defining both the logical structure such as access, aggregation, and core layers and
 the physical layout, including devices and links.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
 <p id="section-3.8-2">It serves as a blueprint, detailing how these elements
-interconnect to deliver the intended network behavior and functionality. The application will retrieve the
-proposed network topology as the initial design, which can then undergo critical analyses-such as traffic flow
-simulations to identify bottlenecks and redundancy checks to ensure resilience-before being transformed into
-actionable intent and, eventually, deployment configurations. Throughout the network's lifecycle, the design rules
-embedded within the topology can be continuously validated. For example, a link rule might specify that a connection
-etween core and aggregation layers must have its source and destination located within the same data center.
-Another example to declare that specific link type should only exist between Core &lt;&gt; Aggregation layer with
-certain constrains on port optic speed, type (LR vs SR for instance) etc."<a href="#section-3.8-2" class="pilcrow">¶</a></p>
+interconnect to deliver the intended network behavior and functionality. The application will retrieve a
+candidate network topology as the initial design, which can then undergo further analysis (e.g., perform traffic flow
+simulations to identify bottlenecks and redundancy checks to ensure resilience) before being transformed into
+actionable intent and, eventually, deployment actions.<a href="#section-3.8-2" class="pilcrow">¶</a></p>
+<p id="section-3.8-3">Throughout the network's lifecycle, the design rules
+embedded within a topology can be continuously validated. For example, a link rule might specify that a connection
+between core and aggregation layers must have its source(s) and destination(s) located within the same data center.
+Another example is to declare that a specific link type should only exist between Core &lt;-&gt; Aggregation layer with
+certain contraints on port optic speed, type (LR vs SR for instance), etc.<a href="#section-3.8-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="network-simulation-and-network-emulation">
