@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 30 August 2025                                    O. G. D. Dios
+Expires: 1 September 2025                                  O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        26 February 2025
+                                                        28 February 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 August 2025.
+   This Internet-Draft will expire on 1 September 2025.
 
 Copyright Notice
 
@@ -90,17 +90,17 @@ Table of Contents
      4.1.  Core Requirements
      4.2.  Design Requirements
      4.3.  Architectural Requirements
-   5.  Security Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   5.  SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309,
+           RFC8453 and RFC8969
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Appendix A.  Related IETF Activities
-     A.1.  Positioning in regards to RFC8199, RFC7426, RFC8309 and
-           RFC8453
-     A.2.  Network Topology
-     A.3.  Core SIMAP Components
-     A.4.  Additional SIMAP Components
+     A.1.  Network Topology
+     A.2.  Core SIMAP Components
+     A.3.  Additional SIMAP Components
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -888,27 +888,106 @@ Table of Contents
       order to provide up to date layered topology via SIMAP API to the
       client/application
 
-5.  Security Considerations
+5.  SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309, RFC8453
+    and RFC8969
+
+   [RFC8199] advocates for a consistent classification of YANG modules
+   and introduces 2 abstraction layers for YANG modules:
+
+   *  network element YANG modules
+
+   *  network service YANG modules
+
+   The IRTF [RFC7426] defines the SDN layers and architecture and
+   proposes the following interfaces:
+
+   *  southbound interfaces between the network devices and controllers/
+      managers
+
+   *  service interface between controllers/managers and applications
+
+   [RFC8309] defines where service model might fit into the SDN
+   Architecture, although the service model does not require or preclude
+   the use of SDN.  It shows the following models at different layers of
+   abstraction:
+
+   *  device model, between network elements and controllers
+
+   *  network model, between controllers and network orchestrators
+
+   *  service model, between network orchestrators and service
+      orchestrators
+
+   *  customer service model, between service orchestrators and customer
+
+   [RFC8453] describes the ACTN architecture in the context of the YANG
+   service models.  It shows how ACTN interfaces relate to device model,
+   network model and customer service model.
+
+   [RFC8969] describes a framework for service and network management
+   automation that takes advantage of YANG modelling technologies.  This
+   framework is drawn from a network operator perspective irrespective
+   of the origin of a data model.  [RFC8969] introduces "network service
+   models" and describes the layering and representation of models
+   within a network operator as follows:
+
+   *  device model, between device and controller
+
+   *  network model (operator oriented), between controller (that
+      includes network orchestration function) and service orchestrator
+
+   *  service model (customer oriented), between service orchestrator
+      and customer, this is network service model
+
+   The SIMAP YANG module can be used at different layers of abstraction
+   and SIMAP can provide topology at different interfaces.  Although the
+   SIMAP module and API is primarily positioned as northbound multi-
+   layered topology model from (SDN) Controllers, it can also be
+   positioned as follows:
+
+   *  In the context of [RFC8199], SIMAP can provide multi-layered
+      topology YANG module as part of both network element and network
+      service YANG modules
+
+   *  In the context of [RFC7426], SIMAP can provide multi-layered
+      topology interface as part of both Southbound and Service
+      Interfaces
+
+   *  In the context of [RFC8309], SIMAP can provide multi-layered
+      topology model as part of device model, network model, service
+      model and customer service model
+
+   *  In the context of [RFC8453], SIMAP can provide multi-layered
+      topology model as part of SBI (southbound interface to network),
+      MPI (interface between multi-domain service coordinator and
+      network controller) and CMI (interface between customer network
+      controller and multi-domain service controller)
+
+   *  In the context of [RFC8969], SIMAP can provide multi-layered
+      topology model as part of device model, network model and network
+      service model
+
+6.  Security Considerations
 
    As this document covers the SIMAP concepts, requirements, and use
    cases, there is no specific security considerations.  However, the
    RFC 8345 Security Considerations aspects will be useful when
    designing the solution.
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    This document has no actions for IANA.
 
-7.  References
+8.  References
 
-7.1.  Normative References
+8.1.  Normative References
 
    [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
               2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
-7.2.  Informative References
+8.2.  Informative References
 
    [I-D.ietf-ccamp-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1050,6 +1129,11 @@ Table of Contents
               DOI 10.17487/RFC8944, November 2020,
               <https://www.rfc-editor.org/rfc/rfc8944>.
 
+   [RFC8969]  Wu, Q., Ed., Boucadair, M., Ed., Lopez, D., Xie, C., and
+              L. Geng, "A Framework for Automating Service and Network
+              Management with YANG", RFC 8969, DOI 10.17487/RFC8969,
+              January 2021, <https://www.rfc-editor.org/rfc/rfc8969>.
+
    [RFC9179]  Hopps, C., "A YANG Grouping for Geographic Locations",
               RFC 9179, DOI 10.17487/RFC9179, February 2022,
               <https://www.rfc-editor.org/rfc/rfc9179>.
@@ -1085,66 +1169,7 @@ Table of Contents
 
 Appendix A.  Related IETF Activities
 
-A.1.  Positioning in regards to RFC8199, RFC7426, RFC8309 and RFC8453
-
-   [RFC8199] advocates for a consistent classification of YANG modules
-   and introduces 2 abstraction layers for YANG modules:
-
-   *  network element YANG modules
-
-   *  network service YANG modules
-
-   The IRTF [RFC7426] defines the SDN layers and architecture and
-   proposes the following interfaces:
-
-   *  southbound interfaces between the network devices and controllers/
-      managers
-
-   *  service interface between controllers/managers and applications
-
-   [RFC8309] defines where service model might fit into the SDN
-   Architecture, although the service model does not require or preclude
-   the use of SDN.  It shows the following models at different layers of
-   abstraction:
-
-   *  device model, between network elements and controllers
-
-   *  network model, between controllers and network orchestrators
-
-   *  service model, between network orchestrators and service
-      orchestrators
-
-   *  customer service model, between service orchestrators and customer
-
-   [RFC8453] describes the ACTN architecture in the context of the YANG
-   service models.  It shows how ACTN interfaces relate to device model,
-   network model and customer service model.
-
-   The SIMAP YANG module can be used at different layers of abstraction
-   and SIMAP can provide topology at different interfaces.  Although the
-   SIMAP module and API is primarily positioned as norhbound multi-
-   layered topology model from (SDN) Controllers, it can also be
-   positioned as follows:
-
-   *  In the context of [RFC8199], SIMAP can provide multi-layered
-      topology YANG module as part of both network element and network
-      service YANG modules
-
-   *  In the context of [RFC7426], SIMAP can provide multi-layered
-      topology interface as part of both Southbound and Service
-      Interfaces
-
-   *  In the context of [RFC8309], SIMAP can provide multi-layered
-      topology model as part of device model, network model, service
-      model and customer service model
-
-   *  In the context of [RFC8453], SIMAP can provide multi-layered
-      topology model as part of SBI (southbound interface to network),
-      MPI (interface between multi-domain service coordinator and
-      network controller) and CMI (interface between customer network
-      controller and multi-domain service controller)
-
-A.2.  Network Topology
+A.1.  Network Topology
 
    Interestingly, we could not find any network topology definition in
    IETF RFCs (not even in [RFC8345]) or Internet-Drafts.  However, it is
@@ -1186,7 +1211,7 @@ A.2.  Network Topology
    actual topology and physical topology that are not specifically
    defined.
 
-A.3.  Core SIMAP Components
+A.2.  Core SIMAP Components
 
    The following specifications are core for the SIMAP:
 
@@ -1207,7 +1232,7 @@ A.3.  Core SIMAP Components
       -  A YANG data model for IS-IS topology
          [I-D.ogondio-nmop-isis-topology]
 
-A.4.  Additional SIMAP Components
+A.3.  Additional SIMAP Components
 
    The SIMAP may need to link to the following models, some are already
    augmenting [RFC8345]:
