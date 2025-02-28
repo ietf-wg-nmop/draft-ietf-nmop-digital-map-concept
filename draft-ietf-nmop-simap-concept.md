@@ -138,10 +138,6 @@ communicate and exchange data with each other. It provides the underlying infras
 necessary for establishing, maintaining, and managing connections between different endpoints.
 The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,
 
-Subservice:
-: Represents component of the service that can be independently managed but is not provided as a service.
-The example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN Links, IGP Links.
-
 Resource:
 : Defined in {{?I-D.ietf-nmop-terminology}}
 
@@ -290,7 +286,7 @@ The key objectives of this architecture:
 : The architecture identifies which services are affected by the failure or degradation of particular network components, aiding in prioritizing remediation efforts.
 
 When a service is degraded, the SAIN architecture will highlight where in the assurance service graph to look, as opposed to going hop by hop to troubleshoot the issue.
-More precisely, the SAIN architecture will associate to each service instance a list of symptoms originating from specific subservices, corresponding to components of the network.
+More precisely, the SAIN architecture will associate to each service instance a list of symptoms originating from specific SAIN subservices, corresponding to components of the network.
 These components are good candidates for explaining the source of a service degradation.
 
 The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the SAIN subservices and its symptoms.
