@@ -185,6 +185,48 @@ SIMAP data:
 
 The following subsections provides a non-exhaustive list of SIMAP use cases.
 
+## Common Enablers for SIMAP
+
+This section identifies a set of enablers that are invoked when providing the various busines-oriented SIMAP use cases.
+These enablers are grouped here to avoid duplication.
+
+### Service-> Resource
+
+The SIMAP API can be be invoked to retrieve all services for selected network types.
+An application that trigger such request will be able to retrieve the topology for selected services via the SIMAP API and, from the response,
+it will be able to navigate via the supporting relationship top-down to the lower layers. In doing so, an application will be able to
+determine what logical resources are used by a service. The supporting relations to the lowest layer will help
+application to determine what physical resources are used by the service.
+
+### Resource -> Service
+
+An application can navigate from the physical, Layer 2, or Layer 3 topology to the services that rely upon specific
+resources. For example, the application will be able to select the resources and by navigating the supporting relationship
+bottom-up come to the service and its nodes, tps and links.
+
+This API can be invoked for service impact analysis, for example.
+
+### Traffic Engineering (TE)
+
+Traffic Engineering (TE) {{?RFC9522}} is a network optimization technique designed to enhance network performance and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path selection based on constraints such as bandwidth availability, latency, and link costs.
+
+Its primary goal is to prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting performance requirements.
+
+The TE use case is a combination of the both the capacity planning and the simulation use case. Therefore there are no specific SIMAP requirements.
+
+### Closed Loop
+
+A network closed loop refers to an automated and intelligent system where network operations are continuously monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance without manual intervention.
+
+Key Characteristics of a Network Closed Loop:
+
+* Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build a comprehensive view of network health and performance.
+* Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures, or detect security threats.
+* Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating compromised endpoints, or rerouting traffic.
+* Continuous Optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
+
+The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities (typically links and router), for automated analysis. The corrective measures would be applied, either directly to the network by managed the SIMAP entities (network/node/termination point/link instances) or by validating first the corrective measure in an offline simulation (see the simulation and traffic engineering use cases).
+
 ## Inventory Queries
 
 Network inventory refers to a comprehensive record or database that tracks and documents all the network components and devices within an organization's IT infrastructure.
@@ -229,20 +271,6 @@ The load testing could be done to evaluate performance under stress.
 The Service Feasibility Check application will be able to retrieve the topology at any layer from the controller
 via the SIMAP API and from the response it will be able to navigate to any other YANG modules outside of the
 core SIMAP topology to retrive any other information needed: resource usage, availability, status, etc.
-
-## Service-> Subservice -> Resource
-
-The application will be able to retrieve all services using the SIMAP API for selected network types.
-The application will be able to retrieve the topology for selected services via SIMAP API and from the response
-it will be able to navigate via the supporting relationship top-down to the lower layers. That way, it will be able to
-determine what logical resources are used by the service. The supporting relations to the lowest layer will help
-application to determine what physical resources are used by the service.
-
-## Resource -> Subservice -> Service
-
-The application will be able to navigate from the Physical, L2 or L3 topology to the services that use specific
-resources. For example, the application will be able to select the resource and by navigating the supporting relationship
-bottom-up come to the service and its nodes, tps and links.
 
 ## Intent/Service Assurance
 
@@ -363,14 +391,6 @@ The main use is to model the impact of different types of traffic (e.g., voice, 
 
 This type of simulation focuses on the structure and layout of the network itself. It simulates different network topologies, such as mesh, horse-shoe, bus, star, or tree topologies, and their impact on the network's performance.  It can be used, together with the traffic simualtion to evaluate the most efficient topology for a network, under normal conditions and considering factors like fault tolerance.
 
-## Traffic Engineering
-
-Traffic Engineering (TE) {{?RFC9522}} is a network optimization technique designed to enhance network performance and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path selection based on constraints such as bandwidth availability, latency, and link costs.
-
-Its primary goal is to prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting performance requirements.
-
-The TE use case is a combination of the both the capacity planning and the simulation use case. Therefore there are no specific SIMAP requirements.
-
 ## Postmortem Replay
 
 The postmortem replay use case consists in using SIMAPs for the purpose of analysis of network service property evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates, configuration changes, link status modifications, traffic metrics evolution, and service characteristics, is being made accessible from and/or within a SIMAP to support investigation and automated processing.
@@ -382,21 +402,6 @@ Further than centralizing and correlating such various sources of information, t
 In essence, this use case builds upon a collection of other SIMAP use cases, such as, inventory queries, intent/service assurance, Service KPIs, capacity planning, and simulation to provide a thorough understanding of a network event impacting service assurance.
 
 Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in {{?I-D.ietf-nmop-network-anomaly-architecture}}.
-
-
-## Closed Loop
-
-A network closed loop refers to an automated and intelligent system where network operations are continuously monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance without manual intervention.
-
-Key Characteristics of a Network Closed Loop:
-
-* Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build a comprehensive view of network health and performance.
-* Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures, or detect security threats.
-* Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating compromised endpoints, or rerouting traffic.
-* Continuous Optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
-
-
-The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to map the traffic analysis to the entities (typically links and router), for automated analysis. The corrective measures would be applied, either directly to the network by managed the SIMAP entities (network/node/termination point/link instances) or by validating first the corrective measure in an offline simulation (see the simulation and traffic engineering use cases).
 
 ## Network Digital Twin (NDT)
 
