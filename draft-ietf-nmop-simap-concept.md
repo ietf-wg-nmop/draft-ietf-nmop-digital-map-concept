@@ -467,8 +467,15 @@ REQ-COMMON-APP:
 : This means that clients of the SIMAP API must be able to understand the topology model of layers of any
 domain without having to understand the details of any technologies and domains.
 
+REQ-GRAPH-TRAVERSAL:
+: SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
+source and sink relationships to termination-points may not be sufficient, we may need to have the direct
+relationship between the termination points or nodes.
+
 REQ-SEMANTIC:
 : SIMAP must provide semantics for layered network topologies and for linking external models/data.
+
+The following requirements are more specific requirements for semantics
 
 REQ-LAYER-NAVIGATE:
 : SIMAP must provide intra-layer and inter-layer relationships.
@@ -482,11 +489,6 @@ REQ-PLUGG:
      + Must connect to other YANG modules for inventory, configuration, assurance, etc.
      + Given that no all involved components can be available using YANG, there is a need to connect
        SIMAP YANG model with other modelling mechanisms.
-
-REQ-GRAPH-TRAVERSAL:
-: SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
-source and sink relationships to termination-points may not be sufficient, we may need to have the direct
-relationship between the termination points or nodes.
 
 REQ-BIDIR:
 : SIMAP must provide a mechanism to model bidirectional links.
@@ -520,11 +522,22 @@ REQ-SHARED:
 
 REQ-SUPPORTING:
 : SIMAP must provide a mechanism to model supporting relationships between different types of topological entities
-(e.g., a termination point is supported by the node). This may be required, e.g., if a termination point is not supported by the underlying a termination point, but by the node (e.g., a loopback does not have physical representation, so it is supported by physical device).
+(e.g., a termination point is supported by the node). This may be required, e.g., if a termination point is not
+supported by the underlying a termination point, but by the node (e.g., a loopback does not have physical
+representation, so it is supported by physical device).
 
 REQ-STATUS:
 : Links and nodes that are down must appear in the topology. The status of the nodes and links must be either
-implemented in the SIMAP or accessible from the SIMAP.
+implemented in the SIMAP or accessible from the SIMAP. Whether the status is included as part of the SIMAP or
+accessible from the SIMAP is left to the solutions.
+
+REQ-DATA-PLANE-FLOW:
+: Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology
+
+REQ-CONTROL-PLANE:
+: Underlay control plane routing state needs to be correlatable to underlay L3 topology. Overlay control-plane
+routing state needs to be correlate-able to overlay L3 network topology.
+
 
 ## Design Requirements
 
