@@ -1590,7 +1590,7 @@ through truck roll reduction. For example, operators may use custom-tags that ar
 the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology. The mapping and correlation can be then used for triggering apprpriate service checks.<a href="#section-3.2-8" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="service-placement-feasibility-checks">
+<div id="sec-feasibility">
 <section id="section-3.3">
         <h3 id="name-service-placement-feasibili">
 <a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-service-placement-feasibili" class="section-name selfRef">Service Placement Feasibility Checks</a>
@@ -1738,7 +1738,7 @@ Another example is to declare that a specific link type should only exist betwee
 certain contraints on port optic speed, type (LR vs SR for instance), etc.<a href="#section-3.7-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="network-simulation-and-network-emulation">
+<div id="sec-emule">
 <section id="section-3.8">
         <h3 id="name-network-simulation-and-netw">
 <a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-network-simulation-and-netw" class="section-name selfRef">Network Simulation and Network Emulation</a>
@@ -1838,7 +1838,28 @@ Further than centralizing and correlating such various sources of information, t
 <section id="section-3.10">
         <h3 id="name-network-digital-twin-ndt">
 <a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-network-digital-twin-ndt" class="section-name selfRef">Network Digital Twin (NDT)</a>
-      </h3>
+        </h3>
+<p id="section-3.10-1">Per <span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>, Network Digital Twin (NDT) is a digital representation that is used in the
+context of Networking and whose physical counterpart is a data network (e.g., provider network or enterprise network). Also,
+as discussed in <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>, network element models and topology models help generate
+virtual twin of the network according to the network element configuration, operation data, network topology relationship, link
+state and other network information. The operation status can be monitored and displayed, and the network configuration change and
+optimization strategy can be pre-verified.<a href="#section-3.10-1" class="pilcrow">¶</a></p>
+<p id="section-3.10-2"><span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-10#section-9.4" class="relref">Section 9.4</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> further elaborate the requirement on various interfaces:<a href="#section-3.10-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.10-3.1">
+            <p id="section-3.10-3.1.1">Network-facing interfaces are twin interfaces between the real
+   network and its twin entity.  They are responsible for
+   information exchange between real network and NDT. SIMAP can be invoked in such interface.<a href="#section-3.10-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.10-3.2">
+            <p id="section-3.10-3.2.1">Application-facing interfaces are  between the NDT and applications.  They are
+   responsible for information exchange between Network Digital
+   Twin and network applications.  SIMAP API can be used, e.f., for feasibility check (<a href="#sec-feasibility" class="auto internal xref">Section 3.3</a>) or emulation (<a href="#sec-emule" class="auto internal xref">Section 3.8</a>)).<a href="#section-3.10-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.10-4"><span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-10#section-9.4" class="relref">Section 9.4</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> insists that these interfaces are recommended to be open and standardized so
+as to avoid either hardware or software vendor lock and achieve interoperability.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2304,6 +2325,10 @@ However, the RFC 8345 Security Considerations aspects will be useful when design
 <dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
         <dd>
 <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-20</span>, <time datetime="2025-01-23" class="refDate">23 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-20">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-20</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.irtf-nmrg-network-digital-twin-arch">[I-D.irtf-nmrg-network-digital-twin-arch]</dt>
+        <dd>
+<span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Yang, H.</span>, <span class="refAuthor">Duan, X.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Pastor, A.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">C. Jacquenet</span>, <span class="refTitle">"Network Digital Twin: Concepts and Reference Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-network-digital-twin-arch-10</span>, <time datetime="2025-02-28" class="refDate">28 February 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-10">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ogondio-nmop-isis-topology">[I-D.ogondio-nmop-isis-topology]</dt>
         <dd>

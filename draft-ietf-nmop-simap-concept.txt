@@ -667,6 +667,37 @@ Table of Contents
 
 3.10.  Network Digital Twin (NDT)
 
+   Per [I-D.irtf-nmrg-network-digital-twin-arch], Network Digital Twin
+   (NDT) is a digital representation that is used in the context of
+   Networking and whose physical counterpart is a data network (e.g.,
+   provider network or enterprise network).  Also, as discussed in
+   Section 9.2 of [I-D.irtf-nmrg-network-digital-twin-arch], network
+   element models and topology models help generate virtual twin of the
+   network according to the network element configuration, operation
+   data, network topology relationship, link state and other network
+   information.  The operation status can be monitored and displayed,
+   and the network configuration change and optimization strategy can be
+   pre-verified.
+
+   Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] further
+   elaborate the requirement on various interfaces:
+
+   *  Network-facing interfaces are twin interfaces between the real
+      network and its twin entity.  They are responsible for information
+      exchange between real network and NDT.  SIMAP can be invoked in
+      such interface.
+
+   *  Application-facing interfaces are between the NDT and
+      applications.  They are responsible for information exchange
+      between Network Digital Twin and network applications.  SIMAP API
+      can be used, e.f., for feasibility check (Section 3.3) or
+      emulation (Section 3.8)).
+
+   Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] insists that
+   these interfaces are recommended to be open and standardized so as to
+   avoid either hardware or software vendor lock and achieve
+   interoperability.
+
 4.  SIMAP Requirements
 
 4.1.  Core Requirements
@@ -1031,6 +1062,15 @@ Table of Contents
               20, 23 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               teas-attachment-circuit-20>.
+
+   [I-D.irtf-nmrg-network-digital-twin-arch]
+              Zhou, C., Yang, H., Duan, X., Lopez, D., Pastor, A., Wu,
+              Q., Boucadair, M., and C. Jacquenet, "Network Digital
+              Twin: Concepts and Reference Architecture", Work in
+              Progress, Internet-Draft, draft-irtf-nmrg-network-digital-
+              twin-arch-10, 28 February 2025,
+              <https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-
+              network-digital-twin-arch-10>.
 
    [I-D.ogondio-nmop-isis-topology]
               de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
