@@ -1405,15 +1405,9 @@ necessary for establishing, maintaining, and managing connections between differ
 The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.23">Subservice:</dt>
+<dt id="section-2-2.23">Resource:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.24">
-          <p id="section-2-2.24.1">Represents component of the service that can be independently managed but is not provided as a service.
-The example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN Links, IGP Links.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.25">Resource:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.26">
-          <p id="section-2-2.26.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.24.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1651,7 +1645,7 @@ core SIMAP topology to retrive any other information needed: resource usage, ava
 </li>
         </ul>
 <p id="section-3.4-5">When a service is degraded, the SAIN architecture will highlight where in the assurance service graph to look, as opposed to going hop by hop to troubleshoot the issue.
-More precisely, the SAIN architecture will associate to each service instance a list of symptoms originating from specific subservices, corresponding to components of the network.
+More precisely, the SAIN architecture will associate to each service instance a list of symptoms originating from specific SAIN subservices, corresponding to components of the network.
 These components are good candidates for explaining the source of a service degradation.<a href="#section-3.4-5" class="pilcrow">¶</a></p>
 <p id="section-3.4-6">The application will be able to retrieve topology layer and any network/node/termination point/link instances from the controller via the SIMAP API and from the response it will be able to determine the health of each instance by navigating to the SAIN subservices and its symptoms.<a href="#section-3.4-6" class="pilcrow">¶</a></p>
 </section>

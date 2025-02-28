@@ -201,11 +201,6 @@ Table of Contents
       maintaining, and managing connections between different endpoints.
       The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,
 
-   Subservice:  Represents component of the service that can be
-      independently managed but is not provided as a service.  The
-      example subservices are: MPLS Tunnels, SRV6 Tunnels, VRFs, VPN
-      Links, IGP Links.
-
    Resource:  Defined in [I-D.ietf-nmop-terminology]
 
    The document defines the following terms:
@@ -446,7 +441,7 @@ Table of Contents
    where in the assurance service graph to look, as opposed to going hop
    by hop to troubleshoot the issue.  More precisely, the SAIN
    architecture will associate to each service instance a list of
-   symptoms originating from specific subservices, corresponding to
+   symptoms originating from specific SAIN subservices, corresponding to
    components of the network.  These components are good candidates for
    explaining the source of a service degradation.
 
