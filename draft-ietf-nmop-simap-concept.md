@@ -8,7 +8,7 @@ submissiontype: IETF
 number:
 date:
 consensus: true
-v: 2
+v: 3
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
@@ -583,20 +583,7 @@ REQ-SYNCH:
 : The controller must perform the sync with the network in order to provide up to date layered topology
 via SIMAP API to the client/application
 
-# Security Considerations
-
-As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations.
-However, the RFC 8345 Security Considerations aspects will be useful when designing the solution.
-
-# IANA Considerations
-
-This document has no actions for IANA.
-
---- back
-
-#  Related IETF Activities
-
-## Positioning in regards to RFC8199, RFC7426, RFC8309 and RFC8453
+# SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309, RFC8453 and RFC8969
 
 {{?RFC8199}} advocates for a consistent classification of YANG modules and introduces 2 abstraction layers for
 YANG modules:
@@ -620,8 +607,18 @@ does not require or preclude the use of SDN. It shows the following models at di
 {{?RFC8453}} describes the ACTN architecture in the context of the YANG service models. It shows how ACTN interfaces
 relate to device model, network model and customer service model.
 
+{{?RFC8969}} describes a framework for service and network management automation that takes advantage of YANG
+modelling technologies. This framework is drawn from a network operator perspective irrespective of the origin of a
+data model. {{?RFC8969}} introduces "network service models" and describes the layering and representation of models
+within a network operator as follows:
+
++ device model, between device and controller
++ network model (operator oriented), between controller (that includes network orchestration function) and
+service orchestrator
++ service model (customer oriented), between service orchestrator and customer, this is network service model
+
 The SIMAP YANG module can be used at different layers of abstraction and SIMAP can provide topology at
-different interfaces. Although the SIMAP module and API is primarily positioned as norhbound multi-layered topology
+different interfaces. Although the SIMAP module and API is primarily positioned as northbound multi-layered topology
 model from (SDN) Controllers, it can also be positioned as follows:
 
 + In the context of {{?RFC8199}}, SIMAP can provide multi-layered topology YANG module as part of both network element
@@ -633,6 +630,23 @@ service model and customer service model
 + In the context of {{?RFC8453}}, SIMAP can provide multi-layered topology model as part of SBI (southbound interface to
 network), MPI (interface between multi-domain service coordinator and network controller) and CMI (interface between
 customer network controller and multi-domain service controller)
++ In the context of {{?RFC8969}}, SIMAP can provide multi-layered topology model as part of device model, network model
+and network service model
+
+# Security Considerations
+
+As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations.
+However, the RFC 8345 Security Considerations aspects will be useful when designing the solution.
+
+# IANA Considerations
+
+This document has no actions for IANA.
+
+--- back
+
+#  Related IETF Activities
+
+
 
 
 ##  Network Topology {#sec-ntw-topo}
