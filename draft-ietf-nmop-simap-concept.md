@@ -257,7 +257,7 @@ essential as it provides many advantages for optimized customer service, reduced
 through truck roll reduction. For example, operators may use custom-tags that are readily available for a customer-facing device and then query
 the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology. The mapping and correlation can be then used for triggering apprpriate service checks.
 
-## Service Placement Feasibility Checks
+## Service Placement Feasibility Checks {#sec-feasibility}
 
 Service placement feasibility checks refers to the process of evaluating whether a specific service can be deployed
 and operated effectively in a given network. This includes accessing the various factors to ensure that the
@@ -355,7 +355,7 @@ between core and aggregation layers must have its source(s) and destination(s) l
 Another example is to declare that a specific link type should only exist between Core <-> Aggregation layer with
 certain contraints on port optic speed, type (LR vs SR for instance), etc.
 
-## Network Simulation and Network Emulation
+## Network Simulation and Network Emulation {#sec-emule}
 
 Network simulation is a process used to analyse the behaviour of networks via software. It allows network engineers and researchers to assess how the network protocols work under different conditions, such as diffenet topologies, traffic loads, network failures, or the introduction of new devices. Network emulation, on the other hand, replicates the behavior of a real-world network, allowing for more realistic analysis compared to network simulation. While network simulation focuses on modeling and approximating network behavior, network emulation involves creating a real-time, functional network environment whose protocol behaves exactly like a real network. Ideally, network emulation uses the same software images as in the real network, but it could also be peformed (with less accuracy) using generic software.
 
@@ -404,6 +404,26 @@ In essence, this use case builds upon a collection of other SIMAP use cases, suc
 Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in {{?I-D.ietf-nmop-network-anomaly-architecture}}.
 
 ## Network Digital Twin (NDT)
+
+Per {{?I-D.irtf-nmrg-network-digital-twin-arch}}, Network Digital Twin (NDT) is a digital representation that is used in the
+context of Networking and whose physical counterpart is a data network (e.g., provider network or enterprise network). Also,
+as discussed in {{Section 9.2 of ?I-D.irtf-nmrg-network-digital-twin-arch}}, network element models and topology models help generate
+virtual twin of the network according to the network element configuration, operation data, network topology relationship, link
+state and other network information. The operation status can be monitored and displayed, and the network configuration change and
+optimization strategy can be pre-verified.
+
+{{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} further elaborate the requirement on various interfaces:
+
+   * Network-facing interfaces are twin interfaces between the real
+        network and its twin entity.  They are responsible for
+        information exchange between real network and NDT. SIMAP can be invoked in such interface.
+
+   * Application-facing interfaces are  between the NDT and applications.  They are
+        responsible for information exchange between Network Digital
+        Twin and network applications.  SIMAP API can be used, e.f., for feasibility check ({{sec-feasibility}}) or emulation ({{sec-emule}})).
+
+{{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} insists that these interfaces are recommended to be open and standardized so
+as to avoid either hardware or software vendor lock and achieve interoperability.
 
 # SIMAP Requirements
 
