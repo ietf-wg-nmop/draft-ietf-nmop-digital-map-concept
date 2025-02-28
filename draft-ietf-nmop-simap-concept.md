@@ -310,20 +310,22 @@ the controller via the SIMAP API and from the response it will be able to map th
 to add to the network, and finally perform the 'what-if' failure analysis by simulating the removal of link(s) and/or
 router(s) while evaluating the network performance.
 
-## Network design
+## Network Design
 
-Network design involves defining both the logical structure-such as access, aggregation, and core layers and
+Network design involves defining both the logical structure such as access, aggregation, and core layers and
 the physical layout, including devices and links.
 
 It serves as a blueprint, detailing how these elements
-interconnect to deliver the intended network behavior and functionality. The application will retrieve the
-proposed network topology as the initial design, which can then undergo critical analyses-such as traffic flow
-simulations to identify bottlenecks and redundancy checks to ensure resilience-before being transformed into
-actionable intent and, eventually, deployment configurations. Throughout the network's lifecycle, the design rules
-embedded within the topology can be continuously validated. For example, a link rule might specify that a connection
-etween core and aggregation layers must have its source and destination located within the same data center.
-Another example to declare that specific link type should only exist between Core <> Aggregation layer with
-certain constrains on port optic speed, type (LR vs SR for instance) etc."
+interconnect to deliver the intended network behavior and functionality. The application will retrieve a
+candidate network topology as the initial design, which can then undergo further analysis (e.g., perform traffic flow
+simulations to identify bottlenecks and redundancy checks to ensure resilience) before being transformed into
+actionable intent and, eventually, deployment actions.
+
+Throughout the network's lifecycle, the design rules
+embedded within a topology can be continuously validated. For example, a link rule might specify that a connection
+between core and aggregation layers must have its source(s) and destination(s) located within the same data center.
+Another example is to declare that a specific link type should only exist between Core <-> Aggregation layer with
+certain contraints on port optic speed, type (LR vs SR for instance), etc.
 
 ## Network Simulation and Network Emulation
 
