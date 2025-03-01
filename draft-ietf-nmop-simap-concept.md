@@ -435,7 +435,7 @@ operators and added as specific semantic requirements to the operator use cases.
 these are focused on summarizing the operators' requirements for the design of the data model and API.
 These are functional requirements translated into low-level requirements for the model designers.
 The rationale for adopting this approach is to ensure that the data model is designed according to the operators'
-requirements, and that they could be used for both design and review of the proposed YANG module(s).
+requirements and that they could be used for both design and review of the candidate YANG module(s).
 
 * Architecture Requirements:
 : We added architectural non-functional requirements as well, as operators were mentioning performance, scale and
