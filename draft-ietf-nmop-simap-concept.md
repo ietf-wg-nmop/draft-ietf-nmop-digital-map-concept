@@ -591,7 +591,7 @@ REQ-RELATIONSHIPS:
 : SIMAP should contain links to other models/data to enable generic navigation to other YANG models in
 generic way.
 
-: SIMAP relationships should also provide information required to define semantics for layered network topologies,
+: The SIMAP relationships should also provide information required to define semantics for layered network topologies,
 such as:
 
 * provide underlay and overlay relations between different types of topological entities
