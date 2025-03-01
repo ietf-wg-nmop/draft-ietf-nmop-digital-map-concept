@@ -627,7 +627,7 @@ may not be networking experts.
 
 REQ-DISCOVERY:
 : A network controller must perform the initial and on-demand discovery of a network in order to provide the layered
-topology via SIMAP API to the client/application.
+topology via the SIMAP API to a client/application.
 
 REQ-SYNCH:
 : The controller must perform the sync with the network in order to provide up to date layered topology
