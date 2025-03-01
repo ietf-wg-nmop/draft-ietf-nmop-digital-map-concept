@@ -706,8 +706,8 @@ Table of Contents
    *  Operator requirements:  These requirements are collected from the
          operators.  They are functional requirements derived from the
          operators' use cases.  Some of the more specific semantic
-         requirements were identified as RFC8345 gaps during the
-         Hackaton with Operators and added as specific semantic
+         requirements were identified as [RFC8345] gaps during the
+         Hackathons with Operators and added as specific semantic
          requirements to the operator use cases.
 
    *  Design requirements:  These are the requirements derived from the
