@@ -431,7 +431,7 @@ use cases. Some of the more specific semantic requirements were identified as {{
 operators and added as specific semantic requirements to the operator use cases.
 
 * Design requirements:
-: These are the requirements derived from the operator requirements and although there is some duplication,
+: These requirements are derived from the operators' requirements. Although there is some duplication,
 these are focused on summarizing the operator requirements for the design of the YANG module and API.
 These are functional requirements translated into the requirements for the model designer.
 The reason for doing this is to ensure that the YANG module is designed according to the operator
