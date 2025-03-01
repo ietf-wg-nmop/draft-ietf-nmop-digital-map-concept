@@ -914,7 +914,8 @@ Table of Contents
       navigation to other YANG models in generic way.
 
       The SIMAP relationships should also provide information required
-      to define semantics for layered network topologies, such as:
+      to define semantics for layered network topologies, such as
+      proving:
 
    *  provide underlay and overlay relations between different types of
       topological entities
