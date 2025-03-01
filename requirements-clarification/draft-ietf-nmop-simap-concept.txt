@@ -904,7 +904,7 @@ Table of Contents
    *  role of the termination points in the link (source, destination,
       hub, spoke), and
 
-   *  some generic way to add metadata
+   *  some generic mechanism to add metadata.
 
    REQ-RELATIONSHIPS:  SIMAP should contain all topological
       relationships inside each layer or between the layers (underlay/
