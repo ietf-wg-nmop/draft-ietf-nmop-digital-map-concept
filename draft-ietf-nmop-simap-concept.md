@@ -507,7 +507,7 @@ REQ-PLUGG:
 : SIMAP must be pluggable. That is,
 
      + Must connect to other YANG modules for device configuration, inventory, configuration, assurance, etc.
-The SIMAP does not contain the detailed configuration for the device, so we should be able to link to it from SIMAP.
+The SIMAP does not contain the detailed device configuration, so a mechanism is needed to be able to link it from SIMAP.
 SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
 to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, inventory of routing policies.
      + Given that no all involved components can be available using YANG, there is a need to connect
