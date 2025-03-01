@@ -339,7 +339,7 @@ by navigating to the SAIN subservices and its symptoms.
 
 ## Service E2E and Per-link KPIs
 
-The application will be able to retrieve a topology at any layer from the controller via the SIMAP API and from the
+The application will be able to retrieve a topology at any layer from a controller via the SIMAP API and from the
 response it will be able to navigate to and retrieve any KPIs for selected topology entity.
 
 ## Capacity Planning
@@ -681,7 +681,7 @@ REQ-RELATIONSHIPS:
 generic way.
 
 : The SIMAP relationships should also provide information required to define semantics for layered network topologies,
-such as proving:
+such as providing:
 
 * underlay and overlay relations between different types of topological entities,
 * additional information that helps with navigation inside a layer and between the layers, for example, easy
@@ -699,7 +699,7 @@ REQ-TEMPO-HISTO:
 : Must support geo-spatial, temporal, and historical data.  The temporal and historical can also be supported
 external to the SIMAP.
 
-## Architectural Requirements
+## Architectural Requirements {#sec-arch}
 
 The following are the architectural requirements for the controller that provides SIMAP API, they are the
 non-functional requirements for the SIMAP API or controllers:
@@ -726,9 +726,9 @@ REQ-SECURITY:
 : The conventional NACM control access rules {{!RFC8341}} should apply. This includes module control access rules,
 protocol operation control access rules, data node control access rules, and notification control access rules.
 
-# SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309, RFC8453 and RFC8969
+# Positioning SIMAP
 
-{{?RFC8199}} advocates for a consistent classification of YANG modules and introduces 2 abstraction layers for
+{{?RFC8199}} advocates for a consistent classification of YANG modules and introduces two abstraction layers for
 YANG modules:
 
 + network element YANG modules
@@ -778,8 +778,10 @@ and network service model
 
 # Security Considerations
 
-As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations.
-However, the RFC 8345 Security Considerations aspects will be useful when designing the solution.
+As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations other
+that those discussed in {{sec-arch}}.
+
+{{Section 8 of !RFC8345}} discusses security aspects that will be useful when designing the SIMAP solution.
 
 # IANA Considerations
 
