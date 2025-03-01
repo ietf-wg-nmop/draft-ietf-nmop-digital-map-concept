@@ -581,7 +581,7 @@ identify their roles, and topological relationships between them.
 
 : SIMAP entities should also provide information required to define semantics for layered network topologies, such as:
 
-* link directionality
+* link directionality,
 * are the links multipoint or not and if so are they point to multipoint or multipoint to multipoint.
 * role of the termination points in the link (source, destination, hub, spoke)
 * some generic way to add metadata
