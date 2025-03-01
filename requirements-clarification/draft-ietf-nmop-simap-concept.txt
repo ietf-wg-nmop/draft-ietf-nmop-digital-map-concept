@@ -965,8 +965,8 @@ Table of Contents
 
    REQ-SECURITY:  The conventional NACM control access rules [RFC8341]
       should apply.  This includes module control access rules, protocol
-      operation control access rules, data node control access rules and
-      notification control access rules.
+      operation control access rules, data node control access rules,
+      and notification control access rules.
 
 5.  SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309, RFC8453
     and RFC8969
@@ -1061,6 +1061,11 @@ Table of Contents
 8.  References
 
 8.1.  Normative References
+
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8341>.
 
    [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
@@ -1196,11 +1201,6 @@ Table of Contents
    [RFC8309]  Wu, Q., Liu, W., and A. Farrel, "Service Models
               Explained", RFC 8309, DOI 10.17487/RFC8309, January 2018,
               <https://www.rfc-editor.org/rfc/rfc8309>.
-
-   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
-              Access Control Model", STD 91, RFC 8341,
-              DOI 10.17487/RFC8341, March 2018,
-              <https://www.rfc-editor.org/rfc/rfc8341>.
 
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
