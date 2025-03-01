@@ -594,7 +594,7 @@ generic way.
 : The SIMAP relationships should also provide information required to define semantics for layered network topologies,
 such as proving:
 
-* provide underlay and overlay relations between different types of topological entities
+* underlay and overlay relations between different types of topological entities,
 * provide additional information that helps with navigation inside the layer and between the layers, for example easy
 identification of resources at the physical layer in primary versus backup paths, if the underlay
 resources are used for load balancing or for backup
