@@ -583,7 +583,7 @@ identify their roles, and topological relationships between them.
 
 * link directionality,
 *  whether the links are multipoint or not and, if so, are whether these links are point-to-multipoint or multipoint-to-multipoint,
-* role of the termination points in the link (source, destination, hub, spoke)
+* role of the termination points in the link (source, destination, hub, spoke), and
 * some generic way to add metadata
 
 REQ-RELATIONSHIPS:
