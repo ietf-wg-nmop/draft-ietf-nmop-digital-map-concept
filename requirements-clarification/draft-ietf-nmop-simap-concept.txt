@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 1 September 2025                                  O. G. D. Dios
+Expires: 2 September 2025                                  O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        28 February 2025
+                                                            1 March 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2025.
+   This Internet-Draft will expire on 2 September 2025.
 
 Copyright Notice
 
@@ -700,8 +700,8 @@ Table of Contents
 
 4.  SIMAP Requirements
 
-   The SIMAP requirements were split into 3 groups, for different target
-   audience:
+   The SIMAP requirements are split into three groups for different
+   target audience:
 
    *  Operator requirement:  These are requirements collected from the
          operators, they are functional requirements derived from the
