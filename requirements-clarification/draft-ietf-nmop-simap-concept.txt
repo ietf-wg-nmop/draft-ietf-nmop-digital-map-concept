@@ -710,8 +710,8 @@ Table of Contents
          Hackathons with operators and added as specific semantic
          requirements to the operator use cases.
 
-   *  Design requirements:  These are the requirements derived from the
-         operator requirements and although there is some duplication,
+   *  Design requirements:  These requirements are derived from the
+         operators' requirements.  Although there is some duplication,
          these are focused on summarizing the operator requirements for
          the design of the YANG module and API.  These are functional
          requirements translated into the requirements for the model
