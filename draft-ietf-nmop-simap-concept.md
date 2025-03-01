@@ -437,7 +437,7 @@ These are functional requirements translated into low-level requirements for the
 The rationale for adopting this approach is to ensure that the data model is designed according to the operators'
 requirements and that they could be used for both design and review of the candidate YANG module(s).
 
-* Architecture Requirements:
+* Architecture requirements:
 : We added architectural non-functional requirements as well, as operators were mentioning performance, scale and
 network discovery. These are not requirements for the YANG Module, but are requirements either for API itself or for
 the controllers/orchestrators that provide the SIMAP API. Although, they may be common sense requirements not specific
