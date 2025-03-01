@@ -425,7 +425,7 @@ as to avoid either hardware or software vendor lock and achieve interoperability
 
 The SIMAP requirements are split into three groups for different target audience:
 
-* Operator requirement:
+* Operator requirements:
 : These are requirements collected from the operators, they are functional requirements derived from the operators'
 use cases. Some of the more specific semantic requirements were identified as RFC8345 gaps during the Hackaton with
 Operators and added as specific semantic requirements to the operator use cases.
