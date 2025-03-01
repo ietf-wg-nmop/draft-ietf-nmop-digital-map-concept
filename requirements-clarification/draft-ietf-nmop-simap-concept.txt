@@ -727,8 +727,8 @@ Table of Contents
          requirements either to drive the API design itself (e.g., to
          better optimize performance) or for the network controllers and
          orchestrators that expose a SIMAP API.  Although, they may be
-         common sense requirements not specific to SAIN API, we decided
-         to list them here as well.
+         common sense requirements not specific to SIMAP API, these are
+         list here for completeness.
 
 4.1.  Operator Requirements
 
