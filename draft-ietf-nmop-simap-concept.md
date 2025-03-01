@@ -635,7 +635,7 @@ via SIMAP API to the client/application
 
 REQ-SECURITY:
 : The conventional NACM control access rules {{!RFC8341}} should apply. This includes module control access rules,
-protocol operation control access rules, data node control access rules and notification control access rules.
+protocol operation control access rules, data node control access rules, and notification control access rules.
 
 # SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309, RFC8453 and RFC8969
 
