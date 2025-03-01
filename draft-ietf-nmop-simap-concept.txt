@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 1 September 2025                                  O. G. D. Dios
+Expires: 2 September 2025                                  O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        28 February 2025
+                                                            1 March 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 September 2025.
+   This Internet-Draft will expire on 2 September 2025.
 
 Copyright Notice
 
@@ -88,7 +88,7 @@ Table of Contents
      3.9.  Postmortem Replay
      3.10. Network Digital Twin (NDT)
    4.  SIMAP Requirements
-     4.1.  Core Requirements
+     4.1.  Operator Requirements
      4.2.  Design Requirements
      4.3.  Architectural Requirements
    5.  SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309,
@@ -700,10 +700,41 @@ Table of Contents
 
 4.  SIMAP Requirements
 
-4.1.  Core Requirements
+   The SIMAP requirements are split into three groups for different
+   target audience:
 
-   The following are the core requirements for the SIMAP (note that some
-   of them are supported by default by [RFC8345]):
+   *  Operator requirements:  These requirements are collected from the
+         operators.  They are functional requirements derived from the
+         operators' use cases.  Some of the more specific semantic
+         requirements were identified as [RFC8345] gaps during the
+         Hackathons with operators and added as specific semantic
+         requirements to the operator use cases.
+
+   *  Design requirements:  These requirements are derived from the
+         operators' requirements.  Although there is some duplication,
+         these are focused on summarizing the operators' requirements
+         for the design of the data model and API.  These are functional
+         requirements translated into low-level requirements for the
+         model designers.  The rationale for adopting this approach is
+         to ensure that the data model is designed according to the
+         operators' requirements and that they could be used for both
+         design and review of the candidate YANG module(s).
+
+   *  Architecture requirements:  Architectural (non-functional)
+         requirements are captured as well, as operators identified
+         performance needs, large scale support, and network discovery.
+         These are not requirements for the data model, but are
+         requirements either to drive the API design itself (e.g., to
+         better optimize performance) or for the network controllers and
+         orchestrators that expose a SIMAP API.  Although, they may be
+         common sense requirements not specific to SIMAP API, these are
+         list here for completeness.
+
+4.1.  Operator Requirements
+
+   The following are the operators' requirements for the SIMAP.  Note
+   that some of these requirements are supported by default by
+   [RFC8345].
 
    REQ-BASIC-MODEL-SUPPORT:  Basic model with network, node, link, and
       termination point entity types.
@@ -769,15 +800,21 @@ Table of Contents
    The following requirements are more specific requirements for
    semantics
 
-   REQ-LAYER-NAVIGATE:  SIMAP must provide intra-layer and inter-layer
-      relationships.
+   REQ-LAYER-NAVIGATE:  SIMAP must provide capability to navigate inside
+      the topology layer and between the topology layers
 
    REQ-EXTENSIBLE:  SIMAP must be extensible with metadata.
 
    REQ-PLUGG:  SIMAP must be pluggable.  That is,
 
-      *  Must connect to other YANG modules for inventory,
-         configuration, assurance, etc.
+      *  Must connect to other YANG modules for device configuration,
+         inventory, configuration, assurance, etc.  The SIMAP does not
+         contain the detailed device configuration, so a mechanism is
+         needed to be able to link it from SIMAP.  SIMAP should also be
+         linked to a 'logical configuration inventory'.  Several
+         examples of the type of logical information to be linked from
+         SIMAP: inventory of logical interfaces, inventory of ACLs, or
+         inventory of routing policies.
 
       *  Given that no all involved components can be available using
          YANG, there is a need to connect SIMAP YANG model with other
@@ -837,10 +874,7 @@ Table of Contents
 
 4.2.  Design Requirements
 
-   The following are design requirements for modelling the SIMAP.  They
-   are derived from the core requirements collected from the operators
-   and although there is some duplication, these are focused on
-   summarizing the requirements for the design of the model and API:
+   The following are the design requirements for the SIMAP data model:
 
    REQ-TOPO-ONLY:  SIMAP should contain only topological information.
 
@@ -859,12 +893,44 @@ Table of Contents
       to identify topological entities at different layers, identify
       their roles, and topological relationships between them.
 
+      SIMAP entities should also provide information required to define
+      semantics for layered network topologies, such as:
+
+   *  link directionality,
+
+   *  whether the links are multipoint or not and, if so, are whether
+      these links are point-to-multipoint or multipoint-to-multipoint,
+
+   *  role of the termination points in the link (source, destination,
+      hub, spoke), and
+
+   *  some generic mechanism to add metadata.
+
    REQ-RELATIONSHIPS:  SIMAP should contain all topological
       relationships inside each layer or between the layers (underlay/
       overlay)
 
       SIMAP should contain links to other models/data to enable generic
       navigation to other YANG models in generic way.
+
+      The SIMAP relationships should also provide information required
+      to define semantics for layered network topologies, such as
+      proving:
+
+   *  underlay and overlay relations between different types of
+      topological entities,
+
+   *  additional information that helps with navigation inside a layer
+      and between the layers, for example, easy identification of
+      resources at the physical layer in primary versus backup paths, if
+      the underlay resources are used for load balancing or for backup,
+
+   *  capability to model nodes, termination points, and links contained
+      in a network, but also nodes and links shared between networks,
+      and
+
+   *  relationships between networks, either for modelling of underlay
+      and overlay or modelling network that contains multiple networks.
 
    REQ-CONDITIONAL:  Provide capability for conditional retrieval of
       parts of SIMAP.
@@ -877,25 +943,30 @@ Table of Contents
 
    The following are the architectural requirements for the controller
    that provides SIMAP API, they are the non-functional requirements for
-   the SIMAP API:
+   the SIMAP API or controllers:
 
    REQ-SCALES:  The SIMAP API must be scalable, it must support any
       provider network, independent of its size.
 
    REQ-PERFORMANCE:  The SIMAP API must be performant, and have
-      acceptable response-time.
+      acceptable response-time.  Although we are not to define
 
    REQ-USABILITY:  The SIMAP API must be simple and easy to integrate
       with the client applications, whose developers may not be
       networking experts.
 
-   REQ-DISCOVERY:  The SIMAP API must be simple and easy to integrate
-      with the client applications, whose developers may not be
-      networking experts.
+   REQ-DISCOVERY:  A network controller must perform the initial and on-
+      demand discovery of a network in order to provide the layered
+      topology via the SIMAP API to a client/application.
 
    REQ-SYNCH:  The controller must perform the sync with the network in
       order to provide up to date layered topology via SIMAP API to the
       client/application
+
+   REQ-SECURITY:  The conventional NACM control access rules [RFC8341]
+      should apply.  This includes module control access rules, protocol
+      operation control access rules, data node control access rules,
+      and notification control access rules.
 
 5.  SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309, RFC8453
     and RFC8969
@@ -991,6 +1062,11 @@ Table of Contents
 
 8.1.  Normative References
 
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8341>.
+
    [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
               Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
               Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
@@ -1018,9 +1094,9 @@ Table of Contents
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A Base YANG Data Model for Network Inventory",
               Work in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-yang-04, 5 November 2024,
+              inventory-yang-05, 28 February 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-yang-04>.
+              network-inventory-yang-05>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., and P. Francois, "An Architecture for a
