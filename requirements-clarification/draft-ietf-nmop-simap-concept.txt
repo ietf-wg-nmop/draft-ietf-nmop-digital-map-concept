@@ -917,8 +917,8 @@ Table of Contents
       to define semantics for layered network topologies, such as
       proving:
 
-   *  provide underlay and overlay relations between different types of
-      topological entities
+   *  underlay and overlay relations between different types of
+      topological entities,
 
    *  provide additional information that helps with navigation inside
       the layer and between the layers, for example easy identification
