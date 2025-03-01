@@ -720,7 +720,7 @@ Table of Contents
          operators' requirements and that they could be used for both
          design and review of the candidate YANG module(s).
 
-   *  Architecture Requirements:  We added architectural non-functional
+   *  Architecture requirements:  We added architectural non-functional
          requirements as well, as operators were mentioning performance,
          scale and network discovery.  These are not requirements for
          the YANG Module, but are requirements either for API itself or
