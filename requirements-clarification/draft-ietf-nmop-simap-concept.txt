@@ -712,8 +712,8 @@ Table of Contents
 
    *  Design requirements:  These requirements are derived from the
          operators' requirements.  Although there is some duplication,
-         these are focused on summarizing the operator requirements for
-         the design of the YANG module and API.  These are functional
+         these are focused on summarizing the operators' requirements
+         for the design of the data model and API.  These are functional
          requirements translated into the requirements for the model
          designer.  The reason for doing this is to ensure that the YANG
          module is designed according to the operator requirements, and
