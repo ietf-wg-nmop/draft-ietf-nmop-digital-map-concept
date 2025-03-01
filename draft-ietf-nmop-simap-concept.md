@@ -423,7 +423,7 @@ as to avoid either hardware or software vendor lock and achieve interoperability
 
 # SIMAP Requirements
 
-The SIMAP requirements were split into 3 groups, for different target audience:
+The SIMAP requirements are split into three groups for different target audience:
 
 * Operator requirement:
 : These are requirements collected from the operators, they are functional requirements derived from the operators'
