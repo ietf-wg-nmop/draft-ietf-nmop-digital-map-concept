@@ -930,7 +930,7 @@ Table of Contents
       and
 
    *  relationships between networks, either for modelling of underlay
-      and overlay or modelling network that contains multiple netwworks
+      and overlay or modelling network that contains multiple networks.
 
    REQ-CONDITIONAL:  Provide capability for conditional retrieval of
       parts of SIMAP.
