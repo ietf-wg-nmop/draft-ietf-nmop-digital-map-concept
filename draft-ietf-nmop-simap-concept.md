@@ -626,7 +626,7 @@ REQ-USABILITY:
 may not be networking experts.
 
 REQ-DISCOVERY:
-: The controller must perform the initial and on demand discovery of the network in order to provide the layered
+: A network controller must perform the initial and on-demand discovery of a network in order to provide the layered
 topology via SIMAP API to the client/application.
 
 REQ-SYNCH:
