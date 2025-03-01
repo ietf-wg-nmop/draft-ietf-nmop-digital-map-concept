@@ -564,7 +564,7 @@ routing state needs to be correlate-able to overlay L3 network topology.
 
 ## Design Requirements
 
-The following are the design requirements for the SIMAP YANG Module(s):
+The following are the design requirements for the SIMAP data model:
 
 REQ-TOPO-ONLY:
 : SIMAP should contain only topological information.
