@@ -505,12 +505,12 @@ and standardized so as to avoid either hardware or software vendor lock and achi
 
 # SIMAP Requirements
 
-The SIMAP requirements are split into three groups for different target audience:
+The SIMAP requirements are split into three groups for different target audiences:
 
 * Operator requirements:
 : These requirements are collected from the operators. They are functional requirements derived from the operators'
-use cases. Some of the more specific semantic requirements were identified as {{!RFC8345}} gaps during the Hackathons with
-operators and added as specific semantic requirements to the operator use cases.
+use cases. Some of the more specific semantic requirements were identified as {{!RFC8345}} gaps during the Hackathons
+with operators and added as specific semantic requirements to the operator use cases.
 
 * Design requirements:
 : These requirements are derived from the operators' requirements. Although there is some duplication,
@@ -520,10 +520,11 @@ The rationale for adopting this approach is to ensure that the data model is des
 requirements and that they could be used for both design and review of the candidate YANG module(s).
 
 * Architecture requirements:
-: Architectural (non-functional) requirements are captured as well, as operators identified performance needs, large scale support,  and
-network discovery. These are not requirements for the data model, but are requirements either to drive the API design itself (e.g., to better optimize performance) or for
-the network controllers and orchestrators that expose a SIMAP API. Although, they may be common sense requirements not specific
-to SIMAP API,  these are list here for completeness.
+: Architectural (non-functional) requirements are captured as well, as operators identified performance needs,
+large scale support,  and network discovery. These are not data model requirements, but are requirements
+either to drive the API design itself (e.g., to better optimize performance) or for the network controllers and
+orchestrators that expose a SIMAP API. Although, they may be common sense requirements
+not specific to SIMAP API,  they are listed here for completeness.
 
 
 ## Operator Requirements
@@ -535,13 +536,17 @@ REQ-BASIC-MODEL-SUPPORT:
 : Basic model with network, node, link, and termination point entity types.
 
 : This means that users of the SIMAP model
-must be able to understand topology model at any layer via these core concepts only,
+must be able to understand a topology model at any layer via these core concepts only,
 without having to go to the details of the specific augmentations to understand the topology.
 
 REQ-LAYERED-MODEL:
-: Layered SIMAP, from physical network (ideally optical, layer 2, layer 3) up to  service and intent views.
+: Topology layers from physical layer up to service layer.
+
+: SIMAP must provide the view for all layers of network topology, from physical network
+(ideally optical), layer 2, layer 3 up to  service and intent views.
 
 REQ-PASSIVE-TOPO:
+: Topology includes passive topology.
 : SIMAP must support topology of the complete network, including active and passive parts.
 : For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
 essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
@@ -559,22 +564,24 @@ snapshots and to switch easily between them.
 for future simulation and a change that reflects the current reality of the network.
 
 REQ-STD-API-BASED:
-: Standard based SIMAP Models and APIs, for multi-vendor support.
-:  SIMAP must provide the standard YANG APIs
-that provide for read/write and queries.  These APIs must also provide the capability to retrieve the
-links to external data/models.
+: Standard based SIMAP models and APIs, for multi-vendor support.
+:  SIMAP must provide the standard YANG APIs that provide for read/write and queries.
+These APIs must also provide the capability to retrieve the links to external data/models.
 
 REQ-COMMON-APP:
+: Common SIMAP models and APIs, for multi domain.
 : SIMAP models and APIs must be common over different network domains (campus, core, data center, etc.).
 : This means that clients of the SIMAP API must be able to understand the topology model of layers of any
 domain without having to understand the details of any technologies and domains.
 
 REQ-GRAPH-TRAVERSAL:
+: Topology graph traversal.
 : SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
 relationship between the termination points or nodes.
 
 REQ-SEMANTIC:
+: Network topology sematics
 : SIMAP must provide semantics for layered network topologies and for linking external models/data.
 
 The following requirements are more specific requirements for semantics
