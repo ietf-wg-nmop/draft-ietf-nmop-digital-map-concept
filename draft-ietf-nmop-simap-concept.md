@@ -599,7 +599,7 @@ such as proving:
 identification of resources at the physical layer in primary versus backup paths, if the underlay
 resources are used for load balancing or for backup,
 * capability to model nodes, termination points, and links contained in a network, but also nodes and links shared between networks, and
-* provide relationships between networks, either for modelling of underlay and overlay or modelling network that contains
+* relationships between networks, either for modelling of underlay and overlay or modelling network that contains
 multiple netwworks
 
 
