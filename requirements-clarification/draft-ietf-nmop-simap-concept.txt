@@ -898,11 +898,11 @@ Table of Contents
 
    *  link directionality,
 
-   *  are the links multipoint or not and if so are they point to
-      multipoint or multipoint to multipoint.
+   *  whether the links are multipoint or not and, if so, are whether
+      these links are point-to-multipoint or multipoint-to-multipoint,
 
    *  role of the termination points in the link (source, destination,
-      hub, spoke)
+      hub, spoke), and
 
    *  some generic way to add metadata
 
