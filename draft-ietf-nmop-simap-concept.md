@@ -446,7 +446,7 @@ to SIMAP API,  these are list here for completeness.
 
 ## Operator Requirements
 
-The following are the operator requirements for the SIMAP (note that some of them are supported by
+The following are the operators' requirements for the SIMAP. Note that some of these requirements are supported by
 default by {{!RFC8345}}):
 
 REQ-BASIC-MODEL-SUPPORT:
