@@ -592,7 +592,7 @@ REQ-RELATIONSHIPS:
 generic way.
 
 : The SIMAP relationships should also provide information required to define semantics for layered network topologies,
-such as:
+such as proving:
 
 * provide underlay and overlay relations between different types of topological entities
 * provide additional information that helps with navigation inside the layer and between the layers, for example easy
