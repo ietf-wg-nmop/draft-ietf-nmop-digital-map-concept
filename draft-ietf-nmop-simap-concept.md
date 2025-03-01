@@ -441,7 +441,7 @@ requirements and that they could be used for both design and review of the candi
 : Architectural (non-functional) requirements are captured as well, as operators identified performance needs, large scale support,  and
 network discovery. These are not requirements for the data model, but are requirements either to drive the API design itself (e.g., to better optimize performance) or for
 the network controllers and orchestrators that expose a SIMAP API. Although, they may be common sense requirements not specific
-to SAIN API, we decided to list them here as well.
+to SIMAP API,  these are list here for completeness.
 
 
 ## Operator Requirements
