@@ -597,7 +597,7 @@ such as proving:
 * underlay and overlay relations between different types of topological entities,
 * additional information that helps with navigation inside a layer and between the layers, for example, easy
 identification of resources at the physical layer in primary versus backup paths, if the underlay
-resources are used for load balancing or for backup
+resources are used for load balancing or for backup,
 * provide capability to model nodes, tps and links contained in a network, but also nodes and links shared between networks
 * provide relationships between networks, either for modelling of underlay and overlay or modelling network that contains
 multiple netwworks
