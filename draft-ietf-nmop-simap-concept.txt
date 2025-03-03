@@ -552,6 +552,40 @@ Table of Contents
    should only exist between Core <-> Aggregation layer with certain
    contraints on port optic speed, type (LR vs SR for instance), etc.
 
+   The application can (via SIMAP API):
+
+   *  Write the proposed network design (topology + rules), this is a
+      new potential network.  One network (in case of small network) or
+      interconnect of multiple networks (bigger networks).
+
+   *  Write the intended network design (topology + rules), this is the
+      intent of the network topology that cannot be retrieved from the
+      real network (e.g. our L2 topology intent, or L3 topology intent).
+      One network (in case of small network) or interconnect of multiple
+      networks (bigger networks).
+
+   *  Retrieve the proposed network design (topology + rules)
+
+      -  Use case can be for purpose of traffic simulation, testing
+         behavior under failures.  Network simulation use case is
+         described in Section 3.8.
+
+      -  Use case can be for purpose of comparing different proposed
+         network designs.
+
+      -  Use case can be to build a simulated environment using this
+         design.  Network simulation use case is described in
+         Section 3.8.
+
+   *  Retrieve the intended network design (topology + rules)
+
+   *  At any point in time, compare the discovered topology with
+      intended one
+
+      -  Potentially validating discovered device configurations with
+         intended ones assuming SIMAP has the external reference to
+         configuration from topology.
+
 3.8.  Network Simulation and Network Emulation
 
    Network simulation is a process used to analyse the behaviour of
