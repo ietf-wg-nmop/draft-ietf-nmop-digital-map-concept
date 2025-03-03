@@ -849,8 +849,8 @@ This document has no actions for IANA.
 
 #  Related IETF Activities
 
-
-
+> Note: The models cited in this section are provided for illustration puroses. It is out of scope to recomend
+> which models will be used as base to build the SIMAP.
 
 ##  Network Topology {#sec-ntw-topo}
 
@@ -883,25 +883,25 @@ This document has no actions for IANA.
    > Topology information may also be derived from servers that monitor
    network state, and from servers that perform provisioning functions.
 
-   Another example is {{?RFC8453}} that defines native topology, abstract topology, black topology, grey topology,
+   Another example is {{?RFC8453}} that defines native topology, abstract topology, black topology, and grey topology,
    but all in the context of actual topology and physical topology that are not specifically defined.
 
 ## Topology Abstraction {#sec-topology-abstrcation}
 
-Please refer to the following for some background on topology abstractions:
+Please refer to the following documents for some background on topology abstractions:
 
-* {{?RFC7926}} defines topology abstraction
+* {{?RFC7926}} defines topology abstraction.
 * {{Section 5 of ?RFC8453}} describes the topology abstraction methods and discusses topology abstraction factors,
-types and their context in the ACTN architecture
-* {{Section 3.13 of ?RFC8795}} defines abstract TE topologies
-* {{Section 4.1 of ?RFC8795}} defines native TE topologies
-* {{Section 4.4 of ?RFC8795}} describes how to deal with multiple abstract TE topologies provided by the same provider
+types, and their context in the ACTN architecture.
+* {{Section 3.13 of ?RFC8795}} defines abstract TE topologies.
+* {{Section 4.1 of ?RFC8795}} defines native TE topologies.
+* {{Section 4.4 of ?RFC8795}} describes how to deal with multiple abstract TE topologies provided by the same provider.
 * {{Section 1.3 of ?I-D.ietf-teas-te-topo-and-tunnel-modeling}} gives some background on topology abstraction.
 
 
 ##  Core SIMAP Components {#sec-core}
 
-   The following specifications are core for the SIMAP:
+   The following specifications are relevant to the core functions provided by the SIMAP:
 
    *  IETF network model and network topology model {{?RFC8345}}
 
@@ -926,16 +926,15 @@ The SIMAP may need to link to the following models, some are already augmenting 
 *  SAIN {{?RFC9417}} {{?RFC9418}}
 
 *  Network Inventory Model {{?I-D.ietf-ivy-network-inventory-yang}} focuses on physical and virtual inventory.
-Logical inventory is currently outside of the scope.
-It does not augment RFC8345 like the two Internet-Drafts that it evolved from {{?I-D.ietf-ccamp-network-inventory-yang}}
-and {{?I-D.wzwb-opsawg-network-inventory-management}}. {{?I-D.ietf-ivy-network-inventory-topology}}
-correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.
+Logical inventory is currently outside of the scope. It does not augment {{!RFC8345}}.
+
+ * {{?I-D.ietf-ivy-network-inventory-topology}} correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.
 
 *  KPIs: delay, jitter, loss
 
 *  Attachment Circuits (ACs) {{?I-D.ietf-opsawg-ntw-attachment-circuit}} and {{?I-D.ietf-opsawg-teas-attachment-circuit}}
 
-*  Configuration: L2SM {{?RFC8466}}, L3SM {{?RFC8299}}, L2NM {{?RFC9291}}, and L3NM {{?RFC9182}}
+*  Configuration: The L2SM {{?RFC8466}}, L3SM {{?RFC8299}}, L2NM {{?RFC9291}}, and L3NM {{?RFC9182}}
 
 *  Incident Management for Network Services {{?I-D.ietf-nmop-network-incident-yang}}
 
