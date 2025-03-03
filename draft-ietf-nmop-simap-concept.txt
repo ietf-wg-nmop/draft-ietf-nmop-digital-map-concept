@@ -826,6 +826,31 @@ Table of Contents
       SIMAP must provide a mechanism to navigate across the abstraction
       levels inside a single network layer.
 
+   REQ-LIVE:  Live network topology.
+
+      SIMAP must enable retrieval of multi-layered topology of a live
+      network.
+
+      Live network is the latest known view of the network
+
+   REQ-SNAPSHOT:  Network snapshot topology.
+
+      SIMAP must enable retrieval of multi-layered topology of different
+      snapshots
+
+      Snapshot is the view of the network at any given point in time
+
+   REQ-POTENTIAL:  Potential new network topology.
+
+      SIMAP must enable both retrieval and write access to the potential
+      new network.
+
+      A potential new network is the view at a given point with
+      modifications from the snapshot.
+
+      This view may contain either the full topology or just differences
+      from the snapshot.
+
    REQ-SEMANTIC:  Network topology sematics
 
       SIMAP must provide semantics for layered network topologies and
