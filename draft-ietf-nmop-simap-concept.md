@@ -581,20 +581,20 @@ source and sink relationships to termination-points may not be sufficient, we ma
 relationship between the termination points or nodes.
 
 REQ-TOPOLOGY-ABSTRACTION:
-: Navigation accross the abstraction levels inside a single network layer.
-: In a multi-layer network we need to navigate accross multiple layers. We can also define multiple abstraction
-levels for a single layer and there is a need to navigate accross these abstraction levels as well. Please refer
+: Navigation across the abstraction levels inside a single network layer.
+: In a multi-layer network we need to navigate across multiple layers. We can also define multiple abstraction
+levels for a single layer and there is a need to navigate across these abstraction levels as well. Please refer
 to the {{sec-topology-abstrcation}} for some background on the topology abstraction.
 
 : In a nutshell, a network (even a single layer network) can be represented
 in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
-being able to navigate amongs the different levels of abstractions (e.g. to understand which set of nodes in the native
+being able to navigate amongst the different levels of abstractions (e.g. to understand which set of nodes in the native
 topology are actually represented as a single node in an abstract topology being built on top of the native topology).
-This navigation is different and ortogonal to the multi-layer navigation where we need to report which Layer 2 path is
+This navigation is different and orthogonal to the multi-layer navigation where we need to report which Layer 2 path is
 supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via
 different topology API and model.
 
-: SIMAP must provide a mechanism to navigate accross the abstraction levels inside a single network layer.
+: SIMAP must provide a mechanism to navigate across the abstraction levels inside a single network layer.
 
 REQ-SEMANTIC:
 : Network topology sematics
@@ -853,7 +853,7 @@ Please refer to the following for some background on topology abstractions:
 types and their context in the ACTN architecture
 * {{Section 3.13 of ?RFC8795}} defines abstract TE topologies
 * {{Section 4.1 of ?RFC8795}} defines native TE topologies
-* {{Section 4.4 of ?RFC8795}} describes how to deal with multiple abstrcat TE topologies provided by the same provider
+* {{Section 4.4 of ?RFC8795}} describes how to deal with multiple abstract TE topologies provided by the same provider
 * {{Section 1.3 of ?I-D.ietf-teas-te-topo-and-tunnel-modeling}} gives some background on topology abstraction.
 
 
