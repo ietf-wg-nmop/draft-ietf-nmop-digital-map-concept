@@ -1279,10 +1279,13 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-network-topology" class="internal xref">Network Topology</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-core-simap-components" class="internal xref">Core SIMAP Components</a></p>
+                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-topology-abstraction" class="internal xref">Topology Abstraction</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
-                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-additional-simap-components" class="internal xref">Additional SIMAP Components</a></p>
+                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-core-simap-components" class="internal xref">Core SIMAP Components</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-additional-simap-components" class="internal xref">Additional SIMAP Components</a></p>
 </li>
             </ul>
 </li>
@@ -2107,14 +2110,42 @@ source and sink relationships to termination-points may not be sufficient, we ma
 relationship between the termination points or nodes.<a href="#section-4.1-2.38.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.39">REQ-SEMANTIC:</dt>
+<dt id="section-4.1-2.39">REQ-TOPOLOGY-ABSTRACTION:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.40">
-            <p id="section-4.1-2.40.1">Network topology sematics<a href="#section-4.1-2.40.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.40.1">Navigation accross the abstraction levels inside a single network layer.<a href="#section-4.1-2.40.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.41"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.42">
-            <p id="section-4.1-2.42.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.42.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.42.1">In a multi-layer network we need to navigate accross multiple layers. We can also define multiple abstraction
+levels for a single layer and there is a need to navigate accross these abstraction levels as well. Please refer
+to the <a href="#sec-topology-abstrcation" class="auto internal xref">Appendix A.2</a> for some background on the topology abstraction.<a href="#section-4.1-2.42.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.43"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.44">
+            <p id="section-4.1-2.44.1">In a nutshell, a network (even a single layer network) can be represented
+in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
+being able to navigate amongs the different levels of abstractions (e.g. to understand which set of nodes in the native
+topology are actually represented as a single node in an abstract topology being built on top of the native topology).
+This navigation is different and ortogonal to the multi-layer navigation where we need to report which Layer 2 path is
+supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via
+different topology API and model.<a href="#section-4.1-2.44.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.45"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.46">
+            <p id="section-4.1-2.46.1">SIMAP must provide a mechanism to navigate accross the abstraction levels inside a single network layer.<a href="#section-4.1-2.46.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.47">REQ-SEMANTIC:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.48">
+            <p id="section-4.1-2.48.1">Network topology sematics<a href="#section-4.1-2.48.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.49"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.50">
+            <p id="section-4.1-2.50.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.50.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2531,6 +2562,10 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
         <dd>
 <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-20</span>, <time datetime="2025-01-23" class="refDate">23 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-20">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-20</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="I-D.ietf-teas-te-topo-and-tunnel-modeling">[I-D.ietf-teas-te-topo-and-tunnel-modeling]</dt>
+        <dd>
+<span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Beeram, V. P.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"TE Topology and Tunnel Modeling for Transport Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-te-topo-and-tunnel-modeling-06</span>, <time datetime="2020-07-12" class="refDate">12 July 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-te-topo-and-tunnel-modeling-06">https://datatracker.ietf.org/doc/html/draft-ietf-teas-te-topo-and-tunnel-modeling-06</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.irtf-nmrg-network-digital-twin-arch">[I-D.irtf-nmrg-network-digital-twin-arch]</dt>
         <dd>
 <span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Yang, H.</span>, <span class="refAuthor">Duan, X.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Pastor, A.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">C. Jacquenet</span>, <span class="refTitle">"Network Digital Twin: Concepts and Reference Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-network-digital-twin-arch-10</span>, <time datetime="2025-02-28" class="refDate">28 February 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-10">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-10</a>&gt;</span>. </dd>
@@ -2558,6 +2593,10 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 <dt id="RFC7426">[RFC7426]</dt>
         <dd>
 <span class="refAuthor">Haleplidis, E., Ed.</span>, <span class="refAuthor">Pentikousis, K., Ed.</span>, <span class="refAuthor">Denazis, S.</span>, <span class="refAuthor">Hadi Salim, J.</span>, <span class="refAuthor">Meyer, D.</span>, and <span class="refAuthor">O. Koufopavlou</span>, <span class="refTitle">"Software-Defined Networking (SDN): Layers and Architecture Terminology"</span>, <span class="seriesInfo">RFC 7426</span>, <span class="seriesInfo">DOI 10.17487/RFC7426</span>, <time datetime="2015-01" class="refDate">January 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7426">https://www.rfc-editor.org/rfc/rfc7426</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7926">[RFC7926]</dt>
+        <dd>
+<span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Drake, J.</span>, <span class="refAuthor">Bitar, N.</span>, <span class="refAuthor">Swallow, G.</span>, <span class="refAuthor">Ceccarelli, D.</span>, and <span class="refAuthor">X. Zhang</span>, <span class="refTitle">"Problem Statement and Architecture for Information Exchange between Interconnected Traffic-Engineered Networks"</span>, <span class="seriesInfo">BCP 206</span>, <span class="seriesInfo">RFC 7926</span>, <span class="seriesInfo">DOI 10.17487/RFC7926</span>, <time datetime="2016-07" class="refDate">July 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7926">https://www.rfc-editor.org/rfc/rfc7926</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8199">[RFC8199]</dt>
         <dd>
@@ -2678,33 +2717,62 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
    but all in the context of actual topology and physical topology that are not specifically defined.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-core">
+<div id="sec-topology-abstrcation">
 <section id="appendix-A.2">
-        <h3 id="name-core-simap-components">
-<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-core-simap-components" class="section-name selfRef">Core SIMAP Components</a>
+        <h3 id="name-topology-abstraction">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-topology-abstraction" class="section-name selfRef">Topology Abstraction</a>
         </h3>
-<p id="appendix-A.2-1">The following specifications are core for the SIMAP:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1">Please refer to the following for some background on topology abstractions:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-A.2-2.1">
-            <p id="appendix-A.2-2.1.1">IETF network model and network topology model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#appendix-A.2-2.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-A.2-2.1.1"><span>[<a href="#RFC7926" class="cite xref">RFC7926</a>]</span> defines topology abstraction<a href="#appendix-A.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.2-2.2">
-            <p id="appendix-A.2-2.2.1">A YANG grouping for geographic location <span>[<a href="#RFC9179" class="cite xref">RFC9179</a>]</span><a href="#appendix-A.2-2.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-A.2-2.2.1"><span><a href="https://rfc-editor.org/rfc/rfc8453#section-5" class="relref">Section 5</a> of [<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> describes the topology abstraction methods and discusses topology abstraction factors,
+types and their context in the ACTN architecture<a href="#appendix-A.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-A.2-2.3">
-            <p id="appendix-A.2-2.3.1">IETF modules that augment <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for different technologies:<a href="#appendix-A.2-2.3.1" class="pilcrow">¶</a></p>
+            <p id="appendix-A.2-2.3.1"><span><a href="https://rfc-editor.org/rfc/rfc8795#section-3.13" class="relref">Section 3.13</a> of [<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> defines abstract TE topologies<a href="#appendix-A.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.4">
+            <p id="appendix-A.2-2.4.1"><span><a href="https://rfc-editor.org/rfc/rfc8795#section-4.1" class="relref">Section 4.1</a> of [<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> defines native TE topologies<a href="#appendix-A.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.5">
+            <p id="appendix-A.2-2.5.1"><span><a href="https://rfc-editor.org/rfc/rfc8795#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> describes how to deal with multiple abstrcat TE topologies provided by the same provider<a href="#appendix-A.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.6">
+            <p id="appendix-A.2-2.6.1"><span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-te-topo-and-tunnel-modeling-06#section-1.3" class="relref">Section 1.3</a> of [<a href="#I-D.ietf-teas-te-topo-and-tunnel-modeling" class="cite xref">I-D.ietf-teas-te-topo-and-tunnel-modeling</a>]</span> gives some background on topology abstraction.<a href="#appendix-A.2-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="sec-core">
+<section id="appendix-A.3">
+        <h3 id="name-core-simap-components">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-core-simap-components" class="section-name selfRef">Core SIMAP Components</a>
+        </h3>
+<p id="appendix-A.3-1">The following specifications are core for the SIMAP:<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.2-2.3.2.1">
-                <p id="appendix-A.2-2.3.2.1.1">A YANG data model for Traffic Engineering (TE) Topologies <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span><a href="#appendix-A.2-2.3.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A.3-2.1">
+            <p id="appendix-A.3-2.1.1">IETF network model and network topology model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#appendix-A.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-A.2-2.3.2.2">
-                <p id="appendix-A.2-2.3.2.2.1">A YANG data model for Layer 2 network topologies <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span><a href="#appendix-A.2-2.3.2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.3-2.2">
+            <p id="appendix-A.3-2.2.1">A YANG grouping for geographic location <span>[<a href="#RFC9179" class="cite xref">RFC9179</a>]</span><a href="#appendix-A.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-A.2-2.3.2.3">
-                <p id="appendix-A.2-2.3.2.3.1">A YANG data model for OSFP topology  <span>[<a href="#I-D.ogondio-opsawg-ospf-topology" class="cite xref">I-D.ogondio-opsawg-ospf-topology</a>]</span><a href="#appendix-A.2-2.3.2.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.3-2.3">
+            <p id="appendix-A.3-2.3.1">IETF modules that augment <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for different technologies:<a href="#appendix-A.3-2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A.3-2.3.2.1">
+                <p id="appendix-A.3-2.3.2.1.1">A YANG data model for Traffic Engineering (TE) Topologies <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span><a href="#appendix-A.3-2.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="appendix-A.2-2.3.2.4">
-                <p id="appendix-A.2-2.3.2.4.1">A YANG data model for IS-IS topology <span>[<a href="#I-D.ogondio-nmop-isis-topology" class="cite xref">I-D.ogondio-nmop-isis-topology</a>]</span><a href="#appendix-A.2-2.3.2.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="appendix-A.3-2.3.2.2">
+                <p id="appendix-A.3-2.3.2.2.1">A YANG data model for Layer 2 network topologies <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span><a href="#appendix-A.3-2.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-A.3-2.3.2.3">
+                <p id="appendix-A.3-2.3.2.3.1">A YANG data model for OSFP topology  <span>[<a href="#I-D.ogondio-opsawg-ospf-topology" class="cite xref">I-D.ogondio-opsawg-ospf-topology</a>]</span><a href="#appendix-A.3-2.3.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-A.3-2.3.2.4">
+                <p id="appendix-A.3-2.3.2.4.1">A YANG data model for IS-IS topology <span>[<a href="#I-D.ogondio-nmop-isis-topology" class="cite xref">I-D.ogondio-nmop-isis-topology</a>]</span><a href="#appendix-A.3-2.3.2.4.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
@@ -2712,36 +2780,36 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 </section>
 </div>
 <div id="sec-add">
-<section id="appendix-A.3">
+<section id="appendix-A.4">
         <h3 id="name-additional-simap-components">
-<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-additional-simap-components" class="section-name selfRef">Additional SIMAP Components</a>
+<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-additional-simap-components" class="section-name selfRef">Additional SIMAP Components</a>
         </h3>
-<p id="appendix-A.3-1">The SIMAP may need to link to the following models, some are already augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>:<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.4-1">The SIMAP may need to link to the following models, some are already augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>:<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="appendix-A.3-2.1">
-            <p id="appendix-A.3-2.1.1">Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, augments 'ietf-network' data model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> by adding the SAP.<a href="#appendix-A.3-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="appendix-A.4-2.1">
+            <p id="appendix-A.4-2.1.1">Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, augments 'ietf-network' data model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> by adding the SAP.<a href="#appendix-A.4-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-2.2">
-            <p id="appendix-A.3-2.2.1">SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> <span>[<a href="#RFC9418" class="cite xref">RFC9418</a>]</span><a href="#appendix-A.3-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-2.2">
+            <p id="appendix-A.4-2.2.1">SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> <span>[<a href="#RFC9418" class="cite xref">RFC9418</a>]</span><a href="#appendix-A.4-2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-2.3">
-            <p id="appendix-A.3-2.3.1">Network Inventory Model <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span> focuses on physical and virtual inventory.
+          <li class="normal" id="appendix-A.4-2.3">
+            <p id="appendix-A.4-2.3.1">Network Inventory Model <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span> focuses on physical and virtual inventory.
 Logical inventory is currently outside of the scope.
 It does not augment RFC8345 like the two Internet-Drafts that it evolved from <span>[<a href="#I-D.ietf-ccamp-network-inventory-yang" class="cite xref">I-D.ietf-ccamp-network-inventory-yang</a>]</span>
 and <span>[<a href="#I-D.wzwb-opsawg-network-inventory-management" class="cite xref">I-D.wzwb-opsawg-network-inventory-management</a>]</span>. <span>[<a href="#I-D.ietf-ivy-network-inventory-topology" class="cite xref">I-D.ietf-ivy-network-inventory-topology</a>]</span>
-correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.<a href="#appendix-A.3-2.3.1" class="pilcrow">¶</a></p>
+correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.<a href="#appendix-A.4-2.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-2.4">
-            <p id="appendix-A.3-2.4.1">KPIs: delay, jitter, loss<a href="#appendix-A.3-2.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-2.4">
+            <p id="appendix-A.4-2.4.1">KPIs: delay, jitter, loss<a href="#appendix-A.4-2.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-2.5">
-            <p id="appendix-A.3-2.5.1">Attachment Circuits (ACs) <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span><a href="#appendix-A.3-2.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-2.5">
+            <p id="appendix-A.4-2.5.1">Attachment Circuits (ACs) <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span><a href="#appendix-A.4-2.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-2.6">
-            <p id="appendix-A.3-2.6.1">Configuration: L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, L3SM <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>, L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, and L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#appendix-A.3-2.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-2.6">
+            <p id="appendix-A.4-2.6.1">Configuration: L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, L3SM <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>, L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, and L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#appendix-A.4-2.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="appendix-A.3-2.7">
-            <p id="appendix-A.3-2.7.1">Incident Management for Network Services <span>[<a href="#I-D.ietf-nmop-network-incident-yang" class="cite xref">I-D.ietf-nmop-network-incident-yang</a>]</span><a href="#appendix-A.3-2.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="appendix-A.4-2.7">
+            <p id="appendix-A.4-2.7.1">Incident Management for Network Services <span>[<a href="#I-D.ietf-nmop-network-incident-yang" class="cite xref">I-D.ietf-nmop-network-incident-yang</a>]</span><a href="#appendix-A.4-2.7.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>

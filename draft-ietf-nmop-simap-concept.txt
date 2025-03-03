@@ -99,8 +99,9 @@ Table of Contents
      8.2.  Informative References
    Appendix A.  Related IETF Activities
      A.1.  Network Topology
-     A.2.  Core SIMAP Components
-     A.3.  Additional SIMAP Components
+     A.2.  Topology Abstraction
+     A.3.  Core SIMAP Components
+     A.4.  Additional SIMAP Components
    Acknowledgments
    Contributors
    Authors' Addresses
@@ -801,6 +802,30 @@ Table of Contents
       to termination-points may not be sufficient, we may need to have
       the direct relationship between the termination points or nodes.
 
+   REQ-TOPOLOGY-ABSTRACTION:  Navigation accross the abstraction levels
+      inside a single network layer.
+
+      In a multi-layer network we need to navigate accross multiple
+      layers.  We can also define multiple abstraction levels for a
+      single layer and there is a need to navigate accross these
+      abstraction levels as well.  Please refer to the Appendix A.2 for
+      some background on the topology abstraction.
+
+      In a nutshell, a network (even a single layer network) can be
+      represented in multiple ways providing different abstraction views
+      of the same network.  In such a case, it would be beneficial being
+      able to navigate amongs the different levels of abstractions (e.g.
+      to understand which set of nodes in the native topology are
+      actually represented as a single node in an abstract topology
+      being built on top of the native topology).  This navigation is
+      different and ortogonal to the multi-layer navigation where we
+      need to report which Layer 2 path is supporting a given Layer 3
+      node or link.  Nevertheless, it would not be the best practice to
+      expose it via different topology API and model.
+
+      SIMAP must provide a mechanism to navigate accross the abstraction
+      levels inside a single network layer.
+
    REQ-SEMANTIC:  Network topology sematics
 
       SIMAP must provide semantics for layered network topologies and
@@ -1149,6 +1174,14 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
               teas-attachment-circuit-20>.
 
+   [I-D.ietf-teas-te-topo-and-tunnel-modeling]
+              Bryskin, I., Beeram, V. P., Saad, T., and X. Liu, "TE
+              Topology and Tunnel Modeling for Transport Networks", Work
+              in Progress, Internet-Draft, draft-ietf-teas-te-topo-and-
+              tunnel-modeling-06, 12 July 2020,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-te-
+              topo-and-tunnel-modeling-06>.
+
    [I-D.irtf-nmrg-network-digital-twin-arch]
               Zhou, C., Yang, H., Duan, X., Lopez, D., Pastor, A., Wu,
               Q., Boucadair, M., and C. Jacquenet, "Network Digital
@@ -1198,6 +1231,13 @@ Table of Contents
               Defined Networking (SDN): Layers and Architecture
               Terminology", RFC 7426, DOI 10.17487/RFC7426, January
               2015, <https://www.rfc-editor.org/rfc/rfc7426>.
+
+   [RFC7926]  Farrel, A., Ed., Drake, J., Bitar, N., Swallow, G.,
+              Ceccarelli, D., and X. Zhang, "Problem Statement and
+              Architecture for Information Exchange between
+              Interconnected Traffic-Engineered Networks", BCP 206,
+              RFC 7926, DOI 10.17487/RFC7926, July 2016,
+              <https://www.rfc-editor.org/rfc/rfc7926>.
 
    [RFC8199]  Bogdanovic, D., Claise, B., and C. Moberg, "YANG Module
               Classification", RFC 8199, DOI 10.17487/RFC8199, July
@@ -1315,7 +1355,28 @@ A.1.  Network Topology
    actual topology and physical topology that are not specifically
    defined.
 
-A.2.  Core SIMAP Components
+A.2.  Topology Abstraction
+
+   Please refer to the following for some background on topology
+   abstractions:
+
+   *  [RFC7926] defines topology abstraction
+
+   *  Section 5 of [RFC8453] describes the topology abstraction methods
+      and discusses topology abstraction factors, types and their
+      context in the ACTN architecture
+
+   *  Section 3.13 of [RFC8795] defines abstract TE topologies
+
+   *  Section 4.1 of [RFC8795] defines native TE topologies
+
+   *  Section 4.4 of [RFC8795] describes how to deal with multiple
+      abstrcat TE topologies provided by the same provider
+
+   *  Section 1.3 of [I-D.ietf-teas-te-topo-and-tunnel-modeling] gives
+      some background on topology abstraction.
+
+A.3.  Core SIMAP Components
 
    The following specifications are core for the SIMAP:
 
@@ -1336,7 +1397,7 @@ A.2.  Core SIMAP Components
       -  A YANG data model for IS-IS topology
          [I-D.ogondio-nmop-isis-topology]
 
-A.3.  Additional SIMAP Components
+A.4.  Additional SIMAP Components
 
    The SIMAP may need to link to the following models, some are already
    augmenting [RFC8345]:
