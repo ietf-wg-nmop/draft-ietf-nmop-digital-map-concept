@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 2 September 2025                                  O. G. D. Dios
+Expires: 4 September 2025                                  O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                            1 March 2025
+                                                            3 March 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 September 2025.
+   This Internet-Draft will expire on 4 September 2025.
 
 Copyright Notice
 
@@ -91,8 +91,7 @@ Table of Contents
      4.1.  Operator Requirements
      4.2.  Design Requirements
      4.3.  Architectural Requirements
-   5.  SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309,
-           RFC8453 and RFC8969
+   5.  Positioning SIMAP
    6.  Security Considerations
    7.  IANA Considerations
    8.  References
@@ -456,9 +455,8 @@ Table of Contents
 3.5.  Service E2E and Per-link KPIs
 
    The application will be able to retrieve a topology at any layer from
-   the controller via the SIMAP API and from the response it will be
-   able to navigate to and retrieve any KPIs for selected topology
-   entity.
+   a controller via the SIMAP API and from the response it will be able
+   to navigate to and retrieve any KPIs for selected topology entity.
 
 3.6.  Capacity Planning
 
@@ -926,7 +924,7 @@ Table of Contents
 
       The SIMAP relationships should also provide information required
       to define semantics for layered network topologies, such as
-      proving:
+      providing:
 
    *  underlay and overlay relations between different types of
       topological entities,
@@ -979,11 +977,10 @@ Table of Contents
       operation control access rules, data node control access rules,
       and notification control access rules.
 
-5.  SIMAP Positioning in Regards to RFC8199, RFC7426, RFC8309, RFC8453
-    and RFC8969
+5.  Positioning SIMAP
 
    [RFC8199] advocates for a consistent classification of YANG modules
-   and introduces 2 abstraction layers for YANG modules:
+   and introduces two abstraction layers for YANG modules:
 
    *  network element YANG modules
 
@@ -1061,9 +1058,11 @@ Table of Contents
 6.  Security Considerations
 
    As this document covers the SIMAP concepts, requirements, and use
-   cases, there is no specific security considerations.  However, the
-   RFC 8345 Security Considerations aspects will be useful when
-   designing the solution.
+   cases, there is no specific security considerations other that those
+   discussed in Section 4.3.
+
+   Section 8 of [RFC8345] discusses security aspects that will be useful
+   when designing the SIMAP solution.
 
 7.  IANA Considerations
 
