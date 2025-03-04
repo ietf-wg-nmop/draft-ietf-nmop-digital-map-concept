@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-02T01:05:23.321309+00:00",
+  "timestamp": "2025-03-04T01:02:30.609192+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -140,16 +140,24 @@
       "id": "I_kwDOM1onH86Xi9Il",
       "title": "Add more description for each use case",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Add more narrative text to \"Sample Digital Map Use Cases\" section to easy digest each of these use cases. This does not to be too long.",
       "createdAt": "2024-09-23T12:45:43Z",
-      "updatedAt": "2024-09-23T12:45:43Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-03-03T09:49:00Z",
+      "closedAt": "2025-03-03T09:49:00Z",
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@boucadair We added lots of context for the use cases.  I suggest to close the Issue#3 and open new specific issues for any other future required changes or comments  to the Use Cases. ",
+          "createdAt": "2025-03-03T09:46:35Z",
+          "updatedAt": "2025-03-03T09:47:11Z"
+        }
+      ]
     },
     {
       "number": 5,
@@ -372,15 +380,15 @@
       "id": "I_kwDOM1onH86hOGmK",
       "title": "Navigation across the abstraction levels inside a single network layer (Italo)",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/15",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OlgaHuawei",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Italo: \r\n\r\nMy point is that in a multi-layer network you need to navigate across layers, but also in case of a single layer, it is possible to define multiple abstraction levels (as defined in RFC8795) and then there is a need to navigate across multiple abstraction levels\r\n\r\nI am  not sure my comment at the mike today about topology abstraction has been fully understood\r\n\r\nIf you are not fully familiar with the concept of topology abstraction, I would suggest the following background reading for the definition of topology abstraction:\r\n\r\n  *   RFC 8453 (in particular section 5)\r\n  *   RFC 8795 (and in particular sections 3.13, 4.1 and 4.4)\r\n  *   draft-ietf-teas-te-topo-and-tunnel-modeling (in particular section 1.3)\r\n\r\nIn a nutshell a network (even a single-layer network) can be represented in multiple ways providing different abstraction view of the same network. In such a case, it would be beneficial being able to navigate among the different level of abstractions (e.g., to understand which set of nodes in the native topology are actually represented as a single node in an abstract topology being built on top of the native topology).\r\n\r\nThis navigation is different and orthogonal to the multi-layer navigation where for example we need to report which L2 path is supporting a given L3 node\r\n\r\nMy question is therefore: is SIMAP only dealing with native topologies and navigation among the different networking layers (L3, L2, optical, ...) or also dealing with abstract topologies and navigation among the different level of abstraction?\r\n",
       "createdAt": "2024-11-29T11:26:13Z",
-      "updatedAt": "2025-02-13T16:55:36Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-03T11:03:19Z",
+      "closedAt": "2025-03-03T11:03:18Z",
       "comments": [
         {
           "author": "OlgaHuawei",
@@ -388,6 +396,13 @@
           "body": "I think there is no need to have different basic topology models for abstract and native topologies. But we need to be driven by use cases, so we should discuss with operators. If there is a use case that requires both native and abstract topologies and relations between them, we should add a new requirement for SIMAP to be able to model both abstract and native topologies and layers between them.",
           "createdAt": "2025-02-13T16:47:06Z",
           "updatedAt": "2025-02-13T16:55:36Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I added the new requirement (and references to other IETF) to the draft.",
+          "createdAt": "2025-03-03T11:03:18Z",
+          "updatedAt": "2025-03-03T11:03:18Z"
         }
       ]
     },
@@ -403,7 +418,7 @@
       "labels": [],
       "body": "The topology model (RFC 8345) is based on termination points NOT interfaces.\n\nHowever, throught the document we mix both.... \n\nI believe SIMAP could be the place to clarify the relationship between both. \n\n",
       "createdAt": "2025-02-11T11:08:40Z",
-      "updatedAt": "2025-02-19T12:55:12Z",
+      "updatedAt": "2025-03-03T09:54:52Z",
       "closedAt": null,
       "comments": [
         {
@@ -440,6 +455,13 @@
           "body": "@OlgaHuawei Thanks. I will prepare some text and get feedback through thee NMOP mailing as you suggest.\n(I did my first response on the email... inserted a load of junk, apologies.... I will not do that again :) )\n\n",
           "createdAt": "2025-02-19T12:52:08Z",
           "updatedAt": "2025-02-19T12:55:12Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@nigel-r-davis Nigel, please share some suggestion on the nmop mailing list and I will add it to the draft. Just a reminder that we need to submit the draft by the end of today, so if you want it in this version please do it as soon as possible. Alternatively, as I removed the interface references from our document, maybe we dont have to have the clarification in this draft and leave it for the draft with YANG module itself - that would be my preference",
+          "createdAt": "2025-03-03T09:54:50Z",
+          "updatedAt": "2025-03-03T09:54:50Z"
         }
       ]
     },
@@ -455,7 +477,7 @@
       "labels": [],
       "body": "Do we need to document which models the core SIMAP should navigate to? E.g. ivy physical inventory.\n\n",
       "createdAt": "2025-02-11T11:17:19Z",
-      "updatedAt": "2025-02-12T18:10:57Z",
+      "updatedAt": "2025-03-03T09:51:31Z",
       "closedAt": null,
       "comments": [
         {
@@ -464,6 +486,13 @@
           "body": "I think we wanted to have a generic approach as part of SIMAP. But we also have some external YANG modules that are doing it via augmentation of RFC8345. \n\nMaybe we can have a list of models that are priority and try to include them in the future Hackathons",
           "createdAt": "2025-02-12T18:10:55Z",
           "updatedAt": "2025-02-12T18:10:55Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "@oscargdd Do you agree to follow up on this during the hackathon? If you prefer to add it a a section to the draft, please send me the suggested list of YANG modules and I will merge them with Thomas's list. But in any case, the requirements should be that I can connect any - there are lots of them for all the use cases that we mentioned that need to be connected.",
+          "createdAt": "2025-03-03T09:51:29Z",
+          "updatedAt": "2025-03-03T09:51:29Z"
         }
       ]
     },
@@ -472,15 +501,15 @@
       "id": "I_kwDOM1onH86plh4S",
       "title": "Is there a neeed to point SIMAP to a \"logical configuration inventory\"?",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/23",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "oscargdd",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "SIMAP does not contain the detailed configuration per device. However..... should SIMAP be able to be linked to a \"logical configuration inventory\"? \n\nSeveral examples of the type of logical configuration information to be linked from SIMAP:\n\n- Inventory of logical interfaces  \n- Inventory of ACLs\n- Inventory of Routing policies.\n\nIn my view, it would be great to have such information available and linked from the base model, to keep the base models more abstracted and only with the relevant info for the main use cases. When required, or when the use case requires more detailed, it can go the next level of abstraction.\n\n\n\n",
       "createdAt": "2025-02-11T12:03:43Z",
-      "updatedAt": "2025-02-28T16:40:56Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-03T09:44:39Z",
+      "closedAt": "2025-03-03T09:44:39Z",
       "comments": [
         {
           "author": "OlgaHuawei",
@@ -2058,20 +2087,174 @@
       "id": "PR_kwDOM1onH86NCHpK",
       "title": "update security section",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/52",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-03-01T13:45:08Z",
-      "updatedAt": "2025-03-01T13:45:08Z",
+      "updatedAt": "2025-03-03T09:43:12Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "baseRefName": "main",
       "baseRefOid": "bee62ca603ece76ab675f3ff967893a9bb9f37b2",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "headRefName": "boucadair-patch-7",
       "headRefOid": "58df3e4ad086443b2e9192a75ca3960172d91b8a",
+      "closedAt": "2025-03-03T09:43:12Z",
+      "mergedAt": "2025-03-03T09:43:12Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "f5c8bd600473eb96551df9a033287f8ed7f4a30e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOM1onH86eKmFL",
+          "commit": {
+            "abbreviatedOid": "58df3e4"
+          },
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-03T09:43:06Z",
+          "updatedAt": "2025-03-03T09:43:06Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "id": "PR_kwDOM1onH86NId83",
+      "title": "A new requirement REQ-TOPOLOGY-ABSTRACTION",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/53",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added a new requirement REQ-TOPOLOGY-ABSTRACTION and new section Appendix A.2 for some background on the topology abstraction",
+      "createdAt": "2025-03-03T10:48:38Z",
+      "updatedAt": "2025-03-03T10:48:46Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "f5c8bd600473eb96551df9a033287f8ed7f4a30e",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "native-abstract-topologies",
+      "headRefOid": "7c064221d278f1f6d15353f1844879e9c2a5d19e",
+      "closedAt": "2025-03-03T10:48:45Z",
+      "mergedAt": "2025-03-03T10:48:45Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "8d0457760e4c32500cfae5f4edc399e022187320"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 54,
+      "id": "PR_kwDOM1onH86NIlpb",
+      "title": "Added a new requirement REQ-TOPOLOGY-ABSTRACTION and new section Appe\u2026",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/54",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\u2026ndix A.2 for some background on the topology abstraction",
+      "createdAt": "2025-03-03T11:02:18Z",
+      "updatedAt": "2025-03-03T11:02:26Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "8d0457760e4c32500cfae5f4edc399e022187320",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "native-abstract-topologies",
+      "headRefOid": "d00a2238b047a5a78537706564bf9de8b55c7d30",
+      "closedAt": "2025-03-03T11:02:26Z",
+      "mergedAt": "2025-03-03T11:02:26Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "e8829d095984f0ac2ae45ec84e77974238286008"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 55,
+      "id": "PR_kwDOM1onH86NI9F9",
+      "title": "Added REQ-LIVE, REQ-SNAPSHOT and REQ-POTENTIAL",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/55",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added requirements for live network topology, network snapshot topology and potential new network topology, based on Oscar's recommendations",
+      "createdAt": "2025-03-03T11:46:50Z",
+      "updatedAt": "2025-03-03T11:46:55Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "e8829d095984f0ac2ae45ec84e77974238286008",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "REQ-LIVE-SNAPSHOT-POTENTIAL",
+      "headRefOid": "38f03f297f8dc7269264a9279c5b385436601a16",
+      "closedAt": "2025-03-03T11:46:55Z",
+      "mergedAt": "2025-03-03T11:46:55Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "f718427d36704702b126371169e94a2328b62bac"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 56,
+      "id": "PR_kwDOM1onH86NJKiq",
+      "title": "Updated content for Network Design, based on Sherif's input",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/56",
+      "state": "MERGED",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-03T12:11:42Z",
+      "updatedAt": "2025-03-03T12:18:33Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "f718427d36704702b126371169e94a2328b62bac",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "network-design-api",
+      "headRefOid": "671fa18e9a760a2781e7f684426bf46fd1e8928e",
+      "closedAt": "2025-03-03T12:18:33Z",
+      "mergedAt": "2025-03-03T12:18:33Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "07f68ac6d82fa4187b70050382f80a693187df3b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 57,
+      "id": "PR_kwDOM1onH86NLc_S",
+      "title": "clarify that cited models does mean recommend it",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/57",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Also removed the \"core\" term as this may smell like we did already decided which models to use.",
+      "createdAt": "2025-03-03T16:37:53Z",
+      "updatedAt": "2025-03-03T16:37:53Z",
+      "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "baseRefName": "main",
+      "baseRefOid": "07f68ac6d82fa4187b70050382f80a693187df3b",
+      "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
+      "headRefName": "clarify-that-cited-models-does-mean-recommend-it",
+      "headRefOid": "f8bbf8f80fabb86cdde2ba844ca181e7d8b49fba",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
