@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-11T01:03:12.907540+00:00",
+  "timestamp": "2025-03-13T01:03:20.784951+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -387,7 +387,7 @@
       "labels": [],
       "body": "Italo: \r\n\r\nMy point is that in a multi-layer network you need to navigate across layers, but also in case of a single layer, it is possible to define multiple abstraction levels (as defined in RFC8795) and then there is a need to navigate across multiple abstraction levels\r\n\r\nI am  not sure my comment at the mike today about topology abstraction has been fully understood\r\n\r\nIf you are not fully familiar with the concept of topology abstraction, I would suggest the following background reading for the definition of topology abstraction:\r\n\r\n  *   RFC 8453 (in particular section 5)\r\n  *   RFC 8795 (and in particular sections 3.13, 4.1 and 4.4)\r\n  *   draft-ietf-teas-te-topo-and-tunnel-modeling (in particular section 1.3)\r\n\r\nIn a nutshell a network (even a single-layer network) can be represented in multiple ways providing different abstraction view of the same network. In such a case, it would be beneficial being able to navigate among the different level of abstractions (e.g., to understand which set of nodes in the native topology are actually represented as a single node in an abstract topology being built on top of the native topology).\r\n\r\nThis navigation is different and orthogonal to the multi-layer navigation where for example we need to report which L2 path is supporting a given L3 node\r\n\r\nMy question is therefore: is SIMAP only dealing with native topologies and navigation among the different networking layers (L3, L2, optical, ...) or also dealing with abstract topologies and navigation among the different level of abstraction?\r\n",
       "createdAt": "2024-11-29T11:26:13Z",
-      "updatedAt": "2025-03-03T11:03:19Z",
+      "updatedAt": "2025-03-12T16:20:52Z",
       "closedAt": "2025-03-03T11:03:18Z",
       "comments": [
         {
@@ -400,9 +400,9 @@
         {
           "author": "OlgaHuawei",
           "authorAssociation": "COLLABORATOR",
-          "body": "I added the new requirement (and references to other IETF) to the draft.",
+          "body": "I added the new requirement (REQ-TOPOLOGY-ABSTRACTION) and references to other IETF in (Appendix A.2) to the draft.",
           "createdAt": "2025-03-03T11:03:18Z",
-          "updatedAt": "2025-03-03T11:03:18Z"
+          "updatedAt": "2025-03-12T16:20:52Z"
         }
       ]
     },
@@ -625,17 +625,72 @@
       "labels": [],
       "body": "\nFrom @graf3net:\n\nFrom a network operators requirements perspective, I think the requirements list is pretty much complete. \n\nI only have one comment:\n\nREQ-SEMANTIC:\nSIMAP must provide semantics for layered network topologies and for linking external models/data.\n\nI think we need to expand or add additional requirements to ensure that the following is covered:\n\n\u2022\tProvider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology \n\u2022\tUnderlay control plane routing state needs to be correlatable to underlay L3 topology. Overlay control-plane routing state needs to be correlate-able to overlay L3 network topology \n\nAs an example:\n\nhttps://datatracker.ietf.org/doc/html/rfc7011#section-8\n\n   If an Information Element is required more than once in a Template,\n   the different occurrences of this Information Element SHOULD follow\n   the logical order of their treatments by the Metering Process.  For\n   example, if a selected packet goes through two hash functions, and if\n   the two hash values are sent within a single Template, the first\n   occurrence of the hash value should belong to the first hash function\n   in the Metering Process.  For example, when exporting the two source\n   IP addresses of an IPv4-in-IPv4 packet, the first sourceIPv4Address\n   Information Element occurrence should be the IPv4 address of the\n   outer header, while the second occurrence should be the address of\n   the inner header.  Collecting Processes MUST properly handle\n   Templates with multiple identical Information Elements.\n\n\nIn a SRv6 enabled network, sourceIPv6Address appears in a IPFIX data-template/data-record for a captured flow on a SRv6 enabled provider interface twice. Once in relation to provider data plane in the underlay, and once as relation to the customer data plane in the overlay.\n\nSIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and underlay network topology. Both topologies might not be uniquely addressed, the VPN context (in SRv6 these are the SID's, https://datatracker.ietf.org/doc/html/rfc8986#name-srv6-sid) needs to be considered therefore as well.\n\nThe same requirement also applies to the control plane. Taking BMP/BGP as an example. The BMP peer distinguisher (https://datatracker.ietf.org/doc/html/rfc7854#section-4.2) needs to be correlateable to the VRF of a node and the next-hop attribute of the NLRI in the BMP route-monitoring (https://datatracker.ietf.org/doc/html/rfc7854#section-4.6) encapsulated message to the underlay network topology while the path attribute of the NLRI in the BMP route-monitoring encapsulated message to the overlay topology.\n\nI think REQ-SEMANTIC describes that requirement very high level, but I suggest to expand the description, maybe with examples I described to establish more clarity.\n\nI agree with REQ-TOPO-ONLY that dynamic paths are outside of SIMAP scope. However as part of REQ-SEMANTIC, it lays the foundation to map it as external data.\n\nI hope that makes sense.\n\nBest wishes\nThomas\n",
       "createdAt": "2025-02-14T17:32:37Z",
-      "updatedAt": "2025-02-28T10:32:27Z",
+      "updatedAt": "2025-03-12T16:16:44Z",
       "closedAt": "2025-02-28T10:32:27Z",
       "comments": [
         {
           "author": "OlgaHuawei",
           "authorAssociation": "COLLABORATOR",
-          "body": "Closed as we added 2 new requirements that Thomas suggested and added the statement after REQ-SEMANTIC that the more specific requirements follow",
+          "body": "Closed as we added 2 new requirements that Thomas suggested (REQ-DATA-PLANE-FLOW and REQ-CONTROL-PLANE) and added the statement after REQ-SEMANTIC that the more specific requirements follow.",
           "createdAt": "2025-02-28T10:32:20Z",
-          "updatedAt": "2025-02-28T10:32:20Z"
+          "updatedAt": "2025-03-12T16:14:39Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I did not add the text for examples on time before IETF122, therefore opened a new issue https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/58\n\nAlso, opened a new issue for dynamic paths comment https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/59",
+          "createdAt": "2025-03-12T16:16:43Z",
+          "updatedAt": "2025-03-12T16:16:43Z"
         }
       ]
+    },
+    {
+      "number": 58,
+      "id": "I_kwDOM1onH86ttxsC",
+      "title": "Add Examples for REQ-DATA-PLANE-FLOW and REQ-CONTROL-PLANE",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/58",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Add examples that Thomas shared with us for the new requirements from him. The new requirements are added, but the description for the examples should be added as well.\n\nFrom @graf3net:\n\nAs an example:\n\nhttps://datatracker.ietf.org/doc/html/rfc7011#section-8\n\nIf an Information Element is required more than once in a Template,\nthe different occurrences of this Information Element SHOULD follow\nthe logical order of their treatments by the Metering Process. For\nexample, if a selected packet goes through two hash functions, and if\nthe two hash values are sent within a single Template, the first\noccurrence of the hash value should belong to the first hash function\nin the Metering Process. For example, when exporting the two source\nIP addresses of an IPv4-in-IPv4 packet, the first sourceIPv4Address\nInformation Element occurrence should be the IPv4 address of the\nouter header, while the second occurrence should be the address of\nthe inner header. Collecting Processes MUST properly handle\nTemplates with multiple identical Information Elements.\n\nIn a SRv6 enabled network, sourceIPv6Address appears in a IPFIX data-template/data-record for a captured flow on a SRv6 enabled provider interface twice. Once in relation to provider data plane in the underlay, and once as relation to the customer data plane in the overlay.\n\nSIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and underlay network topology. Both topologies might not be uniquely addressed, the VPN context (in SRv6 these are the SID's, https://datatracker.ietf.org/doc/html/rfc8986#name-srv6-sid) needs to be considered therefore as well.\n\nThe same requirement also applies to the control plane. Taking BMP/BGP as an example. The BMP peer distinguisher (https://datatracker.ietf.org/doc/html/rfc7854#section-4.2) needs to be correlateable to the VRF of a node and the next-hop attribute of the NLRI in the BMP route-monitoring (https://datatracker.ietf.org/doc/html/rfc7854#section-4.6) encapsulated message to the underlay network topology while the path attribute of the NLRI in the BMP route-monitoring encapsulated message to the overlay topology.\n\n",
+      "createdAt": "2025-03-12T16:03:45Z",
+      "updatedAt": "2025-03-12T16:03:45Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 59,
+      "id": "I_kwDOM1onH86ttyiZ",
+      "title": "REQ-TOPO-ONLY change to link dynamic paths",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/59",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "From @graf3net:\n\n\nI agree with REQ-TOPO-ONLY that dynamic paths are outside of SIMAP scope. However as part of REQ-SEMANTIC, it lays the foundation to map it as external data.\n\n",
+      "createdAt": "2025-03-12T16:04:56Z",
+      "updatedAt": "2025-03-12T16:04:56Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 60,
+      "id": "I_kwDOM1onH86tuT-e",
+      "title": "Updates to the Network Design Use Case (NMOP Mailing list topic: SIMAP: Network design use case [Commercial - Anyone])",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/60",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Latest from Brad, for the whole thread please check the NMOP Mailing List topic for Network Design Use Case](topic: SIMAP: Network design use case [Commercial - Anyone]))\n\nPerhaps as you have highlighted the issue is the terminology of Network Planning, Network Architecture and Network Design. As you highlighted these are closely related and perform different functions with network planning setting the foundation, network architecture providing the framework, and network design handling the detailed implementation to create a cohesive and efficient network infrastructure.\n\nMy understanding from your response that you have highlighted that the Use Cases for SIMAP is largely network design and its life cycle. I'm not sure that is correct interpretation.\n\nMy understanding of the functions I've outlined below. If these are being used interchangeably, then there may be benefit to define them in the terminology documentation.\n\n\nNetwork planning is a strategic, high-level process that focuses on:\n\u2022\tIdentifying organizational goals and requirements for the network\n\u2022\tAssessing current and future needs, including user numbers, roles, and connectivity requirements\n\u2022\tCreating a blueprint for building the network infrastructure\n\u2022\tDetermining the scope and scale of the network\n\u2022\tForecasting future demand and trends to guide capacity planning and resource allocation\n\u2022\tEstablishing a long-term vision for network growth and scalability\nPlanning involves identify the goals, requirements and scope of an organisation and creating the roadmap for implementation (blueprint, amongst other things). It precedes network design and architecture.\n\nNetwork architecture provides the high-level, conceptual framework for the entire network system. It defines:\n\u2022\tThe overall structure and organization of the network\n\u2022\tThe fundamental principles and approaches for network communication\n\u2022\tThe network topology (e.g., star, mesh, bus, ring)\n\u2022\tThe high-level components and their relationships\n\u2022\tThe protocols and standards to be used\nNetwork architecture serves as a blueprint that outlines the broad vision and strategy for the network's structure and functionality.\n\n\nNetwork design is more detailed, concentrating on:\n\u2022\tImplementing the specific architecture in detail\n\u2022\tSelecting and configuring hardware, software, and network devices\n\u2022\tAddressing technical aspects such as IP addressing, routing protocols, and security measures\n\u2022\tCreating detailed network diagrams and documentation\n\u2022\tProviding configuration details and engineering limits\n\u2022\tEnsuring the network meets performance, security, and reliability requirements\n\n\n\nCheers.\n\nBrad \n",
+      "createdAt": "2025-03-12T16:55:49Z",
+      "updatedAt": "2025-03-12T16:55:49Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -2239,7 +2294,7 @@
     {
       "number": 57,
       "id": "PR_kwDOM1onH86NLc_S",
-      "title": "clarify that cited models does mean recommend it",
+      "title": "clarify that cited models does not mean recommend it",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/57",
       "state": "OPEN",
       "author": "boucadair",
@@ -2248,7 +2303,7 @@
       "labels": [],
       "body": "Also removed the \"core\" term as this may smell like we did already decided which models to use.",
       "createdAt": "2025-03-03T16:37:53Z",
-      "updatedAt": "2025-03-03T16:37:53Z",
+      "updatedAt": "2025-03-12T16:25:32Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "baseRefName": "main",
       "baseRefOid": "07f68ac6d82fa4187b70050382f80a693187df3b",
