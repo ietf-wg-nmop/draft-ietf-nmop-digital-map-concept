@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-13T01:03:20.784951+00:00",
+  "timestamp": "2025-03-16T01:07:53.301760+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -689,6 +689,22 @@
       "body": "Latest from Brad, for the whole thread please check the NMOP Mailing List topic for Network Design Use Case](topic: SIMAP: Network design use case [Commercial - Anyone]))\n\nPerhaps as you have highlighted the issue is the terminology of Network Planning, Network Architecture and Network Design. As you highlighted these are closely related and perform different functions with network planning setting the foundation, network architecture providing the framework, and network design handling the detailed implementation to create a cohesive and efficient network infrastructure.\n\nMy understanding from your response that you have highlighted that the Use Cases for SIMAP is largely network design and its life cycle. I'm not sure that is correct interpretation.\n\nMy understanding of the functions I've outlined below. If these are being used interchangeably, then there may be benefit to define them in the terminology documentation.\n\n\nNetwork planning is a strategic, high-level process that focuses on:\n\u2022\tIdentifying organizational goals and requirements for the network\n\u2022\tAssessing current and future needs, including user numbers, roles, and connectivity requirements\n\u2022\tCreating a blueprint for building the network infrastructure\n\u2022\tDetermining the scope and scale of the network\n\u2022\tForecasting future demand and trends to guide capacity planning and resource allocation\n\u2022\tEstablishing a long-term vision for network growth and scalability\nPlanning involves identify the goals, requirements and scope of an organisation and creating the roadmap for implementation (blueprint, amongst other things). It precedes network design and architecture.\n\nNetwork architecture provides the high-level, conceptual framework for the entire network system. It defines:\n\u2022\tThe overall structure and organization of the network\n\u2022\tThe fundamental principles and approaches for network communication\n\u2022\tThe network topology (e.g., star, mesh, bus, ring)\n\u2022\tThe high-level components and their relationships\n\u2022\tThe protocols and standards to be used\nNetwork architecture serves as a blueprint that outlines the broad vision and strategy for the network's structure and functionality.\n\n\nNetwork design is more detailed, concentrating on:\n\u2022\tImplementing the specific architecture in detail\n\u2022\tSelecting and configuring hardware, software, and network devices\n\u2022\tAddressing technical aspects such as IP addressing, routing protocols, and security measures\n\u2022\tCreating detailed network diagrams and documentation\n\u2022\tProviding configuration details and engineering limits\n\u2022\tEnsuring the network meets performance, security, and reliability requirements\n\n\n\nCheers.\n\nBrad \n",
       "createdAt": "2025-03-12T16:55:49Z",
       "updatedAt": "2025-03-12T16:55:49Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 61,
+      "id": "I_kwDOM1onH86uFD7e",
+      "title": "Use Cases are Related - do we need to regroup?",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/61",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Notes from the Interim Meeting:\n\nThomas Graf: Regarding \"Inventory queries\", \"Network design\" and \"Capacity planning\". I think they are related. Reading into \"Inventory queries\", I understand the objective is to optimize physically the network. My suggestion is to replace \"Inventory queries\" and \"Network design\" with physical and logical network planning.\n\nBenoit: We can extend the use cases. What is important is whether there are new requirements for the SIMAP modeling (the last paragraph of each use case section).\n\n",
+      "createdAt": "2025-03-14T15:32:20Z",
+      "updatedAt": "2025-03-14T15:32:20Z",
       "closedAt": null,
       "comments": []
     }
