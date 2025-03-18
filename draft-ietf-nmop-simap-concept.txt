@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 4 September 2025                                  O. G. D. Dios
+Expires: 19 September 2025                                 O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                            3 March 2025
+                                                           18 March 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2025.
+   This Internet-Draft will expire on 19 September 2025.
 
 Copyright Notice
 
@@ -1168,14 +1168,6 @@ Table of Contents
 
 8.2.  Informative References
 
-   [I-D.ietf-ccamp-network-inventory-yang]
-              Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
-              Bedard, "A YANG Data Model for Network Hardware
-              Inventory", Work in Progress, Internet-Draft, draft-ietf-
-              ccamp-network-inventory-yang-02, 9 July 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-ccamp-
-              network-inventory-yang-02>.
-
    [I-D.ietf-ivy-network-inventory-topology]
               Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A Network
               Data Model for Inventory Topology Mapping", Work in
@@ -1266,14 +1258,6 @@ Table of Contents
               topology-01, 23 October 2023,
               <https://datatracker.ietf.org/doc/html/draft-ogondio-
               opsawg-ospf-topology-01>.
-
-   [I-D.wzwb-opsawg-network-inventory-management]
-              Wu, B., Zhou, C., Wu, Q., and M. Boucadair, "A YANG
-              Network Data Model of Network Inventory", Work in
-              Progress, Internet-Draft, draft-wzwb-opsawg-network-
-              inventory-management-04, 19 October 2023,
-              <https://datatracker.ietf.org/doc/html/draft-wzwb-opsawg-
-              network-inventory-management-04>.
 
    [RFC5136]  Chimento, P. and J. Ishac, "Defining Network Capacity",
               RFC 5136, DOI 10.17487/RFC5136, February 2008,
@@ -1372,6 +1356,10 @@ Table of Contents
 
 Appendix A.  Related IETF Activities
 
+      Note: The models cited in this section are provided for
+      illustration puroses.  It is out of scope to recomend which models
+      will be used as base to build the SIMAP.
+
 A.1.  Network Topology
 
    Interestingly, we could not find any network topology definition in
@@ -1410,34 +1398,35 @@ A.1.  Network Topology
    |  functions.
 
    Another example is [RFC8453] that defines native topology, abstract
-   topology, black topology, grey topology, but all in the context of
-   actual topology and physical topology that are not specifically
+   topology, black topology, and grey topology, but all in the context
+   of actual topology and physical topology that are not specifically
    defined.
 
 A.2.  Topology Abstraction
 
-   Please refer to the following for some background on topology
-   abstractions:
+   Please refer to the following documents for some background on
+   topology abstractions:
 
-   *  [RFC7926] defines topology abstraction
+   *  [RFC7926] defines topology abstraction.
 
    *  Section 5 of [RFC8453] describes the topology abstraction methods
-      and discusses topology abstraction factors, types and their
-      context in the ACTN architecture
+      and discusses topology abstraction factors, types, and their
+      context in the ACTN architecture.
 
-   *  Section 3.13 of [RFC8795] defines abstract TE topologies
+   *  Section 3.13 of [RFC8795] defines abstract TE topologies.
 
-   *  Section 4.1 of [RFC8795] defines native TE topologies
+   *  Section 4.1 of [RFC8795] defines native TE topologies.
 
    *  Section 4.4 of [RFC8795] describes how to deal with multiple
-      abstract TE topologies provided by the same provider
+      abstract TE topologies provided by the same provider.
 
    *  Section 1.3 of [I-D.ietf-teas-te-topo-and-tunnel-modeling] gives
       some background on topology abstraction.
 
 A.3.  Core SIMAP Components
 
-   The following specifications are core for the SIMAP:
+   The following specifications are relevant to the core functions
+   provided by the SIMAP:
 
    *  IETF network model and network topology model [RFC8345]
 
@@ -1468,11 +1457,9 @@ A.4.  Additional SIMAP Components
 
    *  Network Inventory Model [I-D.ietf-ivy-network-inventory-yang]
       focuses on physical and virtual inventory.  Logical inventory is
-      currently outside of the scope.  It does not augment RFC8345 like
-      the two Internet-Drafts that it evolved from
-      [I-D.ietf-ccamp-network-inventory-yang] and
-      [I-D.wzwb-opsawg-network-inventory-management].
-      [I-D.ietf-ivy-network-inventory-topology] correlates the network
+      currently outside of the scope.  It does not augment [RFC8345].
+
+   *  [I-D.ietf-ivy-network-inventory-topology] correlates the network
       inventory with the general topology via RFC8345 augmentations that
       reference inventory.
 
@@ -1481,8 +1468,8 @@ A.4.  Additional SIMAP Components
    *  Attachment Circuits (ACs) [I-D.ietf-opsawg-ntw-attachment-circuit]
       and [I-D.ietf-opsawg-teas-attachment-circuit]
 
-   *  Configuration: L2SM [RFC8466], L3SM [RFC8299], L2NM [RFC9291], and
-      L3NM [RFC9182]
+   *  Configuration: The L2SM [RFC8466], L3SM [RFC8299], L2NM [RFC9291],
+      and L3NM [RFC9182]
 
    *  Incident Management for Network Services
       [I-D.ietf-nmop-network-incident-yang]
