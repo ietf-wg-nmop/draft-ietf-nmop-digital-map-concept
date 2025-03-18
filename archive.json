@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-16T01:07:53.301760+00:00",
+  "timestamp": "2025-03-18T01:03:16.616150+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -418,7 +418,7 @@
       "labels": [],
       "body": "The topology model (RFC 8345) is based on termination points NOT interfaces.\n\nHowever, throught the document we mix both.... \n\nI believe SIMAP could be the place to clarify the relationship between both. \n\n",
       "createdAt": "2025-02-11T11:08:40Z",
-      "updatedAt": "2025-03-03T09:54:52Z",
+      "updatedAt": "2025-03-17T05:07:13Z",
       "closedAt": null,
       "comments": [
         {
@@ -462,6 +462,13 @@
           "body": "@nigel-r-davis Nigel, please share some suggestion on the nmop mailing list and I will add it to the draft. Just a reminder that we need to submit the draft by the end of today, so if you want it in this version please do it as soon as possible. Alternatively, as I removed the interface references from our document, maybe we dont have to have the clarification in this draft and leave it for the draft with YANG module itself - that would be my preference",
           "createdAt": "2025-03-03T09:54:50Z",
           "updatedAt": "2025-03-03T09:54:50Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "Apologies for the delay on this one. I will share material in approx. a week from now. My aim is to relate several industry models (I have a framework I have used before, based upon ITU-T G.805, that has helped in several comparisons in the past and is used in G.7711).",
+          "createdAt": "2025-03-17T05:07:13Z",
+          "updatedAt": "2025-03-17T05:07:13Z"
         }
       ]
     },
@@ -672,9 +679,17 @@
       "labels": [],
       "body": "From @graf3net:\n\n\nI agree with REQ-TOPO-ONLY that dynamic paths are outside of SIMAP scope. However as part of REQ-SEMANTIC, it lays the foundation to map it as external data.\n\n",
       "createdAt": "2025-03-12T16:04:56Z",
-      "updatedAt": "2025-03-12T16:04:56Z",
+      "updatedAt": "2025-03-17T04:54:26Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "On \"dynamic\": We need to be careful as there are several considerations here:\n- Relative lifecycle time frames: Everything is dynamic in some time frame. \n- Cost/value consideration: I need to consider the cost of tracking the \"dynamics\" v the value that that tracking returns\n- Intent v actual: I need to know to some level that what I intended has been achieved. I need to know to some level how it has been achieved.\n- Participants in rearrangement: A semi-central engine could be dealing with the choice of routing on a relatively fast basis. Is this dynamic?\n- Continuum of control: It is better to consider all control elements as part of a continuum. Knowledge of the \"dynamics\" is present at some places in that continuum and not at others.\n- Time varying focus (and spotlighting): It is possible that at some point in the continuum of control that the visibility of the dynamics of the solution varies over time or over some other parameter related to importance. Sometimes I need to have a higher fidelity and need to track something more closely\n\nOn paths: There are several complexities. There could be:\n- Preplanned alternatives that are known, but the current selection is not known. \n- \"Dynamically\" routed paths that are not known or that are known to some degree\n\nI think we simply need to ensure that it is possible to represent the paths/routes/(whatever term) and leave the choice of what level of dynamics to represent to the specific application. The model needs to be rich enough to represent any level of dynamics. BUT from experience, I suspect it can be the same model for all level of dynamics.\n\n",
+          "createdAt": "2025-03-17T04:54:24Z",
+          "updatedAt": "2025-03-17T04:54:24Z"
+        }
+      ]
     },
     {
       "number": 60,
@@ -707,6 +722,44 @@
       "updatedAt": "2025-03-14T15:32:20Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 62,
+      "id": "I_kwDOM1onH86uPQjr",
+      "title": "REQ-PASSIVE-TOPO for current network (Thomas)",
+      "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/62",
+      "state": "OPEN",
+      "author": "OlgaHuawei",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Dear Olga, Sherif and Brad\n \nRegarding REQ-PASSIVE-TOPO. Do we agree that the requirement is not about mapping the passive elements in a topology. We want to associate the passive elements to the active topology. Correct?\n \nWith this capability we would be able to understand for the capacity planning use case which passive elements are being used in which part of the topology.\n \nBest wishes\nThomas\n",
+      "createdAt": "2025-03-16T18:35:21Z",
+      "updatedAt": "2025-03-17T14:00:10Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I suggest to add the text to the requirement that it makes it obvious we cannot have it in the current topology as it cannot be discovered, but only in proposed or intended topology.",
+          "createdAt": "2025-03-16T18:36:17Z",
+          "updatedAt": "2025-03-16T18:36:17Z"
+        },
+        {
+          "author": "nigel-r-davis",
+          "authorAssociation": "NONE",
+          "body": "I think it is a little more than just intended. It has also been intentionally realized and is thought to be in place. It could even have been visually confirmed etc.\n\nI noticed another challenge here. There is a potential conflation in the terminology \"passive\". There are two aspects to passive...\n\nThere are components that do not have active (powered) functions and there are components that are not detectable. It is possible to have an active component that is not detectable and to have a passive component that is actually detectable (as there is some active monitoring component associated with the passive in-line function). \n\nTaking this even further, in a Raman amplifier the fiber (something we consider as passive) is an active component in the amplification where the powering is the light itself. A fiber splice (which is certainly a passive component from many perspectives) can be detected using an OTDR. \n\nPerhaps my key point here is that this seems to require a more subtle treatment of passive/active and potentially a need for more terminology.",
+          "createdAt": "2025-03-17T04:32:38Z",
+          "updatedAt": "2025-03-17T04:32:38Z"
+        },
+        {
+          "author": "GenEars",
+          "authorAssociation": "NONE",
+          "body": "Hi @OlgaHuawei \n\n> I suggest to add the text to the requirement that it makes it obvious we cannot have it in the current topology as it cannot be discovered, but only in proposed or intended topology.\n\nAlso I understand what you're aiming for, I suggest that casual resource lifecycle state terms are used rather than the terms \"proposed\" or \"intended\" as they are misleading (e.g. intended = planned for installation ?). The ITU already did a great job on that which can be replicated in modern data model-related technologies, such as in YANG models or ontologies. For example, see the [Resource/LifecycleState concept scheme](https://github.com/Orange-OpenSource/noria-ontology/blob/0f6a36a917e6df994510f66008eb3b5ca7cf8cee/kos/noria-0.3/noria-kos.ttl#L2321) in NORIA-O which can define the current state of any kind of device through the [resourceUsageState](https://w3id.org/noria/doc/resourceUsageState) property, whether the device is active or passive.\n\nIn line with the previous remark from @nigel-r-davis, if the concern is about:\n\n1. Differenciating between active and passive devices, well ... this is a device property, hence differenciation can be done through filtering at request time.\n2. Similarly, if the concern is on whether the passive device is really installed as it was decided at network design time, well ... this is also a device property to be set by human/drone agents.\n\nPoint 2. means we can apply design conformance rules to challenge the SIMAP-based network description. As we might wish for a same kind of rule to apply whatever the active/passive nature of the device, a unified data mapping is required. As describing passive network is thought to be optional (see IETF 122 Session 1 remarks from participants), the SIMAP data model should allow to represent links between devices even if all intermediary (passive) devices are not known/described. Drawing inspiration from the SEAS vocabulary can help on this, see notably the [connectedTo](https://ci.mines-stetienne.fr/seas/SystemOntology-1.1#connectedTo) and [communicatesWith](https://ci.mines-stetienne.fr/seas/CommunicationOntology-1.0#communicatesWith) properties.",
+          "createdAt": "2025-03-17T14:00:09Z",
+          "updatedAt": "2025-03-17T14:00:09Z"
+        }
+      ]
     }
   ],
   "pulls": [
