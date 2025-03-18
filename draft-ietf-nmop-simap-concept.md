@@ -736,11 +736,41 @@ accessible from the SIMAP is left to the solutions.
 
 REQ-DATA-PLANE-FLOW:
 : Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology
+: An SRv6 example:
+: In a SRv6 enabled network, sourceIPv6Address appears in a IPFIX data-template/data-record
+for a captured flow on a SRv6 enabled provider interface twice. Once in relation to provider data plane in the
+underlay, and once as relation to the customer data plane in the overlay.
+: SIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and
+underlay network topology. Both topologies might not be uniquely addressed, the VPN context
+(in SRv6 these are the SID's, {{Section 3 of ?RFC8986}}) needs to be considered therefore as well.
+
+: IPFIX protocol, defined in {{?RFC7011}}, is the protocol for the exchange of flow information from
+an Exporting Process to a Collecting Process. {{Section 8 of ?RFC7011}} describes the management of
+Templates and Option templates at the Exporting and Collecting Processes, and states the following:
+
+{:quote}
+> If an Information Element is required more than once in a Template,
+the different occurrences of this Information Element SHOULD follow
+the logical order of their treatments by the Metering Process. For
+example, if a selected packet goes through two hash functions, and if
+the two hash values are sent within a single Template, the first
+occurrence of the hash value should belong to the first hash function
+in the Metering Process. For example, when exporting the two source
+IP addresses of an IPv4-in-IPv4 packet, the first sourceIPv4Address
+Information Element occurrence should be the IPv4 address of the
+outer header, while the second occurrence should be the address of
+the inner header. Collecting Processes MUST properly handle
+Templates with multiple identical Information Elements.
 
 REQ-CONTROL-PLANE:
 : Underlay control plane routing state needs to be correlatable to underlay L3 topology. Overlay control-plane
 routing state needs to be correlate-able to overlay L3 network topology.
 
+: A BMP/BGP example:
+: The BMP peer distinguisher ({{Section 4.2 of ?RFC7854}}) needs to be correlateable to the VRF
+of a node and the next-hop attribute of the NLRI in the BMP route-monitoring ({{Section 4.6 of ?RFC7854}}) encapsulated
+message to the underlay network topology while the path attribute of the NLRI in the BMP route-monitoring
+encapsulated message to the overlay topology.
 
 ## Design Requirements
 
