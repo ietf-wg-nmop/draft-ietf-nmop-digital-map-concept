@@ -156,6 +156,18 @@ The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,
 Resource:
 : Defined in {{?I-D.ietf-nmop-terminology}}
 
+Termination Point:
+: Defined in {{?RFC8345}}, as follows:
+: The network-topology module defines a topology graph and components from which it is
+composed: nodes, edges, and termination points.  Nodes (from the "ietf-network" module) represent
+graph vertices and links represent graph edges.  Nodes also contain termination points that anchor the
+links.
+: A node has a list of termination points that are used to terminate links. An example of a termination point might
+be a physical or logical port or, more generally, an interface.
+Like a node, a termination point can in turn be supported by an underlying termination point, contained in the
+supporting node of the underlay network.
+
+
 The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
