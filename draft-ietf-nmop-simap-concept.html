@@ -1370,53 +1370,68 @@ and services that needs to be configured, controlled and monitored.
 Each topology layer has a separate lifecycle.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.9">Topology layer:</dt>
+<dt id="section-2-2.9"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.10">
-          <p id="section-2-2.10.1">A topology layer represents topology at a single layer in the multi-layered topology.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.10.1">The <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> sometimes refers to this multi-layered topology as topology hierarchy (Stack) and
+sometimes talks about layers when describing supporting relations (represent layered network topologies),
+underlay/overlay, definition of network nodes and layering information, and says that the model can be
+used for representation of layered network topologies.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.11"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.12">
-          <p id="section-2-2.12.1">The topology layer can also represent what needs to be managed by a
-specific user or application, for example the IGP layer can be of interest to the operator
-troubleshooting or optimizing the routing, while the optical layer may be
-of interest to the user managing the optical network.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.12.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> is flexible and it can support both the same network topology instance with multiple layers (e.g. L2+L3)
+or separate network topology instances with supporting relations between them (e.g. separate L2 and L3).
+Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.13"></dt>
+<dt id="section-2-2.13">Topology layer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-2.14">
-          <p id="section-2-2.14.1">Some topology layers may relate closely to OSI layers, like Layer 1 topology
-for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
-IPv6 topologies.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.14.1">A topology layer represents topology at a single layer in the multi-layered topology.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.15"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.16">
-          <p id="section-2-2.16.1">Some topology layers represent the control aspects of Layer 3, like OSPF, IS-IS, or BGP.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.16.1">The topology layer can also represent what needs to be managed by a
+specific user or application, for example the IGP layer can be of interest to the operator
+troubleshooting or optimizing the routing, while the optical layer may be
+of interest to the user managing the optical network.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.17"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.18">
-          <p id="section-2-2.18.1">The service layer represents the service view of the connectivity, that can differ for
-different types of services and for different providers/solutions.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.18.1">Some topology layers may relate closely to OSI layers, like Layer 1 topology
+for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
+IPv6 topologies.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.19"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.20">
-          <p id="section-2-2.20.1">The top layer represents the application/flow view of service connectivity.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.20.1">Some topology layers represent the control aspects of Layer 3, like OSPF, IS-IS, or BGP.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.21">Service:</dt>
+<dt id="section-2-2.21"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.22">
-          <p id="section-2-2.22.1">A service represents network connectivity service provided over a network that enables devices, systems, or networks to
+          <p id="section-2-2.22.1">The service layer represents the service view of the connectivity, that can differ for
+different types of services and for different providers/solutions.<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.23"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.24">
+          <p id="section-2-2.24.1">The top layer represents the application/flow view of service connectivity.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.25">Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.26">
+          <p id="section-2-2.26.1">A service represents network connectivity service provided over a network that enables devices, systems, or networks to
 communicate and exchange data with each other. It provides the underlying infrastructure and mechanisms
 necessary for establishing, maintaining, and managing connections between different endpoints.
-The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
+The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-2.23">Resource:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.24">
-          <p id="section-2-2.24.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
+<dt id="section-2-2.27">Resource:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.28">
+          <p id="section-2-2.28.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-2.28.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -2062,276 +2077,295 @@ without having to go to the details of the specific augmentations to understand 
 <dt id="section-4.1-2.7"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.8">
             <p id="section-4.1-2.8.1">SIMAP must provide the view for all layers of network topology, from physical network
-(ideally optical), layer 2, layer 3 up to  service and intent views.<a href="#section-4.1-2.8.1" class="pilcrow">¶</a></p>
+(ideally optical), layer 2, layer 3 up to  service and intent views. It must provide flexibility
+to support both the same network topology instance with multiple layers (e.g. L2+L3)
+or separate network topology instances with supporting relations between them (e.g. separate L2 and L3).
+Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-4.1-2.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.9">REQ-PASSIVE-TOPO:</dt>
+<dt id="section-4.1-2.9">REQ-VIEWPOINTS:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.10">
-            <p id="section-4.1-2.10.1">Topology includes passive topology.<a href="#section-4.1-2.10.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.10.1">Different viewpoints provide capability to have different views to different stakeholders.<a href="#section-4.1-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-4.1-3">SIMAP should provide capability to provide different views to different stakeholders. For example, one stakeholder
+may need to see L2 and L3 layers in a single network topology instance, while another stakeholder may need to see
+them as separate network topology instances.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-4">
+          <dt id="section-4.1-4.1">REQ-PASSIVE-TOPO:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.2">
+            <p id="section-4.1-4.2.1">Topology includes passive topology.<a href="#section-4.1-4.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.11"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.12">
-            <p id="section-4.1-2.12.1">SIMAP must support topology of the complete network, including active and passive parts.<a href="#section-4.1-2.12.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.4">
+            <p id="section-4.1-4.4.1">SIMAP must support topology of the complete network, including active and passive parts.<a href="#section-4.1-4.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.13"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.14">
-            <p id="section-4.1-2.14.1">For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+<dt id="section-4.1-4.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.6">
+            <p id="section-4.1-4.6.1">For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
 essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
-through truck roll reduction.<a href="#section-4.1-2.14.1" class="pilcrow">¶</a></p>
+through truck roll reduction.<a href="#section-4.1-4.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.15">REQ-PROG-OPEN-MODEL:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.16">
-            <p id="section-4.1-2.16.1">Open and programmable SIMAP.<a href="#section-4.1-2.16.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.7">REQ-PROG-OPEN-MODEL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.8">
+            <p id="section-4.1-4.8.1">Open and programmable SIMAP.<a href="#section-4.1-4.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.17"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.18">
-            <p id="section-4.1-2.18.1">This includes "read" operations to retrieve the view of the network, typically as application-facing interface of
-Software Defined Networking (SDN) controllers or orchestrators.<a href="#section-4.1-2.18.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.9"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.10">
+            <p id="section-4.1-4.10.1">This includes "read" operations to retrieve the view of the network, typically as application-facing interface of
+Software Defined Networking (SDN) controllers or orchestrators.<a href="#section-4.1-4.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.19"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.20">
-            <p id="section-4.1-2.20.1">It also includes "write" operations, not for the ability to directly change the SIMAP data
-(e.g., changing the network or service parameters), but for offline simulations, also known as what-if scenarios.<a href="#section-4.1-2.20.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.11"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.12">
+            <p id="section-4.1-4.12.1">It also includes "write" operations, not for the ability to directly change the SIMAP data
+(e.g., changing the network or service parameters), but for offline simulations, also known as what-if scenarios.<a href="#section-4.1-4.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.21"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.22">
-            <p id="section-4.1-2.22.1">Running a "what-if" analysis requires the ability to take
-snapshots and to switch easily between them.<a href="#section-4.1-2.22.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.14">
+            <p id="section-4.1-4.14.1">Running a "what-if" analysis requires the ability to take
+snapshots and to switch easily between them.<a href="#section-4.1-4.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.23"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.24">
-            <p id="section-4.1-2.24.1">Note that there is a need to distinguish between a change on the SIMAP
-for future simulation and a change that reflects the current reality of the network.<a href="#section-4.1-2.24.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.15"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.16">
+            <p id="section-4.1-4.16.1">Note that there is a need to distinguish between a change on the SIMAP
+for future simulation and a change that reflects the current reality of the network.<a href="#section-4.1-4.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.25">REQ-STD-API-BASED:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.26">
-            <p id="section-4.1-2.26.1">Standard based SIMAP models and APIs, for multi-vendor support.<a href="#section-4.1-2.26.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.17">REQ-STD-API-BASED:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.18">
+            <p id="section-4.1-4.18.1">Standard based SIMAP models and APIs, for multi-vendor support.<a href="#section-4.1-4.18.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.27"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.28">
-            <p id="section-4.1-2.28.1">SIMAP must provide the standard YANG APIs that provide for read/write and queries.
-These APIs must also provide the capability to retrieve the links to external data/models.<a href="#section-4.1-2.28.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.19"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.20">
+            <p id="section-4.1-4.20.1">SIMAP must provide the standard YANG APIs that provide for read/write and queries.
+These APIs must also provide the capability to retrieve the links to external data/models.<a href="#section-4.1-4.20.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.29">REQ-COMMON-APP:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.30">
-            <p id="section-4.1-2.30.1">Common SIMAP models and APIs, for multi domain.<a href="#section-4.1-2.30.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.21">REQ-COMMON-APP:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.22">
+            <p id="section-4.1-4.22.1">Common SIMAP models and APIs, for multi domain.<a href="#section-4.1-4.22.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.31"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.32">
-            <p id="section-4.1-2.32.1">SIMAP models and APIs must be common over different network domains (campus, core, data center, etc.).<a href="#section-4.1-2.32.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.23"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.24">
+            <p id="section-4.1-4.24.1">SIMAP models and APIs must be common over different network domains (campus, core, data center, etc.).<a href="#section-4.1-4.24.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.33"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.34">
-            <p id="section-4.1-2.34.1">This means that clients of the SIMAP API must be able to understand the topology model of layers of any
-domain without having to understand the details of any technologies and domains.<a href="#section-4.1-2.34.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.25"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.26">
+            <p id="section-4.1-4.26.1">This means that clients of the SIMAP API must be able to understand the topology model of layers of any
+domain without having to understand the details of any technologies and domains.<a href="#section-4.1-4.26.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.35">REQ-GRAPH-TRAVERSAL:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.36">
-            <p id="section-4.1-2.36.1">Topology graph traversal.<a href="#section-4.1-2.36.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.27">REQ-GRAPH-TRAVERSAL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.28">
+            <p id="section-4.1-4.28.1">Topology graph traversal.<a href="#section-4.1-4.28.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.37"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.38">
-            <p id="section-4.1-2.38.1">SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
+<dt id="section-4.1-4.29"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.30">
+            <p id="section-4.1-4.30.1">SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
-relationship between the termination points or nodes.<a href="#section-4.1-2.38.1" class="pilcrow">¶</a></p>
+relationship between the termination points or nodes.<a href="#section-4.1-4.30.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.39">REQ-TOPOLOGY-ABSTRACTION:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.40">
-            <p id="section-4.1-2.40.1">Navigation across the abstraction levels inside a single network layer.<a href="#section-4.1-2.40.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.31">REQ-TOPOLOGY-ABSTRACTION:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.32">
+            <p id="section-4.1-4.32.1">Navigation across the abstraction levels inside a single network layer.<a href="#section-4.1-4.32.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.41"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.42">
-            <p id="section-4.1-2.42.1">In a multi-layer network we need to navigate across multiple layers. We can also define multiple abstraction
+<dt id="section-4.1-4.33"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.34">
+            <p id="section-4.1-4.34.1">In a multi-layer network we need to navigate across multiple layers. We can also define multiple abstraction
 levels for a single layer and there is a need to navigate across these abstraction levels as well. Please refer
-to the <a href="#sec-topology-abstrcation" class="auto internal xref">Appendix A.2</a> for some background on the topology abstraction.<a href="#section-4.1-2.42.1" class="pilcrow">¶</a></p>
+to the <a href="#sec-topology-abstrcation" class="auto internal xref">Appendix A.2</a> for some background on the topology abstraction.<a href="#section-4.1-4.34.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.43"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.44">
-            <p id="section-4.1-2.44.1">In a nutshell, a network (even a single layer network) can be represented
+<dt id="section-4.1-4.35"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.36">
+            <p id="section-4.1-4.36.1">In a nutshell, a network (even a single layer network) can be represented
 in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
 being able to navigate amongst the different levels of abstractions (e.g. to understand which set of nodes in the native
 topology are actually represented as a single node in an abstract topology being built on top of the native topology).
 This navigation is different and orthogonal to the multi-layer navigation where we need to report which Layer 2 path is
 supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via
-different topology API and model.<a href="#section-4.1-2.44.1" class="pilcrow">¶</a></p>
+different topology API and model.<a href="#section-4.1-4.36.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.45"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.46">
-            <p id="section-4.1-2.46.1">SIMAP must provide a mechanism to navigate across the abstraction levels inside a single network layer.<a href="#section-4.1-2.46.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.37"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.38">
+            <p id="section-4.1-4.38.1">SIMAP must provide a mechanism to navigate across the abstraction levels inside a single network layer.<a href="#section-4.1-4.38.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.47">REQ-LIVE:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.48">
-            <p id="section-4.1-2.48.1">Live network topology.<a href="#section-4.1-2.48.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.39">REQ-LIVE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.40">
+            <p id="section-4.1-4.40.1">Live network topology.<a href="#section-4.1-4.40.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.49"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.50">
-            <p id="section-4.1-2.50.1">SIMAP must enable retrieval of multi-layered topology of a live network.<a href="#section-4.1-2.50.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.41"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.42">
+            <p id="section-4.1-4.42.1">SIMAP must enable retrieval of multi-layered topology of a live network.<a href="#section-4.1-4.42.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.51"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.52">
-            <p id="section-4.1-2.52.1">Live network is the latest known view of the network<a href="#section-4.1-2.52.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.43"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.44">
+            <p id="section-4.1-4.44.1">Live network is the latest known view of the network<a href="#section-4.1-4.44.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.53">REQ-SNAPSHOT:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.54">
-            <p id="section-4.1-2.54.1">Network snapshot topology.<a href="#section-4.1-2.54.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.45">REQ-SNAPSHOT:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.46">
+            <p id="section-4.1-4.46.1">Network snapshot topology.<a href="#section-4.1-4.46.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.55"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.56">
-            <p id="section-4.1-2.56.1">SIMAP must enable retrieval of multi-layered topology of different snapshots<a href="#section-4.1-2.56.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.47"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.48">
+            <p id="section-4.1-4.48.1">SIMAP must enable retrieval of multi-layered topology of different snapshots<a href="#section-4.1-4.48.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.57"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.58">
-            <p id="section-4.1-2.58.1">Snapshot is the view of the network at any given point in time<a href="#section-4.1-2.58.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.49"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.50">
+            <p id="section-4.1-4.50.1">Snapshot is the view of the network at any given point in time<a href="#section-4.1-4.50.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.59">REQ-POTENTIAL:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.60">
-            <p id="section-4.1-2.60.1">Potential new network topology.<a href="#section-4.1-2.60.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.51">REQ-POTENTIAL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.52">
+            <p id="section-4.1-4.52.1">Potential new network topology.<a href="#section-4.1-4.52.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.61"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.62">
-            <p id="section-4.1-2.62.1">SIMAP must enable both retrieval and write access to the potential new network.<a href="#section-4.1-2.62.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.53"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.54">
+            <p id="section-4.1-4.54.1">SIMAP must enable both retrieval and write access to the potential new network.<a href="#section-4.1-4.54.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.63"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.64">
-            <p id="section-4.1-2.64.1">A potential new network is the view at a given point with modifications from the snapshot.<a href="#section-4.1-2.64.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.55"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.56">
+            <p id="section-4.1-4.56.1">A potential new network is the view at a given point with modifications from the snapshot.<a href="#section-4.1-4.56.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.65"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.66">
-            <p id="section-4.1-2.66.1">This view may contain either the full topology or just differences from the snapshot.<a href="#section-4.1-2.66.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.57"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.58">
+            <p id="section-4.1-4.58.1">This view may contain either the full topology or just differences from the snapshot.<a href="#section-4.1-4.58.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.67">REQ-SEMANTIC:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.68">
-            <p id="section-4.1-2.68.1">Network topology sematics<a href="#section-4.1-2.68.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.59">REQ-SEMANTIC:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.60">
+            <p id="section-4.1-4.60.1">Network topology sematics<a href="#section-4.1-4.60.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.69"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.70">
-            <p id="section-4.1-2.70.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.70.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-4.61"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.62">
+            <p id="section-4.1-4.62.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-4.62.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-4.1-3">The following requirements are more specific requirements for semantics<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-4.1-4">
-          <dt id="section-4.1-4.1">REQ-LAYER-NAVIGATE:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.2">
-            <p id="section-4.1-4.2.1">SIMAP must provide capability to navigate inside the topology layer and between the topology layers<a href="#section-4.1-4.2.1" class="pilcrow">¶</a></p>
+<p id="section-4.1-5">The following requirements are more specific requirements for semantics<a href="#section-4.1-5" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-6">
+          <dt id="section-4.1-6.1">REQ-LAYER-NAVIGATE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.2">
+            <p id="section-4.1-6.2.1">SIMAP must provide capability to navigate inside the topology layer and between the topology layers<a href="#section-4.1-6.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.3">REQ-EXTENSIBLE:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.4">
-            <p id="section-4.1-4.4.1">SIMAP must be extensible with metadata.<a href="#section-4.1-4.4.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-6.3">REQ-EXTENSIBLE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.4">
+            <p id="section-4.1-6.4.1">SIMAP must be extensible with metadata.<a href="#section-4.1-6.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.5">REQ-PLUGG:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.6">
-            <p id="section-4.1-4.6.1">SIMAP must be pluggable. That is,<a href="#section-4.1-4.6.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-6.5">REQ-PLUGG:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.6">
+            <p id="section-4.1-6.6.1">SIMAP must be pluggable. That is,<a href="#section-4.1-6.6.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4.1-4.6.2.1">
-                <p id="section-4.1-4.6.2.1.1">Must connect to other YANG modules for device configuration, inventory, configuration, assurance, etc.
+<li class="normal" id="section-4.1-6.6.2.1">
+                <p id="section-4.1-6.6.2.1.1">Must connect to other YANG modules for device configuration, inventory, configuration, assurance, etc.
 The SIMAP does not contain the detailed device configuration, so a mechanism is needed to be able to link it from SIMAP.
 SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
-to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.<a href="#section-4.1-4.6.2.1.1" class="pilcrow">¶</a></p>
+to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.<a href="#section-4.1-6.6.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="normal" id="section-4.1-4.6.2.2">
-                <p id="section-4.1-4.6.2.2.1">Given that no all involved components can be available using YANG, there is a need to connect
-SIMAP YANG model with other modelling mechanisms.<a href="#section-4.1-4.6.2.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-4.1-6.6.2.2">
+                <p id="section-4.1-6.6.2.2.1">Given that no all involved components can be available using YANG, there is a need to connect
+SIMAP YANG model with other modelling mechanisms.<a href="#section-4.1-6.6.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.7">REQ-BIDIR:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.8">
-            <p id="section-4.1-4.8.1">SIMAP must provide a mechanism to model bidirectional links.
+<dt id="section-4.1-6.7">REQ-BIDIR:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.8">
+            <p id="section-4.1-6.8.1">SIMAP must provide a mechanism to model bidirectional links.
 While data flows are unidirectional, the
 bidirectional links are also common in networking.  Examples are
 Ethernet cables, bidirectional SONET rings, socket connection to the
 server, etc.  There is also the requirement for simplified service
 layer topology, where a link is modeled as bidirectional in order to be
-supported by unidirectional links at the lower layer.<a href="#section-4.1-4.8.1" class="pilcrow">¶</a></p>
+supported by unidirectional links at the lower layer.<a href="#section-4.1-6.8.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.9">REQ-MULTI-POINT:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.10">
-            <p id="section-4.1-4.10.1">SIMAP must provide a mechanism to model multipoint links.
+<dt id="section-4.1-6.9">REQ-MULTI-POINT:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.10">
+            <p id="section-4.1-6.10.1">SIMAP must provide a mechanism to model multipoint links.
 A topology model should be able to model any
 topology type in a simple and explicit way, including point to
 multipoint, bus, ring, star, tree, mesh, hybrid and daisy chain. A
 topology model should also be able to model any link cardinality in a
 simple and explicit way, including point-to-point, point-to-multipoint,
-multipoint-to-multipoint or hybrid.<a href="#section-4.1-4.10.1" class="pilcrow">¶</a></p>
+multipoint-to-multipoint or hybrid.<a href="#section-4.1-6.10.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.11">REQ-MULTI-DOMAIN:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.12">
-            <p id="section-4.1-4.12.1">SIMAP must provide a mechanism to model links between networks.
-This requirement is about covering connectivity between different networks, sub-networks, or domains.<a href="#section-4.1-4.12.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-6.11">REQ-MULTI-DOMAIN:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.12">
+            <p id="section-4.1-6.12.1">SIMAP must provide a mechanism to model links between networks.
+This requirement is about covering connectivity between different networks, sub-networks, or domains.<a href="#section-4.1-6.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.13">REQ-SUBNETWORK:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.14">
-            <p id="section-4.1-4.14.1">SIMAP must provide a mechanism to model network decomposition into sub-networks.
+<dt id="section-4.1-6.13">REQ-SUBNETWORK:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.14">
+            <p id="section-4.1-6.14.1">SIMAP must provide a mechanism to model network decomposition into sub-networks.
 The requirement is about modelling hierarchical networks , Autonomous Systems (ASes) with multiple areas, or a network
-with multiple domains (e.g., access, core, data center).<a href="#section-4.1-4.14.1" class="pilcrow">¶</a></p>
+with multiple domains (e.g., access, core, data center).<a href="#section-4.1-6.14.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.15">REQ-SHARED:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.16">
-            <p id="section-4.1-4.16.1">SIMAP must provide a mechanism to share nodes, links, and termination points between different networks.<a href="#section-4.1-4.16.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-6.15"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.16">
+            <p id="section-4.1-6.16.1">The network can be partitioned by providing capability to have multiple child network instances as part of a
+single parent network, with a relation between the parent network and child networks.<a href="#section-4.1-6.16.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.17">REQ-SUPPORTING:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.18">
-            <p id="section-4.1-4.18.1">SIMAP must provide a mechanism to model supporting relationships between different types of topological entities
+<dt id="section-4.1-6.17">REQ-SHARED:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.18">
+            <p id="section-4.1-6.18.1">SIMAP must provide a mechanism to share nodes, links, and termination points between different networks.<a href="#section-4.1-6.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-6.19">REQ-SUPPORTING:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.20">
+            <p id="section-4.1-6.20.1">SIMAP must provide a mechanism to model supporting relationships between different types of topological entities
 (e.g., a termination point is supported by the node). This may be required, e.g., if a termination point is not
 supported by the underlying a termination point, but by the node (e.g., a loopback does not have physical
-representation, so it is supported by physical device).<a href="#section-4.1-4.18.1" class="pilcrow">¶</a></p>
+representation, so it is supported by physical device).<a href="#section-4.1-6.20.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.19">REQ-STATUS:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.20">
-            <p id="section-4.1-4.20.1">Links and nodes that are down must appear in the topology. The status of the nodes and links must be either
+<dt id="section-4.1-6.21">REQ-STATUS:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.22">
+            <p id="section-4.1-6.22.1">Links and nodes that are down must appear in the topology. The status of the nodes and links must be either
 implemented in the SIMAP or accessible from the SIMAP. Whether the status is included as part of the SIMAP or
-accessible from the SIMAP is left to the solutions.<a href="#section-4.1-4.20.1" class="pilcrow">¶</a></p>
+accessible from the SIMAP is left to the solutions.<a href="#section-4.1-6.22.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.21">REQ-DATA-PLANE-FLOW:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.22">
-            <p id="section-4.1-4.22.1">Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology<a href="#section-4.1-4.22.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-6.23">REQ-DATA-PLANE-FLOW:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.24">
+            <p id="section-4.1-6.24.1">Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology<a href="#section-4.1-6.24.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-4.23">REQ-CONTROL-PLANE:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-4.24">
-            <p id="section-4.1-4.24.1">Underlay control plane routing state needs to be correlatable to underlay L3 topology. Overlay control-plane
-routing state needs to be correlate-able to overlay L3 network topology.<a href="#section-4.1-4.24.1" class="pilcrow">¶</a></p>
+<dt id="section-4.1-6.25">REQ-CONTROL-PLANE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.26">
+            <p id="section-4.1-6.26.1">Underlay control plane routing state needs to be correlatable to underlay L3 topology. Overlay control-plane
+routing state needs to be correlate-able to overlay L3 network topology.<a href="#section-4.1-6.26.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
