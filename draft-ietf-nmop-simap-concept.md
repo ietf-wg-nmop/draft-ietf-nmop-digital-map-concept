@@ -783,7 +783,7 @@ all the management and use cases. However, it should be designed to support adeq
 data and models to ease navigating in the overall system. For example:
 
   + ACLs and Route Policies are not required to be supported in the SIMAP, they would be linked to the SIMAP
-  + Dynamic paths may either be outside of the SIMAP or part of traffic engineering data/models
+  + Dynamic paths may be outside of the SIMAP, in which case they would be linked to the SIMAP as external data
 
 REQ-PROPERTIES:
 : SIMAP entities should mainly contain properties used to identify topological entities at different layers,
