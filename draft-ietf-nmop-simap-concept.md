@@ -596,7 +596,7 @@ or separate network topology instances with supporting relations between them (e
 Multiple topology layers can be grouped into the same network topology instance, if solution requires.
 
 REQ-VIEWPOINTS:
-: SIMAP should provide different views to different stakeholders. For example, one application
+: SIMAP should provide different views to different applications. For example, one application
 may need to see Layer 2 and Layer 3 layers in a single network topology instance, while another application may need to see
 them as separate network topology instances.
 
