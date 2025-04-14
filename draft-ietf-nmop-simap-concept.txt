@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 19 September 2025                                 O. G. D. Dios
+Expires: 16 October 2025                                   O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                           18 March 2025
+                                                           14 April 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 September 2025.
+   This Internet-Draft will expire on 16 October 2025.
 
 Copyright Notice
 
@@ -170,19 +170,19 @@ Table of Contents
       needs to be configured, controlled and monitored.  Each topology
       layer has a separate lifecycle.
 
-      The [RFC8345] sometimes refers to this multi-layered topology as
-      topology hierarchy (Stack) and sometimes talks about layers when
-      describing supporting relations (represent layered network
-      topologies), underlay/overlay, definition of network nodes and
-      layering information, and says that the model can be used for
-      representation of layered network topologies.
+      [RFC8345] also refers to this multi-layered topology as topology
+      hierarchy (Stack).  It also uses layers when describing supporting
+      relations (represent layered network topologies), underlay/
+      overlay, network nodes and layering information.  [RFC8345] states
+      that the model can be used for representation of layered network
+      topologies.
 
-      [RFC8345] is flexible and it can support both the same network
-      topology instance with multiple layers (e.g. L2+L3) or separate
-      network topology instances with supporting relations between them
-      (e.g. separate L2 and L3).  Therefore, multiple topology layers
-      can be grouped into the same network topology instance, if
-      solution requires.
+      [RFC8345] is flexible and can support both the same network
+      topology instance with multiple layers (e.g., Layer 2 and Layer 3)
+      or separate network topology instances with supporting relations
+      between them (e.g., separate Layer 2 and Layer 3).  Therefore,
+      multiple topology layers can be grouped into the same network
+      topology instance, if solution requires.
 
    Topology layer:  A topology layer represents topology at a single
       layer in the multi-layered topology.
@@ -809,23 +809,20 @@ Table of Contents
    REQ-LAYERED-MODEL:  Topology layers from physical layer up to service
       layer.
 
-      SIMAP must provide the view for all layers of network topology,
-      from physical network (ideally optical), layer 2, layer 3 up to
-      service and intent views.  It must provide flexibility to support
-      both the same network topology instance with multiple layers (e.g.
-      L2+L3) or separate network topology instances with supporting
-      relations between them (e.g. separate L2 and L3).  Therefore,
-      multiple topology layers can be grouped into the same network
-      topology instance, if solution requires.
+      SIMAP must provide views for all layers of network topology, from
+      physical network (ideally optical), Layer 2, Layer 3 up to service
+      and intent views.  It must provide flexibility to support both the
+      same network topology instance with multiple layers (e.g., Layer 2
+      and Layer 3) or separate network topology instances with
+      supporting relations between them (e.g., separate Layer 2 and
+      Layer 3).  Multiple topology layers can be grouped into the same
+      network topology instance, if solution requires.
 
-   REQ-VIEWPOINTS:  Different viewpoints provide capability to have
-      different views to different stakeholders.
-
-   SIMAP should provide capability to provide different views to
-   different stakeholders.  For example, one stakeholder may need to see
-   L2 and L3 layers in a single network topology instance, while another
-   stakeholder may need to see them as separate network topology
-   instances.
+   REQ-VIEWPOINTS:  SIMAP should provide different views to different
+      applications.  For example, one application may need to see Layer
+      2 and Layer 3 layers in a single network topology instance, while
+      another application may need to see them as separate network
+      topology instances.
 
    REQ-PASSIVE-TOPO:  Topology includes passive topology.
 
@@ -1264,9 +1261,9 @@ Table of Contents
               Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A Network
               Data Model for Inventory Topology Mapping", Work in
               Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-topology-01, 4 February 2025,
+              inventory-topology-02, 9 April 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-topology-01>.
+              network-inventory-topology-02>.
 
    [I-D.ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1277,12 +1274,12 @@ Table of Contents
               network-inventory-yang-05>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
-              Graf, T., Du, W., and P. Francois, "An Architecture for a
-              Network Anomaly Detection Framework", Work in Progress,
-              Internet-Draft, draft-ietf-nmop-network-anomaly-
-              architecture-01, 20 October 2024,
+              Graf, T., Du, W., Francois, P., and A. H. Feng, "A
+              Framework for a Network Anomaly Detection Architecture",
+              Work in Progress, Internet-Draft, draft-ietf-nmop-network-
+              anomaly-architecture-02, 13 April 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-01>.
+              network-anomaly-architecture-02>.
 
    [I-D.ietf-nmop-network-incident-yang]
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
@@ -1296,9 +1293,8 @@ Table of Contents
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
               Key Terms for Network Fault and Problem Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              12, 22 February 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-12>.
+              15, 30 March 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-nmop-terminology-15>.
 
    [I-D.ietf-opsawg-ntw-attachment-circuit]
               Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
