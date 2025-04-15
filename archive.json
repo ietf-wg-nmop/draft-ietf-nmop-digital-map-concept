@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T01:12:35.563529+00:00",
+  "timestamp": "2025-04-15T01:07:23.805467+00:00",
   "repo": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
   "labels": [
     {
@@ -290,15 +290,15 @@
       "id": "I_kwDOM1onH86cmrYH",
       "title": "Multi-layered topology versus topology hierarchy (Nacho)",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "OlgaHuawei",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "From Nacho:, I would avoid using the \u201cmulti-layered topology\u201d term, unless you agree that the whole figure 2 (from RFC8345) represents a topology in itself (i.e., a topology composed of topologies from different layers).\r\n\r\n",
       "createdAt": "2024-10-31T17:05:57Z",
-      "updatedAt": "2025-02-19T12:58:18Z",
-      "closedAt": null,
+      "updatedAt": "2025-04-14T09:24:19Z",
+      "closedAt": "2025-04-14T09:24:17Z",
       "comments": [
         {
           "author": "nigel-r-davis",
@@ -320,6 +320,13 @@
           "body": "@OlgaHuawei Happy to discuss on the mailing, but need to make sure that the details get back into this issue. What is the process here?",
           "createdAt": "2025-02-19T12:58:16Z",
           "updatedAt": "2025-02-19T12:58:16Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Proposal at IETF123, Consensus Needed, draft updated:\n1.\tProposal by Authors: Keep the multi-layered topology and explain that multiple network layers can be grouped into single topology layers and explain relation to RFC8345 topology hierarchy (stack) . \n2.\tProposal by Authors: Add a new requirement for different viewpoints. \n3.\tProposal by Authors: support partitioning via multiple network instances inside the single network + new relation (or via supporting with some meta).\n\nMinutes from IETF123: Med Boucadair as a chair: Raised the question to the audience wherever we have any objections. Appears no objection from the audience. We can continue as suggested by the authors.\nThomas Graf: Support to add viewpoint as a requirement. Suggest to confine partitioning to network instances.",
+          "createdAt": "2025-04-14T09:24:17Z",
+          "updatedAt": "2025-04-14T09:24:17Z"
         }
       ]
     },
@@ -411,15 +418,15 @@
       "id": "I_kwDOM1onH86plCO6",
       "title": "termination point vs interface",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/21",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "oscargdd",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "The topology model (RFC 8345) is based on termination points NOT interfaces.\n\nHowever, throught the document we mix both.... \n\nI believe SIMAP could be the place to clarify the relationship between both. \n\n",
       "createdAt": "2025-02-11T11:08:40Z",
-      "updatedAt": "2025-03-18T12:05:04Z",
-      "closedAt": null,
+      "updatedAt": "2025-04-14T09:39:48Z",
+      "closedAt": "2025-04-14T09:39:47Z",
       "comments": [
         {
           "author": "OlgaHuawei",
@@ -483,6 +490,13 @@
           "body": "@OlgaHuawei I agree with your key point, that delivery is critical. I am happy to focus on the core of the definitions for now. We can more detail later and/or to different documents.",
           "createdAt": "2025-03-18T12:05:03Z",
           "updatedAt": "2025-03-18T12:05:03Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The IETF123 options\nConsensus Needed:\n1.\tOption 1: (Proposal by Authors) Bring the definition from 8345\n2.\tOption 2: Add better clarification and discuss on the mailing list (Nigel says he can prepare text)\n\nBased on the exchange with Nigel, he also agrees with Option 1.\n",
+          "createdAt": "2025-04-14T09:39:47Z",
+          "updatedAt": "2025-04-14T09:39:47Z"
         }
       ]
     },
@@ -491,15 +505,15 @@
       "id": "I_kwDOM1onH86plIGm",
       "title": "Models to which the core SIMAP should navigate to",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/issues/22",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "oscargdd",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Do we need to document which models the core SIMAP should navigate to? E.g. ivy physical inventory.\n\n",
       "createdAt": "2025-02-11T11:17:19Z",
-      "updatedAt": "2025-03-03T09:51:31Z",
-      "closedAt": null,
+      "updatedAt": "2025-04-14T16:31:36Z",
+      "closedAt": "2025-04-14T16:31:35Z",
       "comments": [
         {
           "author": "OlgaHuawei",
@@ -514,6 +528,13 @@
           "body": "@oscargdd Do you agree to follow up on this during the hackathon? If you prefer to add it a a section to the draft, please send me the suggested list of YANG modules and I will merge them with Thomas's list. But in any case, the requirements should be that I can connect any - there are lots of them for all the use cases that we mentioned that need to be connected.",
           "createdAt": "2025-03-03T09:51:29Z",
           "updatedAt": "2025-03-03T09:51:29Z"
+        },
+        {
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "body": "\nIETF122 Options, Consensus Needed:\nOption 1: Navigate to models the core SIMAP should navigate to\nOption 2: Add examples of models the core SIMAP should navigate to\nOption 3 (Proposal by Authors): Leave the list to Hackathon\nOption 4: Both 2+3 , where they do not need to match as both are examples\n\nIETF123 Notes:\nThomas Graf: I am for option 3. Lets keeping it for the hackathon.\nOscar Gonzalez De Dios: Not only hackathon. Let\u2019s also discuss on the mailing list.\n\nTherefore, conclusion was Option 3 and to start the discussion on the mailing list,. The initial email sent with the initial list of YANG modules for others to append  ",
+          "createdAt": "2025-04-14T16:31:35Z",
+          "updatedAt": "2025-04-14T16:31:35Z"
         }
       ]
     },
@@ -2547,26 +2568,42 @@
       "id": "PR_kwDOM1onH86PMKkU",
       "title": "review of changes to address IETF#122 discussion",
       "url": "https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept/pull/68",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "boucadair",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-03-19T00:20:29Z",
-      "updatedAt": "2025-03-19T02:51:04Z",
+      "updatedAt": "2025-04-14T09:18:56Z",
       "baseRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "baseRefName": "main",
       "baseRefOid": "b6206f00a50b514d46c08d9847323e9c2ce62c1d",
       "headRepository": "ietf-wg-nmop/draft-ietf-nmop-digital-map-concept",
       "headRefName": "boucadair-patch-8",
       "headRefOid": "b5bd7cf4343b38f0f568d6fc31fa4561e3e144ed",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-04-14T09:18:56Z",
+      "mergedAt": "2025-04-14T09:18:56Z",
+      "mergedBy": "OlgaHuawei",
+      "mergeCommit": {
+        "oid": "1752514e90aa29130329bfafd8c27956334c23fd"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOM1onH86kuo1u",
+          "commit": {
+            "abbreviatedOid": "b5bd7cf"
+          },
+          "author": "OlgaHuawei",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-04-14T09:18:48Z",
+          "updatedAt": "2025-04-14T09:18:48Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
