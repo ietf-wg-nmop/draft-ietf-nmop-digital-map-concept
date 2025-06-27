@@ -124,13 +124,13 @@ Multi-layered topology:
   and services that needs to be configured, controlled and monitored.
   Each topology layer has a separate lifecycle.
 
-: The {{?RFC8345}} sometimes refers to this multi-layered topology as topology hierarchy (Stack) and
-  sometimes talks about layers when describing supporting relations (represent layered network topologies),
-  underlay/overlay, definition of network nodes and layering information, and says that the model can be
+: {{?RFC8345}} also refers to this multi-layered topology as topology hierarchy (Stack). It
+  also uses layers when describing supporting relations (represent layered network topologies),
+  underlay/overlay, network nodes and layering information. {{?RFC8345}} states that the model can be
   used for representation of layered network topologies.
 
-: {{?RFC8345}} is flexible and it can support both the same network topology instance with multiple layers (e.g. L2+L3)
-  or separate network topology instances with supporting relations between them (e.g. separate L2 and L3).
+: {{?RFC8345}} is flexible and can support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
+  or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
   Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.
 
 Topology layer:
@@ -589,17 +589,15 @@ without having to go to the details of the specific augmentations to understand 
 REQ-LAYERED-MODEL:
 : Topology layers from physical layer up to service layer.
 
-: SIMAP must provide the view for all layers of network topology, from physical network
-(ideally optical), layer 2, layer 3 up to  service and intent views. It must provide flexibility
-to support both the same network topology instance with multiple layers (e.g. L2+L3)
-or separate network topology instances with supporting relations between them (e.g. separate L2 and L3).
-Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.
+: SIMAP must provide views for all layers of network topology, from physical network
+(ideally optical), Layer 2, Layer 3 up to  service and intent views. It must provide flexibility
+to support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
+or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
+Multiple topology layers can be grouped into the same network topology instance, if solution requires.
 
 REQ-VIEWPOINTS:
-: Different viewpoints provide capability to have different views to different stakeholders.
-
-SIMAP should provide capability to provide different views to different stakeholders. For example, one stakeholder
-may need to see L2 and L3 layers in a single network topology instance, while another stakeholder may need to see
+: SIMAP should provide different views to different applications. For example, one application
+may need to see Layer 2 and Layer 3 layers in a single network topology instance, while another application may need to see
 them as separate network topology instances.
 
 REQ-PASSIVE-TOPO:
