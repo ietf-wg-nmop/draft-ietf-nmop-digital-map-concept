@@ -423,22 +423,22 @@ certain contraints on port optic speed, type (LR vs SR for instance), etc.
 
 The application can (via SIMAP API):
 
-* Write the proposed network design (topology + rules), this is a new potential network.
+* Write the proposed network interconnect (topology + rules), this is a new potential network interconnect.
 One network (in case of small network) or interconnect of multiple networks (bigger networks).
 
-* Write the intended network design (topology + rules), this is the intent of the network topology that cannot
-be retrieved from the real network (e.g. our L2 topology intent, or L3 topology intent).
+* Write the intended network interconnect (topology + rules), this is the intent of the network topology that cannot
+be retrieved from the real network (e.g. our L2 topology interconnect intent, or L3 topology interconnect intent).
 One network (in case of small network) or interconnect of multiple networks (bigger networks).
 
-* Retrieve the proposed network design (topology + rules)
+* Retrieve the proposed network interconnect (topology + rules)
 
   * Use case can be for purpose of traffic simulation, testing behavior under failures. Network simulation
 use case is described in {{sec-emule}}.
-  * Use case can be for purpose of comparing different proposed network designs.
+  * Use case can be for purpose of comparing different proposed network interconnects.
   * Use case can be to build a simulated environment using this design. Network simulation
 use case is described in {{sec-emule}}.
 
-* Retrieve the intended network design (topology + rules)
+* Retrieve the intended network interconnect (topology + rules)
 
 * At any point in time, compare the discovered topology with intended one
 
@@ -625,7 +625,7 @@ REQ-STD-API-BASED:
 :  SIMAP must provide the standard YANG APIs that provide for read/write and queries.
 These APIs must also provide the capability to retrieve the links to external data/models.
 
-REQ-COMMON-APP:
+REQ-COMMON-API:
 : Common SIMAP models and APIs, for multi domain.
 : SIMAP models and APIs must be common over different network domains (campus, core, data center, etc.).
 : This means that clients of the SIMAP API must be able to understand the topology model of layers of any
@@ -641,7 +641,7 @@ REQ-TOPOLOGY-ABSTRACTION:
 : Navigation across the abstraction levels inside a single network layer.
 : In a multi-layer network we need to navigate across multiple layers. We can also define multiple abstraction
 levels for a single layer and there is a need to navigate across these abstraction levels as well. Please refer
-to the {{sec-topology-abstrcation}} for some background on the topology abstraction.
+to the {{sec-topology-abstraction}} for some background on the topology abstraction.
 
 : In a nutshell, a network (even a single layer network) can be represented
 in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
@@ -670,7 +670,7 @@ REQ-POTENTIAL:
 : This view may contain either the full topology or just differences from the snapshot.
 
 REQ-SEMANTIC:
-: Network topology sematics
+: Network topology semantics
 : SIMAP must provide semantics for layered network topologies and for linking external models/data.
 
 The following requirements are more specific requirements for semantics
@@ -830,7 +830,7 @@ REQ-SCALES:
 : The SIMAP API must be scalable, it must support any provider network, independent of its size.
 
 REQ-PERFORMANCE:
-: The SIMAP API must be  performant, and have acceptable response-time. Although we are not to define
+: The SIMAP API must be  performant, and have acceptable response-time. Although we are not to define the response time here.
 
 REQ-USABILITY:
 : The SIMAP API must be simple and easy to integrate with the client applications, whose developers
@@ -950,7 +950,7 @@ This document has no actions for IANA.
    Another example is {{?RFC8453}} that defines native topology, abstract topology, black topology, and grey topology,
    but all in the context of actual topology and physical topology that are not specifically defined.
 
-## Topology Abstraction {#sec-topology-abstrcation}
+## Topology Abstraction {#sec-topology-abstraction}
 
 Please refer to the following documents for some background on topology abstractions:
 
