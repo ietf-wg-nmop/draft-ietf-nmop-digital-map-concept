@@ -601,11 +601,13 @@ may need to see Layer 2 and Layer 3 layers in a single network topology instance
 them as separate network topology instances.
 
 REQ-PASSIVE-TOPO:
-: Topology includes passive topology.
-: SIMAP must support topology of the complete network, including active and passive parts.
+: SIMAP must support capability to model topology of the complete network, including active and passive parts.
 : For Access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
 essential as it provides many advantages for optimized customer service, reduced MTTR, and lower operational costs
 through truck roll reduction.
+: The passive topology must be either implemented in the SIMAP (what cannot be discovered can be added using the write API)
+or accessible from the SIMAP. Whether the passive topology is included as part of the SIMAP or
+accessible from the SIMAP is left to the solutions.
 
 REQ-PROG-OPEN-MODEL:
 : Open and programmable SIMAP.
