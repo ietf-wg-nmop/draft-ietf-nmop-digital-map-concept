@@ -784,7 +784,11 @@ data and models to ease navigating in the overall system. For example:
 
   + ACLs and Route Policies are not required to be supported in the SIMAP, they would be linked to the SIMAP.
   + Dynamic paths may, depending on the solution, be either inside or outside of the SIMAP. If outside of SIMAP,
-    dynamic paths will be linked to the SIMAP as external data.
+    dynamic paths could be linked to the SIMAP.
+
+: SIMAP should ensure that it is possible to represent the paths/routes and leave the choice of what level of dynamics
+to represent to the specific solution/application. The model needs to be rich enough to represent any level of dynamics.
+BUT from experience, we suspect it can be the same model for all level of dynamics.
 
 REQ-PROPERTIES:
 : SIMAP entities should mainly contain properties used to identify topological entities at different layers,
