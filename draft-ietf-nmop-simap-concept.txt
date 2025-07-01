@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 29 December 2025                                  O. G. D. Dios
+Expires: 2 January 2026                                    O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                            27 June 2025
+                                                             1 July 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 December 2025.
+   This Internet-Draft will expire on 2 January 2026.
 
 Copyright Notice
 
@@ -930,6 +930,13 @@ Table of Contents
 
       This view may contain either the full topology or just differences
       from the snapshot.
+
+   REQ-INTENDED:  Intended network topology.
+
+      SIMAP must enable both retrieval and write access to the intended
+      network topology that cannot be discovered from the real network
+      (for example target L2 Topology, L3 Topology, passive topology
+      that cannot be discovered, etc).
 
    REQ-SEMANTIC:  Network topology semantics
 
