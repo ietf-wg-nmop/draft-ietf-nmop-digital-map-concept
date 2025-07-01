@@ -672,17 +672,17 @@ REQ-POTENTIAL:
 REQ-INTENDED:
 : Intended network topology.
 : SIMAP must enable both retrieval and write access to the intended network topology that cannot be
-discovered from the real network (for example target L2 Topology, L3 Topology, passive topology that
-cannot be discovered, etc).
+discovered from the real network (e.g., candidate Layer 2 topology, candidate Layer 3 topology, passive topology that
+cannot be discovered).
 
 REQ-SEMANTIC:
-: Network topology semantics
-: SIMAP must provide semantics for layered network topologies and for linking external models/data.
+: Network topology semantics.
+: SIMAP must provide semantics for layered network topologies and for linking external models and data.
 
-The following requirements are more specific requirements for semantics
+The following requirements are more specific requirements for semantics:
 
 REQ-LAYER-NAVIGATE:
-: SIMAP must provide capability to navigate inside the topology layer and between the topology layers
+: SIMAP must provide capability to navigate inside the topology layer and between the topology layers.
 
 REQ-EXTENSIBLE:
 : SIMAP must be extensible with metadata.
