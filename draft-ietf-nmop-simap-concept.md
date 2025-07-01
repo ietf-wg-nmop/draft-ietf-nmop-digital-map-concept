@@ -669,6 +669,12 @@ REQ-POTENTIAL:
 : A potential new network is the view at a given point with modifications from the snapshot.
 : This view may contain either the full topology or just differences from the snapshot.
 
+REQ-INTENDED:
+: Intended network topology.
+: SIMAP must enable both retrieval and write access to the intended network topology that cannot be
+discovered from the real network (for example target L2 Topology, L3 Topology, passive topology that
+cannot be discovered, etc).
+
 REQ-SEMANTIC:
 : Network topology semantics
 : SIMAP must provide semantics for layered network topologies and for linking external models/data.
