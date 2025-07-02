@@ -206,7 +206,7 @@ SIMAP data:
 
 # Sample SIMAP Use Cases
 
-The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related application requirements and its interactions with SIMAP, in order to extract the SIMAP-related requirements {{Section 4}}.
+The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related application requirements and its interactions with SIMAP, in order to extract the SIMAP-related requirements (Section 4.
 
 ## Common Enablers for SIMAP
 
