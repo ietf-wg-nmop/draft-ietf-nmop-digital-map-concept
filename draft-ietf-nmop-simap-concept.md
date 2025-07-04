@@ -171,14 +171,15 @@ supporting node of the underlay network.
 The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
-: SIMAP defines a data model for core topological entities, their role in the network, core topological properties,
-and relationships both inside each layer and between the layers. It provides a view of the operator's
-networks and services, including how it is connected to other models/data (e.g., inventory, observability sources,
-and operational knowledge). Specifically for multi-layered topologies with an appropriate mechanism to
-navigate amongst layers and correlate between them. This includes layers from physical topology to service topology.
+: SIMAP is a data model that provides a view of the operator's networks and services, including how it is
+connected to other models/data (e.g., inventory, observability sources, and operational knowledge).
+It specifically provides an approach to model multi-layered topology and an appropriate mechanism to navigate
+amongst layers and correlate between them. This includes layers from physical topology to service topology.
+This model is applicable to multiple domains (access, core, data centers, etc.) and technologies (Optical, IP, etc.)
 
-: It is a basic topological model applicable to multiple domains (access, core, data centers, etc.) and
-technologies (Optical, IP, etc.) with references/pointers to other models and connects them all:
+: Therefore, a SIMAP model defines the core topological entities, their role in the network, core topological
+properties, and relationships both inside each layer and between the layers.
+It is a basic topological model with references/pointers to other models and connects them all:
 configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
 different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
