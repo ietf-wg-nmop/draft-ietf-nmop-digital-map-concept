@@ -645,9 +645,9 @@ in multiple ways providing different abstraction views of the same network. In s
 being able to navigate amongst the different levels of abstractions (e.g. to understand which set of nodes in the native
 topology are actually represented as a single node in an abstract topology being built on top of the native topology).
 This navigation is different and orthogonal to the multi-layer navigation where we need to report which Layer 2 path is
-supporting a given Layer 3 node or link. Please refer to the {{sec-topology-abstraction}} for some background on the
-topology abstraction. Nevertheless, it would not be the best practice to expose it via different
-topology APIs and model.
+supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via different
+topology APIs and model. Please refer to the {{sec-topology-abstraction}} for some background on the
+topology abstraction.
 
 : SIMAP must provide a mechanism to navigate across the abstraction levels.
 
