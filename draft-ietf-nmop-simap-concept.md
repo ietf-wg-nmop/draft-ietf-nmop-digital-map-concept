@@ -171,13 +171,17 @@ supporting node of the underlay network.
 The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
-: SIMAP is a data model that provides a view of the operator's networks and Services,
-  including how it is connected to other models/data (e.g., inventory, observability sources, and
-  operational knowledge). It specifically provides an approach to model multi-layered topology
-  and an appropriate mechanism to navigate amongst layers and correlate between them.
-  This includes layers from physical topology to Service topology.
-: This model is applicable to multiple domains (access, core, data centers, etc.) and
-  technologies (Optical, IP, etc.).
+: SIMAP is a data model that provides a view of the operator's networks and services, including how it is
+connected to other models/data (e.g., inventory, observability sources, and operational knowledge).
+It specifically provides an approach to model multi-layered topology and an appropriate mechanism to navigate
+amongst layers and correlate between them. This includes layers from physical topology to service topology.
+This model is applicable to multiple domains (access, core, data centers, etc.) and technologies (Optical, IP, etc.)
+
+: Therefore, a SIMAP model defines the core topological entities, their role in the network, core topological
+properties, and relationships both inside each layer and between the layers.
+It is a basic topological model with references/pointers to other models and connects them all:
+configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
+different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
 SIMAP modelling:
 : SIMAP modelling is the set of principles, guidelines, and conventions to model the SIMAP
@@ -185,14 +189,6 @@ SIMAP modelling:
   network types (layers and sublayers), entity types, entity roles
   (network, node, termination point, or link), entity properties,
   relationship types between entities and relationships to other entities.
-
-SIMAP model:
-: A SIMAP model defines the core topological entities, their role in the network,
-  core topological properties, and relationships both inside each layer and
-  between the layers.
-: It is the basic topological model with references/pointers to other models and connects them all:
-  configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
-  different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
 SIMAP data:
 : SIMAP data consists of instances of network and Service topologies at
