@@ -578,7 +578,7 @@ default by {{!RFC8345}}.
 REQ-BASIC-MODEL-SUPPORT:
 : Basic model with network, node, link, and termination point entity types.
 
-: This means that users of SIMAP 
+: This means that users of SIMAP
 must be able to understand a topology model at any layer via these core concepts only,
 without having to go to the details of the specific augmentations to understand the topology.
 
