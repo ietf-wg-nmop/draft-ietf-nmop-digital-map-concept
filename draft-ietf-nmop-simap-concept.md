@@ -672,7 +672,7 @@ REQ-POTENTIAL:
 REQ-INTENDED:
 : Intended network topology.
 : SIMAP must enable both retrieval and write access to the intended network topology that cannot be
-discovered from the real network (e.g., candidate Layer 2 topology, candidate Layer 3 topology, passive topology that
+discovered from the real network (e.g., Intended Layer 2 topology, Intended Layer 3 topology, passive topology that
 cannot be discovered).
 
 REQ-SEMANTIC:
