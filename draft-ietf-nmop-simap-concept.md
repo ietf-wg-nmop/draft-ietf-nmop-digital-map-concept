@@ -177,7 +177,7 @@ networks and services, including how it is connected to other models/data (e.g.,
 and operational knowledge). Specifically for multi-layered topologies with an appropriate mechanism to
 navigate amongst layers and correlate between them. This includes layers from physical topology to service topology.
 
-It is a basic topological model applicable to multiple domains (access, core, data centers, etc.) and
+: It is a basic topological model applicable to multiple domains (access, core, data centers, etc.) and
 technologies (Optical, IP, etc.) with references/pointers to other models and connects them all:
 configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
 different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
