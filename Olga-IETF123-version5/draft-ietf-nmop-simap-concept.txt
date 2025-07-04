@@ -246,22 +246,22 @@ Table of Contents
       This model is applicable to multiple domains (access, core, data
       centers, etc.) and technologies (Optical, IP, etc.).
 
-   SIMAP modelling:  SIMAP modelling is the set of principles,
-      guidelines, and conventions to model the SIMAP using the IETF
-      modelling approach [RFC8345].  They cover the network types
-      (layers and sublayers), entity types, entity roles (network, node,
-      termination point, or link), entity properties, relationship types
-      between entities and relationships to other entities.
-
-   SIMAP model:  A SIMAP model defines the core topological entities,
-      their role in the network, core topological properties, and
-      relationships both inside each layer and between the layers.
+      A SIMAP model defines the core topological entities, their role in
+      the network, core topological properties, and relationships both
+      inside each layer and between the layers.
 
       It is the basic topological model with references/pointers to
       other models and connects them all: configuration, maintenance,
       assurance (KPIs, status, health, symptoms, etc.), traffic
       engineering, different behaviors, simulation, emulation,
       mathematical abstractions, AI algorithms, etc.
+
+   SIMAP modelling:  SIMAP modelling is the set of principles,
+      guidelines, and conventions to model the SIMAP using the IETF
+      modelling approach [RFC8345].  They cover the network types
+      (layers and sublayers), entity types, entity roles (network, node,
+      termination point, or link), entity properties, relationship types
+      between entities and relationships to other entities.
 
    SIMAP data:  SIMAP data consists of instances of network and Service
       topologies at different layers.  This includes instances of
