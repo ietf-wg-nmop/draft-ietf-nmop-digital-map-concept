@@ -122,11 +122,11 @@ Table of Contents
    node, link, and termination point) at each layer, their role in the
    network topology, core topological properties, and topological
    relationships both inside each layer and between the layers.  It also
-   defines how to access other external models from a topology.  The
-   SIMAP model is a topological model that is linked to other functional
-   models and connects them all: configuration, maintenance, assurance
-   (KPIs, status, health, and symptoms), Traffic-Engineering (TE),
-   different behaviors and actions, simulation, emulation, mathematical
+   defines how to access other external models from a topology.  SIMAP
+   is a topological model that is linked to other functional models and
+   connects them all: configuration, maintenance, assurance (KPIs,
+   status, health, and symptoms), Traffic-Engineering (TE), different
+   behaviors and actions, simulation, emulation, mathematical
    abstractions, AI algorithms, etc.  These other models exist outside
    of the SIMAP and are not defined during SIMAP modelling.
 
@@ -245,14 +245,14 @@ Table of Contents
       multiple domains (access, core, data centers, etc.) and
       technologies (Optical, IP, etc.)
 
-      Therefore, a SIMAP model defines the core topological entities,
-      their role in the network, core topological properties, and
-      relationships both inside each layer and between the layers.  It
-      is a basic topological model with references/pointers to other
-      models and connects them all: configuration, maintenance,
-      assurance (KPIs, status, health, symptoms, etc.), traffic
-      engineering, different behaviors, simulation, emulation,
-      mathematical abstractions, AI algorithms, etc.
+      Therefore, SIMAP defines the core topological entities, their role
+      in the network, core topological properties, and relationships
+      both inside each layer and between the layers.  It is a basic
+      topological model with references/pointers to other models and
+      connects them all: configuration, maintenance, assurance (KPIs,
+      status, health, symptoms, etc.), traffic engineering, different
+      behaviors, simulation, emulation, mathematical abstractions, AI
+      algorithms, etc.
 
    SIMAP modelling:  SIMAP modelling is the set of principles,
       guidelines, and conventions to model the SIMAP using the IETF
@@ -803,10 +803,10 @@ Table of Contents
    REQ-BASIC-MODEL-SUPPORT:  Basic model with network, node, link, and
       termination point entity types.
 
-      This means that users of the SIMAP model must be able to
-      understand a topology model at any layer via these core concepts
-      only, without having to go to the details of the specific
-      augmentations to understand the topology.
+      This means that users of SIMAP must be able to understand a
+      topology model at any layer via these core concepts only, without
+      having to go to the details of the specific augmentations to
+      understand the topology.
 
    REQ-LAYERED-MODEL:  Topology layers from physical layer up to Service
       layer.
@@ -859,17 +859,17 @@ Table of Contents
       SIMAP for future simulation and a change that reflects the current
       reality of the network.
 
-   REQ-STD-API-BASED:  Standard based SIMAP models and APIs, for multi-
-      vendor support.
+   REQ-STD-API-BASED:  Standard-based SIMAP and APIs, for multi-vendor
+      support.
 
       SIMAP must provide the standard YANG APIs that provide for read/
       write and queries.  These APIs must also provide the capability to
       retrieve the links to external data/models.
 
-   REQ-COMMON-API:  Common SIMAP models and APIs, for multi domain.
+   REQ-COMMON-API:  SIMAP and common APIs, for multi domain.
 
-      SIMAP models and APIs must be common over different network
-      domains (campus, core, data center, etc.).
+      SIMAP and its APIs must be common over different network domains
+      (campus, core, data center, etc.).
 
       This means that clients of the SIMAP APIs must be able to
       understand the topology model of layers of any domain without
