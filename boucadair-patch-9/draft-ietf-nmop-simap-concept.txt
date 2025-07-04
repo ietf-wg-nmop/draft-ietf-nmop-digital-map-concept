@@ -5,11 +5,11 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                 B. Claise
 Intended status: Informational                                    Huawei
-Expires: 2 January 2026                                    O. G. D. Dios
+Expires: 5 January 2026                                    O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                             1 July 2025
+                                                             4 July 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2026.
+   This Internet-Draft will expire on 5 January 2026.
 
 Copyright Notice
 
@@ -935,7 +935,7 @@ Table of Contents
 
       SIMAP must enable both retrieval and write access to the intended
       network topology that cannot be discovered from the real network
-      (e.g., candidate Layer 2 topology, candidate Layer 3 topology,
+      (e.g., Intended Layer 2 topology, Intended Layer 3 topology,
       passive topology that cannot be discovered).
 
    REQ-SEMANTIC:  Network topology semantics.
@@ -1297,9 +1297,9 @@ Table of Contents
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-03, 8 May 2025,
+              anomaly-architecture-04, 4 July 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-03>.
+              network-anomaly-architecture-04>.
 
    [I-D.ietf-nmop-network-incident-yang]
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
