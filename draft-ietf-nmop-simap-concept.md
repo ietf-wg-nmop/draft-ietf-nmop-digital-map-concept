@@ -639,8 +639,6 @@ relationship between the termination points or nodes.
 
 REQ-TOPOLOGY-ABSTRACTION:
 : Navigation across the abstraction levels.
-: In a multi-layer network we need to navigate across multiple layers. We can also define multiple abstraction
-levels for a single layer and there is a need to navigate across these abstraction levels as well.
 
 : A network (even a single layer network) can be represented
 in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
