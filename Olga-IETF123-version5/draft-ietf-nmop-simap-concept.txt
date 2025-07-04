@@ -895,9 +895,9 @@ Table of Contents
       on top of the native topology).  This navigation is different and
       orthogonal to the multi-layer navigation where we need to report
       which Layer 2 path is supporting a given Layer 3 node or link.
-      Please refer to the Appendix A.2 for some background on the
-      topology abstraction.  Nevertheless, it would not be the best
-      practice to expose it via different topology APIs and model.
+      Nevertheless, it would not be the best practice to expose it via
+      different topology APIs and model.  Please refer to the
+      Appendix A.2 for some background on the topology abstraction.
 
       SIMAP must provide a mechanism to navigate across the abstraction
       levels.
