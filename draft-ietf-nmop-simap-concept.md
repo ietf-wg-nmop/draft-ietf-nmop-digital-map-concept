@@ -638,20 +638,18 @@ source and sink relationships to termination-points may not be sufficient, we ma
 relationship between the termination points or nodes.
 
 REQ-TOPOLOGY-ABSTRACTION:
-: Navigation across the abstraction levels inside a single network layer.
-: In a multi-layer network we need to navigate across multiple layers. We can also define multiple abstraction
-levels for a single layer and there is a need to navigate across these abstraction levels as well. Please refer
-to the {{sec-topology-abstraction}} for some background on the topology abstraction.
+: Navigation across the abstraction levels.
 
-: In a nutshell, a network (even a single layer network) can be represented
+: A network (even a single layer network) can be represented
 in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
 being able to navigate amongst the different levels of abstractions (e.g. to understand which set of nodes in the native
 topology are actually represented as a single node in an abstract topology being built on top of the native topology).
 This navigation is different and orthogonal to the multi-layer navigation where we need to report which Layer 2 path is
-supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via
-different topology APIs and model.
+supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via different
+topology APIs and model. Please refer to the {{sec-topology-abstraction}} for some background on the
+topology abstraction.
 
-: SIMAP must provide a mechanism to navigate across the abstraction levels inside a single network layer.
+: SIMAP must provide a mechanism to navigate across the abstraction levels.
 
 REQ-LIVE:
 : Live network topology.
