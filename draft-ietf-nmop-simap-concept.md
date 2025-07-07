@@ -505,7 +505,7 @@ normal conditions and considering factors like fault tolerance.
 
 ## Postmortem Replay
 
-or the postmortem replay use case, the application will use the SIMAP APIs for the purpose of analysis of network Service property
+For the postmortem replay use case, the application will use the SIMAP APIs for the purpose of analysis of network Service property
 evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates,
 configuration changes, link status modifications, traffic metrics evolution, and Service characteristics, is being
 made accessible from and/or within a SIMAP to support investigation and automated processing.
@@ -673,10 +673,10 @@ REQ-SEMANTIC:
 : Network topology semantics.
 : SIMAP must provide semantics for layered network topologies and for linking external models/data.
 
-The following requirements are more specific requirements for semantics
+The following requirements are more specific requirements for semantics:
 
 REQ-LAYER-NAVIGATE:
-: SIMAP must provide capability to navigate inside the topology layer and between the topology layers
+: SIMAP must provide capability to navigate inside the topology layer and between the topology layers.
 
 REQ-EXTENSIBLE:
 : SIMAP must be extensible with metadata.
