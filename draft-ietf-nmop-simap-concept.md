@@ -36,8 +36,8 @@ author:
 
   -
     fullname: Benoit Claise
-    org: Huawei
-    email: benoit.claise@huawei.com
+    org: Everything OPS
+    email: benoit@everything-ops.net
 
   -
     fullname: Oscar Gonzalez de Dios
@@ -124,7 +124,7 @@ Multi-layered topology:
   and services that needs to be configured, controlled and monitored.
   Each topology layer has a separate lifecycle.
 
-: {{?RFC8345}} also refers to this multi-layered topology as topology hierarchy (Stack). It
+: {{?RFC8345}} also refers to this multi-layered topology as topology hierarchy (stack). It
   also uses layers when describing supporting relations (represent layered network topologies),
   underlay/overlay, network nodes and layering information. {{?RFC8345}} states that the model can be
   used for representation of layered network topologies.
@@ -202,7 +202,7 @@ SIMAP data:
 
 # Sample SIMAP Use Cases
 
-The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related application requirements and its interactions with SIMAP, in order to extract the SIMAP-related requirements (Section 4.
+The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related application requirements and its interactions with SIMAP, in order to extract the SIMAP-related requirements (Section 4).
 
 ## Common Enablers for SIMAP
 
@@ -231,10 +231,9 @@ This APIs can be invoked for Service impact analysis, for example.
 
 Traffic Engineering (TE) {{?RFC9522}} is a network optimization technique designed to enhance network performance
 and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path
-selection based on constraints such as bandwidth availability, latency, and link costs.
-
-Its primary goals are to prevent network congestion, balance traffic loads, and ensure efficient use of
-bandwidth while meeting performance requirements.
+selection based on constraints such as bandwidth availability, latency, and link costs. Its primary goals are to
+prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting performance
+requirements.
 
 The TE use case is a combination of both the capacity planning and the simulation use case. Therefore, there
 are no specific SIMAP requirements.
@@ -246,15 +245,15 @@ monitored, analyzed, and optimized in real time through feedback mechanisms. Thi
 that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance
 without manual intervention.
 
-Key Characteristics of a Network Closed Loop:
+Key Characteristics of a network closed loop:
 
-* Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build
+* Real-time monitoring: Collects data from network devices, traffic flows, and applications to build
 a comprehensive view of network health and performance.
-* Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures,
+* Automated analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures,
 or detect security threats.
-* Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
+* Proactive action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
 compromised endpoints, or rerouting traffic.
-* Continuous Optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
+* Continuous optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
 
 The application will be able to retrieve a topology layer and any network/node/termination point/link instances
 from the controller via the SIMAP APIs and from the response it will be able to map the traffic analysis to
@@ -270,17 +269,17 @@ components and devices within an organization's IT infrastructure.
 
 Key elements typically found in a network inventory include:
 
-* Hardware Details:
+* Hardware details:
 : Descriptions of physical devices such as routers (including their internal components such as cards, power supply
 units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer
 information. This information will facilitate locating additional details of the hardware in the manufacturer systems
 and the correlation with the purchase catalog of the company.
 
-* Software and Firmware:
+* Software and firmware:
 : Versions of operating systems, network management tools, and firmware running on network devices.
 Note that a network device can have components with their own software and firmware.
 
-* Licensing Information:
+* Licensing information:
 : For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.
 
 A network inventory lifecycle refers to the stages a network device or component goes through from
@@ -317,7 +316,7 @@ Some of the factors that need assesing are network capabilities, status, limitat
 The Service could be simulated during the feasibility checks to identify if there are any potential issues.
 The load testing could be done to evaluate performance under stress.
 
-The Service Feasibility Check application will be able to retrieve the topology at any layer from the controller
+The service placement feasibility check application will be able to retrieve the topology at any layer from the controller
 via the SIMAP APIs and from the response it will be able to navigate to any other YANG modules outside of the
 core SIMAP topology to retrieve any other information needed, such as resource usage, availability, status, etc.
 
@@ -332,15 +331,15 @@ to effectively monitor and maintain Service health.
 
 The key objectives of this architecture include:
 
-* Holistic Service Monitoring:
+* Holistic service monitoring:
 : By considering all elements involved in Service delivery, the architecture enables a thorough assessment of
 service health.
 
-* Correlation of Service Degradation:
+* Correlation of Service degradation:
 : It assists in linking Service performance issues to specific network components, facilitating precise
 identification of faults.
 
-* Impact Assessment:
+* Impact assessment:
 : The architecture identifies which Services are affected by the failure or degradation of particular
 network components, aiding in prioritizing remediation efforts.
 
@@ -359,9 +358,9 @@ by navigating to the SAIN subservices and its symptoms.
 The application will be able to retrieve a topology at any layer from a controller via the SIMAP APIs and from the
 response it will be able to navigate to and retrieve any KPIs for selected topology entity.
 
-## Capacity Planning
+## Network Capacity Planning
 
-Network Capacity Planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
+Network capacity planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
 capacity (e.g., {{?RFC5136}}), resources, and infrastructure to meet current and future demands. It involves
 evaluating the network's ability to handle increasing (including forecasted) amounts of data, traffic, and users'
 activity, while maintaining acceptable levels of performance, reliability, and security.
@@ -459,18 +458,18 @@ using generic software.
 There are several types of network simulations, each designed to address specific needs and use cases. Below are
 the main categories of network simulation:
 
-1. Discrete Event Simulation (DES):
+1. Discrete event simulation:
 : This is the most common type of network simulation. It models a series of events that occur at specific points
 in time. Each event triggers a change in the state of a network component (e.g., a link is down, a card fails,
 or a packet arrives).
 
-2. Continuous Simulation:
+2. Continuous simulation:
 : In contrast to discrete event simulation, continuous simulation models systems where variables change continuously
 over time. Network parameters like bandwidth, congestion, and throughput can be treated as continuous functions.
 : The main use case is to model certain aspects of network performance that evolve continuously, such as link speeds
 or delay distributions in links that are impacted by environmental conditions (such as microwave or satellite links).
 
-3. Monte Carlo Simulation:
+3. Monte Carlo simulation:
 : This type of simulation uses statistical methods to model and analyze networks under uncertain or variable conditions.
 Monte Carlo simulations generate a large number of random samples to predict the performance of a network across
 multiple scenarios. It is used for probabilistic analysis, risk assessment, and performance evaluation under
@@ -499,7 +498,7 @@ assist the capacity planning process.
 #### Simulation of Different Topologies Under Normal and Failure Scenarios
 
 This type of simulation focuses on the structure and layout of the network itself. It simulates different network
-topologies, such as mesh, horse-shoe, bus, star, or tree topologies, and their impact on the network's performance.
+topologies and their impact on the network's performance.
 It can be used, together with the traffic simulation, to evaluate the most efficient topology for a network under
 normal conditions and considering factors like fault tolerance.
 
@@ -609,7 +608,7 @@ REQ-PROG-OPEN-MODEL:
 : Open and programmable SIMAP.
 : This includes "read" operations to retrieve the view of the network, typically as application-facing interface of
 Software Defined Networking (SDN) controllers or orchestrators.
-: It also includes "write" operations, not for the ability to directly change the SIMAP data
+: It also includes "write" operations, not for the ability to directly change the live SIMAP data
 (e.g., changing the network or Service parameters), but for offline simulations, also known as what-if scenarios.
 :  Running a "what-if" analysis requires the ability to take
 snapshots and to switch easily between them.
@@ -788,7 +787,7 @@ data and models to ease navigating in the overall system. For example:
 
 : SIMAP should ensure that it is possible to represent the paths/routes and leave the choice of what level of dynamics
 to represent to the specific solution/application. The model needs to be rich enough to represent any level of dynamics.
-BUT from experience, we suspect it can be the same model for all level of dynamics.
+However, from experience, we suspect it can be the same model for all level of dynamics.
 
 REQ-PROPERTIES:
 : SIMAP entities should mainly contain properties used to identify topological entities at different layers,
