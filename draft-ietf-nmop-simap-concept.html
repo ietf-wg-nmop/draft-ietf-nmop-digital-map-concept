@@ -15,7 +15,7 @@ requirements and use cases. The SIMAP was previously known as Digital Map.
        The document intends to be used as a reference for the assessment of the various topology modules to meet
 SIMAP requirements. 
     " name="description">
-<meta content="xml2rfc 3.29.0" name="generator">
+<meta content="xml2rfc 3.30.2" name="generator">
 <meta content="Service &amp; Infrastructure Maps" name="keyword">
 <meta content="Service emulation" name="keyword">
 <meta content="Automation" name="keyword">
@@ -33,17 +33,17 @@ SIMAP requirements.
 <meta content="Multi-layer" name="keyword">
 <meta content="draft-ietf-nmop-simap-concept-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.29.0
+  xml2rfc 3.30.2
     Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.3.8
+    platformdirs 4.4.0
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.4
+    requests 2.32.5
     setuptools 80.9.0
     wcwidth 0.2.13
 -->
@@ -1064,11 +1064,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SIMAP Concept &amp; Needs</td>
-<td class="right">July 2025</td>
+<td class="right">September 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 8 January 2026</td>
+<td class="center">Expires 28 March 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1081,12 +1081,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-simap-concept-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-07" class="published">7 July 2025</time>
+<time datetime="2025-09-24" class="published">24 September 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-03-28">28 March 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1095,7 +1095,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </div>
 <div class="author">
       <div class="author-name">B. Claise</div>
-<div class="org">Huawei</div>
+<div class="org">Everything OPS</div>
 </div>
 <div class="author">
       <div class="author-name">O. G. D. Dios</div>
@@ -1146,7 +1146,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 March 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1214,7 +1214,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
                 <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-service-e2e-and-per-link-kp" class="internal xref">Service E2E and Per-link KPIs</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
-                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-capacity-planning" class="internal xref">Capacity Planning</a></p>
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-network-capacity-planning" class="internal xref">Network Capacity Planning</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
                 <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-network-design" class="internal xref">Network Design</a></p>
@@ -1372,7 +1372,7 @@ Each topology layer has a separate lifecycle.<a href="#section-2-2.8.1" class="p
         <dd class="break"></dd>
 <dt id="section-2-2.9"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.10">
-          <p id="section-2-2.10.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> also refers to this multi-layered topology as topology hierarchy (Stack). It
+          <p id="section-2-2.10.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> also refers to this multi-layered topology as topology hierarchy (stack). It
 also uses layers when describing supporting relations (represent layered network topologies),
 underlay/overlay, network nodes and layering information. <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> states that the model can be
 used for representation of layered network topologies.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
@@ -1509,7 +1509,7 @@ relationship types between entities and relationships to other entities.<a href=
       <h2 id="name-sample-simap-use-cases">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sample-simap-use-cases" class="section-name selfRef">Sample SIMAP Use Cases</a>
       </h2>
-<p id="section-3-1">The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related application requirements and its interactions with SIMAP, in order to extract the SIMAP-related requirements (Section 4.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related application requirements and its interactions with SIMAP, in order to extract the SIMAP-related requirements (Section 4).<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="common-enablers-for-simap">
 <section id="section-3.1">
         <h3 id="name-common-enablers-for-simap">
@@ -1549,11 +1549,11 @@ relationship bottom-up come to the Service and its nodes, termination points and
           </h4>
 <p id="section-3.1.3-1">Traffic Engineering (TE) <span>[<a href="#RFC9522" class="cite xref">RFC9522</a>]</span> is a network optimization technique designed to enhance network performance
 and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path
-selection based on constraints such as bandwidth availability, latency, and link costs.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-2">Its primary goals are to prevent network congestion, balance traffic loads, and ensure efficient use of
-bandwidth while meeting performance requirements.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.1.3-3">The TE use case is a combination of both the capacity planning and the simulation use case. Therefore, there
-are no specific SIMAP requirements.<a href="#section-3.1.3-3" class="pilcrow">¶</a></p>
+selection based on constraints such as bandwidth availability, latency, and link costs. Its primary goals are to
+prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting performance
+requirements.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-2">The TE use case is a combination of both the capacity planning and the simulation use case. Therefore, there
+are no specific SIMAP requirements.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="closed-loop">
@@ -1565,22 +1565,22 @@ are no specific SIMAP requirements.<a href="#section-3.1.3-3" class="pilcrow">¶
 monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures
 that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance
 without manual intervention.<a href="#section-3.1.4-1" class="pilcrow">¶</a></p>
-<p id="section-3.1.4-2">Key Characteristics of a Network Closed Loop:<a href="#section-3.1.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.1.4-2">Key Characteristics of a network closed loop:<a href="#section-3.1.4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1.4-3.1">
-              <p id="section-3.1.4-3.1.1">Real-Time Monitoring: Collects data from network devices, traffic flows, and applications to build
+              <p id="section-3.1.4-3.1.1">Real-time monitoring: Collects data from network devices, traffic flows, and applications to build
 a comprehensive view of network health and performance.<a href="#section-3.1.4-3.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.4-3.2">
-              <p id="section-3.1.4-3.2.1">Automated Analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures,
+              <p id="section-3.1.4-3.2.1">Automated analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures,
 or detect security threats.<a href="#section-3.1.4-3.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.4-3.3">
-              <p id="section-3.1.4-3.3.1">Proactive Action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
+              <p id="section-3.1.4-3.3.1">Proactive action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
 compromised endpoints, or rerouting traffic.<a href="#section-3.1.4-3.3.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.4-3.4">
-              <p id="section-3.1.4-3.4.1">Continuous Optimization: Uses feedback from previous cycles to refine network policies and improve future responses.<a href="#section-3.1.4-3.4.1" class="pilcrow">¶</a></p>
+              <p id="section-3.1.4-3.4.1">Continuous optimization: Uses feedback from previous cycles to refine network policies and improve future responses.<a href="#section-3.1.4-3.4.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
 <p id="section-3.1.4-4">The application will be able to retrieve a topology layer and any network/node/termination point/link instances
@@ -1604,7 +1604,7 @@ components and devices within an organization's IT infrastructure.<a href="#sect
 <ul class="normal">
 <li class="normal" id="section-3.2-3.1">
             <span class="break"></span><dl class="dlParallel" id="section-3.2-3.1.1">
-              <dt id="section-3.2-3.1.1.1">Hardware Details:</dt>
+              <dt id="section-3.2-3.1.1.1">Hardware details:</dt>
               <dd style="margin-left: 1.5em" id="section-3.2-3.1.1.2">
                 <p id="section-3.2-3.1.1.2.1">Descriptions of physical devices such as routers (including their internal components such as cards, power supply
 units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer
@@ -1616,7 +1616,7 @@ and the correlation with the purchase catalog of the company.<a href="#section-3
 </li>
           <li class="normal" id="section-3.2-3.2">
             <span class="break"></span><dl class="dlParallel" id="section-3.2-3.2.1">
-              <dt id="section-3.2-3.2.1.1">Software and Firmware:</dt>
+              <dt id="section-3.2-3.2.1.1">Software and firmware:</dt>
               <dd style="margin-left: 1.5em" id="section-3.2-3.2.1.2">
                 <p id="section-3.2-3.2.1.2.1">Versions of operating systems, network management tools, and firmware running on network devices.
 Note that a network device can have components with their own software and firmware.<a href="#section-3.2-3.2.1.2.1" class="pilcrow">¶</a></p>
@@ -1626,7 +1626,7 @@ Note that a network device can have components with their own software and firmw
 </li>
           <li class="normal" id="section-3.2-3.3">
             <span class="break"></span><dl class="dlParallel" id="section-3.2-3.3.1">
-              <dt id="section-3.2-3.3.1.1">Licensing Information:</dt>
+              <dt id="section-3.2-3.3.1.1">Licensing information:</dt>
               <dd style="margin-left: 1.5em" id="section-3.2-3.3.1.2">
                 <p id="section-3.2-3.3.1.2.1">For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.<a href="#section-3.2-3.3.1.2.1" class="pilcrow">¶</a></p>
 </dd>
@@ -1666,7 +1666,7 @@ or inefficiencies and effecting other Services already provisioned on the networ
 <p id="section-3.3-2">Some of the factors that need assesing are network capabilities, status, limitations, resource usage and availability.
 The Service could be simulated during the feasibility checks to identify if there are any potential issues.
 The load testing could be done to evaluate performance under stress.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">The Service Feasibility Check application will be able to retrieve the topology at any layer from the controller
+<p id="section-3.3-3">The service placement feasibility check application will be able to retrieve the topology at any layer from the controller
 via the SIMAP APIs and from the response it will be able to navigate to any other YANG modules outside of the
 core SIMAP topology to retrieve any other information needed, such as resource usage, availability, status, etc.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
@@ -1685,7 +1685,7 @@ to effectively monitor and maintain Service health.<a href="#section-3.4-2" clas
 <ul class="normal">
 <li class="normal" id="section-3.4-4.1">
             <span class="break"></span><dl class="dlParallel" id="section-3.4-4.1.1">
-              <dt id="section-3.4-4.1.1.1">Holistic Service Monitoring:</dt>
+              <dt id="section-3.4-4.1.1.1">Holistic service monitoring:</dt>
               <dd style="margin-left: 1.5em" id="section-3.4-4.1.1.2">
                 <p id="section-3.4-4.1.1.2.1">By considering all elements involved in Service delivery, the architecture enables a thorough assessment of
 service health.<a href="#section-3.4-4.1.1.2.1" class="pilcrow">¶</a></p>
@@ -1695,7 +1695,7 @@ service health.<a href="#section-3.4-4.1.1.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.4-4.2">
             <span class="break"></span><dl class="dlParallel" id="section-3.4-4.2.1">
-              <dt id="section-3.4-4.2.1.1">Correlation of Service Degradation:</dt>
+              <dt id="section-3.4-4.2.1.1">Correlation of Service degradation:</dt>
               <dd style="margin-left: 1.5em" id="section-3.4-4.2.1.2">
                 <p id="section-3.4-4.2.1.2.1">It assists in linking Service performance issues to specific network components, facilitating precise
 identification of faults.<a href="#section-3.4-4.2.1.2.1" class="pilcrow">¶</a></p>
@@ -1705,7 +1705,7 @@ identification of faults.<a href="#section-3.4-4.2.1.2.1" class="pilcrow">¶</a>
 </li>
           <li class="normal" id="section-3.4-4.3">
             <span class="break"></span><dl class="dlParallel" id="section-3.4-4.3.1">
-              <dt id="section-3.4-4.3.1.1">Impact Assessment:</dt>
+              <dt id="section-3.4-4.3.1.1">Impact assessment:</dt>
               <dd style="margin-left: 1.5em" id="section-3.4-4.3.1.2">
                 <p id="section-3.4-4.3.1.2.1">The architecture identifies which Services are affected by the failure or degradation of particular
 network components, aiding in prioritizing remediation efforts.<a href="#section-3.4-4.3.1.2.1" class="pilcrow">¶</a></p>
@@ -1733,12 +1733,12 @@ by navigating to the SAIN subservices and its symptoms.<a href="#section-3.4-6" 
 response it will be able to navigate to and retrieve any KPIs for selected topology entity.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="capacity-planning">
+<div id="network-capacity-planning">
 <section id="section-3.6">
-        <h3 id="name-capacity-planning">
-<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-capacity-planning" class="section-name selfRef">Capacity Planning</a>
+        <h3 id="name-network-capacity-planning">
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-network-capacity-planning" class="section-name selfRef">Network Capacity Planning</a>
         </h3>
-<p id="section-3.6-1">Network Capacity Planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
+<p id="section-3.6-1">Network capacity planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
 capacity (e.g., <span>[<a href="#RFC5136" class="cite xref">RFC5136</a>]</span>), resources, and infrastructure to meet current and future demands. It involves
 evaluating the network's ability to handle increasing (including forecasted) amounts of data, traffic, and users'
 activity, while maintaining acceptable levels of performance, reliability, and security.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
@@ -1878,7 +1878,7 @@ the main categories of network simulation:<a href="#section-3.8.1-1" class="pilc
 <ol start="1" type="1" class="normal type-1" id="section-3.8.1-2">
 <li id="section-3.8.1-2.1">
               <span class="break"></span><dl class="dlParallel" id="section-3.8.1-2.1.1">
-                <dt id="section-3.8.1-2.1.1.1">Discrete Event Simulation (DES):</dt>
+                <dt id="section-3.8.1-2.1.1.1">Discrete event simulation:</dt>
                 <dd style="margin-left: 1.5em" id="section-3.8.1-2.1.1.2">
                   <p id="section-3.8.1-2.1.1.2.1">This is the most common type of network simulation. It models a series of events that occur at specific points
 in time. Each event triggers a change in the state of a network component (e.g., a link is down, a card fails,
@@ -1889,7 +1889,7 @@ or a packet arrives).<a href="#section-3.8.1-2.1.1.2.1" class="pilcrow">¶</a></
 </li>
             <li id="section-3.8.1-2.2">
               <span class="break"></span><dl class="dlParallel" id="section-3.8.1-2.2.1">
-                <dt id="section-3.8.1-2.2.1.1">Continuous Simulation:</dt>
+                <dt id="section-3.8.1-2.2.1.1">Continuous simulation:</dt>
                 <dd style="margin-left: 1.5em" id="section-3.8.1-2.2.1.2">
                   <p id="section-3.8.1-2.2.1.2.1">In contrast to discrete event simulation, continuous simulation models systems where variables change continuously
 over time. Network parameters like bandwidth, congestion, and throughput can be treated as continuous functions.<a href="#section-3.8.1-2.2.1.2.1" class="pilcrow">¶</a></p>
@@ -1905,7 +1905,7 @@ or delay distributions in links that are impacted by environmental conditions (s
 </li>
             <li id="section-3.8.1-2.3">
               <span class="break"></span><dl class="dlParallel" id="section-3.8.1-2.3.1">
-                <dt id="section-3.8.1-2.3.1.1">Monte Carlo Simulation:</dt>
+                <dt id="section-3.8.1-2.3.1.1">Monte Carlo simulation:</dt>
                 <dd style="margin-left: 1.5em" id="section-3.8.1-2.3.1.2">
                   <p id="section-3.8.1-2.3.1.2.1">This type of simulation uses statistical methods to model and analyze networks under uncertain or variable conditions.
 Monte Carlo simulations generate a large number of random samples to predict the performance of a network across
@@ -1953,7 +1953,7 @@ assist the capacity planning process.<a href="#section-3.8.2.2-2" class="pilcrow
 <a href="#section-3.8.2.3" class="section-number selfRef">3.8.2.3. </a><a href="#name-simulation-of-different-top" class="section-name selfRef">Simulation of Different Topologies Under Normal and Failure Scenarios</a>
             </h5>
 <p id="section-3.8.2.3-1">This type of simulation focuses on the structure and layout of the network itself. It simulates different network
-topologies, such as mesh, horse-shoe, bus, star, or tree topologies, and their impact on the network's performance.
+topologies and their impact on the network's performance.
 It can be used, together with the traffic simulation, to evaluate the most efficient topology for a network under
 normal conditions and considering factors like fault tolerance.<a href="#section-3.8.2.3-1" class="pilcrow">¶</a></p>
 </section>
@@ -2132,7 +2132,7 @@ Software Defined Networking (SDN) controllers or orchestrators.<a href="#section
           <dd class="break"></dd>
 <dt id="section-4.1-2.21"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.22">
-            <p id="section-4.1-2.22.1">It also includes "write" operations, not for the ability to directly change the SIMAP data
+            <p id="section-4.1-2.22.1">It also includes "write" operations, not for the ability to directly change the live SIMAP data
 (e.g., changing the network or Service parameters), but for offline simulations, also known as what-if scenarios.<a href="#section-4.1-2.22.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
@@ -2473,7 +2473,7 @@ dynamic paths could be linked to the SIMAP.<a href="#section-4.2-2.4.2.2.1" clas
           <dd style="margin-left: 1.5em" id="section-4.2-2.6">
             <p id="section-4.2-2.6.1">SIMAP should ensure that it is possible to represent the paths/routes and leave the choice of what level of dynamics
 to represent to the specific solution/application. The model needs to be rich enough to represent any level of dynamics.
-BUT from experience, we suspect it can be the same model for all level of dynamics.<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
+However, from experience, we suspect it can be the same model for all level of dynamics.<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.2-2.7">REQ-PROPERTIES:</dt>
@@ -2738,11 +2738,11 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 <dd class="break"></dd>
 <dt id="I-D.ietf-ivy-network-inventory-yang">[I-D.ietf-ivy-network-inventory-yang]</dt>
         <dd>
-<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-07</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-07">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-07</a>&gt;</span>. </dd>
+<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-08</span>, <time datetime="2025-07-22" class="refDate">22 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-08">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-anomaly-architecture">[I-D.ietf-nmop-network-anomaly-architecture]</dt>
         <dd>
-<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Francois, P.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"A Framework for a Network Anomaly Detection Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-architecture-04</span>, <time datetime="2025-07-04" class="refDate">4 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-04">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-04</a>&gt;</span>. </dd>
+<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Francois, P.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"A Framework for a Network Anomaly Detection Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-architecture-05</span>, <time datetime="2025-09-06" class="refDate">6 September 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-05">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-incident-yang">[I-D.ietf-nmop-network-incident-yang]</dt>
         <dd>
@@ -2750,7 +2750,7 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-terminology">[I-D.ietf-nmop-terminology]</dt>
         <dd>
-<span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-terminology-19</span>, <time datetime="2025-06-18" class="refDate">18 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-19">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-19</a>&gt;</span>. </dd>
+<span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-terminology-23</span>, <time datetime="2025-08-18" class="refDate">18 August 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-23">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-23</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
         <dd>
@@ -3068,10 +3068,10 @@ modelling requirements.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 </address>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Benoit Claise</span></div>
-<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div dir="auto" class="left"><span class="org">Everything OPS</span></div>
 <div class="email">
 <span>Email:</span>
-<a href="mailto:benoit.claise@huawei.com" class="email">benoit.claise@huawei.com</a>
+<a href="mailto:benoit@everything-ops.net" class="email">benoit@everything-ops.net</a>
 </div>
 </address>
 <address class="vcard">
