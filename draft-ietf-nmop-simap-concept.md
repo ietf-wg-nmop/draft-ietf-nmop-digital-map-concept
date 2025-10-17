@@ -73,7 +73,14 @@ SIMAP requirements.
 
 # Introduction
 
-Service & Infrastructure Maps (SIMAP) is a data model that provides a view of the operator's networks and services,
+This document defines the concept of Service & Infrastructure Maps (SIMAP) and outlines
+associated requirements and use cases. It does not specify a modeling
+approach for SIMAP; references to existing models and modeling languages
+are provided for informational purposes only.
+While the requirements described herein may require various modeling
+strategies, the development of such models is outside the scope of this document.
+
+SIMAP is a data model that provides a view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
 operational knowledge). It specifically provides an approach to model multi-layered topology
 and an appropriate mechanism to navigate amongst layers and correlate between them.
@@ -91,15 +98,16 @@ AI algorithms, etc. These other models exist outside of the SIMAP and are not de
 
 The SIMAP data consists of virtual instances of network and service topologies at different layers.
 The SIMAP provides access to this data via standard APIs for both read and write access, typically as a nortbound
-interface from a controller, with query capabilities and links to other YANG modules (e.g., Service Assurance for
+interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and potentially linking to non-YANG models).
 The SIMAP also provides write operations with the same set of APIs, not to change a topology layer
 on the fly as a northbound interface from the controller, but for offline simulations, before applying
 the changes to the network via the normal controller operations.
 
-Both read and write APIs are similar, stemming from the same YANG model, to facilitate the comparison
-of the offline simulated SIMAP with the network one.
+Both real network and offline simulation APIs are similar, stemming from the same data
+model, to facilitate the comparison of the offline simulated SIMAP with the network one.
+
 
 
 # Terminology
@@ -184,8 +192,7 @@ configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), tr
 different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
 SIMAP modelling:
-: SIMAP modelling is the set of principles, guidelines, and conventions to model the SIMAP
-  using the IETF modelling approach {{?RFC8345}}. They cover the
+: SIMAP modelling is the set of principles, guidelines, and conventions to model the SIMAP. They cover the
   network types (layers and sublayers), entity types, entity roles
   (network, node, termination point, or link), entity properties,
   relationship types between entities and relationships to other entities.
@@ -211,7 +218,7 @@ These enablers are grouped here to avoid duplication.
 
 ### Service -> Resource
 
-The SIMAP APIs can be be invoked to retrieve all Services for selected network types.
+The SIMAP APIs can be be invoked to retrieve all Services for selected service types.
 An application that triggers such a request will be able to retrieve the topology for selected Services via
 the SIMAP APIs and, from the response,
 it will be able to navigate via the supporting relationship top-down to the lower layers. In doing so,
@@ -249,8 +256,8 @@ Key Characteristics of a network closed loop:
 
 * Real-time monitoring: Collects data from network devices, traffic flows, and applications to build
 a comprehensive view of network health and performance.
-* Automated analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures,
-or detect security threats.
+* Automated analysis: Identify anomalies, predict potential failures, or detect security threats,
+for example leveraging AI and machine learning.
 * Proactive action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
 compromised endpoints, or rerouting traffic.
 * Continuous optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
@@ -293,7 +300,8 @@ and responding to issues quickly.  In order to facilitate the planning and troub
 necessary to be able to navigate from network inventory to network topology and Services.
 
 The application will be able to retrieve physical topology from the controller via the SIMAP APIs and from the
-response it will be able to retrieve the physical inventory of individual devices and cables.
+response it will be able to retrieve the physical inventory of individual devices and cables and the customer
+information, if applicable.
 
 The application may request either one or multiple topology layers via the SIMAP APIs and from the response
 it will be able to retrieve both physical and logical inventory.
@@ -304,6 +312,8 @@ lower operational costs through truck roll reduction.
 For example, operators may use custom-tags that are readily available for a customer-facing device, then query
 the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology.
 The mapping and correlation can then be used for triggering appropriate Service checks.
+
+The IVY working group is a good source of information for inventory information.
 
 ## Service Placement Feasibility Checks {#sec-feasibility}
 
@@ -317,7 +327,7 @@ The Service could be simulated during the feasibility checks to identify if ther
 The load testing could be done to evaluate performance under stress.
 
 The service placement feasibility check application will be able to retrieve the topology at any layer from the controller
-via the SIMAP APIs and from the response it will be able to navigate to any other YANG modules outside of the
+via the SIMAP APIs and from the response it will be able to navigate to any other data models outside of the
 core SIMAP topology to retrieve any other information needed, such as resource usage, availability, status, etc.
 
 ## Intent/Service Assurance
@@ -545,13 +555,20 @@ interfaces:
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} recommends that these interfaces are open
 and standardized so as to avoid either hardware or software vendor lock and achieve interoperability.
 
+While network emulation ({{sec-emule}}) can be a component within an NDT, the NDT itself is a broader construct
+that integrates multiple modeling techniques, including emulation, simulation, and analytics, to support intelligent
+network operations. NDT uses network emulation and includes network emulation use case, but it also interacts with
+the real network to support intelligent operations, including predictive analytics, intent verification,
+and full lifecycle management of network and services.
+
+
 # SIMAP Requirements
 
 The SIMAP requirements are split into three groups for different target audiences:
 
 * Operator requirements:
 : These requirements are collected from the operators. They are functional requirements derived from the operators'
-use cases. Some of the more specific semantic requirements were identified as {{!RFC8345}} gaps during the Hackathons
+use cases. Some of the more specific semantic requirements were identified as {{?RFC8345}} gaps during the Hackathons
 with operators and added as specific semantic requirements to the operator use cases.
 
 * Design requirements:
@@ -572,7 +589,7 @@ not specific to SIMAP API,  they are listed here for completeness.
 ## Operator Requirements
 
 The following are the operators' requirements for the SIMAP. Note that some of these requirements are supported by
-default by {{!RFC8345}}.
+default by {{?RFC8345}}.
 
 REQ-BASIC-MODEL-SUPPORT:
 : Basic model with network, node, link, and termination point entity types.
@@ -628,7 +645,8 @@ domain without having to understand the details of any technologies and domains.
 
 REQ-GRAPH-TRAVERSAL:
 : Topology graph traversal.
-: SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
+: SIMAP must be optimized for graph traversal for paths and for graph traversal for the specific use case queries.
+This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
 relationship between the termination points or nodes.
 
@@ -826,14 +844,15 @@ external to the SIMAP.
 
 ## Architectural Requirements {#sec-arch}
 
-The following are the architectural requirements for the controller that provides SIMAP API, they are the
-non-functional requirements for the SIMAP APIs or controllers:
+The following are the architectural requirements for the controller implementations
+that provide SIMAP API, they are the non-functional requirements for
+the SIMAP APIs and controller implementations:
 
 REQ-SCALES:
-: The SIMAP APIs must be scalable, it must support any provider network, independent of its size.
+: The SIMAP APIs and controller implementations must be scalable, it must support any provider network, independent of its size.
 
 REQ-PERFORMANCE:
-: The SIMAP APIs must be  performant, and have acceptable response-time. Although we are not to define the response time here.
+: The SIMAP APIs and controller implementations must be  performant, and have acceptable response-time. Although we are not to define the response time here.
 
 REQ-USABILITY:
 : The SIMAP APIs must be simple and easy to integrate with the client applications, whose developers
@@ -851,7 +870,7 @@ REQ-SECURITY:
 : The conventional NACM control access rules {{!RFC8341}} should apply. This includes module control access rules,
 protocol operation control access rules, data node control access rules, and notification control access rules.
 
-# Positioning SIMAP
+# Positioning SIMAP in the Context of the IETF Work
 
 {{?RFC8199}} advocates for a consistent classification of YANG modules and introduces two abstraction layers for
 YANG modules:
@@ -922,7 +941,7 @@ This document has no actions for IANA.
 ##  Network Topology {#sec-ntw-topo}
 
    Interestingly, we could not find any network topology definition in
-   IETF RFCs (not even in {{!RFC8345}}) or Internet-Drafts.  However, it is mentioned
+   IETF RFCs (not even in {{?RFC8345}}) or Internet-Drafts.  However, it is mentioned
    in multiple documents.  As an example, in Overview and Principles of
    Internet Traffic Engineering {{?RFC9522}}, which
    mentions:
@@ -974,7 +993,7 @@ types, and their context in the ACTN architecture.
 
    *  A YANG grouping for geographic location {{?RFC9179}}
 
-   *  IETF modules that augment {{!RFC8345}} for different technologies:
+   *  IETF modules that augment {{?RFC8345}} for different technologies:
 
        *  A YANG data model for Traffic Engineering (TE) Topologies {{?RFC8795}}
 
@@ -993,7 +1012,7 @@ The SIMAP may need to link to the following models, some are already augmenting 
 *  SAIN {{?RFC9417}} {{?RFC9418}}
 
 *  Network Inventory Model {{?I-D.ietf-ivy-network-inventory-yang}} focuses on physical and virtual inventory.
-Logical inventory is currently outside of the scope. It does not augment {{!RFC8345}}.
+Logical inventory is currently outside of the scope. It does not augment {{?RFC8345}}.
 
  * {{?I-D.ietf-ivy-network-inventory-topology}} correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.
 
@@ -1008,7 +1027,7 @@ Logical inventory is currently outside of the scope. It does not augment {{!RFC8
 # Acknowledgments
 {:numbered="false"}
 
-Many thanks to Mohamed Boucadair for his valuable contributions, reviews, and comments.
+Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
 Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
 Many thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, Italo Busi, Wu Bo,
 Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, and many others for their contributions, suggestions
