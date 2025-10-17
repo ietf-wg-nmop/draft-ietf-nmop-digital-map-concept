@@ -576,7 +576,7 @@ with operators and added as specific semantic requirements to the operator use c
 these are focused on summarizing the operators' requirements for the design of the data model and API.
 These are functional requirements translated into low-level requirements for the model designers.
 The rationale for adopting this approach is to ensure that the data model is designed according to the operators'
-requirements and that they could be used for both design and review of the candidate YANG module(s).
+requirements and that they could be used for both design and review of the candidate data models.
 
 * Architecture requirements:
 : Architectural (non-functional) requirements are captured as well, as operators identified performance needs,
@@ -634,7 +634,7 @@ for future simulation and a change that reflects the current reality of the netw
 
 REQ-STD-API-BASED:
 : Standard-based SIMAP and APIs, for multi-vendor support.
-:  SIMAP must provide the standard YANG APIs that provide for read/write and queries.
+:  SIMAP must provide the standard APIs that provide for read/write and queries.
 These APIs must also provide the capability to retrieve the links to external data/models.
 
 REQ-COMMON-API:
@@ -706,7 +706,7 @@ The SIMAP does not contain the detailed device configuration, so a mechanism is 
 SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
 to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.
      + Given that no all involved components can be available using YANG, there is a need to connect
-       SIMAP YANG model with other modelling mechanisms.
+       SIMAP model with other modelling mechanisms.
 
 REQ-BIDIR:
 : SIMAP must provide a mechanism to model bidirectional links.
@@ -820,7 +820,7 @@ identify their roles, and topological relationships between them.
 
 REQ-RELATIONSHIPS:
 : SIMAP should contain all topological relationships inside each layer or between the layers (underlay/overlay)
-: SIMAP should contain links to other models/data to enable generic navigation to other YANG models in
+: SIMAP should contain links to other models/data to enable generic navigation to other data models in
 generic way.
 
 : The SIMAP relationships should also provide information required to define semantics for layered network topologies,
@@ -904,8 +904,8 @@ within a network operator as follows:
 service orchestrator
 + service model (customer oriented), between service orchestrator and customer, this is network service model
 
-The SIMAP YANG module can be used at different layers of abstraction and SIMAP can provide topology at
-different interfaces. Although the SIMAP module and APIs is primarily positioned as northbound multi-layered topology
+The SIMAP can be used at different layers of abstraction and SIMAP can provide topology at
+different interfaces. Although the SIMAP and APIs is primarily positioned as northbound multi-layered topology
 model from (SDN) Controllers, it can also be positioned as follows:
 
 + In the context of {{?RFC8199}}, SIMAP can provide multi-layered topology YANG module as part of both network element
