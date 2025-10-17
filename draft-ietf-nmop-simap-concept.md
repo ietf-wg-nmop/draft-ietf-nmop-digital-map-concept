@@ -97,7 +97,7 @@ Traffic-Engineering (TE), different behaviors and actions, simulation, emulation
 AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
 The SIMAP data consists of virtual instances of network and service topologies at different layers.
-The SIMAP provides access to this data via standard APIs for both read and write access, typically as a nortbound
+The SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and potentially linking to non-YANG models).
@@ -218,7 +218,7 @@ These enablers are grouped here to avoid duplication.
 
 ### Service -> Resource
 
-The SIMAP APIs can be be invoked to retrieve all Services for selected service types.
+The SIMAP APIs can be invoked to retrieve all Services for selected service types.
 An application that triggers such a request will be able to retrieve the topology for selected Services via
 the SIMAP APIs and, from the response,
 it will be able to navigate via the supporting relationship top-down to the lower layers. In doing so,
@@ -385,7 +385,7 @@ Key aspects of network capacity planning include:
 of congestion. For example, by generating a core traffic matrix with IPFIX flow record {{?RFC7011}} or deducting
 an approximate traffic matrix from the link utilization data.
 * Resource utilization: Evaluating the link utilization throughout the network for the current demand to identify
-bottlenecks and potential QoS peformance issues.
+bottlenecks and potential QoS performance issues.
 * Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in
 users' behavior.
 * What-if scenarios: Creating models to assess the network behavior under different scenarios, such as increased traffic,
@@ -424,7 +424,7 @@ Throughout the network's lifecycle, the design rules
 embedded within a topology can be continuously validated. For example, a link rule might specify that a connection
 between core and aggregation layers must have its source(s) and destination(s) located within the same data center.
 Another example is to declare that a specific link type should only exist between Core <-> Aggregation layer with
-certain contraints on port optic speed, type (LR vs SR for instance), etc.
+certain constraints on port optic speed, type (LR vs SR for instance), etc.
 
 The application can (via SIMAP API):
 
@@ -460,7 +460,7 @@ traffic loads, network failures, or the introduction of new devices. Network emu
 replicates the behavior of a real-world network, allowing for more realistic analysis compared to network simulation.
 While network simulation focuses on modeling and approximating network behavior, network emulation involves creating
 a real-time, functional network environment whose protocols behave exactly like a real network. Ideally, network
-emulation uses the same software images as the real network, but it could also be peformed (with less accuracy)
+emulation uses the same software images as the real network, but it could also be performed (with less accuracy)
 using generic software.
 
 ### Types of Network Simulation
@@ -576,7 +576,7 @@ with operators and added as specific semantic requirements to the operator use c
 these are focused on summarizing the operators' requirements for the design of the data model and API.
 These are functional requirements translated into low-level requirements for the model designers.
 The rationale for adopting this approach is to ensure that the data model is designed according to the operators'
-requirements and that they could be used for both design and review of the candidate YANG module(s).
+requirements and that they could be used for both design and review of the candidate data models.
 
 * Architecture requirements:
 : Architectural (non-functional) requirements are captured as well, as operators identified performance needs,
@@ -634,7 +634,7 @@ for future simulation and a change that reflects the current reality of the netw
 
 REQ-STD-API-BASED:
 : Standard-based SIMAP and APIs, for multi-vendor support.
-:  SIMAP must provide the standard YANG APIs that provide for read/write and queries.
+:  SIMAP must provide the standard APIs that provide for read/write and queries.
 These APIs must also provide the capability to retrieve the links to external data/models.
 
 REQ-COMMON-API:
@@ -701,12 +701,12 @@ REQ-EXTENSIBLE:
 REQ-PLUGG:
 : SIMAP must be pluggable. That is,
 
-     + Must connect to other YANG modules for device configuration, inventory, configuration, assurance, etc.
+     + Must connect to other data models for device configuration, inventory, configuration, assurance, etc.
 The SIMAP does not contain the detailed device configuration, so a mechanism is needed to be able to link it from SIMAP.
 SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
 to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.
      + Given that no all involved components can be available using YANG, there is a need to connect
-       SIMAP YANG model with other modelling mechanisms.
+       SIMAP with other modelling mechanisms.
 
 REQ-BIDIR:
 : SIMAP must provide a mechanism to model bidirectional links.
@@ -820,7 +820,7 @@ identify their roles, and topological relationships between them.
 
 REQ-RELATIONSHIPS:
 : SIMAP should contain all topological relationships inside each layer or between the layers (underlay/overlay)
-: SIMAP should contain links to other models/data to enable generic navigation to other YANG models in
+: SIMAP should contain links to other models/data to enable generic navigation to other data models in
 generic way.
 
 : The SIMAP relationships should also provide information required to define semantics for layered network topologies,
@@ -904,8 +904,8 @@ within a network operator as follows:
 service orchestrator
 + service model (customer oriented), between service orchestrator and customer, this is network service model
 
-The SIMAP YANG module can be used at different layers of abstraction and SIMAP can provide topology at
-different interfaces. Although the SIMAP module and APIs is primarily positioned as northbound multi-layered topology
+The SIMAP can be used at different layers of abstraction and SIMAP can provide topology at
+different interfaces. Although the SIMAP and APIs is primarily positioned as northbound multi-layered topology
 model from (SDN) Controllers, it can also be positioned as follows:
 
 + In the context of {{?RFC8199}}, SIMAP can provide multi-layered topology YANG module as part of both network element
@@ -925,7 +925,7 @@ and network service model
 As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations other
 that those discussed in {{sec-arch}}.
 
-{{Section 8 of !RFC8345}} discusses security aspects that will be useful when designing the SIMAP solution.
+{{Section 8 of ?RFC8345}} discusses security aspects that will be useful when designing the SIMAP solution.
 
 # IANA Considerations
 
