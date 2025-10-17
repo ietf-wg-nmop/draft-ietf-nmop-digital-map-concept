@@ -1328,7 +1328,7 @@ models and connects them all: configuration, maintenance, assurance (KPIs, statu
 Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
 AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">The SIMAP data consists of virtual instances of network and service topologies at different layers.
-The SIMAP provides access to this data via standard APIs for both read and write access, typically as a nortbound
+The SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
 Inventory <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>, and potentially linking to non-YANG models).
@@ -1527,7 +1527,7 @@ These enablers are grouped here to avoid duplication.<a href="#section-3.1-1" cl
           <h4 id="name-service-resource">
 <a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-service-resource" class="section-name selfRef">Service -&gt; Resource</a>
           </h4>
-<p id="section-3.1.1-1">The SIMAP APIs can be be invoked to retrieve all Services for selected service types.
+<p id="section-3.1.1-1">The SIMAP APIs can be invoked to retrieve all Services for selected service types.
 An application that triggers such a request will be able to retrieve the topology for selected Services via
 the SIMAP APIs and, from the response,
 it will be able to navigate via the supporting relationship top-down to the lower layers. In doing so,
@@ -1761,7 +1761,7 @@ an approximate traffic matrix from the link utilization data.<a href="#section-3
 </li>
           <li class="normal" id="section-3.6-4.2">
             <p id="section-3.6-4.2.1">Resource utilization: Evaluating the link utilization throughout the network for the current demand to identify
-bottlenecks and potential QoS peformance issues.<a href="#section-3.6-4.2.1" class="pilcrow">¶</a></p>
+bottlenecks and potential QoS performance issues.<a href="#section-3.6-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.6-4.3">
             <p id="section-3.6-4.3.1">Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in
@@ -1819,7 +1819,7 @@ actionable intent and, eventually, deployment actions.<a href="#section-3.7-2" c
 embedded within a topology can be continuously validated. For example, a link rule might specify that a connection
 between core and aggregation layers must have its source(s) and destination(s) located within the same data center.
 Another example is to declare that a specific link type should only exist between Core &lt;-&gt; Aggregation layer with
-certain contraints on port optic speed, type (LR vs SR for instance), etc.<a href="#section-3.7-3" class="pilcrow">¶</a></p>
+certain constraints on port optic speed, type (LR vs SR for instance), etc.<a href="#section-3.7-3" class="pilcrow">¶</a></p>
 <p id="section-3.7-4">The application can (via SIMAP API):<a href="#section-3.7-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.7-5.1">
@@ -1873,7 +1873,7 @@ traffic loads, network failures, or the introduction of new devices. Network emu
 replicates the behavior of a real-world network, allowing for more realistic analysis compared to network simulation.
 While network simulation focuses on modeling and approximating network behavior, network emulation involves creating
 a real-time, functional network environment whose protocols behave exactly like a real network. Ideally, network
-emulation uses the same software images as the real network, but it could also be peformed (with less accuracy)
+emulation uses the same software images as the real network, but it could also be performed (with less accuracy)
 using generic software.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
 <div id="types-of-network-simulation">
 <section id="section-3.8.1">
@@ -2730,12 +2730,8 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
         </h3>
 <dl class="references">
 <dt id="RFC8341">[RFC8341]</dt>
-        <dd>
-<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8345">[RFC8345]</dt>
       <dd>
-<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8345">https://www.rfc-editor.org/rfc/rfc8345</a>&gt;</span>. </dd>
+<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2821,6 +2817,10 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 <dt id="RFC8309">[RFC8309]</dt>
         <dd>
 <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Liu, W.</span>, and <span class="refAuthor">A. Farrel</span>, <span class="refTitle">"Service Models Explained"</span>, <span class="seriesInfo">RFC 8309</span>, <span class="seriesInfo">DOI 10.17487/RFC8309</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8309">https://www.rfc-editor.org/rfc/rfc8309</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8345">[RFC8345]</dt>
+        <dd>
+<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8345">https://www.rfc-editor.org/rfc/rfc8345</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8453">[RFC8453]</dt>
         <dd>
