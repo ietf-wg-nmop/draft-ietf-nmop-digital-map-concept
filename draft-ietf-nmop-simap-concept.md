@@ -867,7 +867,7 @@ REQ-SECURITY:
 : The conventional NACM control access rules {{!RFC8341}} should apply. This includes module control access rules,
 protocol operation control access rules, data node control access rules, and notification control access rules.
 
-# Positioning SIMAP
+# Positioning SIMAP in the Context of the IETF Work
 
 {{?RFC8199}} advocates for a consistent classification of YANG modules and introduces two abstraction layers for
 YANG modules:
