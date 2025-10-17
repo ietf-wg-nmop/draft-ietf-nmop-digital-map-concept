@@ -141,7 +141,7 @@ Table of Contents
    The SIMAP data consists of virtual instances of network and service
    topologies at different layers.  The SIMAP provides access to this
    data via standard APIs for both read and write access, typically as a
-   nortbound interface from a controller, with query capabilities and
+   northbound interface from a controller, with query capabilities and
    links to other data models (e.g., Service Assurance for Intent-based
    Networking (SAIN) [RFC9417], Service Attachment Points (SAPs)
    [RFC9408], Inventory [I-D.ietf-ivy-network-inventory-yang], and
@@ -295,15 +295,15 @@ Table of Contents
 
 3.1.1.  Service -> Resource
 
-   The SIMAP APIs can be be invoked to retrieve all Services for
-   selected service types.  An application that triggers such a request
-   will be able to retrieve the topology for selected Services via the
-   SIMAP APIs and, from the response, it will be able to navigate via
-   the supporting relationship top-down to the lower layers.  In doing
-   so, the application will be able to determine what logical resources
-   are used by a Service.  The supporting relations to the lowest layer
-   will help the application to determine what physical resources are
-   used by the Service.
+   The SIMAP APIs can be invoked to retrieve all Services for selected
+   service types.  An application that triggers such a request will be
+   able to retrieve the topology for selected Services via the SIMAP
+   APIs and, from the response, it will be able to navigate via the
+   supporting relationship top-down to the lower layers.  In doing so,
+   the application will be able to determine what logical resources are
+   used by a Service.  The supporting relations to the lowest layer will
+   help the application to determine what physical resources are used by
+   the Service.
 
 3.1.2.  Resource -> Service
 
@@ -525,7 +525,7 @@ Table of Contents
 
    *  Resource utilization: Evaluating the link utilization throughout
       the network for the current demand to identify bottlenecks and
-      potential QoS peformance issues.
+      potential QoS performance issues.
 
    *  Growth forecasting: Predicting future network growth based on
       business expansion, new applications, or changes in users'
@@ -590,7 +590,7 @@ Table of Contents
    must have its source(s) and destination(s) located within the same
    data center.  Another example is to declare that a specific link type
    should only exist between Core <-> Aggregation layer with certain
-   contraints on port optic speed, type (LR vs SR for instance), etc.
+   constraints on port optic speed, type (LR vs SR for instance), etc.
 
    The application can (via SIMAP API):
 
@@ -641,7 +641,7 @@ Table of Contents
    network emulation involves creating a real-time, functional network
    environment whose protocols behave exactly like a real network.
    Ideally, network emulation uses the same software images as the real
-   network, but it could also be peformed (with less accuracy) using
+   network, but it could also be performed (with less accuracy) using
    generic software.
 
 3.8.1.  Types of Network Simulation
@@ -802,7 +802,7 @@ Table of Contents
          model designers.  The rationale for adopting this approach is
          to ensure that the data model is designed according to the
          operators' requirements and that they could be used for both
-         design and review of the candidate YANG module(s).
+         design and review of the candidate data models.
 
    *  Architecture requirements:  Architectural (non-functional)
          requirements are captured as well, as operators identified
@@ -882,8 +882,8 @@ Table of Contents
    REQ-STD-API-BASED:  Standard-based SIMAP and APIs, for multi-vendor
       support.
 
-      SIMAP must provide the standard YANG APIs that provide for read/
-      write and queries.  These APIs must also provide the capability to
+      SIMAP must provide the standard APIs that provide for read/write
+      and queries.  These APIs must also provide the capability to
       retrieve the links to external data/models.
 
    REQ-COMMON-API:  SIMAP and common APIs, for multi domain.
@@ -968,7 +968,7 @@ Table of Contents
 
    REQ-PLUGG:  SIMAP must be pluggable.  That is,
 
-      *  Must connect to other YANG modules for device configuration,
+      *  Must connect to other data models for device configuration,
          inventory, configuration, assurance, etc.  The SIMAP does not
          contain the detailed device configuration, so a mechanism is
          needed to be able to link it from SIMAP.  SIMAP should also be
@@ -978,8 +978,8 @@ Table of Contents
          inventory of routing policies.
 
       *  Given that no all involved components can be available using
-         YANG, there is a need to connect SIMAP YANG model with other
-         modelling mechanisms.
+         YANG, there is a need to connect SIMAP with other modelling
+         mechanisms.
 
    REQ-BIDIR:  SIMAP must provide a mechanism to model bidirectional
       links.  While data flows are unidirectional, the bidirectional
@@ -1128,7 +1128,7 @@ Table of Contents
       overlay)
 
       SIMAP should contain links to other models/data to enable generic
-      navigation to other YANG models in generic way.
+      navigation to other data models in generic way.
 
       The SIMAP relationships should also provide information required
       to define semantics for layered network topologies, such as
@@ -1237,11 +1237,10 @@ Table of Contents
    *  service model (customer oriented), between service orchestrator
       and customer, this is network service model
 
-   The SIMAP YANG module can be used at different layers of abstraction
-   and SIMAP can provide topology at different interfaces.  Although the
-   SIMAP module and APIs is primarily positioned as northbound multi-
-   layered topology model from (SDN) Controllers, it can also be
-   positioned as follows:
+   The SIMAP can be used at different layers of abstraction and SIMAP
+   can provide topology at different interfaces.  Although the SIMAP and
+   APIs is primarily positioned as northbound multi-layered topology
+   model from (SDN) Controllers, it can also be positioned as follows:
 
    *  In the context of [RFC8199], SIMAP can provide multi-layered
       topology YANG module as part of both network element and network
@@ -1286,11 +1285,6 @@ Table of Contents
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8341>.
-
-   [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
-              Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
-              Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
-              2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
 8.2.  Informative References
 
@@ -1425,6 +1419,11 @@ Table of Contents
    [RFC8309]  Wu, Q., Liu, W., and A. Farrel, "Service Models
               Explained", RFC 8309, DOI 10.17487/RFC8309, January 2018,
               <https://www.rfc-editor.org/rfc/rfc8309>.
+
+   [RFC8345]  Clemm, A., Medved, J., Varga, R., Bahadur, N.,
+              Ananthakrishnan, H., and X. Liu, "A YANG Data Model for
+              Network Topologies", RFC 8345, DOI 10.17487/RFC8345, March
+              2018, <https://www.rfc-editor.org/rfc/rfc8345>.
 
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
