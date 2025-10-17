@@ -1253,7 +1253,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-positioning-simap" class="internal xref">Positioning SIMAP</a></p>
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-positioning-simap-in-the-co" class="internal xref">Positioning SIMAP in the Context of the IETF Work</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
@@ -1307,30 +1307,36 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Service &amp; Infrastructure Maps (SIMAP) is a data model that provides a view of the operator's networks and services,
+<p id="section-1-1">This document defines the concept of Service &amp; Infrastructure Maps (SIMAP) and outlines
+associated requirements and use cases. It does not specify a modeling
+approach for SIMAP; references to existing models and modeling languages
+are provided for informational purposes only.
+While the requirements described herein may require various modeling
+strategies, the development of such models is outside the scope of this document.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">SIMAP is a data model that provides a view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
 operational knowledge). It specifically provides an approach to model multi-layered topology
 and an appropriate mechanism to navigate amongst layers and correlate between them.
 This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
-technologies (Optical, IP, etc.).<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The SIMAP modelling defines the core topological entities (network, node, link, and termination point) at each layer,
+technologies (Optical, IP, etc.).<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">The SIMAP modelling defines the core topological entities (network, node, link, and termination point) at each layer,
 their role in the network topology, core topological properties, and topological relationships
 both inside each layer and between the layers. It also defines how to access other external models
 from a topology. SIMAP is a topological model that is linked to other functional
 models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms),
 Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
-AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">The SIMAP data consists of virtual instances of network and service topologies at different layers.
+AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The SIMAP data consists of virtual instances of network and service topologies at different layers.
 The SIMAP provides access to this data via standard APIs for both read and write access, typically as a nortbound
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
 Inventory <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>, and potentially linking to non-YANG models).
 The SIMAP also provides write operations with the same set of APIs, not to change a topology layer
 on the fly as a northbound interface from the controller, but for offline simulations, before applying
-the changes to the network via the normal controller operations.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">Both real network and offline simulation APIs are similar, stemming from the same data
-model, to facilitate the comparison of the offline simulated SIMAP with the network one.<a href="#section-1-4" class="pilcrow">¶</a></p>
+the changes to the network via the normal controller operations.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">Both real network and offline simulation APIs are similar, stemming from the same data
+model, to facilitate the comparison of the offline simulated SIMAP with the network one.<a href="#section-1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1521,7 +1527,7 @@ These enablers are grouped here to avoid duplication.<a href="#section-3.1-1" cl
           <h4 id="name-service-resource">
 <a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-service-resource" class="section-name selfRef">Service -&gt; Resource</a>
           </h4>
-<p id="section-3.1.1-1">The SIMAP APIs can be be invoked to retrieve all Services for selected network types.
+<p id="section-3.1.1-1">The SIMAP APIs can be be invoked to retrieve all Services for selected service types.
 An application that triggers such a request will be able to retrieve the topology for selected Services via
 the SIMAP APIs and, from the response,
 it will be able to navigate via the supporting relationship top-down to the lower layers. In doing so,
@@ -1571,8 +1577,8 @@ without manual intervention.<a href="#section-3.1.4-1" class="pilcrow">¶</a></p
 a comprehensive view of network health and performance.<a href="#section-3.1.4-3.1.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.4-3.2">
-              <p id="section-3.1.4-3.2.1">Automated analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures,
-or detect security threats.<a href="#section-3.1.4-3.2.1" class="pilcrow">¶</a></p>
+              <p id="section-3.1.4-3.2.1">Automated analysis: Identify anomalies, predict potential failures, or detect security threats,
+for example leveraging AI and machine learning.<a href="#section-3.1.4-3.2.1" class="pilcrow">¶</a></p>
 </li>
             <li class="normal" id="section-3.1.4-3.3">
               <p id="section-3.1.4-3.3.1">Proactive action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
@@ -1642,7 +1648,8 @@ security, and ensuring compliance with regulations. It also helps in scaling the
 and responding to issues quickly.  In order to facilitate the planning and troubleshooting processes it is
 necessary to be able to navigate from network inventory to network topology and Services.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
 <p id="section-3.2-6">The application will be able to retrieve physical topology from the controller via the SIMAP APIs and from the
-response it will be able to retrieve the physical inventory of individual devices and cables.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
+response it will be able to retrieve the physical inventory of individual devices and cables and the customer
+information, if applicable.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
 <p id="section-3.2-7">The application may request either one or multiple topology layers via the SIMAP APIs and from the response
 it will be able to retrieve both physical and logical inventory.<a href="#section-3.2-7" class="pilcrow">¶</a></p>
 <p id="section-3.2-8">For access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
@@ -1651,6 +1658,7 @@ lower operational costs through truck roll reduction.
 For example, operators may use custom-tags that are readily available for a customer-facing device, then query
 the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology.
 The mapping and correlation can then be used for triggering appropriate Service checks.<a href="#section-3.2-8" class="pilcrow">¶</a></p>
+<p id="section-3.2-9">The IVY working group is a good source of information for inventory information.<a href="#section-3.2-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-feasibility">
@@ -1666,7 +1674,7 @@ or inefficiencies and effecting other Services already provisioned on the networ
 The Service could be simulated during the feasibility checks to identify if there are any potential issues.
 The load testing could be done to evaluate performance under stress.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.3-3">The service placement feasibility check application will be able to retrieve the topology at any layer from the controller
-via the SIMAP APIs and from the response it will be able to navigate to any other YANG modules outside of the
+via the SIMAP APIs and from the response it will be able to navigate to any other data models outside of the
 core SIMAP topology to retrieve any other information needed, such as resource usage, availability, status, etc.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2009,6 +2017,11 @@ exchange between Network Digital Twin and network applications. SIMAP APIs can b
         </ul>
 <p id="section-3.10-4"><span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11#section-9.4" class="relref">Section 9.4</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> recommends that these interfaces are open
 and standardized so as to avoid either hardware or software vendor lock and achieve interoperability.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
+<p id="section-3.10-5">While network emulation (<a href="#sec-emule" class="auto internal xref">Section 3.8</a>) can be a component within an NDT, the NDT itself is a broader construct
+that integrates multiple modeling techniques, including emulation, simulation, and analytics, to support intelligent
+network operations. NDT uses network emulation and includes network emulation use case, but it also interacts with
+the real network to support intelligent operations, including predictive analytics, intent verification,
+and full lifecycle management of network and services.<a href="#section-3.10-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -2181,7 +2194,8 @@ domain without having to understand the details of any technologies and domains.
           <dd class="break"></dd>
 <dt id="section-4.1-2.39"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.40">
-            <p id="section-4.1-2.40.1">SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
+            <p id="section-4.1-2.40.1">SIMAP must be optimized for graph traversal for paths and for graph traversal for the specific use case queries.
+This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
 relationship between the termination points or nodes.<a href="#section-4.1-2.40.1" class="pilcrow">¶</a></p>
 </dd>
@@ -2557,17 +2571,18 @@ external to the SIMAP.<a href="#section-4.2-6.4.1" class="pilcrow">¶</a></p>
         <h3 id="name-architectural-requirements">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-architectural-requirements" class="section-name selfRef">Architectural Requirements</a>
         </h3>
-<p id="section-4.3-1">The following are the architectural requirements for the controller that provides SIMAP API, they are the
-non-functional requirements for the SIMAP APIs or controllers:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">The following are the architectural requirements for the controller implementations
+that provide SIMAP API, they are the non-functional requirements for
+the SIMAP APIs and controller implementations:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.3-2">
           <dt id="section-4.3-2.1">REQ-SCALES:</dt>
           <dd style="margin-left: 1.5em" id="section-4.3-2.2">
-            <p id="section-4.3-2.2.1">The SIMAP APIs must be scalable, it must support any provider network, independent of its size.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.2.1">The SIMAP APIs and controller implementations must be scalable, it must support any provider network, independent of its size.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.3-2.3">REQ-PERFORMANCE:</dt>
           <dd style="margin-left: 1.5em" id="section-4.3-2.4">
-            <p id="section-4.3-2.4.1">The SIMAP APIs must be  performant, and have acceptable response-time. Although we are not to define the response time here.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.4.1">The SIMAP APIs and controller implementations must be  performant, and have acceptable response-time. Although we are not to define the response time here.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.3-2.5">REQ-USABILITY:</dt>
@@ -2599,10 +2614,10 @@ protocol operation control access rules, data node control access rules, and not
 </div>
 </section>
 </div>
-<div id="positioning-simap">
+<div id="positioning-simap-in-the-context-of-the-ietf-work">
 <section id="section-5">
-      <h2 id="name-positioning-simap">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-positioning-simap" class="section-name selfRef">Positioning SIMAP</a>
+      <h2 id="name-positioning-simap-in-the-co">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-positioning-simap-in-the-co" class="section-name selfRef">Positioning SIMAP in the Context of the IETF Work</a>
       </h2>
 <p id="section-5-1"><span>[<a href="#RFC8199" class="cite xref">RFC8199</a>]</span> advocates for a consistent classification of YANG modules and introduces two abstraction layers for
 YANG modules:<a href="#section-5-1" class="pilcrow">¶</a></p>
@@ -3028,7 +3043,7 @@ Logical inventory is currently outside of the scope. It does not augment <span>[
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">Many thanks to Mohamed Boucadair for his valuable contributions, reviews, and comments.
+<p id="appendix-B-1">Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
 Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
 Many thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, Italo Busi, Wu Bo,
 Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, and many others for their contributions, suggestions
