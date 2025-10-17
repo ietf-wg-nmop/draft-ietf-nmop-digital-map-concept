@@ -91,15 +91,16 @@ AI algorithms, etc. These other models exist outside of the SIMAP and are not de
 
 The SIMAP data consists of virtual instances of network and service topologies at different layers.
 The SIMAP provides access to this data via standard APIs for both read and write access, typically as a nortbound
-interface from a controller, with query capabilities and links to other YANG modules (e.g., Service Assurance for
+interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and potentially linking to non-YANG models).
 The SIMAP also provides write operations with the same set of APIs, not to change a topology layer
 on the fly as a northbound interface from the controller, but for offline simulations, before applying
 the changes to the network via the normal controller operations.
 
-Both read and write APIs are similar, stemming from the same YANG model, to facilitate the comparison
-of the offline simulated SIMAP with the network one.
+Both real network and offline simulation APIs are similar, stemming from the same data
+model, to facilitate the comparison of the offline simulated SIMAP with the network one.
+
 
 
 # Terminology
