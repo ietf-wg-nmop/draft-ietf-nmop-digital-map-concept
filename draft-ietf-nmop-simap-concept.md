@@ -215,7 +215,7 @@ These enablers are grouped here to avoid duplication.
 
 ### Service -> Resource
 
-The SIMAP APIs can be be invoked to retrieve all Services for selected network types.
+The SIMAP APIs can be be invoked to retrieve all Services for selected service types.
 An application that triggers such a request will be able to retrieve the topology for selected Services via
 the SIMAP APIs and, from the response,
 it will be able to navigate via the supporting relationship top-down to the lower layers. In doing so,
@@ -253,8 +253,8 @@ Key Characteristics of a network closed loop:
 
 * Real-time monitoring: Collects data from network devices, traffic flows, and applications to build
 a comprehensive view of network health and performance.
-* Automated analysis: Ideally leverages AI and machine learning to identify anomalies, predict potential failures,
-or detect security threats.
+* Automated analysis: Identify anomalies, predict potential failures, or detect security threats, 
+for example leveraging AI and machine learning.
 * Proactive action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
 compromised endpoints, or rerouting traffic.
 * Continuous optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
@@ -297,7 +297,8 @@ and responding to issues quickly.  In order to facilitate the planning and troub
 necessary to be able to navigate from network inventory to network topology and Services.
 
 The application will be able to retrieve physical topology from the controller via the SIMAP APIs and from the
-response it will be able to retrieve the physical inventory of individual devices and cables.
+response it will be able to retrieve the physical inventory of individual devices and cables and the customer 
+information, if applicable.
 
 The application may request either one or multiple topology layers via the SIMAP APIs and from the response
 it will be able to retrieve both physical and logical inventory.
@@ -308,6 +309,8 @@ lower operational costs through truck roll reduction.
 For example, operators may use custom-tags that are readily available for a customer-facing device, then query
 the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology.
 The mapping and correlation can then be used for triggering appropriate Service checks.
+
+The IVY working group is a good source of information for inventory information.
 
 ## Service Placement Feasibility Checks {#sec-feasibility}
 
@@ -321,7 +324,7 @@ The Service could be simulated during the feasibility checks to identify if ther
 The load testing could be done to evaluate performance under stress.
 
 The service placement feasibility check application will be able to retrieve the topology at any layer from the controller
-via the SIMAP APIs and from the response it will be able to navigate to any other YANG modules outside of the
+via the SIMAP APIs and from the response it will be able to navigate to any other data models outside of the
 core SIMAP topology to retrieve any other information needed, such as resource usage, availability, status, etc.
 
 ## Intent/Service Assurance
@@ -548,6 +551,13 @@ interfaces:
 
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} recommends that these interfaces are open
 and standardized so as to avoid either hardware or software vendor lock and achieve interoperability.
+
+While network emulation ({{sec-emule}}) can be a component within an NDT, the NDT itself is a broader construct 
+that integrates multiple modeling techniques, including emulation, simulation, and analytics, to support intelligent 
+network operations. NDT uses network emulation and includes network emulation use case, but it also interacts with 
+the real network to support intelligent operations, including predictive analytics, intent verification, 
+and full lifecycle management of network and services.
+
 
 # SIMAP Requirements
 
@@ -1012,7 +1022,7 @@ Logical inventory is currently outside of the scope. It does not augment {{!RFC8
 # Acknowledgments
 {:numbered="false"}
 
-Many thanks to Mohamed Boucadair for his valuable contributions, reviews, and comments.
+Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
 Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
 Many thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, Italo Busi, Wu Bo,
 Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, and many others for their contributions, suggestions
