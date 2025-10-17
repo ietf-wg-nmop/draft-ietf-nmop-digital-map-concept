@@ -565,7 +565,7 @@ The SIMAP requirements are split into three groups for different target audience
 
 * Operator requirements:
 : These requirements are collected from the operators. They are functional requirements derived from the operators'
-use cases. Some of the more specific semantic requirements were identified as {{!RFC8345}} gaps during the Hackathons
+use cases. Some of the more specific semantic requirements were identified as {{?RFC8345}} gaps during the Hackathons
 with operators and added as specific semantic requirements to the operator use cases.
 
 * Design requirements:
@@ -586,7 +586,7 @@ not specific to SIMAP API,  they are listed here for completeness.
 ## Operator Requirements
 
 The following are the operators' requirements for the SIMAP. Note that some of these requirements are supported by
-default by {{!RFC8345}}.
+default by {{?RFC8345}}.
 
 REQ-BASIC-MODEL-SUPPORT:
 : Basic model with network, node, link, and termination point entity types.
@@ -936,7 +936,7 @@ This document has no actions for IANA.
 ##  Network Topology {#sec-ntw-topo}
 
    Interestingly, we could not find any network topology definition in
-   IETF RFCs (not even in {{!RFC8345}}) or Internet-Drafts.  However, it is mentioned
+   IETF RFCs (not even in {{?RFC8345}}) or Internet-Drafts.  However, it is mentioned
    in multiple documents.  As an example, in Overview and Principles of
    Internet Traffic Engineering {{?RFC9522}}, which
    mentions:
@@ -988,7 +988,7 @@ types, and their context in the ACTN architecture.
 
    *  A YANG grouping for geographic location {{?RFC9179}}
 
-   *  IETF modules that augment {{!RFC8345}} for different technologies:
+   *  IETF modules that augment {{?RFC8345}} for different technologies:
 
        *  A YANG data model for Traffic Engineering (TE) Topologies {{?RFC8795}}
 
@@ -1007,7 +1007,7 @@ The SIMAP may need to link to the following models, some are already augmenting 
 *  SAIN {{?RFC9417}} {{?RFC9418}}
 
 *  Network Inventory Model {{?I-D.ietf-ivy-network-inventory-yang}} focuses on physical and virtual inventory.
-Logical inventory is currently outside of the scope. It does not augment {{!RFC8345}}.
+Logical inventory is currently outside of the scope. It does not augment {{?RFC8345}}.
 
  * {{?I-D.ietf-ivy-network-inventory-topology}} correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.
 
