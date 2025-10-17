@@ -73,7 +73,11 @@ SIMAP requirements.
 
 # Introduction
 
-Service & Infrastructure Maps (SIMAP) is a data model that provides a view of the operator's networks and services,
+This document defines the concept of Service & Infrastructure Maps (SIMAP) and outlines associated requirements and use cases. 
+It does not specify a modeling approach for SIMAP; references to existing models and modeling languages are provided for informational purposes only.
+While the requirements described herein may require various modeling strategies, the development of such models is outside the scope of this document.
+
+SIMAP is a data model that provides a view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
 operational knowledge). It specifically provides an approach to model multi-layered topology
 and an appropriate mechanism to navigate amongst layers and correlate between them.
