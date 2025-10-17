@@ -642,7 +642,8 @@ domain without having to understand the details of any technologies and domains.
 
 REQ-GRAPH-TRAVERSAL:
 : Topology graph traversal.
-: SIMAP must be optimized for graph traversal for paths. This means that only providing link nodes and
+: SIMAP must be optimized for graph traversal for paths and for graph traversal for the specific use case queries. 
+This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
 relationship between the termination points or nodes.
 
@@ -840,14 +841,15 @@ external to the SIMAP.
 
 ## Architectural Requirements {#sec-arch}
 
-The following are the architectural requirements for the controller that provides SIMAP API, they are the
-non-functional requirements for the SIMAP APIs or controllers:
+The following are the architectural requirements for the controller implementations
+that provide SIMAP API, they are the non-functional requirements for
+the SIMAP APIs and controller implementations:
 
 REQ-SCALES:
-: The SIMAP APIs must be scalable, it must support any provider network, independent of its size.
+: The SIMAP APIs and controller implementations must be scalable, it must support any provider network, independent of its size.
 
 REQ-PERFORMANCE:
-: The SIMAP APIs must be  performant, and have acceptable response-time. Although we are not to define the response time here.
+: The SIMAP APIs and controller implementations must be  performant, and have acceptable response-time. Although we are not to define the response time here.
 
 REQ-USABILITY:
 : The SIMAP APIs must be simple and easy to integrate with the client applications, whose developers
