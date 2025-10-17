@@ -978,8 +978,8 @@ Table of Contents
          inventory of routing policies.
 
       *  Given that no all involved components can be available using
-         YANG, there is a need to connect SIMAP model with other
-         modelling mechanisms.
+         YANG, there is a need to connect SIMAP with other modelling
+         mechanisms.
 
    REQ-BIDIR:  SIMAP must provide a mechanism to model bidirectional
       links.  While data flows are unidirectional, the bidirectional
