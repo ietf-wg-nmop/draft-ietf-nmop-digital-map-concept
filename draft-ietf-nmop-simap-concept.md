@@ -706,7 +706,7 @@ The SIMAP does not contain the detailed device configuration, so a mechanism is 
 SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
 to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.
      + Given that no all involved components can be available using YANG, there is a need to connect
-       SIMAP model with other modelling mechanisms.
+       SIMAP with other modelling mechanisms.
 
 REQ-BIDIR:
 : SIMAP must provide a mechanism to model bidirectional links.
