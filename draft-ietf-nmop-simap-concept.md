@@ -184,8 +184,7 @@ configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), tr
 different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.
 
 SIMAP modelling:
-: SIMAP modelling is the set of principles, guidelines, and conventions to model the SIMAP
-  using the IETF modelling approach {{?RFC8345}}. They cover the
+: SIMAP modelling is the set of principles, guidelines, and conventions to model the SIMAP. They cover the
   network types (layers and sublayers), entity types, entity roles
   (network, node, termination point, or link), entity properties,
   relationship types between entities and relationships to other entities.
