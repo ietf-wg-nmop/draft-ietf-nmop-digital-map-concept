@@ -73,9 +73,12 @@ SIMAP requirements.
 
 # Introduction
 
-This document defines the concept of Service & Infrastructure Maps (SIMAP) and outlines associated requirements and use cases. 
-It does not specify a modeling approach for SIMAP; references to existing models and modeling languages are provided for informational purposes only.
-While the requirements described herein may require various modeling strategies, the development of such models is outside the scope of this document.
+This document defines the concept of Service & Infrastructure Maps (SIMAP) and outlines
+associated requirements and use cases. It does not specify a modeling
+approach for SIMAP; references to existing models and modeling languages
+are provided for informational purposes only.
+While the requirements described herein may require various modeling
+strategies, the development of such models is outside the scope of this document.
 
 SIMAP is a data model that provides a view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
@@ -253,7 +256,7 @@ Key Characteristics of a network closed loop:
 
 * Real-time monitoring: Collects data from network devices, traffic flows, and applications to build
 a comprehensive view of network health and performance.
-* Automated analysis: Identify anomalies, predict potential failures, or detect security threats, 
+* Automated analysis: Identify anomalies, predict potential failures, or detect security threats,
 for example leveraging AI and machine learning.
 * Proactive action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
 compromised endpoints, or rerouting traffic.
@@ -297,7 +300,7 @@ and responding to issues quickly.  In order to facilitate the planning and troub
 necessary to be able to navigate from network inventory to network topology and Services.
 
 The application will be able to retrieve physical topology from the controller via the SIMAP APIs and from the
-response it will be able to retrieve the physical inventory of individual devices and cables and the customer 
+response it will be able to retrieve the physical inventory of individual devices and cables and the customer
 information, if applicable.
 
 The application may request either one or multiple topology layers via the SIMAP APIs and from the response
@@ -552,10 +555,10 @@ interfaces:
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} recommends that these interfaces are open
 and standardized so as to avoid either hardware or software vendor lock and achieve interoperability.
 
-While network emulation ({{sec-emule}}) can be a component within an NDT, the NDT itself is a broader construct 
-that integrates multiple modeling techniques, including emulation, simulation, and analytics, to support intelligent 
-network operations. NDT uses network emulation and includes network emulation use case, but it also interacts with 
-the real network to support intelligent operations, including predictive analytics, intent verification, 
+While network emulation ({{sec-emule}}) can be a component within an NDT, the NDT itself is a broader construct
+that integrates multiple modeling techniques, including emulation, simulation, and analytics, to support intelligent
+network operations. NDT uses network emulation and includes network emulation use case, but it also interacts with
+the real network to support intelligent operations, including predictive analytics, intent verification,
 and full lifecycle management of network and services.
 
 
@@ -642,7 +645,7 @@ domain without having to understand the details of any technologies and domains.
 
 REQ-GRAPH-TRAVERSAL:
 : Topology graph traversal.
-: SIMAP must be optimized for graph traversal for paths and for graph traversal for the specific use case queries. 
+: SIMAP must be optimized for graph traversal for paths and for graph traversal for the specific use case queries.
 This means that only providing link nodes and
 source and sink relationships to termination-points may not be sufficient, we may need to have the direct
 relationship between the termination points or nodes.
