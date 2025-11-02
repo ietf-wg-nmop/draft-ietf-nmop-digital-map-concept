@@ -705,7 +705,7 @@ REQ-PLUGG:
 The SIMAP does not contain the detailed device configuration, so a mechanism is needed to be able to link it from SIMAP.
 SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
 to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.
-     + Given that no all involved components can be available using YANG, there is a need to connect
+     + Given that not all involved components can be available using YANG, there is a need to connect
        SIMAP with other modelling mechanisms.
 
 REQ-BIDIR:
