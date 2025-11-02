@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 20 April 2026                                    Everything OPS
+Expires: 6 May 2026                                       Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         17 October 2025
+                                                         2 November 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 April 2026.
+   This Internet-Draft will expire on 6 May 2026.
 
 Copyright Notice
 
@@ -977,7 +977,7 @@ Table of Contents
          SIMAP: inventory of logical interfaces, inventory of ACLs, or
          inventory of routing policies.
 
-      *  Given that no all involved components can be available using
+      *  Given that not all involved components can be available using
          YANG, there is a need to connect SIMAP with other modelling
          mechanisms.
 
@@ -1289,12 +1289,12 @@ Table of Contents
 8.2.  Informative References
 
    [I-D.ietf-ivy-network-inventory-topology]
-              Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A Network
-              Data Model for Inventory Topology Mapping", Work in
-              Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-topology-03, 6 October 2025,
+              Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A YANG
+              Network Data Model for Inventory Topology Mapping", Work
+              in Progress, Internet-Draft, draft-ietf-ivy-network-
+              inventory-topology-05, 20 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-topology-03>.
+              network-inventory-topology-05>.
 
    [I-D.ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1367,9 +1367,9 @@ Table of Contents
               and B. Claise, "A YANG Data Model for Intermediate System
               to intermediate System (IS-IS) Topology", Work in
               Progress, Internet-Draft, draft-ogondio-nmop-isis-
-              topology-00, 4 March 2024,
+              topology-01, 20 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ogondio-nmop-
-              isis-topology-00>.
+              isis-topology-01>.
 
    [I-D.ogondio-opsawg-ospf-topology]
               de Dios, O. G., Barguil, S., and V. Lopez, "A YANG Data
