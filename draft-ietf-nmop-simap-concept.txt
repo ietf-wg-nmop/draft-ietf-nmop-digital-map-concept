@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 6 May 2026                                       Everything OPS
+Expires: 15 June 2026                                     Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         2 November 2025
+                                                        12 December 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 May 2026.
+   This Internet-Draft will expire on 15 June 2026.
 
 Copyright Notice
 
@@ -326,9 +326,9 @@ Table of Contents
    ensure efficient use of bandwidth while meeting performance
    requirements.
 
-   The TE use case is a combination of both the capacity planning and
-   the simulation use case.  Therefore, there are no specific SIMAP
-   requirements.
+   The use cases for capacity planning, simulation, network simulation
+   and network emulation, closed loop, and potentially others, should
+   consider TE if configured in the network.
 
 3.1.4.  Closed Loop
 
@@ -1308,9 +1308,9 @@ Table of Contents
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-05, 6 September 2025,
+              anomaly-architecture-06, 21 November 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-05>.
+              network-anomaly-architecture-06>.
 
    [I-D.ietf-nmop-network-incident-yang]
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
