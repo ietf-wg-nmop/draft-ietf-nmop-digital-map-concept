@@ -242,8 +242,8 @@ selection based on constraints such as bandwidth availability, latency, and link
 prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting performance
 requirements.
 
-The TE use case is a combination of both the capacity planning and the simulation use case. Therefore, there
-are no specific SIMAP requirements.
+The use cases for capacity planning, simulation, network simulation and network emulation, closed loop, and potentially
+others, should consider TE if configured in the network.
 
 ### Closed Loop
 
