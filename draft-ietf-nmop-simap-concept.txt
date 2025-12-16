@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 15 June 2026                                     Everything OPS
+Expires: 19 June 2026                                     Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        12 December 2025
+                                                        16 December 2025
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2026.
+   This Internet-Draft will expire on 19 June 2026.
 
 Copyright Notice
 
@@ -1263,6 +1263,9 @@ Table of Contents
    *  In the context of [RFC8969], SIMAP can provide multi-layered
       topology model as part of device model, network model and network
       service model
+
+   Appendix A also presents other related IETF activities related to
+   SIMAP development.
 
 6.  Security Considerations
 
