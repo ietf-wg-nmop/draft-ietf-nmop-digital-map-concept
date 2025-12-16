@@ -780,8 +780,8 @@ the inner header. Collecting Processes MUST properly handle
 Templates with multiple identical Information Elements.
 
 REQ-CONTROL-PLANE:
-: Underlay control plane routing state needs to be correlatable to underlay L3 topology. Overlay control-plane
-routing state needs to be correlate-able to overlay L3 network topology.
+: Control‑plane routing state must be correlatable to the corresponding data‑plane topology. For example, the underlay control‑plane routing
+state must correlate to the underlay L3 topology, while the overlay control‑plane routing state must correlate to the overlay L3 network topology.
 
 : A BMP/BGP example:
 : The BMP peer distinguisher ({{Section 4.2 of ?RFC7854}}) needs to be correlateable to the VRF
