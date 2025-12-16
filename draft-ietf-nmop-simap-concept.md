@@ -754,8 +754,8 @@ accessible from the SIMAP is left to the solutions.
 REQ-DATA-PLANE-FLOW:
 : Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology
 : An SRv6 example:
-: In a SRv6 enabled network, sourceIPv6Address appears in a IPFIX data-template/data-record
-for a captured flow on a SRv6 enabled provider interface twice. Once in relation to provider data plane in the
+: In an SRv6‑enabled network, the sourceIPv6Address field appears twice in the IPFIX data‑template/data‑record
+for a captured flow on an SRv6‑enabled provider interface. Once in relation to provider data plane in the
 underlay, and once as relation to the customer data plane in the overlay.
 : SIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and
 underlay network topology. Both topologies might not be uniquely addressed, the VPN context
