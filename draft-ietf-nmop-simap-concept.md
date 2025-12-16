@@ -781,7 +781,7 @@ Templates with multiple identical Information Elements.
 
 REQ-CONTROL-PLANE:
 : Control‑plane routing state must be correlatable to the corresponding data‑plane topology. For example, the underlay control‑plane routing
-state must corrlate to the underlay L3 topology, while the overlay control‑plane routing state must correlate to the overlay L3 network topology.
+state must correlate to the underlay L3 topology, while the overlay control‑plane routing state must correlate to the overlay L3 network topology.
 
 : A BMP/BGP example:
 : The BMP peer distinguisher ({{Section 4.2 of ?RFC7854}}) needs to be correlateable to the VRF
