@@ -920,7 +920,12 @@ customer network controller and multi-domain service controller)
 + In the context of {{?RFC8969}}, SIMAP can provide multi-layered topology model as part of device model, network model
 and network service model
 
-Appendix A also presents other related IETF activities related to SIMAP development.
+This section positions SIMAP within existing IETF classifications and reference architectures to identify the interfaces 
+at which SIMAP is applicable.
+Appendix A documents some other IETF activities related to topology modeling, it does not want to prescribe how SIMAP 
+should be modeled or which base models should be used, and it is added for illustrational purposes only. 
+Therefore it is not included in this section, but added to the Appendix.
+
 
 # Security Considerations
 
