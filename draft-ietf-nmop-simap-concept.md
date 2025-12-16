@@ -80,7 +80,7 @@ are provided for informational purposes only.
 While the requirements described herein may require various modeling
 strategies, the development of such models is outside the scope of this document.
 
-SIMAP is a data model that provides a view of the operator's networks and services,
+SIMAP is a data model that provides a topological view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
 operational knowledge). It specifically provides an approach to model multi-layered topology
 and an appropriate mechanism to navigate amongst layers and correlate between them.
@@ -179,7 +179,7 @@ supporting node of the underlay network.
 The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
-: SIMAP is a data model that provides a view of the operator's networks and services, including how it is
+: SIMAP is a data model that provides a topological view of the operator's networks and services, including how it is
 connected to other models/data (e.g., inventory, observability sources, and operational knowledge).
 It specifically provides an approach to model multi-layered topology and an appropriate mechanism to navigate
 amongst layers and correlate between them. This includes layers from physical topology to service topology.
