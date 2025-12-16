@@ -1264,8 +1264,11 @@ Table of Contents
       topology model as part of device model, network model and network
       service model
 
-   Appendix A also presents other related IETF activities related to
-   SIMAP development.
+   Appendix A documents some other IETF activities related to topology
+   modeling, it does not want to prescribe how SIMAP should be modeled
+   or which base models should be used, and it is added for
+   illustrational purposes only.  Therefore it is not included in this
+   section, but added to the Appendix.
 
 6.  Security Considerations
 
