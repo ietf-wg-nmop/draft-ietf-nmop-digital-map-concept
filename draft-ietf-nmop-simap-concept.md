@@ -937,7 +937,7 @@ This document has no actions for IANA.
 
 #  Related IETF Activities
 
-> Note: The models cited in this section are provided for illustration puroses. It is out of scope to recomend
+> Note: The models cited in this section are provided for illustration purposes. It is out of scope to recomend
 > which models will be used as base to build the SIMAP.
 
 ##  Network Topology {#sec-ntw-topo}
