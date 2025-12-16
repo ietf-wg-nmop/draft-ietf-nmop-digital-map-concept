@@ -887,7 +887,7 @@ Table of Contents
       and queries.  These APIs must also provide the capability to
       retrieve the links to external data/models.
 
-   REQ-COMMON-API:  SIMAP and common APIs, for multi domain.
+   REQ-COMMON-API:  SIMAP and common APIs, for multi-domain.
 
       SIMAP and its APIs must be common over different network domains
       (campus, core, data center, etc.).
