@@ -638,7 +638,7 @@ REQ-STD-API-BASED:
 These APIs must also provide the capability to retrieve the links to external data/models.
 
 REQ-COMMON-API:
-: SIMAP and common APIs, for multi domain.
+: SIMAP and common APIs, for multi-domain.
 : SIMAP and its APIs must be common over different network domains (campus, core, data center, etc.).
 : This means that clients of the SIMAP APIs must be able to understand the topology model of layers of any
 domain without having to understand the details of any technologies and domains.
