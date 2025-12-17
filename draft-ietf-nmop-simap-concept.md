@@ -96,7 +96,10 @@ models and connects them all: configuration, maintenance, assurance (KPIs, statu
 Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
 AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
-The SIMAP data consists of virtual instances of network and service topologies at different layers.
+The SIMAP data consists of instances of network and service topologies at different layers.
+There may be a separate topology instance for each layer in a multi‑layered network,
+or a single topology instance that encompasses multiple layers.
+
 The SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
