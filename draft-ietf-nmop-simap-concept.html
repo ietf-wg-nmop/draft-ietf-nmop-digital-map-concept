@@ -1326,16 +1326,18 @@ from a topology. SIMAP is a topological model that is linked to other functional
 models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms),
 Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
 AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The SIMAP data consists of virtual instances of network and service topologies at different layers.
-The SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
+<p id="section-1-4">The SIMAP data consists of instances of network and service topologies at different layers.
+There may be a separate topology instance for each layer in a multi‑layered network,
+or a single topology instance that encompasses multiple layers.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
 Inventory <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>, and potentially linking to non-YANG models).
 The SIMAP also provides write operations with the same set of APIs, not to change a topology layer
 on the fly as a northbound interface from the controller, but for offline simulations, before applying
-the changes to the network via the normal controller operations.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">Both real network and offline simulation APIs are similar, stemming from the same data
-model, to facilitate the comparison of the offline simulated SIMAP with the network one.<a href="#section-1-5" class="pilcrow">¶</a></p>
+the changes to the network via the normal controller operations.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">Both real network and offline simulation APIs are similar, stemming from the same data
+model, to facilitate the comparison of the offline simulated SIMAP with the network one.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
