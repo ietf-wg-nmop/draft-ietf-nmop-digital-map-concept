@@ -696,7 +696,9 @@ REQ-LAYER-NAVIGATE:
 : SIMAP must provide capability to navigate inside the topology layer and between the topology layers.
 
 REQ-EXTENSIBLE:
-: SIMAP must be extensible with metadata.
+: SIMAP must be extensible with metadata. As examples, a controller or the application could add a custom “location” attribute
+to a node to record its physical site, or a controller could attach a “vendorId” field to a device node.
+This demonstrates that arbitrary key‑value metadata can be appended to any element in the model without altering the core schema.
 
 REQ-PLUGG:
 : SIMAP must be pluggable. That is,
