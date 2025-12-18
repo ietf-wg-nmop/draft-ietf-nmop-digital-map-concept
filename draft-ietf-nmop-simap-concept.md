@@ -1044,8 +1044,8 @@ Logical inventory is currently outside of the scope. It does not augment {{?RFC8
 
 Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
 Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
-Many thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, 
-Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, 
+Many thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva,
+Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
 Sergio Belotti, Aihua Guo and many others for their contributions, suggestions and comments.
 
 Many thanks to Nigel Davis <ndavis@ciena.com> for the valuable discussions and his confirmation of the
