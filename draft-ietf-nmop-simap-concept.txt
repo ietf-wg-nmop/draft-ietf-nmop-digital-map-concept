@@ -756,9 +756,10 @@ Table of Contents
    element models and topology models help generate a virtual twin of
    the network according to the network element configuration, operation
    data, network topology relationship, link state and other network
-   information.  The operation status can be monitored and displayed and
+   information.  The operation status can be monitored and displayed,
    the network configuration change and optimization strategy can be
-   pre-verified.
+   pre-verified and historical data can support e.g. postmorem replay
+   (Section 3.9))
 
    Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] further
    elaborates on the requirements on various interfaces:
@@ -766,13 +767,16 @@ Table of Contents
    *  Network-facing interfaces are twin interfaces between the real
       network and its twin entity.  They are responsible for the
       information exchange between a real network and NDT.  SIMAP APIs
-      can be invoked within such interfaces.
+      can be used within such interfaces.
 
    *  Application-facing interfaces are between the NDT and
       applications.  They are responsible for the information exchange
       between Network Digital Twin and network applications.  SIMAP APIs
-      can be used for feasibility checks (Section 3.3) or emulation
-      (Section 3.8)).
+      can be used for specification of hypothetical network and service
+      states for 'what-if' analysis, e.g.. for feasibility checks
+      (Section 3.3), simulation or emulation (Section 3.8)).  Such
+      analysis may be used in support of e.g. network capacity planning
+      (Section 3.6)) or network design (Section 3.7)).
 
    Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] recommends
    that these interfaces are open and standardized so as to avoid either
@@ -1634,10 +1638,11 @@ Acknowledgments
    Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable
    contributions, reviews, and comments.  Many thanks to Adrian Farrel
    for his SIMAP suggestion and helping to agree the terminology.  Many
-   thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez
-   Martinez-Casanueva, Italo Busi, Wu Bo, Sherif Mostafa, Christopher
-   Janz, Rob Evans, Danielle Ceccarelli, and many others for their
-   contributions, suggestions and comments.
+   thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio
+   Dominguez Martinez-Casanueva, Alex Huang Feng, Italo Busi, Wu Bo,
+   Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
+   Sergio Belotti, Aihua Guo and many others for their contributions,
+   suggestions and comments.
 
    Many thanks to Nigel Davis ndavis@ciena.com (mailto:ndavis@ciena.com)
    for the valuable discussions and his confirmation of the modelling

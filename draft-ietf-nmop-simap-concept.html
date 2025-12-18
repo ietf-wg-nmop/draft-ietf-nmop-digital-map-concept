@@ -2001,19 +2001,22 @@ used in the context of Networking and whose physical counterpart is a data netwo
 enterprise network). Also, as discussed in <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>, network element
 models and topology models help generate a virtual twin of the network according to the network element configuration,
 operation data, network topology relationship, link state and other network information. The operation status can be
-monitored and displayed and the network configuration change and optimization strategy can be pre-verified.<a href="#section-3.10-1" class="pilcrow">¶</a></p>
+monitored and displayed, the network configuration change and optimization strategy can be pre-verified and
+historical data can support e.g. postmorem replay (<a href="#postmortem-replay" class="auto internal xref">Section 3.9</a>))<a href="#section-3.10-1" class="pilcrow">¶</a></p>
 <p id="section-3.10-2"><span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11#section-9.4" class="relref">Section 9.4</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> further elaborates on the requirements on various
 interfaces:<a href="#section-3.10-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.10-3.1">
             <p id="section-3.10-3.1.1">Network-facing interfaces are twin interfaces between the real network and its twin entity.
-They are responsible for the information exchange between a real network and NDT. SIMAP APIs can be invoked within
+They are responsible for the information exchange between a real network and NDT. SIMAP APIs can be used within
 such interfaces.<a href="#section-3.10-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.10-3.2">
             <p id="section-3.10-3.2.1">Application-facing interfaces are between the NDT and applications. They are responsible for the information
-exchange between Network Digital Twin and network applications. SIMAP APIs can be used for feasibility checks
-(<a href="#sec-feasibility" class="auto internal xref">Section 3.3</a>) or emulation (<a href="#sec-emule" class="auto internal xref">Section 3.8</a>)).<a href="#section-3.10-3.2.1" class="pilcrow">¶</a></p>
+exchange between Network Digital Twin and network applications. SIMAP APIs can be used for specification of
+hypothetical network and service states for 'what-if' analysis, e.g.. for feasibility checks
+(<a href="#sec-feasibility" class="auto internal xref">Section 3.3</a>), simulation or emulation (<a href="#sec-emule" class="auto internal xref">Section 3.8</a>)). Such analysis may be used in support of
+e.g. network capacity planning (<a href="#network-capacity-planning" class="auto internal xref">Section 3.6</a>)) or network design (<a href="#network-design" class="auto internal xref">Section 3.7</a>)).<a href="#section-3.10-3.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-3.10-4"><span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11#section-9.4" class="relref">Section 9.4</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> recommends that these interfaces are open
@@ -3053,9 +3056,9 @@ Logical inventory is currently outside of the scope. It does not augment <span>[
       </h2>
 <p id="appendix-B-1">Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
 Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
-Many thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, Italo Busi, Wu Bo,
-Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, and many others for their contributions, suggestions
-and comments.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+Many thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva,
+Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
+Sergio Belotti, Aihua Guo and many others for their contributions, suggestions and comments.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <p id="appendix-B-2">Many thanks to Nigel Davis <a href="mailto:ndavis@ciena.com">ndavis@ciena.com</a> for the valuable discussions and his confirmation of the
 modelling requirements.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 </section>
