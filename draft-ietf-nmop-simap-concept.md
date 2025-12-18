@@ -371,7 +371,7 @@ by navigating to the SAIN subservices and its symptoms.
 The application will be able to retrieve a topology at any layer from a controller via the SIMAP APIs and from the
 response it will be able to navigate to and retrieve any KPIs for selected topology entity.
 
-## Network Capacity Planning
+## Network Capacity Planning {#network-capacity-planning}
 
 Network capacity planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
 capacity (e.g., {{?RFC5136}}), resources, and infrastructure to meet current and future demands. It involves
@@ -412,7 +412,7 @@ the controller via the SIMAP APIs and from the response it will be able to map t
 to add to the network based on the growth forecasting, and finally perform the 'what-if' failure analysis by
 simulating the removal of link(s) and/or router(s) while evaluating the network performance.
 
-## Network Design
+## Network Design {#network-design}
 
 Network design involves defining both the logical structure, such as access, aggregation, and core layers, and
 the physical layout, including devices and links.
@@ -515,7 +515,7 @@ topologies and their impact on the network's performance.
 It can be used, together with the traffic simulation, to evaluate the most efficient topology for a network under
 normal conditions and considering factors like fault tolerance.
 
-## Postmortem Replay
+## Postmortem Replay {#postmortem-replay}
 
 For the postmortem replay use case, the application will use the SIMAP APIs for the purpose of analysis of network Service property
 evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates,
@@ -542,18 +542,21 @@ used in the context of Networking and whose physical counterpart is a data netwo
 enterprise network). Also, as discussed in {{Section 9.2 of ?I-D.irtf-nmrg-network-digital-twin-arch}}, network element
 models and topology models help generate a virtual twin of the network according to the network element configuration,
 operation data, network topology relationship, link state and other network information. The operation status can be
-monitored and displayed and the network configuration change and optimization strategy can be pre-verified.
+monitored and displayed, the network configuration change and optimization strategy can be pre-verified and
+historical data can support e.g. postmorem replay ({{postmortem-replay}}))
 
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} further elaborates on the requirements on various
 interfaces:
 
    * Network-facing interfaces are twin interfaces between the real network and its twin entity.
-     They are responsible for the information exchange between a real network and NDT. SIMAP APIs can be invoked within
+     They are responsible for the information exchange between a real network and NDT. SIMAP APIs can be used within
      such interfaces.
 
    * Application-facing interfaces are between the NDT and applications. They are responsible for the information
-     exchange between Network Digital Twin and network applications. SIMAP APIs can be used for feasibility checks
-     ({{sec-feasibility}}) or emulation ({{sec-emule}})).
+     exchange between Network Digital Twin and network applications. SIMAP APIs can be used for specification of
+     hypothetical network and service states for 'what-if' analysis, e.g.. for feasibility checks
+     ({{sec-feasibility}}), simulation or emulation ({{sec-emule}})). Such analysis may be used in support of
+     e.g. network capacity planning ({{network-capacity-planning}})) or network design ({{network-design}})).
 
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} recommends that these interfaces are open
 and standardized so as to avoid either hardware or software vendor lock and achieve interoperability.
@@ -1041,9 +1044,9 @@ Logical inventory is currently outside of the scope. It does not augment {{?RFC8
 
 Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
 Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
-Many thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, Italo Busi, Wu Bo,
-Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, and many others for their contributions, suggestions
-and comments.
+Many thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva, 
+Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli, 
+Sergio Belotti, Aihua Guo and many others for their contributions, suggestions and comments.
 
 Many thanks to Nigel Davis <ndavis@ciena.com> for the valuable discussions and his confirmation of the
 modelling requirements.
