@@ -619,7 +619,10 @@ may need to see Layer 2 and Layer 3 layers in a single network topology instance
 them as separate network topology instances.
 
 REQ-PASSIVE-TOPO:
-: SIMAP must support capability to model topology of the complete network, including active and passive parts.
+: SIMAP must support capability to model topology of the complete network. If the implementation requires
+passive topology to be part of the complete multi-layered topology, then SIMAP must support
+the capability to model the passive part of the network (in addition to the active part).
+
 : For access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
 essential as it provides many advantages for optimized customer Service, reduced MTTR, and lower operational costs
 through truck roll reduction.
@@ -719,7 +722,8 @@ to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or 
        SIMAP with other modelling mechanisms.
 
 REQ-BIDIR:
-: SIMAP must provide a mechanism to model bidirectional links.
+: SIMAP must provide a mechanism to model bidirectional links
+when the implementation requires bidirectional links.
 While data flows are unidirectional, the
 bidirectional links are also common in networking.  Examples are
 Ethernet cables, bidirectional SONET rings, socket connection to the
@@ -737,7 +741,8 @@ simple and explicit way, including point-to-point, point-to-multipoint,
 multipoint-to-multipoint or hybrid.
 
 REQ-MULTI-DOMAIN:
-: SIMAP must provide a mechanism to model links between networks.
+: SIMAP must provide a mechanism to model links between networks when the implementation 
+requires multi-domain topologies, topologies with multiple IGP areas or any network partitioning.
 This requirement is about covering connectivity between different networks, sub-networks, or domains.
 
 REQ-SUBNETWORK:
