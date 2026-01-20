@@ -749,7 +749,7 @@ simple and explicit way, including point-to-point, point-to-multipoint,
 multipoint-to-multipoint or hybrid.
 
 REQ-MULTI-DOMAIN:
-: SIMAP must provide a mechanism to model links between networks when the implementation 
+: SIMAP must provide a mechanism to model links between networks when the implementation
 requires multi-domain topologies, topologies with multiple IGP areas or any network partitioning.
 This requirement is about covering connectivity between different networks, sub-networks, or domains.
 
