@@ -88,9 +88,17 @@ This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.).
 
-The SIMAP modelling defines the core topological entities (network, node, link, and termination point) at each layer,
-their role in the network topology, core topological properties, and topological relationships
-both inside each layer and between the layers. It also defines how to access other external models
+The SIMAP modelling defines a core set of entities, properties and relationships both inside each layer
+and between the layers that ensure a multi-layered topology can be reconstructed, validated and queries in an
+unambiguous and interoperable manner. Such core set consists of:
+
+* Core topological entities: The minimal set of objects required to represent a layer's topology (e.g., network, node, termination point, and link).
+* Core topological properties: The essential attributes associated with these entities to enable topological reasoning (e.g., identify, topology type, entity role, directionality, cardinality, and cost/weight).
+
+The additional concepts or attributes (such as capacity, operational state, performance metrics, or inventory data) are modelled outside of SIMAP,
+the core set provides the necessary structure to support these extensions without losing architectural consistency.
+
+The SIMAP modelling also defines how to access other external models
 from a topology. SIMAP is a topological model that is linked to other functional
 models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms),
 Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
@@ -741,7 +749,7 @@ simple and explicit way, including point-to-point, point-to-multipoint,
 multipoint-to-multipoint or hybrid.
 
 REQ-MULTI-DOMAIN:
-: SIMAP must provide a mechanism to model links between networks when the implementation 
+: SIMAP must provide a mechanism to model links between networks when the implementation
 requires multi-domain topologies, topologies with multiple IGP areas or any network partitioning.
 This requirement is about covering connectivity between different networks, sub-networks, or domains.
 
