@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 19 June 2026                                     Everything OPS
+Expires: 24 July 2026                                     Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        16 December 2025
+                                                         20 January 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,11 +51,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 19 June 2026.
+   This Internet-Draft will expire on 24 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -117,39 +117,61 @@ Table of Contents
    modeling strategies, the development of such models is outside the
    scope of this document.
 
-   SIMAP is a data model that provides a view of the operator's networks
-   and services, including how it is connected to other models/data
-   (e.g., inventory, observability sources, and operational knowledge).
-   It specifically provides an approach to model multi-layered topology
-   and an appropriate mechanism to navigate amongst layers and correlate
-   between them.  This includes layers from physical topology to service
-   topology.  This model is applicable to multiple domains (access,
-   core, data center, etc.) and technologies (Optical, IP, etc.).
+   SIMAP is a data model that provides a topological view of the
+   operator's networks and services, including how it is connected to
+   other models/data (e.g., inventory, observability sources, and
+   operational knowledge).  It specifically provides an approach to
+   model multi-layered topology and an appropriate mechanism to navigate
+   amongst layers and correlate between them.  This includes layers from
+   physical topology to service topology.  This model is applicable to
+   multiple domains (access, core, data center, etc.) and technologies
+   (Optical, IP, etc.).
 
-   The SIMAP modelling defines the core topological entities (network,
-   node, link, and termination point) at each layer, their role in the
-   network topology, core topological properties, and topological
-   relationships both inside each layer and between the layers.  It also
-   defines how to access other external models from a topology.  SIMAP
-   is a topological model that is linked to other functional models and
-   connects them all: configuration, maintenance, assurance (KPIs,
-   status, health, and symptoms), Traffic-Engineering (TE), different
-   behaviors and actions, simulation, emulation, mathematical
-   abstractions, AI algorithms, etc.  These other models exist outside
-   of the SIMAP and are not defined during SIMAP modelling.
+   The SIMAP modelling defines a core set of entities, properties and
+   relationships both inside each layer and between the layers that
+   ensure a multi-layered topology can be reconstructed, validated and
+   queries in an unambiguous and interoperable manner.  Such core set
+   consists of:
 
-   The SIMAP data consists of virtual instances of network and service
-   topologies at different layers.  The SIMAP provides access to this
-   data via standard APIs for both read and write access, typically as a
-   northbound interface from a controller, with query capabilities and
-   links to other data models (e.g., Service Assurance for Intent-based
-   Networking (SAIN) [RFC9417], Service Attachment Points (SAPs)
-   [RFC9408], Inventory [I-D.ietf-ivy-network-inventory-yang], and
-   potentially linking to non-YANG models).  The SIMAP also provides
-   write operations with the same set of APIs, not to change a topology
-   layer on the fly as a northbound interface from the controller, but
-   for offline simulations, before applying the changes to the network
-   via the normal controller operations.
+   *  Core topological entities: The minimal set of objects required to
+      represent a layer's topology (e.g., network, node, termination
+      point, and link).
+
+   *  Core topological properties: The essential attributes associated
+      with these entities to enable topological reasoning (e.g.,
+      identify, topology type, entity role, directionality, cardinality,
+      and cost/weight).
+
+   The additional concepts or attributes (such as capacity, operational
+   state, performance metrics, or inventory data) are modelled outside
+   of SIMAP, the core set provides the necessary structure to support
+   these extensions without losing architectural consistency.
+
+   The SIMAP modelling also defines how to access other external models
+   from a topology.  SIMAP is a topological model that is linked to
+   other functional models and connects them all: configuration,
+   maintenance, assurance (KPIs, status, health, and symptoms), Traffic-
+   Engineering (TE), different behaviors and actions, simulation,
+   emulation, mathematical abstractions, AI algorithms, etc.  These
+   other models exist outside of the SIMAP and are not defined during
+   SIMAP modelling.
+
+   The SIMAP data consists of instances of network and service
+   topologies at different layers.  There may be a separate topology
+   instance for each layer in a multi-layered network, or a single
+   topology instance that encompasses multiple layers.
+
+   The SIMAP provides access to this data via standard APIs for both
+   read and write access, typically as a northbound interface from a
+   controller, with query capabilities and links to other data models
+   (e.g., Service Assurance for Intent-based Networking (SAIN)
+   [RFC9417], Service Attachment Points (SAPs) [RFC9408], Inventory
+   [I-D.ietf-ivy-network-inventory-yang], and potentially linking to
+   non-YANG models).  The SIMAP also provides write operations with the
+   same set of APIs, not to change a topology layer on the fly as a
+   northbound interface from the controller, but for offline
+   simulations, before applying the changes to the network via the
+   normal controller operations.
 
    Both real network and offline simulation APIs are similar, stemming
    from the same data model, to facilitate the comparison of the offline
@@ -243,14 +265,14 @@ Table of Contents
    The document defines the following terms:
 
    Service & Infrastructure Maps (SIMAP):  SIMAP is a data model that
-      provides a view of the operator's networks and services, including
-      how it is connected to other models/data (e.g., inventory,
-      observability sources, and operational knowledge).  It
-      specifically provides an approach to model multi-layered topology
-      and an appropriate mechanism to navigate amongst layers and
-      correlate between them.  This includes layers from physical
-      topology to service topology.  This model is applicable to
-      multiple domains (access, core, data centers, etc.) and
+      provides a topological view of the operator's networks and
+      services, including how it is connected to other models/data
+      (e.g., inventory, observability sources, and operational
+      knowledge).  It specifically provides an approach to model multi-
+      layered topology and an appropriate mechanism to navigate amongst
+      layers and correlate between them.  This includes layers from
+      physical topology to service topology.  This model is applicable
+      to multiple domains (access, core, data centers, etc.) and
       technologies (Optical, IP, etc.)
 
       Therefore, SIMAP defines the core topological entities, their role
@@ -751,9 +773,10 @@ Table of Contents
    element models and topology models help generate a virtual twin of
    the network according to the network element configuration, operation
    data, network topology relationship, link state and other network
-   information.  The operation status can be monitored and displayed and
+   information.  The operation status can be monitored and displayed,
    the network configuration change and optimization strategy can be
-   pre-verified.
+   pre-verified and historical data can support e.g. postmorem replay
+   (Section 3.9))
 
    Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] further
    elaborates on the requirements on various interfaces:
@@ -761,13 +784,16 @@ Table of Contents
    *  Network-facing interfaces are twin interfaces between the real
       network and its twin entity.  They are responsible for the
       information exchange between a real network and NDT.  SIMAP APIs
-      can be invoked within such interfaces.
+      can be used within such interfaces.
 
    *  Application-facing interfaces are between the NDT and
       applications.  They are responsible for the information exchange
       between Network Digital Twin and network applications.  SIMAP APIs
-      can be used for feasibility checks (Section 3.3) or emulation
-      (Section 3.8)).
+      can be used for specification of hypothetical network and service
+      states for 'what-if' analysis, e.g.. for feasibility checks
+      (Section 3.3), simulation or emulation (Section 3.8)).  Such
+      analysis may be used in support of e.g. network capacity planning
+      (Section 3.6)) or network design (Section 3.7)).
 
    Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] recommends
    that these interfaces are open and standardized so as to avoid either
@@ -847,7 +873,10 @@ Table of Contents
       topology instances.
 
    REQ-PASSIVE-TOPO:  SIMAP must support capability to model topology of
-      the complete network, including active and passive parts.
+      the complete network.  If the implementation requires passive
+      topology to be part of the complete multi-layered topology, then
+      SIMAP must support the capability to model the passive part of the
+      network (in addition to the active part).
 
       For access network providers the ability to have linkage in the
       SIMAP of the complete network (active + passive) is essential as
@@ -886,7 +915,7 @@ Table of Contents
       and queries.  These APIs must also provide the capability to
       retrieve the links to external data/models.
 
-   REQ-COMMON-API:  SIMAP and common APIs, for multi domain.
+   REQ-COMMON-API:  SIMAP and common APIs, for multi-domain.
 
       SIMAP and its APIs must be common over different network domains
       (campus, core, data center, etc.).
@@ -940,8 +969,10 @@ Table of Contents
       SIMAP must enable both retrieval and write access to the potential
       new network.
 
-      A potential new network is the view at a given point with
-      modifications from the snapshot.
+      A potential network topology is a state generated by a simulation
+      (online or offline) at a given point of time that includes any
+      modifications from the snapshot and can be queried and modified
+      for what-if planning.
 
       This view may contain either the full topology or just differences
       from the snapshot.
@@ -964,7 +995,12 @@ Table of Contents
    REQ-LAYER-NAVIGATE:  SIMAP must provide capability to navigate inside
       the topology layer and between the topology layers.
 
-   REQ-EXTENSIBLE:  SIMAP must be extensible with metadata.
+   REQ-EXTENSIBLE:  SIMAP must be extensible with metadata.  As
+      examples, a controller or the application could add a custom
+      “location” attribute to a node to record its physical site, or a
+      controller could attach a “vendorId” field to a device node.  This
+      demonstrates that arbitrary key-value metadata can be appended to
+      any element in the model without altering the core schema.
 
    REQ-PLUGG:  SIMAP must be pluggable.  That is,
 
@@ -982,12 +1018,13 @@ Table of Contents
          mechanisms.
 
    REQ-BIDIR:  SIMAP must provide a mechanism to model bidirectional
-      links.  While data flows are unidirectional, the bidirectional
-      links are also common in networking.  Examples are Ethernet
-      cables, bidirectional SONET rings, socket connection to the
-      server, etc.  There is also the requirement for simplified Service
-      layer topology, where a link is modeled as bidirectional in order
-      to be supported by unidirectional links at the lower layer.
+      links when the implementation requires bidirectional links.  While
+      data flows are unidirectional, the bidirectional links are also
+      common in networking.  Examples are Ethernet cables, bidirectional
+      SONET rings, socket connection to the server, etc.  There is also
+      the requirement for simplified Service layer topology, where a
+      link is modeled as bidirectional in order to be supported by
+      unidirectional links at the lower layer.
 
    REQ-MULTI-POINT:  SIMAP must provide a mechanism to model multipoint
       links.  A topology model should be able to model any topology type
@@ -998,7 +1035,9 @@ Table of Contents
       multipoint-to-multipoint or hybrid.
 
    REQ-MULTI-DOMAIN:  SIMAP must provide a mechanism to model links
-      between networks.  This requirement is about covering connectivity
+      between networks when the implementation requires multi-domain
+      topologies, topologies with multiple IGP areas or any network
+      partitioning.  This requirement is about covering connectivity
       between different networks, sub-networks, or domains.
 
    REQ-SUBNETWORK:  SIMAP must provide a mechanism to model network
@@ -1035,11 +1074,11 @@ Table of Contents
 
       An SRv6 example:
 
-      In a SRv6 enabled network, sourceIPv6Address appears in a IPFIX
-      data-template/data-record for a captured flow on a SRv6 enabled
-      provider interface twice.  Once in relation to provider data plane
-      in the underlay, and once as relation to the customer data plane
-      in the overlay.
+      In an SRv6-enabled network, the sourceIPv6Address field appears
+      twice in the IPFIX data-template/data-record for a captured flow
+      on an SRv6-enabled provider interface.  Once in relation to
+      provider data plane in the underlay, and once as relation to the
+      customer data plane in the overlay.
 
       SIMAP must provide the semantic capability that each
       sourceIPv6Address can be mapped to the overlay and underlay
@@ -1067,10 +1106,11 @@ Table of Contents
    |  Collecting Processes MUST properly handle Templates with multiple
    |  identical Information Elements.
 
-   REQ-CONTROL-PLANE:  Underlay control plane routing state needs to be
-      correlatable to underlay L3 topology.  Overlay control-plane
-      routing state needs to be correlate-able to overlay L3 network
-      topology.
+   REQ-CONTROL-PLANE:  Control-plane routing state must be correlatable
+      to the corresponding data-plane topology.  For example, the
+      underlay control-plane routing state must correlate to the
+      underlay L3 topology, while the overlay control-plane routing
+      state must correlate to the overlay L3 network topology.
 
       A BMP/BGP example:
 
@@ -1306,25 +1346,25 @@ Table of Contents
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A Base YANG Data Model for Network Inventory",
               Work in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-yang-11, 14 October 2025,
+              inventory-yang-12, 22 December 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-yang-11>.
+              network-inventory-yang-12>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-06, 21 November 2025,
+              anomaly-architecture-07, 18 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-06>.
+              network-anomaly-architecture-07>.
 
    [I-D.ietf-nmop-network-incident-yang]
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
               "A YANG Data Model for Network Incident Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-network-
-              incident-yang-06, 12 October 2025,
+              incident-yang-07, 3 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-incident-yang-06>.
+              network-incident-yang-07>.
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
@@ -1621,10 +1661,11 @@ Acknowledgments
    Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable
    contributions, reviews, and comments.  Many thanks to Adrian Farrel
    for his SIMAP suggestion and helping to agree the terminology.  Many
-   thanks to Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez
-   Martinez-Casanueva, Italo Busi, Wu Bo, Sherif Mostafa, Christopher
-   Janz, Rob Evans, Danielle Ceccarelli, and many others for their
-   contributions, suggestions and comments.
+   thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio
+   Dominguez Martinez-Casanueva, Alex Huang Feng, Italo Busi, Wu Bo,
+   Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
+   Sergio Belotti, Aihua Guo and many others for their contributions,
+   suggestions and comments.
 
    Many thanks to Nigel Davis ndavis@ciena.com (mailto:ndavis@ciena.com)
    for the valuable discussions and his confirmation of the modelling
