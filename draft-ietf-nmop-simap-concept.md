@@ -88,15 +88,14 @@ This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.).
 
-The SIMAP modelling defines a core set of entities, properties and relationships both inside each layer and between the layers
-that ensure a multi-layered topology can be reconstructed, validated and queried in an unambiguous and interoperable manner.
-Such core set consists of:
+The SIMAP modelling defines a core set of entities, properties and relationships both inside each layer
+and between the layers that ensure a multi-layered topology can be reconstructed, validated and queries in an
+unambiguous and interoperable manner. Such core set consists of:
 
-•	Core Topological Entities:
-: The minimal set of objects required to represent a layer's topology (e.g., Network, Node, Termination Point (TP), and Link).
-•	Core Topological Properties:
-: The essential attributes associated with these entities to enable topological reasoning (e.g., Identity, Topology Type, Entity Role, Directionality, Cardinality, and Cost/Weight).
-The additional concepts or attributes - such as capacity, operational state, performance metrics, or inventory data — are modeled outside of SIMAP,
+* Core topological entities: The minimal set of objects required to represent a layer's topology (e.g., network, node, termination point, and link).
+* Core topological properties: The essential attributes associated with these entities to enable topological reasoning (e.g., identify, topology type, entity role, directionality, cardinality, and cost/weight).
+
+The additional concepts or attributes (such as capacity, operational state, performance metrics, or inventory data) are modelled outside of SIMAP,
 the core set provides the necessary structure to support these extensions without losing architectural consistency.
 
 The SIMAP modelling also defines how to access other external models
