@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 24 July 2026                                     Everything OPS
+Expires: 25 July 2026                                     Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         20 January 2026
+                                                         21 January 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 July 2026.
+   This Internet-Draft will expire on 25 July 2026.
 
 Copyright Notice
 
@@ -111,21 +111,21 @@ Table of Contents
 
    This document defines the concept of Service & Infrastructure Maps
    (SIMAP) and outlines associated requirements and use cases.  It does
-   not specify a modeling approach for SIMAP; references to existing
-   models and modeling languages are provided for informational purposes
-   only.  While the requirements described herein may require various
-   modeling strategies, the development of such models is outside the
-   scope of this document.
+   not specify any modeling languages in this document; references to
+   existing models and modeling languages are provided for informational
+   purposes only.  While the requirements described herein may require
+   various modeling strategies, the development of such models is
+   outside the scope of this document.
 
    SIMAP is a data model that provides a topological view of the
    operator's networks and services, including how it is connected to
    other models/data (e.g., inventory, observability sources, and
-   operational knowledge).  It specifically provides an approach to
-   model multi-layered topology and an appropriate mechanism to navigate
-   amongst layers and correlate between them.  This includes layers from
-   physical topology to service topology.  This model is applicable to
-   multiple domains (access, core, data center, etc.) and technologies
-   (Optical, IP, etc.).
+   operational knowledge).  This model represents a multi-layered
+   topology and offers mechanisms to navigate amongst layers and
+   correlate between them.  This includes layers from physical topology
+   to service topology.  This model is applicable to multiple domains
+   (access, core, data center, etc.) and technologies (Optical, IP,
+   etc.).
 
    The SIMAP modelling defines a core set of entities, properties and
    relationships both inside each layer and between the layers that
@@ -161,17 +161,18 @@ Table of Contents
    instance for each layer in a multi-layered network, or a single
    topology instance that encompasses multiple layers.
 
-   The SIMAP provides access to this data via standard APIs for both
-   read and write access, typically as a northbound interface from a
-   controller, with query capabilities and links to other data models
-   (e.g., Service Assurance for Intent-based Networking (SAIN)
-   [RFC9417], Service Attachment Points (SAPs) [RFC9408], Inventory
-   [I-D.ietf-ivy-network-inventory-yang], and potentially linking to
-   non-YANG models).  The SIMAP also provides write operations with the
-   same set of APIs, not to change a topology layer on the fly as a
-   northbound interface from the controller, but for offline
-   simulations, before applying the changes to the network via the
-   normal controller operations.
+   Since SIMAP is a data model and data models can generate APIs
+   [RFC3444][RFC7950], the SIMAP provides access to this data via
+   standard APIs for both read and write access, typically as a
+   northbound interface from a controller, with query capabilities and
+   links to other data models (e.g., Service Assurance for Intent-based
+   Networking (SAIN) [RFC9417], Service Attachment Points (SAPs)
+   [RFC9408], Inventory [I-D.ietf-ivy-network-inventory-yang], and
+   potentially linking to non-YANG models).  The SIMAP also provides
+   write operations with the same set of APIs, not to change a topology
+   layer on the fly as a northbound interface from the controller, but
+   for offline simulations, before applying the changes to the network
+   via the normal controller operations.
 
    Both real network and offline simulation APIs are similar, stemming
    from the same data model, to facilitate the comparison of the offline
@@ -301,6 +302,10 @@ Table of Contents
 
       The SIMAP data can be historical, real-time, or future data for
       'what-if' scenarios.
+
+   SIMAP API:  SIMAP API is the set of interfaces that allow the client
+      applications to create, read, update, and delete data that
+      comforms to the SIMAP.
 
 3.  Sample SIMAP Use Cases
 
@@ -1425,6 +1430,11 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ogondio-
               opsawg-ospf-topology-01>.
 
+   [RFC3444]  Pras, A. and J. Schoenwaelder, "On the Difference between
+              Information Models and Data Models", RFC 3444,
+              DOI 10.17487/RFC3444, January 2003,
+              <https://www.rfc-editor.org/rfc/rfc3444>.
+
    [RFC5136]  Chimento, P. and J. Ishac, "Defining Network Capacity",
               RFC 5136, DOI 10.17487/RFC5136, February 2008,
               <https://www.rfc-editor.org/rfc/rfc5136>.
@@ -1452,6 +1462,10 @@ Table of Contents
               Interconnected Traffic-Engineered Networks", BCP 206,
               RFC 7926, DOI 10.17487/RFC7926, July 2016,
               <https://www.rfc-editor.org/rfc/rfc7926>.
+
+   [RFC7950]  Bjorklund, M., Ed., "The YANG 1.1 Data Modeling Language",
+              RFC 7950, DOI 10.17487/RFC7950, August 2016,
+              <https://www.rfc-editor.org/rfc/rfc7950>.
 
    [RFC8199]  Bogdanovic, D., Claise, B., and C. Moberg, "YANG Module
               Classification", RFC 8199, DOI 10.17487/RFC8199, July

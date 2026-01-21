@@ -1067,7 +1067,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 24 July 2026</td>
+<td class="center">Expires 25 July 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1080,12 +1080,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-simap-concept-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-01-20" class="published">20 January 2026</time>
+<time datetime="2026-01-21" class="published">21 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-07-24">24 July 2026</time></dd>
+<dd class="expires"><time datetime="2026-07-25">25 July 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1145,7 +1145,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1307,15 +1307,15 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">This document defines the concept of Service &amp; Infrastructure Maps (SIMAP) and outlines
-associated requirements and use cases. It does not specify a modeling
-approach for SIMAP; references to existing models and modeling languages
+associated requirements and use cases. It does not specify any modeling
+languages in this document; references to existing models and modeling languages
 are provided for informational purposes only.
 While the requirements described herein may require various modeling
 strategies, the development of such models is outside the scope of this document.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">SIMAP is a data model that provides a topological view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
-operational knowledge). It specifically provides an approach to model multi-layered topology
-and an appropriate mechanism to navigate amongst layers and correlate between them.
+operational knowledge). This model represents a multi-layered topology
+and offers mechanisms to navigate amongst layers and correlate between them.
 This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.).<a href="#section-1-2" class="pilcrow">¶</a></p>
@@ -1340,7 +1340,8 @@ AI algorithms, etc. These other models exist outside of the SIMAP and are not de
 <p id="section-1-7">The SIMAP data consists of instances of network and service topologies at different layers.
 There may be a separate topology instance for each layer in a multi‑layered network,
 or a single topology instance that encompasses multiple layers.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">The SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
+<p id="section-1-8">Since SIMAP is a data model and data models can generate APIs <span>[<a href="#RFC3444" class="cite xref">RFC3444</a>]</span><span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>,
+the SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
 Inventory <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>, and potentially linking to non-YANG models).
@@ -1516,6 +1517,11 @@ relationship types between entities and relationships to other entities.<a href=
 <dt id="section-2-4.9"></dt>
         <dd style="margin-left: 1.5em" id="section-2-4.10">
           <p id="section-2-4.10.1">The SIMAP data can be historical, real-time, or future data for 'what-if' scenarios.<a href="#section-2-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.11">SIMAP API:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.12">
+          <p id="section-2-4.12.1">SIMAP API is the set of interfaces that allow the client applications to create, read, update, and delete data that comforms to the SIMAP.<a href="#section-2-4.12.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -2812,6 +2818,10 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
         <dd>
 <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Open Shortest Path First (OSPF) Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ogondio-opsawg-ospf-topology-01</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-ospf-topology-01">https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-ospf-topology-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC3444">[RFC3444]</dt>
+        <dd>
+<span class="refAuthor">Pras, A.</span> and <span class="refAuthor">J. Schoenwaelder</span>, <span class="refTitle">"On the Difference between Information Models and Data Models"</span>, <span class="seriesInfo">RFC 3444</span>, <span class="seriesInfo">DOI 10.17487/RFC3444</span>, <time datetime="2003-01" class="refDate">January 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3444">https://www.rfc-editor.org/rfc/rfc3444</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC5136">[RFC5136]</dt>
         <dd>
 <span class="refAuthor">Chimento, P.</span> and <span class="refAuthor">J. Ishac</span>, <span class="refTitle">"Defining Network Capacity"</span>, <span class="seriesInfo">RFC 5136</span>, <span class="seriesInfo">DOI 10.17487/RFC5136</span>, <time datetime="2008-02" class="refDate">February 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5136">https://www.rfc-editor.org/rfc/rfc5136</a>&gt;</span>. </dd>
@@ -2831,6 +2841,10 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 <dt id="RFC7926">[RFC7926]</dt>
         <dd>
 <span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Drake, J.</span>, <span class="refAuthor">Bitar, N.</span>, <span class="refAuthor">Swallow, G.</span>, <span class="refAuthor">Ceccarelli, D.</span>, and <span class="refAuthor">X. Zhang</span>, <span class="refTitle">"Problem Statement and Architecture for Information Exchange between Interconnected Traffic-Engineered Networks"</span>, <span class="seriesInfo">BCP 206</span>, <span class="seriesInfo">RFC 7926</span>, <span class="seriesInfo">DOI 10.17487/RFC7926</span>, <time datetime="2016-07" class="refDate">July 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7926">https://www.rfc-editor.org/rfc/rfc7926</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7950">[RFC7950]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8199">[RFC8199]</dt>
         <dd>
