@@ -74,16 +74,16 @@ SIMAP requirements.
 # Introduction
 
 This document defines the concept of Service & Infrastructure Maps (SIMAP) and outlines
-associated requirements and use cases. It does not specify a modeling
-approach for SIMAP; references to existing models and modeling languages
+associated requirements and use cases. It does not specify any modeling
+languages in this document; references to existing models and modeling languages
 are provided for informational purposes only.
 While the requirements described herein may require various modeling
 strategies, the development of such models is outside the scope of this document.
 
 SIMAP is a data model that provides a topological view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
-operational knowledge). It specifically provides an approach to model multi-layered topology
-and an appropriate mechanism to navigate amongst layers and correlate between them.
+operational knowledge). This model represents a multi-layered topology
+and offers mechanisms to navigate amongst layers and correlate between them.
 This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.).
@@ -108,7 +108,8 @@ The SIMAP data consists of instances of network and service topologies at differ
 There may be a separate topology instance for each layer in a multi‑layered network,
 or a single topology instance that encompasses multiple layers.
 
-The SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
+Since SIMAP is a data model and data models can generate APIs {{?RFC3444}}{{?RFC7950}},
+the SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and potentially linking to non-YANG models).
@@ -217,6 +218,9 @@ SIMAP data:
    links to functional data for the instances, including
    configuration, health, symptoms.
 : The SIMAP data can be historical, real-time, or future data for 'what-if' scenarios.
+
+SIMAP API:
+: SIMAP API is the set of interfaces that allow the client applications to create, read, update, and delete data that comforms to the SIMAP.
 
 # Sample SIMAP Use Cases
 
