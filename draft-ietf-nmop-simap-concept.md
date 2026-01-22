@@ -179,7 +179,7 @@ Topology layer:
   * network: L3 for IPv4 and IPv6,
   * IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,
   * tunnel: for transport tunnels and paths, for MPLS and SRv6,
-  * service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN
+  * service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,
   * application: for video, voice and data traffic flows.
 
   However, this list is illustrative only; it is not a prescriptive requirement.
