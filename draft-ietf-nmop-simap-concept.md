@@ -758,7 +758,7 @@ The following requirements are more specific requirements for semantics:
 
 REQ-LAYER-NAVIGATE:
 : SIMAP must provide capability to navigate both within a topology layer and between topology layers.
-: Within-layer navigation means that SIMAP client applications should be able to move among entities that belong to the same layer. 
+: Within-layer navigation means that SIMAP client applications should be able to move among entities that belong to the same layer.
 For example, in the IGP layer, the navigation should allow moving between OSPF/IS-IS management domains, OSPF/IS-IS areas,
 OSPF/IS-IS processes, OSPF/IS-IS interfaces, and OSPF/IS-IS links.
 : Between‑layer navigation is the navigation across layers that should display the dependencies of entities in one layer on those in another.
