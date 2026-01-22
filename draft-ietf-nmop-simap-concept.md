@@ -74,11 +74,7 @@ SIMAP requirements.
 # Introduction
 
 This document defines the concept of Service & Infrastructure Maps (SIMAP) and outlines
-associated requirements and use cases. It does not specify any modeling
-languages in this document; references to existing models and modeling languages
-are provided for informational purposes only.
-While the requirements described herein may require various modeling
-strategies, the development of such models is outside the scope of this document.
+associated requirements and use cases.
 
 SIMAP is a data model that provides a topological view of the operator's networks and services,
 including how it is connected to other models/data (e.g., inventory, observability sources, and
@@ -88,13 +84,12 @@ This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.).
 
-The SIMAP modelling defines a core set of entities, properties and relationships both inside each layer
-and between the layers that ensure a multi-layered topology can be reconstructed, validated and queries in an
-unambiguous and interoperable manner. Such core set consists of:
-
-* Core topological entities: The minimal set of objects required to represent a layer's topology (e.g., network, node, termination point, and link).
-* Core topological properties: The essential attributes associated with these entities to enable topological reasoning (e.g., identify, topology type, entity role, directionality, cardinality, and cost/weight).
-
+Specifically, the SIMAP modelling defines the core topological entities at each layer,
+core topological properties, and topological relationships (both inside each layer
+and between the layers), to ensure a multi-layered topology can be reconstructed, validated and queried in an
+unambiguous and interoperable manner.
+The core topological entities are the minimal set of objects required to represent a layer's topology (e.g., network, node, termination point, and link).
+The core topological properties are the essential attributes associated with these entities to enable topological reasoning (e.g., identity, topology type, entity role in topology, directionality, cardinality, and cost/weight).
 The additional concepts or attributes (such as capacity, operational state, performance metrics, or inventory data) are modelled outside of SIMAP,
 the core set provides the necessary structure to support these extensions without losing architectural consistency.
 
@@ -107,10 +102,9 @@ AI algorithms, etc. These other models exist outside of the SIMAP and are not de
 The SIMAP data consists of instances of network and service topologies at different layers.
 There may be a separate topology instance for each layer in a multi‑layered network,
 or a single topology instance that encompasses multiple layers.
-
 Since SIMAP is a data model and data models can generate APIs {{?RFC3444}}{{?RFC7950}},
-the SIMAP provides access to this data via standard APIs for both read and write access, typically as a northbound
-interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
+the SIMAP provides access to this data via standard APIs for both read and write access, typically
+from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and potentially linking to non-YANG models).
 
@@ -118,13 +112,18 @@ The SIMAP also provides write operations with the same set of APIs, not to chang
 as a northbound interface from the controller, but for both online and offline simulations,
 before applying the changes to the network via the normal controller operations.
 
-Both real network, online-simulation and offline simulation APIs can be built on the same data model.
+Both real network, online-simulation and offline-simulation APIs can be built on the same data model.
 Each data source is reported as a distinct topology instance, but when desired the real network and
 online simulation data can be merged into a single topology instance, while the offline simulation
 remains separate. The simulated topology instance can be matched directly to the corresponding
 real network topology for comparison. This approach preserves independence between real and
 simulated data while enabling side by side analysis.
 
+This document does not specify a SIMAP implementation approach and what modelling language to use.
+Also, how implementations are connected to SIMAP is implementation- and deployment- specific.
+
+While the requirements described herein may require various modeling
+strategies, the development of such models is outside the scope of this document.
 
 # Terminology
 
