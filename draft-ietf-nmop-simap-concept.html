@@ -1440,7 +1440,38 @@ different types of Services and for different providers/solutions.<a href="#sect
         <dd class="break"></dd>
 <dt id="section-2-2.23"></dt>
         <dd style="margin-left: 1.5em" id="section-2-2.24">
-          <p id="section-2-2.24.1">The top layer represents the application/flow view of Service connectivity.<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
+          <p id="section-2-2.24.1">The application/flow layer represents the view of Service data flows for
+different classes of service - video, voice and data traffiC.
+The layers may differ depending on the solution, so the bottom and
+top layers may not be the same across all solutions. We can illustrate
+the concept of topology layers by listing the common set — e.g.,<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2-2.24.2.1">
+              <p id="section-2-2.24.2.1.1">physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),<a href="#section-2-2.24.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.2">
+              <p id="section-2-2.24.2.2.1">data link: L2 for Ethernet, LAGs and VLAN,<a href="#section-2-2.24.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.3">
+              <p id="section-2-2.24.2.3.1">network: L3 for IPv4 and IPv6,<a href="#section-2-2.24.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.4">
+              <p id="section-2-2.24.2.4.1">IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,<a href="#section-2-2.24.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.5">
+              <p id="section-2-2.24.2.5.1">tunnel: for transport tunnels and paths, for MPLS and SRv6,<a href="#section-2-2.24.2.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.6">
+              <p id="section-2-2.24.2.6.1">service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,<a href="#section-2-2.24.2.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.7">
+              <p id="section-2-2.24.2.7.1">application: for video, voice and data traffic flows.<a href="#section-2-2.24.2.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-2-2.24.3">However, this list is illustrative only; it is not a prescriptive requirement.
+Different solutions may adopt alternative layering schemes or combine layers
+differently. Therefore, we will present the above as an example of one possible
+solution, while keeping the definition flexible enough to accommodate flexible layering.<a href="#section-2-2.24.3" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-2.25">Service:</dt>

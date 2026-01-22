@@ -244,8 +244,36 @@ Table of Contents
       that can differ for different types of Services and for different
       providers/solutions.
 
-      The top layer represents the application/flow view of Service
-      connectivity.
+      The application/flow layer represents the view of Service data
+      flows for different classes of service - video, voice and data
+      traffiC.  The layers may differ depending on the solution, so the
+      bottom and top layers may not be the same across all solutions.
+      We can illustrate the concept of topology layers by listing the
+      common set — e.g.,
+
+      *  physical: L1, one or multiple layers, if fully modelling
+         different optical layers.  Used for WSON, OTN optical, OTN
+         digital),
+
+      *  data link: L2 for Ethernet, LAGs and VLAN,
+
+      *  network: L3 for IPv4 and IPv6,
+
+      *  IGP/EGP: for routing inside or between ASs, different layers
+         for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,
+
+      *  tunnel: for transport tunnels and paths, for MPLS and SRv6,
+
+      *  service: for different overlay services, like L2 VPNs, L3 VPNs,
+         slices, SD-WAN,
+
+      *  application: for video, voice and data traffic flows.
+
+      However, this list is illustrative only; it is not a prescriptive
+      requirement.  Different solutions may adopt alternative layering
+      schemes or combine layers differently.  Therefore, we will present
+      the above as an example of one possible solution, while keeping
+      the definition flexible enough to accommodate flexible layering.
 
    Service:  A service represents network connectivity service provided
       over a network that enables devices, systems, or networks to
