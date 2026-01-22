@@ -139,8 +139,7 @@ Topology:
   arranged.
 : There are several types of topologies: point-to-point,
   bus, ring, star, tree, mesh, hybrid, and daisy chain.
-: Topologies may be unidirectional or bidirectional (bus, some
-  rings).
+: Topologies may be unidirectional (all links unidirectional) or bidirectional (all links bidirectional), or contain combination of unidirectional and bidirectional links.
 
 Multi-layered topology:
 : A multi-layered topology models relationships between different topology layers,
