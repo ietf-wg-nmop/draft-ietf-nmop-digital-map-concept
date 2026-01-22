@@ -186,7 +186,7 @@ Topology layer:
   Different solutions may adopt alternative layering schemes or combine layers
   differently. Therefore, we will present the above as an example of one possible
   solution, while keeping the definition flexible enough to accommodate flexible layering.
-  
+
 Service:
 : A service represents network connectivity service provided over a network that enables devices, systems, or networks to
 communicate and exchange data with each other. It provides the underlying infrastructure and mechanisms
