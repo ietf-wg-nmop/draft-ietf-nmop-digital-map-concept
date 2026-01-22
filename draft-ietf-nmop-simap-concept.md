@@ -279,7 +279,7 @@ used by a Service.  The supporting relations to the lowest layer, provided by th
 help the SIMAP client application to determine what physical resources are used by
 the Service. This addresses a requirement for systems to be able to provide topology and resource views of services,
 at different levels of abstraction, using the SIMAP [REF: ETSI ZSM 019 Clause 6].
-Knowing the physical resources a service uses enables capacity planning, fault isolation, performance monitoring, and accurate billing. 
+Knowing the physical resources a service uses enables capacity planning, fault isolation, performance monitoring, and accurate billing.
 
 
 ### Resource -> Service
