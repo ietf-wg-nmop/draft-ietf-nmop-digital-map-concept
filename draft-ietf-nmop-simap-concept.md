@@ -113,13 +113,17 @@ the SIMAP provides access to this data via standard APIs for both read and write
 interface from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and potentially linking to non-YANG models).
-The SIMAP also provides write operations with the same set of APIs, not to change a topology layer
-on the fly as a northbound interface from the controller, but for offline simulations, before applying
-the changes to the network via the normal controller operations.
 
-Both real network and offline simulation APIs are similar, stemming from the same data
-model, to facilitate the comparison of the offline simulated SIMAP with the network one.
+The SIMAP also provides write operations with the same set of APIs, not to change a topology layer on the fly
+as a northbound interface from the controller, but for both online and offline simulations,
+before applying the changes to the network via the normal controller operations.
 
+Both real network, online-simulation and offline simulation APIs can be built on the same data model.
+Each data source is reported as a distinct topology instance, but when desired the real network and
+online simulation data can be merged into a single topology instance, while the offline simulation
+remains separate. The simulated topology instance can be matched directly to the corresponding
+real network topology for comparison. This approach preserves independence between real and
+simulated data while enabling side by side analysis.
 
 
 # Terminology
