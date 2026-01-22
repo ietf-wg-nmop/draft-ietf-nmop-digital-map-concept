@@ -158,7 +158,7 @@ Multi-layered topology:
 Topology layer:
 : A topology layer represents Topology at a single layer in the multi-layered topology.
 : The topology layer can also represent what needs to be managed by a
-  specific user or application, for example the IGP layer can be of interest to the operator
+  specific user or client application, for example the IGP layer can be of interest to the operator
   troubleshooting or optimizing the routing, while the optical layer may be
   of interest to the user managing the optical network.
 : Some topology layers may relate closely to OSI layers, like Layer 1 topology
@@ -241,9 +241,27 @@ SIMAP data:
 SIMAP API:
 : SIMAP API is the set of interfaces that allow the client applications to create, read, update, and delete data that comforms to the SIMAP.
 
+SIMAP client application:
+: Consumer of the SIMAP API. An application that consumes the SIMAP API.
+It sends requests to a SIMAP server, receives responses, and uses the returned data to drive its own logic.
+Typical clients include network management systems, orchestration tools, monitoring dashboards, capacity management applications,
+or any software that needs to read or modify the topology information defined by the SIMAP.
+The client is responsible for forming valid API calls, handling authentication/authorization, parsing responses,
+and translating the SIMAP into its own internal representation.
+
+SIMAP server:
+: Provider of the SIMAP API . An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
+building it from live network state or simulation scenarios.. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
+validates input against the data model schema, persists changes (if any), and returns responses that conform to the SIMAP API specification.
+The server’s implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system—or
+be a standalone application/system—depending on the solution architecture.
+The server may offer ancillary services such as authentication, rate limiting, versioning, logging, and monitoring,
+but its primary role is to expose the SIMAP via programmable interface.
+
 # Sample SIMAP Use Cases
 
-The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related application requirements and its interactions with SIMAP, in order to extract the SIMAP-related requirements (Section 4).
+The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related SIMAP client application requirements
+and its interactions with SIMAP server, in order to extract the SIMAP-related requirements (Section 4).
 
 ## Common Enablers for SIMAP
 
@@ -253,16 +271,20 @@ These enablers are grouped here to avoid duplication.
 ### Service -> Resource
 
 The SIMAP APIs can be invoked to retrieve all Services for selected service types.
-An application that triggers such a request will be able to retrieve the topology for selected Services via
-the SIMAP APIs and, from the response,
-it will be able to navigate via the supporting relationship top-down to the lower layers. In doing so,
-the application will be able to
-determine what logical resources are used by a Service. The supporting relations to the lowest layer will help
-the application to determine what physical resources are used by the Service.
+A SIMAP client application that triggers such a request will be able to retrieve the topology for selected Services
+via the SIMAP APIs and, from the response, it will be able to navigate top-down to the lower layers via the
+supporting relationship provided by the SIMAP server.  In doing so,
+the SIMAP client application will be able to determine what logical resources are
+used by a Service.  The supporting relations to the lowest layer, provided by the SIMAP server, will
+help the SIMAP client application to determine what physical resources are used by
+the Service. This addresses a requirement for systems to be able to provide topology and resource views of services,
+at different levels of abstraction, using the SIMAP [REF: ETSI ZSM 019 Clause 6].
+Knowing the physical resources a service uses enables capacity planning, fault isolation, performance monitoring, and accurate billing. 
+
 
 ### Resource -> Service
 
-An application can navigate from the physical, Layer 2, or Layer 3 topology to the Services that rely upon specific
+A SIMAP client application can navigate from the physical, Layer 2, or Layer 3 topology to the Services that rely upon specific
 resources. For example, the application will be able to select the resources and by navigating the supporting
 relationship bottom-up come to the Service and its nodes, termination points and links.
 
@@ -296,8 +318,8 @@ for example leveraging AI and machine learning.
 compromised endpoints, or rerouting traffic.
 * Continuous optimization: Uses feedback from previous cycles to refine network policies and improve future responses.
 
-The application will be able to retrieve a topology layer and any network/node/termination point/link instances
-from the controller via the SIMAP APIs and from the response it will be able to map the traffic analysis to
+The SIMAP client application will be able to retrieve a topology layer and any network/node/termination point/link instances
+from the SIMAP server via the SIMAP APIs and from the response it will be able to map the traffic analysis to
 the entities (typically links and router) for automated analysis. The corrective measures would be applied,
 either directly to the network by managing the SIMAP entities (network/node/termination point/link instances)
 or by first validating the corrective measure in an offline simulation (see the simulation and
@@ -333,12 +355,12 @@ security, and ensuring compliance with regulations. It also helps in scaling the
 and responding to issues quickly.  In order to facilitate the planning and troubleshooting processes it is
 necessary to be able to navigate from network inventory to network topology and Services.
 
-The application will be able to retrieve physical topology from the controller via the SIMAP APIs and from the
+The SIMAP client application will be able to retrieve physical topology from the SIMAP server via the SIMAP APIs and from the
 response it will be able to retrieve the physical inventory of individual devices and cables and the customer
 information, if applicable.
 
-The application may request either one or multiple topology layers via the SIMAP APIs and from the response
-it will be able to retrieve both physical and logical inventory.
+The SIMAP client application may request either one or multiple topology layers via the SIMAP APIs and from the response
+it will be able to navigate to any other data modes outside of the core SIMAP topology to retrieve both physical and logical inventory.
 
 For access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
 essential as it provides many advantages for optimized customer Service, reduced Mean Time To Repair (MTTR), and
@@ -360,7 +382,7 @@ Some of the factors that need assesing are network capabilities, status, limitat
 The Service could be simulated during the feasibility checks to identify if there are any potential issues.
 The load testing could be done to evaluate performance under stress.
 
-The service placement feasibility check application will be able to retrieve the topology at any layer from the controller
+The service placement feasibility check application will be able to retrieve the topology at any layer from the SIMAP server
 via the SIMAP APIs and from the response it will be able to navigate to any other data models outside of the
 core SIMAP topology to retrieve any other information needed, such as resource usage, availability, status, etc.
 
@@ -393,13 +415,13 @@ More precisely, the SAIN architecture will associate a list of symptoms originat
 from specific SAIN subservices to each Service instance, corresponding to components of the network.
 These components are good candidates for explaining the source of a Service degradation.
 
-The application will be able to retrieve a topology layer and any network/node/termination point/link instances
-from the controller via the SIMAP APIs and from the response it will be able to determine the health of each instance
+The SIMAP client application will be able to retrieve a topology layer and any network/node/termination point/link instances
+from the SIMAP server via the SIMAP APIs and from the response it will be able to determine the health of each instance
 by navigating to the SAIN subservices and its symptoms.
 
 ## Service E2E and Per-link KPIs
 
-The application will be able to retrieve a topology at any layer from a controller via the SIMAP APIs and from the
+The SIMAP client application will be able to retrieve a topology at any layer from a SIMAP server via the SIMAP APIs and from the
 response it will be able to navigate to and retrieve any KPIs for selected topology entity.
 
 ## Network Capacity Planning {#network-capacity-planning}
@@ -437,8 +459,8 @@ By implementing a robust capacity planning process, organizations can:
 * Optimize costs: Avoid unnecessary over-provisioning by making informed decisions based on data-driven insights.
 * Support business growth: Scale the network to meet increasing demands and support business expansion.
 
-The application will be able to retrieve a topology layer and any network/node/termination point/link instances from
-the controller via the SIMAP APIs and from the response it will be able to map the traffic analysis to the entities
+The capacity planning application will be able to retrieve a topology layer and any network/node/termination point/link instances from
+the SIMAP server via the SIMAP APIs and from the response it will be able to map the traffic analysis to the entities
 (typically links and router), evaluate their current utilization, evaluate which elements
 to add to the network based on the growth forecasting, and finally perform the 'what-if' failure analysis by
 simulating the removal of link(s) and/or router(s) while evaluating the network performance.
@@ -460,7 +482,7 @@ between core and aggregation layers must have its source(s) and destination(s) l
 Another example is to declare that a specific link type should only exist between Core <-> Aggregation layer with
 certain constraints on port optic speed, type (LR vs SR for instance), etc.
 
-The application can (via SIMAP API):
+The network design application can (via SIMAP API):
 
 * Write the proposed network interconnect (topology + rules), this is a new potential network interconnect.
 One network (in case of small network) or interconnect of multiple networks (bigger networks).
@@ -548,7 +570,7 @@ normal conditions and considering factors like fault tolerance.
 
 ## Postmortem Replay {#postmortem-replay}
 
-For the postmortem replay use case, the application will use the SIMAP APIs for the purpose of analysis of network Service property
+For the postmortem replay use case, the client application will use the SIMAP APIs for the purpose of analysis of network Service property
 evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates,
 configuration changes, link status modifications, traffic metrics evolution, and Service characteristics, is being
 made accessible from and/or within a SIMAP to support investigation and automated processing.
@@ -645,8 +667,8 @@ or separate network topology instances with supporting relations between them (e
 Multiple topology layers can be grouped into the same network topology instance, if solution requires.
 
 REQ-VIEWPOINTS:
-: SIMAP should provide different views to different applications. For example, one application
-may need to see Layer 2 and Layer 3 layers in a single network topology instance, while another application may need to see
+: SIMAP should provide different views to different client applications. For example, one client application
+may need to see Layer 2 and Layer 3 layers in a single network topology instance, while another client application may need to see
 them as separate network topology instances.
 
 REQ-PASSIVE-TOPO:
@@ -738,7 +760,7 @@ REQ-LAYER-NAVIGATE:
 : SIMAP must provide capability to navigate inside the topology layer and between the topology layers.
 
 REQ-EXTENSIBLE:
-: SIMAP must be extensible with metadata. As examples, a controller or the application could add a custom “location” attribute
+: SIMAP must be extensible with metadata. As examples, a controller or the client application could add a custom “location” attribute
 to a node to record its physical site, or a controller could attach a “vendorId” field to a device node.
 This demonstrates that arbitrary key‑value metadata can be appended to any element in the model without altering the core schema.
 
@@ -850,7 +872,7 @@ data and models to ease navigating in the overall system. For example:
     dynamic paths could be linked to the SIMAP.
 
 : SIMAP should ensure that it is possible to represent the paths/routes and leave the choice of what level of dynamics
-to represent to the specific solution/application. The model needs to be rich enough to represent any level of dynamics.
+to represent to the specific solution/implementations. The model needs to be rich enough to represent any level of dynamics.
 However, from experience, we suspect it can be the same model for all level of dynamics.
 
 REQ-PROPERTIES:
@@ -906,11 +928,11 @@ may not be networking experts.
 
 REQ-DISCOVERY:
 : A network controller must perform the initial and on-demand discovery of a network in order to provide the layered
-topology via the SIMAP APIs to a client/application.
+topology via the SIMAP APIs to a client application.
 
 REQ-SYNCH:
 : The controller must perform the sync with the network in order to provide up to date layered topology
-via SIMAP APIs to the client/application
+via SIMAP APIs to a client application
 
 REQ-SECURITY:
 : The conventional NACM control access rules {{!RFC8341}} should apply. This includes module control access rules,
