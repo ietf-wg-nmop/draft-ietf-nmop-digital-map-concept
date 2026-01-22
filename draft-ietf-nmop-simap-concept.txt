@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 25 July 2026                                     Everything OPS
+Expires: 26 July 2026                                     Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         21 January 2026
+                                                         22 January 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 July 2026.
+   This Internet-Draft will expire on 26 July 2026.
 
 Copyright Notice
 
@@ -168,15 +168,23 @@ Table of Contents
    links to other data models (e.g., Service Assurance for Intent-based
    Networking (SAIN) [RFC9417], Service Attachment Points (SAPs)
    [RFC9408], Inventory [I-D.ietf-ivy-network-inventory-yang], and
-   potentially linking to non-YANG models).  The SIMAP also provides
-   write operations with the same set of APIs, not to change a topology
-   layer on the fly as a northbound interface from the controller, but
-   for offline simulations, before applying the changes to the network
-   via the normal controller operations.
+   potentially linking to non-YANG models).
 
-   Both real network and offline simulation APIs are similar, stemming
-   from the same data model, to facilitate the comparison of the offline
-   simulated SIMAP with the network one.
+   The SIMAP also provides write operations with the same set of APIs,
+   not to change a topology layer on the fly as a northbound interface
+   from the controller, but for both online and offline simulations,
+   before applying the changes to the network via the normal controller
+   operations.
+
+   Both real network, online-simulation and offline simulation APIs can
+   be built on the same data model.  Each data source is reported as a
+   distinct topology instance, but when desired the real network and
+   online simulation data can be merged into a single topology instance,
+   while the offline simulation remains separate.  The simulated
+   topology instance can be matched directly to the corresponding real
+   network topology for comparison.  This approach preserves
+   independence between real and simulated data while enabling side by
+   side analysis.
 
 2.  Terminology
 
