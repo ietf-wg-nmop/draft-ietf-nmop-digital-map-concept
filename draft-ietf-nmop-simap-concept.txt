@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 26 July 2026                                     Everything OPS
+Expires: 3 August 2026                                    Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         22 January 2026
+                                                         30 January 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 July 2026.
+   This Internet-Draft will expire on 3 August 2026.
 
 Copyright Notice
 
@@ -675,8 +675,9 @@ Table of Contents
 
    It serves as a blueprint, detailing how these elements interconnect
    to deliver the intended network behavior and functionality.  The
-   application will retrieve a candidate network topology as the initial
-   design, which can then undergo further analysis (e.g., perform
+   application will generate a candidate network topology, based on the
+   initial design and the current network topology; this candidate
+   network topology can then undergo further analysis (e.g., perform
    traffic flow simulations to identify bottlenecks and redundancy
    checks to ensure resilience) before being transformed into actionable
    intent and, eventually, deployment actions.
@@ -1434,9 +1435,9 @@ Table of Contents
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A Base YANG Data Model for Network Inventory",
               Work in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-yang-12, 22 December 2025,
+              inventory-yang-13, 27 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-yang-12>.
+              network-inventory-yang-13>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
