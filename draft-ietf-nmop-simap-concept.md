@@ -780,14 +780,12 @@ to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or 
        SIMAP with other modelling mechanisms.
 
 REQ-BIDIR:
-: SIMAP must provide a mechanism to model bidirectional links
-when the implementation requires bidirectional links.
-While data flows are unidirectional, the
-bidirectional links are also common in networking.  Examples are
-Ethernet cables, bidirectional SONET rings, socket connection to the
-server, etc.  There is also the requirement for simplified Service
-layer topology, where a link is modeled as bidirectional in order to be
-supported by unidirectional links at the lower layer.
+: SIMAP must provide a mechanism to model bidirectional
+links. While data flows are unidirectional, the bidirectional
+links are also common in networking.  Examples are Ethernet
+cables, bidirectional SONET rings, socket connection to the
+server, etc., where a link is modeled as bidirectional, which in turn
+might be supported as unidirectional links at the lower layer.
 
 REQ-MULTI-POINT:
 : SIMAP must provide a mechanism to model multipoint links.
