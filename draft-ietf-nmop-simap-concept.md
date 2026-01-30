@@ -790,13 +790,7 @@ layer topology, where a link is modeled as bidirectional in order to be
 supported by unidirectional links at the lower layer.
 
 REQ-MULTI-POINT:
-: SIMAP must provide a mechanism to model multipoint
-links. A topology model should be able to model any topology type
-in a simple and explicit way, including point to multipoint, bus,
-ring, star, tree, mesh, hybrid and daisy chain. A topology model
-should also be able to model any link cardinality in a
-explicit way: including point-to-point, point-to-multipoint,
-multipoint-to-multipoint, or hybrid.
+: SIMAP must provide a mechanism to model multipoint links. A topology model should be able to model any topology type, including point to multipoint, bus, ring, star, tree, mesh, hybrid and daisy chain. A topology model should also be able to model any link cardinality, including point-to-point, point-to-multipoint, multipoint-to-multipoint
 
 REQ-MULTI-DOMAIN:
 : SIMAP must provide a mechanism to model links between networks when the implementation
