@@ -729,12 +729,12 @@ topology abstraction.
 REQ-LIVE:
 : Live network topology.
 : SIMAP must enable retrieval of multi-layered topology of a live network.
-: Live network is the latest known view of the network
+: Live network is the latest snapshot of the real network.
 
 REQ-SNAPSHOT:
 : Network snapshot topology.
 : SIMAP must enable retrieval of multi-layered topology of different snapshots
-: Snapshot is the view of the network at any given point in time
+: Snapshot is the view of the network at any given point in time.
 
 REQ-POTENTIAL:
 : Potential new network topology.
