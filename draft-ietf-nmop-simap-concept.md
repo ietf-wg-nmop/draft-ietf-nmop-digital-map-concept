@@ -484,9 +484,6 @@ certain constraints on port optic speed, type (LR vs SR for instance), etc.
 
 The network design application can (via SIMAP API):
 
-* Write the proposed network interconnect (topology + rules), this is a new potential network interconnect.
-One network (in case of small network) or interconnect of multiple networks (bigger networks).
-
 * Write the intended network interconnect (topology + rules), this is the intent of the network topology that cannot
 be retrieved from the real network (e.g. our L2 topology interconnect intent, or L3 topology interconnect intent).
 One network (in case of small network) or interconnect of multiple networks (bigger networks).
