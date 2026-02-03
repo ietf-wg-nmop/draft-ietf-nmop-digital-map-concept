@@ -164,7 +164,7 @@ Topology layer:
 : Some topology layers may relate closely to OSI layers, like Layer 1 topology
   for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
   IPv6 topologies.
-: Some topology layers represent the control aspects of Layer 3, like IGP (for OSPF and IS-IS) or EGP (for iBGP and eBGP).
+: Some topology layers represent the network topology of Layer 3 control protocols, like OSPF, IS-IS, or BGP.
 : The service layer represents the Service view of the connectivity, that can differ for
   different types of Services and for different providers/solutions.
 : The application/flow layer represents the view of Service data flows for
