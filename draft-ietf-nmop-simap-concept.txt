@@ -1138,11 +1138,10 @@ Table of Contents
 
    REQ-SUPPORTING:  SIMAP must provide a mechanism to model supporting
       relationships between different types of topological entities
-      (e.g., a termination point is supported by the node).  This may be
-      required, e.g., if a termination point is not supported by the
-      underlying a termination point, but by the node (e.g., a loopback
-      does not have physical representation, so it is supported by
-      physical device).
+      (e.g., a termination point is supported by a node or a node is
+      supported by a network).  This may be required to model supporting
+      relationships for termination points which are supported by
+      physical devices (e.g., a loopback interface on IP router).
 
    REQ-STATUS:  Links and nodes that are down must appear in the
       topology.  The status of the nodes and links must be either
