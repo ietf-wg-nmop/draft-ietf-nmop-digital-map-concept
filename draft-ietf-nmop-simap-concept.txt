@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 4 August 2026                                    Everything OPS
+Expires: 7 August 2026                                    Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         31 January 2026
+                                                         3 February 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2026.
+   This Internet-Draft will expire on 7 August 2026.
 
 Copyright Notice
 
@@ -235,8 +235,8 @@ Table of Contents
       1 topology for physical topology, Layer 2 for link topology and
       Layer 3 for IPv4 and IPv6 topologies.
 
-      Some topology layers represent the control aspects of Layer 3,
-      like IGP (for OSPF and IS-IS) or EGP (for iBGP and eBGP).
+      Some topology layers represent the network topology of Layer 3
+      control protocols, like OSPF, IS-IS, or BGP.
 
       The service layer represents the Service view of the connectivity,
       that can differ for different types of Services and for different
