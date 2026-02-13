@@ -618,17 +618,17 @@ the real network to support intelligent operations, including predictive analyti
 and full lifecycle management of network and services.
 
 
-# SIMAP Requirements
+# SIMAP Operator Requirements
 
-The SIMAP requirements are split into three groups for different target audiences:
+The SIMAP operator requirements are split into three groups for different target audiences:
 
-* Operator requirements:
-: These requirements are collected from the operators. They are functional requirements derived from the operators'
-use cases. Some of the more specific semantic requirements were identified as {{?RFC8345}} gaps during the Hackathons
+* Functional requirements:
+: These requirements are collected from the operators and derived from the operators' use cases.
+Some of the more specific semantic requirements were identified as {{?RFC8345}} gaps during the Hackathons
 with operators and added as specific semantic requirements to the operator use cases.
 
 * Design requirements:
-: These requirements are derived from the operators' requirements. Although there is some duplication,
+: These requirements are derived from the operator requirements. Although there is some duplication,
 these are focused on summarizing the operators' requirements for the design of the data model and API.
 These are functional requirements translated into low-level requirements for the model designers.
 The rationale for adopting this approach is to ensure that the data model is designed according to the operators'
@@ -637,12 +637,12 @@ requirements and that they could be used for both design and review of the candi
 * Architecture requirements:
 : Architectural (non-functional) requirements are captured as well, as operators identified performance needs,
 large scale support,  and network discovery. These are not data model requirements, but are requirements
-either to drive the APIs design itself (e.g., to better optimize performance) or for the network controllers and
-orchestrators that expose a SIMAP API. Although, they may be common sense requirements
+either to drive the APIs design itself (e.g., to better optimize performance) or for the SIMAP servers
+that expose a SIMAP API. Although, they may be common sense requirements
 not specific to SIMAP API,  they are listed here for completeness.
 
 
-## Operator Requirements
+## Functional Requirements
 
 The following are the operators' requirements for the SIMAP. Note that some of these requirements are supported by
 default by {{?RFC8345}}.
@@ -905,26 +905,26 @@ external to the SIMAP.
 
 ## Architectural Requirements {#sec-arch}
 
-The following are the architectural requirements for the controller implementations
+The following are the architectural requirements for the SIMAP server implementations
 that provide SIMAP API, they are the non-functional requirements for
-the SIMAP APIs and controller implementations:
+the SIMAP APIs and SIMAP server implementations:
 
 REQ-SCALES:
-: The SIMAP APIs and controller implementations must be scalable, it must support any provider network, independent of its size.
+: The SIMAP APIs and SIMAP server implementations must be scalable, it must support any provider network, independent of its size.
 
 REQ-PERFORMANCE:
-: The SIMAP APIs and controller implementations must be  performant, and have acceptable response-time. Although we are not to define the response time here.
+: The SIMAP APIs and SIMAP server implementations must be  performant, and have acceptable response-time. Although we are not to define the response time here.
 
 REQ-USABILITY:
 : The SIMAP APIs must be simple and easy to integrate with the client applications, whose developers
 may not be networking experts.
 
 REQ-DISCOVERY:
-: A network controller must perform the initial and on-demand discovery of a network in order to provide the layered
+: A network SIMAP server must perform the initial and on-demand discovery of a network in order to provide the layered
 topology via the SIMAP APIs to a client application.
 
 REQ-SYNCH:
-: The controller must perform the sync with the network in order to provide up to date layered topology
+: The SIMAP server must perform the sync with the network in order to provide up to date layered topology
 via SIMAP APIs to a client application
 
 REQ-SECURITY:
