@@ -918,10 +918,10 @@ Table of Contents
    REQ-BASIC-MODEL-SUPPORT:  Basic model with network, node, link, and
       termination point entity types.
 
-      This means that users of SIMAP must be able to understand a
-      topology model at any layer via these core concepts only, without
-      having to go to the details of the specific augmentations to
-      understand the topology.
+      This means that users of SIMAP must be able to reconstruct a
+      topology at any layer in an unambiguous manner via these core
+      concepts only, without the need to understand layer or technology
+      specific information.
 
    REQ-LAYERED-MODEL:  Topology layers from physical layer up to Service
       layer.
