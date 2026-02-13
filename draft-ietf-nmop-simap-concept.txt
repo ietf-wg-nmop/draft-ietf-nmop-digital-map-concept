@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 7 August 2026                                    Everything OPS
+Expires: 17 August 2026                                   Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         3 February 2026
+                                                        13 February 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 August 2026.
+   This Internet-Draft will expire on 17 August 2026.
 
 Copyright Notice
 
@@ -88,8 +88,8 @@ Table of Contents
        3.8.2.  Goals of Network Simulation
      3.9.  Postmortem Replay
      3.10. Network Digital Twin (NDT)
-   4.  SIMAP Requirements
-     4.1.  Operator Requirements
+   4.  SIMAP Operator Requirements
+     4.1.  Functional Requirements
      4.2.  Design Requirements
      4.3.  Architectural Requirements
    5.  Positioning SIMAP in the Context of the IETF Work
@@ -879,20 +879,19 @@ Table of Contents
    including predictive analytics, intent verification, and full
    lifecycle management of network and services.
 
-4.  SIMAP Requirements
+4.  SIMAP Operator Requirements
 
-   The SIMAP requirements are split into three groups for different
-   target audiences:
+   The SIMAP operator requirements are split into three groups for
+   different target audiences:
 
-   *  Operator requirements:  These requirements are collected from the
-         operators.  They are functional requirements derived from the
-         operators' use cases.  Some of the more specific semantic
-         requirements were identified as [RFC8345] gaps during the
-         Hackathons with operators and added as specific semantic
-         requirements to the operator use cases.
+   *  Functional requirements:  These requirements are collected from
+         the operators and derived from the operators' use cases.  Some
+         of the more specific semantic requirements were identified as
+         [RFC8345] gaps during the Hackathons with operators and added
+         as specific semantic requirements to the operator use cases.
 
    *  Design requirements:  These requirements are derived from the
-         operators' requirements.  Although there is some duplication,
+         operator requirements.  Although there is some duplication,
          these are focused on summarizing the operators' requirements
          for the design of the data model and API.  These are functional
          requirements translated into low-level requirements for the
@@ -906,12 +905,11 @@ Table of Contents
          performance needs, large scale support, and network discovery.
          These are not data model requirements, but are requirements
          either to drive the APIs design itself (e.g., to better
-         optimize performance) or for the network controllers and
-         orchestrators that expose a SIMAP API.  Although, they may be
-         common sense requirements not specific to SIMAP API, they are
-         listed here for completeness.
+         optimize performance) or for the SIMAP servers that expose a
+         SIMAP API.  Although, they may be common sense requirements not
+         specific to SIMAP API, they are listed here for completeness.
 
-4.1.  Operator Requirements
+4.1.  Functional Requirements
 
    The following are the operators' requirements for the SIMAP.  Note
    that some of these requirements are supported by default by
@@ -1279,29 +1277,29 @@ Table of Contents
 
 4.3.  Architectural Requirements
 
-   The following are the architectural requirements for the controller
+   The following are the architectural requirements for the SIMAP server
    implementations that provide SIMAP API, they are the non-functional
-   requirements for the SIMAP APIs and controller implementations:
+   requirements for the SIMAP APIs and SIMAP server implementations:
 
-   REQ-SCALES:  The SIMAP APIs and controller implementations must be
+   REQ-SCALES:  The SIMAP APIs and SIMAP server implementations must be
       scalable, it must support any provider network, independent of its
       size.
 
-   REQ-PERFORMANCE:  The SIMAP APIs and controller implementations must
-      be performant, and have acceptable response-time.  Although we are
-      not to define the response time here.
+   REQ-PERFORMANCE:  The SIMAP APIs and SIMAP server implementations
+      must be performant, and have acceptable response-time.  Although
+      we are not to define the response time here.
 
    REQ-USABILITY:  The SIMAP APIs must be simple and easy to integrate
       with the client applications, whose developers may not be
       networking experts.
 
-   REQ-DISCOVERY:  A network controller must perform the initial and on-
-      demand discovery of a network in order to provide the layered
+   REQ-DISCOVERY:  A network SIMAP server must perform the initial and
+      on-demand discovery of a network in order to provide the layered
       topology via the SIMAP APIs to a client application.
 
-   REQ-SYNCH:  The controller must perform the sync with the network in
-      order to provide up to date layered topology via SIMAP APIs to a
-      client application
+   REQ-SYNCH:  The SIMAP server must perform the sync with the network
+      in order to provide up to date layered topology via SIMAP APIs to
+      a client application
 
    REQ-SECURITY:  The conventional NACM control access rules [RFC8341]
       should apply.  This includes module control access rules, protocol
@@ -1427,9 +1425,9 @@ Table of Contents
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A Base YANG Data Model for Network Inventory",
               Work in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-yang-13, 27 January 2026,
+              inventory-yang-14, 5 February 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-yang-13>.
+              network-inventory-yang-14>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
