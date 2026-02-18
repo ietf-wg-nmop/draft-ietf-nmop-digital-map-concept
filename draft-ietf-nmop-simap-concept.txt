@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 17 August 2026                                   Everything OPS
+Expires: 22 August 2026                                   Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        13 February 2026
+                                                        18 February 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 August 2026.
+   This Internet-Draft will expire on 22 August 2026.
 
 Copyright Notice
 
@@ -1114,11 +1114,11 @@ Table of Contents
       model any link cardinality, including point-to-point, point-to-
       multipoint, multipoint-to-multipoint
 
-   REQ-MULTI-DOMAIN:  SIMAP must provide a mechanism to model links
-      between networks when the implementation requires multi-domain
-      topologies, topologies with multiple IGP areas or any network
-      partitioning.  This requirement is about covering connectivity
-      between different networks, sub-networks, or domains.
+   REQ-MULTI-DOMAIN:  SIMAP must provide a mechanism to model links and
+      nodes between networks when the implementation requires multi-
+      domain topologies, topologies with multiple IGP areas or any
+      network partitioning.  This requirement is about covering
+      connectivity between different networks, sub-networks, or domains.
 
    REQ-SUBNETWORK:  SIMAP must provide a mechanism to model network
       decomposition into sub-networks.  The requirement is about
@@ -1130,9 +1130,6 @@ Table of Contents
       multiple child network instances as part of a single parent
       network, with a relation between the parent network and child
       networks.
-
-   REQ-SHARED:  SIMAP must provide a mechanism to share nodes, links,
-      and termination points between different networks.
 
    REQ-SUPPORTING:  SIMAP must provide a mechanism to model supporting
       relationships between different types of topological entities
@@ -1441,9 +1438,9 @@ Table of Contents
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
               "A YANG Data Model for Network Incident Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-network-
-              incident-yang-07, 3 January 2026,
+              incident-yang-08, 13 February 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-incident-yang-07>.
+              network-incident-yang-08>.
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
