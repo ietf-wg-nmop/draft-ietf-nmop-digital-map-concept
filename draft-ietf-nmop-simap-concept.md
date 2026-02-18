@@ -788,7 +788,7 @@ REQ-MULTI-POINT:
 : SIMAP must provide a mechanism to model multipoint links. A topology model should be able to model any topology type, including point to multipoint, bus, ring, star, tree, mesh, hybrid and daisy chain. A topology model should also be able to model any link cardinality, including point-to-point, point-to-multipoint, multipoint-to-multipoint
 
 REQ-MULTI-DOMAIN:
-: SIMAP must provide a mechanism to model links between networks when the implementation
+: SIMAP must provide a mechanism to model links and nodes between networks when the implementation
 requires multi-domain topologies, topologies with multiple IGP areas or any network partitioning.
 This requirement is about covering connectivity between different networks, sub-networks, or domains.
 
@@ -798,9 +798,6 @@ The requirement is about modelling hierarchical networks , Autonomous Systems (A
 with multiple domains (e.g., access, core, data center).
 : The network can be partitioned by providing capability to have multiple child network instances as part of a
 single parent network, with a relation between the parent network and child networks.
-
-REQ-SHARED:
-: SIMAP must provide a mechanism to share nodes, links, and termination points between different networks.
 
 REQ-SUPPORTING:
 : SIMAP must provide a mechanism to model supporting relationships between different types of topological entities
