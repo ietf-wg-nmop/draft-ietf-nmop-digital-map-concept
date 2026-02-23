@@ -703,7 +703,8 @@ REQ-COMMON-API:
 domain without having to understand the details of any technologies and domains.
 
 REQ-GRAPH-TRAVERSAL:
-: Topology graph traversal.to support both network path queries and other specific use case queries.
+: Topology graph traversal.
+: SIMAP must be optimized for graph traversal to support both network path queries and other specific use case queries.
 This means that the SIMAP must provide an efficient means to retrieve network paths,
 to accommodate the difficulty operators experiences when retrieving network paths
 via the chain termination-point->link->termination-point, without having a direct adjacency relation.
@@ -905,7 +906,7 @@ REQ-TEMPO-HISTO:
 temporal (when some fact is true, e.g., the topology or topological entity created at 12:00 UTC),
 and historical data (time-stamped historical changes, e.g. all changes from 2019-01-01 to 2023-06-30).
 
-The geo-spatial, temporal and historical can also be supported external to the SIMAP.
+: The geo-spatial, temporal and historical can also be supported external to the SIMAP.
 
 ## Architectural Requirements {#sec-arch}
 
