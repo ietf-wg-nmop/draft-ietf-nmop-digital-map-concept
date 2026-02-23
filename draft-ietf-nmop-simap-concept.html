@@ -2411,7 +2411,7 @@ This demonstrates that arbitrary key‑value metadata can be appended to any ele
                 <p id="section-4.1-4.10.2.1.1">Must connect to other data models for device configuration, inventory, configuration, assurance, etc.
 The SIMAP does not contain the detailed device configuration, so a mechanism is needed to be able to link it from SIMAP.
 SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
-to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.<a href="#section-4.1-4.10.2.1.1" class="pilcrow">¶</a></p>
+to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, inventory of routing policies, or geographic location.<a href="#section-4.1-4.10.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-4.1-4.10.2.2">
                 <p id="section-4.1-4.10.2.2.1">Given that not all involved components can be available using YANG, there is a need to connect
@@ -2643,11 +2643,13 @@ multiple networks.<a href="#section-4.2-5.4.1" class="pilcrow">¶</a></p>
           <dd class="break"></dd>
 <dt id="section-4.2-6.3">REQ-TEMPO-HISTO:</dt>
           <dd style="margin-left: 1.5em" id="section-4.2-6.4">
-            <p id="section-4.2-6.4.1">Must support geo-spatial, temporal, and historical data.  The temporal and historical can also be supported
-external to the SIMAP.<a href="#section-4.2-6.4.1" class="pilcrow">¶</a></p>
+            <p id="section-4.2-6.4.1">Must support geo-spatial (geographic coordinates, region, zone, etc.),
+temporal (when some fact is true, e.g., the topology or topological entity created at 12:00 UTC),
+and historical data (time-stamped historical changes, e.g. all changes from 2019-01-01 to 2023-06-30).<a href="#section-4.2-6.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
+<p id="section-4.2-7">The geo-spatial, temporal and historical can also be supported external to the SIMAP.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-arch">
