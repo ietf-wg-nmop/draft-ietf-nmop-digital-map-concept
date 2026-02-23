@@ -705,7 +705,7 @@ domain without having to understand the details of any technologies and domains.
 REQ-GRAPH-TRAVERSAL:
 : Topology graph traversal.to support both network path queries and other specific use case queries.
 This means that the SIMAP must provide an efficient means to retrieve network paths,
-to accommodate the difficulty operators experiences when retrieving network paths 
+to accommodate the difficulty operators experiences when retrieving network paths
 via the chain termination-point->link->termination-point, without having a direct adjacency relation.
 Additionally, SIMAP must enable efficient retrieval of the data required by other use case queries.
 
