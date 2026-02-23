@@ -2264,115 +2264,120 @@ domain without having to understand the details of any technologies and domains.
           <dd class="break"></dd>
 <dt id="section-4.1-2.37">REQ-GRAPH-TRAVERSAL:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.38">
-            <p id="section-4.1-2.38.1">Topology graph traversal.to support both network path queries and other specific use case queries.
+            <p id="section-4.1-2.38.1">Topology graph traversal.<a href="#section-4.1-2.38.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.39"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.40">
+            <p id="section-4.1-2.40.1">SIMAP must be optimized for graph traversal to support both network path queries and other specific use case queries.
 This means that the SIMAP must provide an efficient means to retrieve network paths,
 to accommodate the difficulty operators experiences when retrieving network paths
 via the chain termination-point-&gt;link-&gt;termination-point, without having a direct adjacency relation.
-Additionally, SIMAP must enable efficient retrieval of the data required by other use case queries.<a href="#section-4.1-2.38.1" class="pilcrow">¶</a></p>
+Additionally, SIMAP must enable efficient retrieval of the data required by other use case queries.<a href="#section-4.1-2.40.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.39">REQ-TOPOLOGY-ABSTRACTION:</dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.40">
-            <p id="section-4.1-2.40.1">Navigation across the abstraction levels.<a href="#section-4.1-2.40.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-4.1-2.41"></dt>
+<dt id="section-4.1-2.41">REQ-TOPOLOGY-ABSTRACTION:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.42">
-            <p id="section-4.1-2.42.1">A network (even a single layer network) can be represented
+            <p id="section-4.1-2.42.1">Navigation across the abstraction levels.<a href="#section-4.1-2.42.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.43"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.44">
+            <p id="section-4.1-2.44.1">A network (even a single layer network) can be represented
 in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
 being able to navigate amongst the different levels of abstractions (e.g. to understand which set of nodes in the native
 topology are actually represented as a single node in an abstract topology being built on top of the native topology).
 This navigation is different and orthogonal to the multi-layer navigation where we need to report which Layer 2 path is
 supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via different
 topology APIs and model. Please refer to the <a href="#sec-topology-abstraction" class="auto internal xref">Appendix A.2</a> for some background on the
-topology abstraction.<a href="#section-4.1-2.42.1" class="pilcrow">¶</a></p>
+topology abstraction.<a href="#section-4.1-2.44.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.43"></dt>
-          <dd style="margin-left: 1.5em" id="section-4.1-2.44">
-            <p id="section-4.1-2.44.1">SIMAP must provide a mechanism to navigate across the abstraction levels.<a href="#section-4.1-2.44.1" class="pilcrow">¶</a></p>
-</dd>
-          <dd class="break"></dd>
-<dt id="section-4.1-2.45">REQ-LIVE:</dt>
+<dt id="section-4.1-2.45"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.46">
-            <p id="section-4.1-2.46.1">Live network topology.<a href="#section-4.1-2.46.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.46.1">SIMAP must provide a mechanism to navigate across the abstraction levels.<a href="#section-4.1-2.46.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.47"></dt>
+<dt id="section-4.1-2.47">REQ-LIVE:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.48">
-            <p id="section-4.1-2.48.1">SIMAP must enable retrieval of multi-layered topology of a live network.<a href="#section-4.1-2.48.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.48.1">Live network topology.<a href="#section-4.1-2.48.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.49"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.50">
-            <p id="section-4.1-2.50.1">Live network is the latest snapshot of the real network.<a href="#section-4.1-2.50.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.50.1">SIMAP must enable retrieval of multi-layered topology of a live network.<a href="#section-4.1-2.50.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.51">REQ-SNAPSHOT:</dt>
+<dt id="section-4.1-2.51"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.52">
-            <p id="section-4.1-2.52.1">Network snapshot topology.<a href="#section-4.1-2.52.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.52.1">Live network is the latest snapshot of the real network.<a href="#section-4.1-2.52.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.53"></dt>
+<dt id="section-4.1-2.53">REQ-SNAPSHOT:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.54">
-            <p id="section-4.1-2.54.1">SIMAP must enable retrieval of multi-layered topology of different snapshots<a href="#section-4.1-2.54.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.54.1">Network snapshot topology.<a href="#section-4.1-2.54.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.55"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.56">
-            <p id="section-4.1-2.56.1">Snapshot is the view of the network at any given point in time.<a href="#section-4.1-2.56.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.56.1">SIMAP must enable retrieval of multi-layered topology of different snapshots<a href="#section-4.1-2.56.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.57">REQ-POTENTIAL:</dt>
+<dt id="section-4.1-2.57"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.58">
-            <p id="section-4.1-2.58.1">Potential new network topology.<a href="#section-4.1-2.58.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.58.1">Snapshot is the view of the network at any given point in time.<a href="#section-4.1-2.58.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.59"></dt>
+<dt id="section-4.1-2.59">REQ-POTENTIAL:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.60">
-            <p id="section-4.1-2.60.1">SIMAP must enable both retrieval and write access to a potential network topology.<a href="#section-4.1-2.60.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.60.1">Potential new network topology.<a href="#section-4.1-2.60.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.61"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.62">
-            <p id="section-4.1-2.62.1">A potential new network topology  is a provisional view at a given point in time that incorporates
-modifications relative to the current snapshot. It may represent the full topology or
-only the differences from the snapshot.<a href="#section-4.1-2.62.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.62.1">SIMAP must enable both retrieval and write access to a potential network topology.<a href="#section-4.1-2.62.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.63"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.64">
-            <p id="section-4.1-2.64.1">The view is needed for what-if analysis, pre-configuration, and simulation.<a href="#section-4.1-2.64.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.64.1">A potential new network topology  is a provisional view at a given point in time that incorporates
+modifications relative to the current snapshot. It may represent the full topology or
+only the differences from the snapshot.<a href="#section-4.1-2.64.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.65">REQ-INTENDED:</dt>
+<dt id="section-4.1-2.65"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.66">
-            <p id="section-4.1-2.66.1">Intended network topology.<a href="#section-4.1-2.66.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.66.1">The view is needed for what-if analysis, pre-configuration, and simulation.<a href="#section-4.1-2.66.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.67"></dt>
+<dt id="section-4.1-2.67">REQ-INTENDED:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.68">
-            <p id="section-4.1-2.68.1">SIMAP must enable both retrieval and write access to the intended
-network topology that cannot be discovered from the real network
-(e.g., intended Layer 2 Topology, intended Layer 3 Topology, and
-passive topology that cannot be discovered).<a href="#section-4.1-2.68.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.68.1">Intended network topology.<a href="#section-4.1-2.68.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 <dt id="section-4.1-2.69"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.70">
-            <p id="section-4.1-2.70.1">The intended topology represents the desired topology, without always detailing the intermediate hops,
-devices or detailed links that the current live topology contains. It can be used to verify if
-the live topology complies with the intent.<a href="#section-4.1-2.70.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.70.1">SIMAP must enable both retrieval and write access to the intended
+network topology that cannot be discovered from the real network
+(e.g., intended Layer 2 Topology, intended Layer 3 Topology, and
+passive topology that cannot be discovered).<a href="#section-4.1-2.70.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.71">REQ-SEMANTIC:</dt>
+<dt id="section-4.1-2.71"></dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.72">
-            <p id="section-4.1-2.72.1">Network topology semantics.<a href="#section-4.1-2.72.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.72.1">The intended topology represents the desired topology, without always detailing the intermediate hops,
+devices or detailed links that the current live topology contains. It can be used to verify if
+the live topology complies with the intent.<a href="#section-4.1-2.72.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="section-4.1-2.73"></dt>
+<dt id="section-4.1-2.73">REQ-SEMANTIC:</dt>
           <dd style="margin-left: 1.5em" id="section-4.1-2.74">
-            <p id="section-4.1-2.74.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.74.1" class="pilcrow">¶</a></p>
+            <p id="section-4.1-2.74.1">Network topology semantics.<a href="#section-4.1-2.74.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.75"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.76">
+            <p id="section-4.1-2.76.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.76.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2647,9 +2652,13 @@ multiple networks.<a href="#section-4.2-5.4.1" class="pilcrow">¶</a></p>
 temporal (when some fact is true, e.g., the topology or topological entity created at 12:00 UTC),
 and historical data (time-stamped historical changes, e.g. all changes from 2019-01-01 to 2023-06-30).<a href="#section-4.2-6.4.1" class="pilcrow">¶</a></p>
 </dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-6.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-6.6">
+            <p id="section-4.2-6.6.1">The geo-spatial, temporal and historical can also be supported external to the SIMAP.<a href="#section-4.2-6.6.1" class="pilcrow">¶</a></p>
+</dd>
         <dd class="break"></dd>
 </dl>
-<p id="section-4.2-7">The geo-spatial, temporal and historical can also be supported external to the SIMAP.<a href="#section-4.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-arch">

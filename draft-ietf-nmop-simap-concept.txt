@@ -993,7 +993,9 @@ Table of Contents
       understand the topology model of layers of any domain without
       having to understand the details of any technologies and domains.
 
-   REQ-GRAPH-TRAVERSAL:  Topology graph traversal.to support both
+   REQ-GRAPH-TRAVERSAL:  Topology graph traversal.
+
+      SIMAP must be optimized for graph traversal to support both
       network path queries and other specific use case queries.  This
       means that the SIMAP must provide an efficient means to retrieve
       network paths, to accommodate the difficulty operators experiences
@@ -1280,8 +1282,8 @@ Table of Contents
       historical data (time-stamped historical changes, e.g. all changes
       from 2019-01-01 to 2023-06-30).
 
-   The geo-spatial, temporal and historical can also be supported
-   external to the SIMAP.
+      The geo-spatial, temporal and historical can also be supported
+      external to the SIMAP.
 
 4.3.  Architectural Requirements
 
