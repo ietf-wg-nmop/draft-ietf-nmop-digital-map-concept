@@ -234,8 +234,8 @@ SIMAP data:
    links and termination points, topological relationships between
    nodes, links and termination points inside a network,
    relationships between instances belonging to different networks,
-   links to functional data for the instances, including
-   configuration, health, symptoms.
+   links to other non-topological data for the instances (e.g., inventory,
+   configuration, health, symptoms).
 : The SIMAP data can be historical, real-time, or future data for 'what-if' scenarios.
 
 SIMAP API:
