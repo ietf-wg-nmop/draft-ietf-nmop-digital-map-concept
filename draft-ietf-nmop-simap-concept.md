@@ -703,11 +703,11 @@ REQ-COMMON-API:
 domain without having to understand the details of any technologies and domains.
 
 REQ-GRAPH-TRAVERSAL:
-: Topology graph traversal.
-: SIMAP must be optimized for graph traversal for paths and for graph traversal for the specific use case queries.
-This means that only providing link nodes and
-source and sink relationships to termination-points may not be sufficient, we may need to have the direct
-relationship between the termination points or nodes.
+: Topology graph traversal.to support both network path queries and other specific use case queries.
+This means that the SIMAP must provide an efficient means to retrieve network paths,
+to accommodate the difficulty operators experiences when retrieving network paths 
+via the chain termination-point->link->termination-point, without having a direct adjacency relation.
+Additionally, SIMAP must enable efficient retrieval of the data required by other use case queries.
 
 REQ-TOPOLOGY-ABSTRACTION:
 : Navigation across the abstraction levels.
