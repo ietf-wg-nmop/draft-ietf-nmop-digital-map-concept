@@ -77,7 +77,7 @@ This document defines the concept of Service & Infrastructure Maps (SIMAP) and o
 associated requirements and use cases.
 
 SIMAP is a data model that provides a topological view of the operator's networks and services,
-including how it is connected to other models/data (e.g., inventory, observability sources, and
+including how it is connected to other models (e.g., inventory) and external data sources (e.g., observability data, and
 operational knowledge). This model represents a multi-layered topology
 and offers mechanisms to navigate amongst layers and correlate between them.
 This includes layers from physical topology to service topology.
@@ -211,7 +211,7 @@ The document defines the following terms:
 
 Service & Infrastructure Maps (SIMAP):
 : SIMAP is a data model that provides a topological view of the operator's networks and services, including how it is
-connected to other models/data (e.g., inventory, observability sources, and operational knowledge).
+connected to other models (e.g., inventory) and external data sources (e.g., observability data, and operational knowledge).
 It specifically provides an approach to model multi-layered topology and an appropriate mechanism to navigate
 amongst layers and correlate between them. This includes layers from physical topology to service topology.
 This model is applicable to multiple domains (access, core, data centers, etc.) and technologies (Optical, IP, etc.)
