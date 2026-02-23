@@ -1,0 +1,3205 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>SIMAP: Concept, Requirements, and Use Cases</title>
+<meta content="Olga Havel" name="author">
+<meta content="Benoit Claise" name="author">
+<meta content="Oscar Gonzalez de Dios" name="author">
+<meta content="Thomas Graf" name="author">
+<meta content="
+       This document defines the concept of Service &amp; Infrastructure Maps (SIMAP) and identifies a set of SIMAP
+requirements and use cases. The SIMAP was previously known as Digital Map. 
+       The document intends to be used as a reference for the assessment of the various topology modules to meet
+SIMAP requirements. 
+    " name="description">
+<meta content="xml2rfc 3.31.0" name="generator">
+<meta content="Service &amp; Infrastructure Maps" name="keyword">
+<meta content="Service emulation" name="keyword">
+<meta content="Automation" name="keyword">
+<meta content="Network Automation" name="keyword">
+<meta content="Orchestration" name="keyword">
+<meta content="Service delivery" name="keyword">
+<meta content="Service provisioning" name="keyword">
+<meta content="Service flexibility" name="keyword">
+<meta content="Service simplification" name="keyword">
+<meta content="Network Service" name="keyword">
+<meta content="Digital Map" name="keyword">
+<meta content="Emulation" name="keyword">
+<meta content="Simulation" name="keyword">
+<meta content="Topology" name="keyword">
+<meta content="Multi-layer" name="keyword">
+<meta content="draft-ietf-nmop-simap-concept-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.31.0
+    Python 3.12.12
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.1
+    intervaltree 3.2.1
+    Jinja2 3.1.6
+    lxml 6.0.2
+    platformdirs 4.5.1
+    pycountry 24.6.1
+    PyYAML 6.0.3
+    requests 2.32.5
+    wcwidth 0.3.0
+-->
+<link href="draft-ietf-nmop-simap-concept.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+}
+dl:not(.dlNewline) > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+}
+@media not print {
+  :hover > a.pilcrow, a.pilcrow:focus {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+/* Comments */
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:is(:link, :focus, :hover),
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin: 2px 0.5em 0;
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">SIMAP Concept &amp; Needs</td>
+<td class="right">February 2026</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Havel, et al.</td>
+<td class="center">Expires 27 August 2026</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Network Management Operations</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-nmop-simap-concept-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2026-02-23" class="published">23 February 2026</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2026-08-27">27 August 2026</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">O. Havel</div>
+<div class="org">Huawei</div>
+</div>
+<div class="author">
+      <div class="author-name">B. Claise</div>
+<div class="org">Everything OPS</div>
+</div>
+<div class="author">
+      <div class="author-name">O. G. D. Dios</div>
+<div class="org">Telefonica</div>
+</div>
+<div class="author">
+      <div class="author-name">T. Graf</div>
+<div class="org">Swisscom</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">SIMAP: Concept, Requirements, and Use Cases</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document defines the concept of Service &amp; Infrastructure Maps (SIMAP) and identifies a set of SIMAP
+requirements and use cases. The SIMAP was previously known as Digital Map.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">The document intends to be used as a reference for the assessment of the various topology modules to meet
+SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-discussion-venues">
+<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">Discussion of this document takes place on the
+    Network Management Operations Working Group mailing list (nmop@ietf.org),
+    which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/nmop/">https://mailarchive.ietf.org/arch/browse/nmop/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
+    <span><a href="https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept">https://github.com/ietf-wg-nmop/draft-ietf-nmop-digital-map-concept</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 27 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2026 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-sample-simap-use-cases" class="internal xref">Sample SIMAP Use Cases</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-common-enablers-for-simap" class="internal xref">Common Enablers for SIMAP</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.1">
+                    <p id="section-toc.1-1.3.2.1.2.1.1" class="keepWithNext"><a href="#section-3.1.1" class="auto internal xref">3.1.1</a>.  <a href="#name-service-resource" class="internal xref">Service -&gt; Resource</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.2">
+                    <p id="section-toc.1-1.3.2.1.2.2.1"><a href="#section-3.1.2" class="auto internal xref">3.1.2</a>.  <a href="#name-resource-service" class="internal xref">Resource -&gt; Service</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.3">
+                    <p id="section-toc.1-1.3.2.1.2.3.1"><a href="#section-3.1.3" class="auto internal xref">3.1.3</a>.  <a href="#name-traffic-engineering-te" class="internal xref">Traffic Engineering (TE)</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1.2.4">
+                    <p id="section-toc.1-1.3.2.1.2.4.1"><a href="#section-3.1.4" class="auto internal xref">3.1.4</a>.  <a href="#name-closed-loop" class="internal xref">Closed Loop</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-inventory-queries" class="internal xref">Inventory Queries</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-service-placement-feasibili" class="internal xref">Service Placement Feasibility Checks</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-intent-service-assurance" class="internal xref">Intent/Service Assurance</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.5">
+                <p id="section-toc.1-1.3.2.5.1"><a href="#section-3.5" class="auto internal xref">3.5</a>.  <a href="#name-service-e2e-and-per-link-kp" class="internal xref">Service E2E and Per-link KPIs</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.6">
+                <p id="section-toc.1-1.3.2.6.1"><a href="#section-3.6" class="auto internal xref">3.6</a>.  <a href="#name-network-capacity-planning" class="internal xref">Network Capacity Planning</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.7">
+                <p id="section-toc.1-1.3.2.7.1"><a href="#section-3.7" class="auto internal xref">3.7</a>.  <a href="#name-network-design" class="internal xref">Network Design</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8">
+                <p id="section-toc.1-1.3.2.8.1"><a href="#section-3.8" class="auto internal xref">3.8</a>.  <a href="#name-network-simulation-and-netw" class="internal xref">Network Simulation and Network Emulation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8.2.1">
+                    <p id="section-toc.1-1.3.2.8.2.1.1"><a href="#section-3.8.1" class="auto internal xref">3.8.1</a>.  <a href="#name-types-of-network-simulation" class="internal xref">Types of Network Simulation</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.8.2.2">
+                    <p id="section-toc.1-1.3.2.8.2.2.1"><a href="#section-3.8.2" class="auto internal xref">3.8.2</a>.  <a href="#name-goals-of-network-simulation" class="internal xref">Goals of Network Simulation</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.9">
+                <p id="section-toc.1-1.3.2.9.1"><a href="#section-3.9" class="auto internal xref">3.9</a>.  <a href="#name-postmortem-replay" class="internal xref">Postmortem Replay</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.10">
+                <p id="section-toc.1-1.3.2.10.1"><a href="#section-3.10" class="auto internal xref">3.10</a>. <a href="#name-network-digital-twin-ndt" class="internal xref">Network Digital Twin (NDT)</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-simap-operator-requirements" class="internal xref">SIMAP Operator Requirements</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-functional-requirements" class="internal xref">Functional Requirements</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-design-requirements" class="internal xref">Design Requirements</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-architectural-requirements" class="internal xref">Architectural Requirements</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-positioning-simap-in-the-co" class="internal xref">Positioning SIMAP in the Context of the IETF Work</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-related-ietf-activities" class="internal xref">Related IETF Activities</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-network-topology" class="internal xref">Network Topology</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-topology-abstraction" class="internal xref">Topology Abstraction</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-core-simap-components" class="internal xref">Core SIMAP Components</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-additional-simap-components" class="internal xref">Additional SIMAP Components</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">This document defines the concept of Service &amp; Infrastructure Maps (SIMAP) and outlines
+associated requirements and use cases.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">SIMAP is a data model that provides a topological view of the operator's networks and services,
+including how it is connected to other models/data (e.g., inventory, observability sources, and
+operational knowledge). This model represents a multi-layered topology
+and offers mechanisms to navigate amongst layers and correlate between them.
+This includes layers from physical topology to service topology.
+This model is applicable to multiple domains (access, core, data center, etc.) and
+technologies (Optical, IP, etc.).<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Specifically, the SIMAP modelling defines the core topological entities at each layer,
+core topological properties, and topological relationships (both inside each layer
+and between the layers), to ensure a multi-layered topology can be reconstructed, validated and queried in an
+unambiguous and interoperable manner.
+The core topological entities are the minimal set of objects required to represent a layer's topology (e.g., network, node, termination point, and link).
+The core topological properties are the essential attributes associated with these entities to enable topological reasoning (e.g., identity, topology type, entity role in topology, directionality, cardinality, and cost/weight).
+The additional concepts or attributes (such as capacity, operational state, performance metrics, or inventory data) are modelled outside of SIMAP,
+the core set provides the necessary structure to support these extensions without losing architectural consistency.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The SIMAP modelling also defines how to access other external models
+from a topology. SIMAP is a topological model that is linked to other functional
+models and connects them all: configuration, maintenance, assurance (KPIs, status, health, and symptoms),
+Traffic-Engineering (TE), different behaviors and actions, simulation, emulation, mathematical abstractions,
+AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The SIMAP data consists of instances of network and service topologies at different layers.
+There may be a separate topology instance for each layer in a multi‑layered network,
+or a single topology instance that encompasses multiple layers.
+Since SIMAP is a data model and data models can generate APIs <span>[<a href="#RFC3444" class="cite xref">RFC3444</a>]</span><span>[<a href="#RFC7950" class="cite xref">RFC7950</a>]</span>,
+the SIMAP provides access to this data via standard APIs for both read and write access, typically
+from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
+Intent-based Networking (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span>, Service Attachment Points (SAPs) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>,
+Inventory <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span>, and potentially linking to non-YANG models).<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The SIMAP also provides write operations with the same set of APIs, not to change a topology layer on the fly
+as a northbound interface from the controller, but for both online and offline simulations,
+before applying the changes to the network via the normal controller operations.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">Both real network, online-simulation and offline-simulation APIs can be built on the same data model.
+Each data source is reported as a distinct topology instance, but when desired the real network and
+online simulation data can be merged into a single topology instance, while the offline simulation
+remains separate. The simulated topology instance can be matched directly to the corresponding
+real network topology for comparison. This approach preserves independence between real and
+simulated data while enabling side by side analysis.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">This document does not specify a SIMAP implementation approach and what modelling language to use.
+Also, how implementations are connected to SIMAP is implementation- and deployment- specific.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">While the requirements described herein may require various modeling
+strategies, the development of such models is outside the scope of this document.<a href="#section-1-9" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="terminology">
+<section id="section-2">
+      <h2 id="name-terminology">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+      </h2>
+<p id="section-2-1">This document makes use of the following terms:<a href="#section-2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-2">
+        <dt id="section-2-2.1">Topology:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.2">
+          <p id="section-2-2.2.1">Topology refers to the network and service topology.
+A network topology defines how physical or logical nodes, links and
+termination points are related and arranged. A Service topology defines how
+service components (e.g., VPN instances, customer interfaces, and
+customer links) between customer sites are interrelated and
+arranged.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.3"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.4">
+          <p id="section-2-2.4.1">There are several types of topologies: point-to-point,
+bus, ring, star, tree, mesh, hybrid, and daisy chain.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.5"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.6">
+          <p id="section-2-2.6.1">Topologies may be unidirectional (all links unidirectional) or bidirectional (all links bidirectional), or contain combination of unidirectional and bidirectional links.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.7">Multi-layered topology:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.8">
+          <p id="section-2-2.8.1">A multi-layered topology models relationships between different topology layers,
+where each layer represents a connectivity aspect of the network
+and services that needs to be configured, controlled and monitored.
+Each topology layer has a separate lifecycle.<a href="#section-2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.9"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.10">
+          <p id="section-2-2.10.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> also refers to this multi-layered topology as topology hierarchy (stack). It
+also uses layers when describing supporting relations (represent layered network topologies),
+underlay/overlay, network nodes and layering information. <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> states that the model can be
+used for representation of layered network topologies.<a href="#section-2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.11"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.12">
+          <p id="section-2-2.12.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> is flexible and can support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
+or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
+Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-2-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.13">Topology layer:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.14">
+          <p id="section-2-2.14.1">A topology layer represents Topology at a single layer in the multi-layered topology.<a href="#section-2-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.15"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.16">
+          <p id="section-2-2.16.1">The topology layer can also represent what needs to be managed by a
+specific user or client application, for example the IGP layer can be of interest to the operator
+troubleshooting or optimizing the routing, while the optical layer may be
+of interest to the user managing the optical network.<a href="#section-2-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.17"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.18">
+          <p id="section-2-2.18.1">Some topology layers may relate closely to OSI layers, like Layer 1 topology
+for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
+IPv6 topologies.<a href="#section-2-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.19"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.20">
+          <p id="section-2-2.20.1">Some topology layers represent the network topology of Layer 3 control protocols, like OSPF, IS-IS, or BGP.<a href="#section-2-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.21"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.22">
+          <p id="section-2-2.22.1">The service layer represents the Service view of the connectivity, that can differ for
+different types of Services and for different providers/solutions.<a href="#section-2-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.23"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.24">
+          <p id="section-2-2.24.1">The application/flow layer represents the view of Service data flows for
+different classes of service - video, voice and data traffiC.
+The layers may differ depending on the solution, so the bottom and
+top layers may not be the same across all solutions. We can illustrate
+the concept of topology layers by listing the common set — e.g.,<a href="#section-2-2.24.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2-2.24.2.1">
+              <p id="section-2-2.24.2.1.1">physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),<a href="#section-2-2.24.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.2">
+              <p id="section-2-2.24.2.2.1">data link: L2 for Ethernet, LAGs and VLAN,<a href="#section-2-2.24.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.3">
+              <p id="section-2-2.24.2.3.1">network: L3 for IPv4 and IPv6,<a href="#section-2-2.24.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.4">
+              <p id="section-2-2.24.2.4.1">IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,<a href="#section-2-2.24.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.5">
+              <p id="section-2-2.24.2.5.1">tunnel: for transport tunnels and paths, for MPLS and SRv6,<a href="#section-2-2.24.2.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.6">
+              <p id="section-2-2.24.2.6.1">service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,<a href="#section-2-2.24.2.6.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-2-2.24.2.7">
+              <p id="section-2-2.24.2.7.1">application: for video, voice and data traffic flows.<a href="#section-2-2.24.2.7.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-2-2.24.3">However, this list is illustrative only; it is not a prescriptive requirement.
+Different solutions may adopt alternative layering schemes or combine layers
+differently. Therefore, we will present the above as an example of one possible
+solution, while keeping the definition flexible enough to accommodate flexible layering.<a href="#section-2-2.24.3" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.25">Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.26">
+          <p id="section-2-2.26.1">A service represents network connectivity service provided over a network that enables devices, systems, or networks to
+communicate and exchange data with each other. It provides the underlying infrastructure and mechanisms
+necessary for establishing, maintaining, and managing connections between different endpoints.
+The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-2.26.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.27">Resource:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.28">
+          <p id="section-2-2.28.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-2.28.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.29">Termination Point:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.30">
+          <p id="section-2-2.30.1">Defined in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, as follows:<a href="#section-2-2.30.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.31"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.32">
+          <p id="section-2-2.32.1">The network-topology module defines a topology graph and components from which it is
+composed: nodes, edges, and termination points.  Nodes (from the "ietf-network" module) represent
+graph vertices and links represent graph edges.  Nodes also contain termination points that anchor the
+links.<a href="#section-2-2.32.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-2.33"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-2.34">
+          <p id="section-2-2.34.1">A node has a list of termination points that are used to terminate links. An example of a termination point might
+be a physical or logical port or, more generally, an interface.
+Like a node, a termination point can in turn be supported by an underlying termination point, contained in the
+supporting node of the underlay network.<a href="#section-2-2.34.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-2-3">The document defines the following terms:<a href="#section-2-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-2-4">
+        <dt id="section-2-4.1">Service &amp; Infrastructure Maps (SIMAP):</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.2">
+          <p id="section-2-4.2.1">SIMAP is a data model that provides a topological view of the operator's networks and services, including how it is
+connected to other models/data (e.g., inventory, observability sources, and operational knowledge).
+It specifically provides an approach to model multi-layered topology and an appropriate mechanism to navigate
+amongst layers and correlate between them. This includes layers from physical topology to service topology.
+This model is applicable to multiple domains (access, core, data centers, etc.) and technologies (Optical, IP, etc.)<a href="#section-2-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.3"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.4">
+          <p id="section-2-4.4.1">Therefore, SIMAP defines the core topological entities, their role in the network, core topological
+properties, and relationships both inside each layer and between the layers.
+It is a basic topological model with references/pointers to other models and connects them all:
+configuration, maintenance, assurance (KPIs, status, health, symptoms, etc.), traffic engineering,
+different behaviors, simulation, emulation, mathematical abstractions, AI algorithms, etc.<a href="#section-2-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.5">SIMAP modelling:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.6">
+          <p id="section-2-4.6.1">SIMAP modelling is the set of principles, guidelines, and conventions to model the SIMAP. They cover the
+network types (layers and sublayers), entity types, entity roles
+(network, node, termination point, or link), entity properties,
+relationship types between entities and relationships to other entities.<a href="#section-2-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.7">SIMAP data:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.8">
+          <p id="section-2-4.8.1">SIMAP data consists of instances of network and Service topologies at
+ different layers.  This includes instances of networks, nodes,
+ links and termination points, topological relationships between
+ nodes, links and termination points inside a network,
+ relationships between instances belonging to different networks,
+ links to functional data for the instances, including
+ configuration, health, symptoms.<a href="#section-2-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.9"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.10">
+          <p id="section-2-4.10.1">The SIMAP data can be historical, real-time, or future data for 'what-if' scenarios.<a href="#section-2-4.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.11">SIMAP API:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.12">
+          <p id="section-2-4.12.1">SIMAP API is the set of interfaces that allow the client applications to create, read, update, and delete data that comforms to the SIMAP.<a href="#section-2-4.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.13">SIMAP client application:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.14">
+          <p id="section-2-4.14.1">Consumer of the SIMAP API. An application that consumes the SIMAP API.
+It sends requests to a SIMAP server, receives responses, and uses the returned data to drive its own logic.
+Typical clients include network management systems, orchestration tools, monitoring dashboards, capacity management applications,
+or any software that needs to read or modify the topology information defined by the SIMAP.
+The client is responsible for forming valid API calls, handling authentication/authorization, parsing responses,
+and translating the SIMAP into its own internal representation.<a href="#section-2-4.14.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-4.15">SIMAP server:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-4.16">
+          <p id="section-2-4.16.1">Provider of the SIMAP API . An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
+building it from live network state or simulation scenarios.. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
+validates input against the data model schema, persists changes (if any), and returns responses that conform to the SIMAP API specification.
+The server’s implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system—or
+be a standalone application/system—depending on the solution architecture.
+The server may offer ancillary services such as authentication, rate limiting, versioning, logging, and monitoring,
+but its primary role is to expose the SIMAP via programmable interface.<a href="#section-2-4.16.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sample-simap-use-cases">
+<section id="section-3">
+      <h2 id="name-sample-simap-use-cases">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-sample-simap-use-cases" class="section-name selfRef">Sample SIMAP Use Cases</a>
+      </h2>
+<p id="section-3-1">The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related SIMAP client application requirements
+and its interactions with SIMAP server, in order to extract the SIMAP-related requirements (Section 4).<a href="#section-3-1" class="pilcrow">¶</a></p>
+<div id="common-enablers-for-simap">
+<section id="section-3.1">
+        <h3 id="name-common-enablers-for-simap">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-common-enablers-for-simap" class="section-name selfRef">Common Enablers for SIMAP</a>
+        </h3>
+<p id="section-3.1-1">This section identifies a set of enablers that are invoked when providing the various business-oriented SIMAP use cases.
+These enablers are grouped here to avoid duplication.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<div id="service-resource">
+<section id="section-3.1.1">
+          <h4 id="name-service-resource">
+<a href="#section-3.1.1" class="section-number selfRef">3.1.1. </a><a href="#name-service-resource" class="section-name selfRef">Service -&gt; Resource</a>
+          </h4>
+<p id="section-3.1.1-1">The SIMAP APIs can be invoked to retrieve all Services for selected service types.
+A SIMAP client application that triggers such a request will be able to retrieve the topology for selected Services
+via the SIMAP APIs and, from the response, it will be able to navigate top-down to the lower layers via the
+supporting relationship provided by the SIMAP server.  In doing so,
+the SIMAP client application will be able to determine what logical resources are
+used by a Service.  The supporting relations to the lowest layer, provided by the SIMAP server, will
+help the SIMAP client application to determine what physical resources are used by
+the Service. This addresses a requirement for systems to be able to provide topology and resource views of services,
+at different levels of abstraction, using the SIMAP [REF: ETSI ZSM 019 Clause 6].
+Knowing the physical resources a service uses enables capacity planning, fault isolation, performance monitoring, and accurate billing.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="resource-service">
+<section id="section-3.1.2">
+          <h4 id="name-resource-service">
+<a href="#section-3.1.2" class="section-number selfRef">3.1.2. </a><a href="#name-resource-service" class="section-name selfRef">Resource -&gt; Service</a>
+          </h4>
+<p id="section-3.1.2-1">A SIMAP client application can navigate from the physical, Layer 2, or Layer 3 topology to the Services that rely upon specific
+resources. For example, the application will be able to select the resources and by navigating the supporting
+relationship bottom-up come to the Service and its nodes, termination points and links.<a href="#section-3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.2-2">This APIs can be invoked for Service impact analysis, for example.<a href="#section-3.1.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="traffic-engineering-te">
+<section id="section-3.1.3">
+          <h4 id="name-traffic-engineering-te">
+<a href="#section-3.1.3" class="section-number selfRef">3.1.3. </a><a href="#name-traffic-engineering-te" class="section-name selfRef">Traffic Engineering (TE)</a>
+          </h4>
+<p id="section-3.1.3-1">Traffic Engineering (TE) <span>[<a href="#RFC9522" class="cite xref">RFC9522</a>]</span> is a network optimization technique designed to enhance network performance
+and resource utilization by intelligently controlling the flow of data, for example by enabling dynamic path
+selection based on constraints such as bandwidth availability, latency, and link costs. Its primary goals are to
+prevent network congestion, balance traffic loads, and ensure efficient use of bandwidth while meeting performance
+requirements.<a href="#section-3.1.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.3-2">The use cases for capacity planning, simulation, network simulation and network emulation, closed loop, and potentially
+others, should consider TE if configured in the network.<a href="#section-3.1.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="closed-loop">
+<section id="section-3.1.4">
+          <h4 id="name-closed-loop">
+<a href="#section-3.1.4" class="section-number selfRef">3.1.4. </a><a href="#name-closed-loop" class="section-name selfRef">Closed Loop</a>
+          </h4>
+<p id="section-3.1.4-1">A network closed loop refers to an automated and intelligent system where network operations are continuously
+monitored, analyzed, and optimized in real time through feedback mechanisms. This self-adjusting cycle ensures
+that the network dynamically adapts to changes, resolves issues proactively, and maintains optimal performance
+without manual intervention.<a href="#section-3.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.1.4-2">Key Characteristics of a network closed loop:<a href="#section-3.1.4-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1.4-3.1">
+              <p id="section-3.1.4-3.1.1">Real-time monitoring: Collects data from network devices, traffic flows, and applications to build
+a comprehensive view of network health and performance.<a href="#section-3.1.4-3.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.4-3.2">
+              <p id="section-3.1.4-3.2.1">Automated analysis: Identify anomalies, predict potential failures, or detect security threats,
+for example leveraging AI and machine learning.<a href="#section-3.1.4-3.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.4-3.3">
+              <p id="section-3.1.4-3.3.1">Proactive action: Automatically triggers corrective measures, such as reconfiguring devices, isolating
+compromised endpoints, or rerouting traffic.<a href="#section-3.1.4-3.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-3.1.4-3.4">
+              <p id="section-3.1.4-3.4.1">Continuous optimization: Uses feedback from previous cycles to refine network policies and improve future responses.<a href="#section-3.1.4-3.4.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="section-3.1.4-4">The SIMAP client application will be able to retrieve a topology layer and any network/node/termination point/link instances
+from the SIMAP server via the SIMAP APIs and from the response it will be able to map the traffic analysis to
+the entities (typically links and router) for automated analysis. The corrective measures would be applied,
+either directly to the network by managing the SIMAP entities (network/node/termination point/link instances)
+or by first validating the corrective measure in an offline simulation (see the simulation and
+traffic engineering use cases).<a href="#section-3.1.4-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="inventory-queries">
+<section id="section-3.2">
+        <h3 id="name-inventory-queries">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-inventory-queries" class="section-name selfRef">Inventory Queries</a>
+        </h3>
+<p id="section-3.2-1">A network inventory refers to a comprehensive record or database that tracks and documents all the network
+components and devices within an organization's IT infrastructure.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Key elements typically found in a network inventory include:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-3.1">
+            <span class="break"></span><dl class="dlParallel" id="section-3.2-3.1.1">
+              <dt id="section-3.2-3.1.1.1">Hardware details:</dt>
+              <dd style="margin-left: 1.5em" id="section-3.2-3.1.1.2">
+                <p id="section-3.2-3.1.1.2.1">Descriptions of physical devices such as routers (including their internal components such as cards, power supply
+units, pluggables), switches, servers, network cables, including model numbers, serial numbers, and manufacturer
+information. This information will facilitate locating additional details of the hardware in the manufacturer systems
+and the correlation with the purchase catalog of the company.<a href="#section-3.2-3.1.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</li>
+          <li class="normal" id="section-3.2-3.2">
+            <span class="break"></span><dl class="dlParallel" id="section-3.2-3.2.1">
+              <dt id="section-3.2-3.2.1.1">Software and firmware:</dt>
+              <dd style="margin-left: 1.5em" id="section-3.2-3.2.1.2">
+                <p id="section-3.2-3.2.1.2.1">Versions of operating systems, network management tools, and firmware running on network devices.
+Note that a network device can have components with their own software and firmware.<a href="#section-3.2-3.2.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</li>
+          <li class="normal" id="section-3.2-3.3">
+            <span class="break"></span><dl class="dlParallel" id="section-3.2-3.3.1">
+              <dt id="section-3.2-3.3.1.1">Licensing information:</dt>
+              <dd style="margin-left: 1.5em" id="section-3.2-3.3.1.2">
+                <p id="section-3.2-3.3.1.2.1">For any licensed software or devices, the network inventory will track license numbers, expiry dates, and compliance.<a href="#section-3.2-3.3.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</li>
+        </ul>
+<p id="section-3.2-4">A network inventory lifecycle refers to the stages a network device or component goes through from
+its introduction to the network until its removal or replacement. It encompasses everything from acquisition and
+deployment to maintenance, upgrade, and eventually decommissioning. Managing the network inventory lifecycle
+efficiently is crucial for maintaining a secure, functional, and cost-effective network.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.2-5">A well-maintained network inventory helps organizations with network management, troubleshooting, asset tracking,
+security, and ensuring compliance with regulations. It also helps in scaling the network, planning upgrades,
+and responding to issues quickly.  In order to facilitate the planning and troubleshooting processes it is
+necessary to be able to navigate from network inventory to network topology and Services.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+<p id="section-3.2-6">The SIMAP client application will be able to retrieve physical topology from the SIMAP server via the SIMAP APIs and from the
+response it will be able to retrieve the physical inventory of individual devices and cables and the customer
+information, if applicable.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
+<p id="section-3.2-7">The SIMAP client application may request either one or multiple topology layers via the SIMAP APIs and from the response
+it will be able to navigate to any other data modes outside of the core SIMAP topology to retrieve both physical and logical inventory.<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+<p id="section-3.2-8">For access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+essential as it provides many advantages for optimized customer Service, reduced Mean Time To Repair (MTTR), and
+lower operational costs through truck roll reduction.
+For example, operators may use custom-tags that are readily available for a customer-facing device, then query
+the inventory based on that tag to correlate it with the inventory and then map it to the network/service topology.
+The mapping and correlation can then be used for triggering appropriate Service checks.<a href="#section-3.2-8" class="pilcrow">¶</a></p>
+<p id="section-3.2-9">The IVY working group is a good source of information for inventory information.<a href="#section-3.2-9" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-feasibility">
+<section id="section-3.3">
+        <h3 id="name-service-placement-feasibili">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-service-placement-feasibili" class="section-name selfRef">Service Placement Feasibility Checks</a>
+        </h3>
+<p id="section-3.3-1">Service placement feasibility checks refer to the process of evaluating whether a specific Service can be deployed
+and operated effectively in a given network. This includes accessing the various factors to ensure that the
+service will function as intended (e.g., based on traffic performance requirements) without causing network disruptions
+or inefficiencies and effecting other Services already provisioned on the network.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">Some of the factors that need assesing are network capabilities, status, limitations, resource usage and availability.
+The Service could be simulated during the feasibility checks to identify if there are any potential issues.
+The load testing could be done to evaluate performance under stress.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">The service placement feasibility check application will be able to retrieve the topology at any layer from the SIMAP server
+via the SIMAP APIs and from the response it will be able to navigate to any other data models outside of the
+core SIMAP topology to retrieve any other information needed, such as resource usage, availability, status, etc.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="intentservice-assurance">
+<section id="section-3.4">
+        <h3 id="name-intent-service-assurance">
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-intent-service-assurance" class="section-name selfRef">Intent/Service Assurance</a>
+        </h3>
+<p id="section-3.4-1">Network intent and Service assurance work together to ensure that the network aligns with business goals and
+that the Services provided meet the agreed-upon Service Level Agreements (SLAs).<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">The Service Assurance for Intent-Based Networking Architecture (SAIN) <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> approach emphasizes
+a comprehensive view of components involved in Service delivery, including network devices and functions,
+to effectively monitor and maintain Service health.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">The key objectives of this architecture include:<a href="#section-3.4-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.4-4.1">
+            <span class="break"></span><dl class="dlParallel" id="section-3.4-4.1.1">
+              <dt id="section-3.4-4.1.1.1">Holistic service monitoring:</dt>
+              <dd style="margin-left: 1.5em" id="section-3.4-4.1.1.2">
+                <p id="section-3.4-4.1.1.2.1">By considering all elements involved in Service delivery, the architecture enables a thorough assessment of
+service health.<a href="#section-3.4-4.1.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</li>
+          <li class="normal" id="section-3.4-4.2">
+            <span class="break"></span><dl class="dlParallel" id="section-3.4-4.2.1">
+              <dt id="section-3.4-4.2.1.1">Correlation of Service degradation:</dt>
+              <dd style="margin-left: 1.5em" id="section-3.4-4.2.1.2">
+                <p id="section-3.4-4.2.1.2.1">It assists in linking Service performance issues to specific network components, facilitating precise
+identification of faults.<a href="#section-3.4-4.2.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</li>
+          <li class="normal" id="section-3.4-4.3">
+            <span class="break"></span><dl class="dlParallel" id="section-3.4-4.3.1">
+              <dt id="section-3.4-4.3.1.1">Impact assessment:</dt>
+              <dd style="margin-left: 1.5em" id="section-3.4-4.3.1.2">
+                <p id="section-3.4-4.3.1.2.1">The architecture identifies which Services are affected by the failure or degradation of particular
+network components, aiding in prioritizing remediation efforts.<a href="#section-3.4-4.3.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+            <dd class="break"></dd>
+</dl>
+</li>
+        </ul>
+<p id="section-3.4-5">When a Service is degraded, the SAIN architecture will highlight where to look in the assurance Service graph,
+as opposed to going hop by hop to troubleshoot the issue.
+More precisely, the SAIN architecture will associate a list of symptoms originating
+from specific SAIN subservices to each Service instance, corresponding to components of the network.
+These components are good candidates for explaining the source of a Service degradation.<a href="#section-3.4-5" class="pilcrow">¶</a></p>
+<p id="section-3.4-6">The SIMAP client application will be able to retrieve a topology layer and any network/node/termination point/link instances
+from the SIMAP server via the SIMAP APIs and from the response it will be able to determine the health of each instance
+by navigating to the SAIN subservices and its symptoms.<a href="#section-3.4-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="service-e2e-and-per-link-kpis">
+<section id="section-3.5">
+        <h3 id="name-service-e2e-and-per-link-kp">
+<a href="#section-3.5" class="section-number selfRef">3.5. </a><a href="#name-service-e2e-and-per-link-kp" class="section-name selfRef">Service E2E and Per-link KPIs</a>
+        </h3>
+<p id="section-3.5-1">The SIMAP client application will be able to retrieve a topology at any layer from a SIMAP server via the SIMAP APIs and from the
+response it will be able to navigate to and retrieve any KPIs for selected topology entity.<a href="#section-3.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="network-capacity-planning">
+<section id="section-3.6">
+        <h3 id="name-network-capacity-planning">
+<a href="#section-3.6" class="section-number selfRef">3.6. </a><a href="#name-network-capacity-planning" class="section-name selfRef">Network Capacity Planning</a>
+        </h3>
+<p id="section-3.6-1">Network capacity planning refers to the process of analyzing, predicting, and ensuring that the network has sufficient
+capacity (e.g., <span>[<a href="#RFC5136" class="cite xref">RFC5136</a>]</span>), resources, and infrastructure to meet current and future demands. It involves
+evaluating the network's ability to handle increasing (including forecasted) amounts of data, traffic, and users'
+activity, while maintaining acceptable levels of performance, reliability, and security.<a href="#section-3.6-1" class="pilcrow">¶</a></p>
+<p id="section-3.6-2">The capacity planning primary goal is to ensure that a network can support business operations, applications, and
+services without interruptions, delays, or degradation in quality. This requires a thorough understanding of the
+network's current state, as well as future requirements and growth projections.<a href="#section-3.6-2" class="pilcrow">¶</a></p>
+<p id="section-3.6-3">Key aspects of network capacity planning include:<a href="#section-3.6-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.6-4.1">
+            <p id="section-3.6-4.1.1">Traffic analysis: Monitoring and analyzing network traffic patterns to identify trends, peak usage periods, and areas
+of congestion. For example, by generating a core traffic matrix with IPFIX flow record <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> or deducting
+an approximate traffic matrix from the link utilization data.<a href="#section-3.6-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-4.2">
+            <p id="section-3.6-4.2.1">Resource utilization: Evaluating the link utilization throughout the network for the current demand to identify
+bottlenecks and potential QoS performance issues.<a href="#section-3.6-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-4.3">
+            <p id="section-3.6-4.3.1">Growth forecasting: Predicting future network growth based on business expansion, new applications, or changes in
+users' behavior.<a href="#section-3.6-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-4.4">
+            <p id="section-3.6-4.4.1">What-if scenarios: Creating models to assess the network behavior under different scenarios, such as increased traffic,
+failure conditions (link, router or Shared Risk Resource Group), and new application deployments (such as a new
+Content Delivery Network source, a new peering point, a new data center...).<a href="#section-3.6-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-4.5">
+            <p id="section-3.6-4.5.1">Upgrade planning: Identifying areas where upgrades or additions are needed to ensure that the network can minimize the
+ effect of node/link failures, mitigate QoS problems, or simply to support growing demands.<a href="#section-3.6-4.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-4.6">
+            <p id="section-3.6-4.6.1">Cost-benefit analysis: Evaluating the costs and benefits of upgrading or adding new resources to determine the most
+cost-effective solutions.<a href="#section-3.6-4.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.6-5">By implementing a robust capacity planning process, organizations can:<a href="#section-3.6-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.6-6.1">
+            <p id="section-3.6-6.1.1">Ensure better network reliability: Minimize downtime and ensure that the network is always available when needed.<a href="#section-3.6-6.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-6.2">
+            <p id="section-3.6-6.2.1">Improve performance: Optimize network resources to support business-critical applications and Services.<a href="#section-3.6-6.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-6.3">
+            <p id="section-3.6-6.3.1">Optimize costs: Avoid unnecessary over-provisioning by making informed decisions based on data-driven insights.<a href="#section-3.6-6.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.6-6.4">
+            <p id="section-3.6-6.4.1">Support business growth: Scale the network to meet increasing demands and support business expansion.<a href="#section-3.6-6.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.6-7">The capacity planning application will be able to retrieve a topology layer and any network/node/termination point/link instances from
+the SIMAP server via the SIMAP APIs and from the response it will be able to map the traffic analysis to the entities
+(typically links and router), evaluate their current utilization, evaluate which elements
+to add to the network based on the growth forecasting, and finally perform the 'what-if' failure analysis by
+simulating the removal of link(s) and/or router(s) while evaluating the network performance.<a href="#section-3.6-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="network-design">
+<section id="section-3.7">
+        <h3 id="name-network-design">
+<a href="#section-3.7" class="section-number selfRef">3.7. </a><a href="#name-network-design" class="section-name selfRef">Network Design</a>
+        </h3>
+<p id="section-3.7-1">Network design involves defining both the logical structure, such as access, aggregation, and core layers, and
+the physical layout, including devices and links.<a href="#section-3.7-1" class="pilcrow">¶</a></p>
+<p id="section-3.7-2">It serves as a blueprint, detailing how these elements interconnect to deliver the intended network behavior
+and functionality. The application will generate a candidate network topology, based on the initial design
+and the current network topology; this candidate network topology can then undergo further analysis (e.g.,
+perform  traffic flow simulations to identify bottlenecks and redundancy checks to ensure resilience) before
+being transformed into actionable intent and, eventually, deployment actions.<a href="#section-3.7-2" class="pilcrow">¶</a></p>
+<p id="section-3.7-3">Throughout the network's lifecycle, the design rules
+embedded within a topology can be continuously validated. For example, a link rule might specify that a connection
+between core and aggregation layers must have its source(s) and destination(s) located within the same data center.
+Another example is to declare that a specific link type should only exist between Core &lt;-&gt; Aggregation layer with
+certain constraints on port optic speed, type (LR vs SR for instance), etc.<a href="#section-3.7-3" class="pilcrow">¶</a></p>
+<p id="section-3.7-4">The network design application can (via SIMAP API):<a href="#section-3.7-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.7-5.1">
+            <p id="section-3.7-5.1.1">Write the intended network interconnect (topology + rules), this is the intent of the network topology that cannot
+be retrieved from the real network (e.g. our L2 topology interconnect intent, or L3 topology interconnect intent).
+One network (in case of small network) or interconnect of multiple networks (bigger networks).<a href="#section-3.7-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.7-5.2">
+            <p id="section-3.7-5.2.1">Retrieve the proposed network interconnect (topology + rules)<a href="#section-3.7-5.2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.7-5.2.2.1">
+                <p id="section-3.7-5.2.2.1.1">Use case can be for purpose of traffic simulation, testing behavior under failures. Network simulation
+use case is described in <a href="#sec-emule" class="auto internal xref">Section 3.8</a>.<a href="#section-3.7-5.2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-3.7-5.2.2.2">
+                <p id="section-3.7-5.2.2.2.1">Use case can be for purpose of comparing different proposed network interconnects.<a href="#section-3.7-5.2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-3.7-5.2.2.3">
+                <p id="section-3.7-5.2.2.3.1">Use case can be to build a simulated environment using this design. Network simulation
+use case is described in <a href="#sec-emule" class="auto internal xref">Section 3.8</a>.<a href="#section-3.7-5.2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="normal" id="section-3.7-5.3">
+            <p id="section-3.7-5.3.1">Retrieve the intended network interconnect (topology + rules)<a href="#section-3.7-5.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.7-5.4">
+            <p id="section-3.7-5.4.1">At any point in time, compare the discovered topology with intended one<a href="#section-3.7-5.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.7-5.4.2.1">
+                <p id="section-3.7-5.4.2.1.1">Potentially validating discovered device configurations with intended ones assuming SIMAP has the
+external reference to configuration from topology.<a href="#section-3.7-5.4.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+        </ul>
+</section>
+</div>
+<div id="sec-emule">
+<section id="section-3.8">
+        <h3 id="name-network-simulation-and-netw">
+<a href="#section-3.8" class="section-number selfRef">3.8. </a><a href="#name-network-simulation-and-netw" class="section-name selfRef">Network Simulation and Network Emulation</a>
+        </h3>
+<p id="section-3.8-1">Network simulation is a process used to analyse the behaviour of networks via software. It allows network engineers
+and researchers to assess how the network protocols work under different conditions, such as different topologies,
+traffic loads, network failures, or the introduction of new devices. Network emulation, on the other hand,
+replicates the behavior of a real-world network, allowing for more realistic analysis compared to network simulation.
+While network simulation focuses on modeling and approximating network behavior, network emulation involves creating
+a real-time, functional network environment whose protocols behave exactly like a real network. Ideally, network
+emulation uses the same software images as the real network, but it could also be performed (with less accuracy)
+using generic software.<a href="#section-3.8-1" class="pilcrow">¶</a></p>
+<div id="types-of-network-simulation">
+<section id="section-3.8.1">
+          <h4 id="name-types-of-network-simulation">
+<a href="#section-3.8.1" class="section-number selfRef">3.8.1. </a><a href="#name-types-of-network-simulation" class="section-name selfRef">Types of Network Simulation</a>
+          </h4>
+<p id="section-3.8.1-1">There are several types of network simulations, each designed to address specific needs and use cases. Below are
+the main categories of network simulation:<a href="#section-3.8.1-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.8.1-2">
+<li id="section-3.8.1-2.1">
+              <span class="break"></span><dl class="dlParallel" id="section-3.8.1-2.1.1">
+                <dt id="section-3.8.1-2.1.1.1">Discrete event simulation:</dt>
+                <dd style="margin-left: 1.5em" id="section-3.8.1-2.1.1.2">
+                  <p id="section-3.8.1-2.1.1.2.1">This is the most common type of network simulation. It models a series of events that occur at specific points
+in time. Each event triggers a change in the state of a network component (e.g., a link is down, a card fails,
+or a packet arrives).<a href="#section-3.8.1-2.1.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+</dl>
+</li>
+            <li id="section-3.8.1-2.2">
+              <span class="break"></span><dl class="dlParallel" id="section-3.8.1-2.2.1">
+                <dt id="section-3.8.1-2.2.1.1">Continuous simulation:</dt>
+                <dd style="margin-left: 1.5em" id="section-3.8.1-2.2.1.2">
+                  <p id="section-3.8.1-2.2.1.2.1">In contrast to discrete event simulation, continuous simulation models systems where variables change continuously
+over time. Network parameters like bandwidth, congestion, and throughput can be treated as continuous functions.<a href="#section-3.8.1-2.2.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+                <dd class="break"></dd>
+<dt id="section-3.8.1-2.2.1.3"></dt>
+                <dd style="margin-left: 1.5em" id="section-3.8.1-2.2.1.4">
+                  <p id="section-3.8.1-2.2.1.4.1">The main use case is to model certain aspects of network performance that evolve continuously, such as link speeds
+or delay distributions in links that are impacted by environmental conditions (such as microwave or satellite links).<a href="#section-3.8.1-2.2.1.4.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+</dl>
+</li>
+            <li id="section-3.8.1-2.3">
+              <span class="break"></span><dl class="dlParallel" id="section-3.8.1-2.3.1">
+                <dt id="section-3.8.1-2.3.1.1">Monte Carlo simulation:</dt>
+                <dd style="margin-left: 1.5em" id="section-3.8.1-2.3.1.2">
+                  <p id="section-3.8.1-2.3.1.2.1">This type of simulation uses statistical methods to model and analyze networks under uncertain or variable conditions.
+Monte Carlo simulations generate a large number of random samples to predict the performance of a network across
+multiple scenarios. It is used for probabilistic analysis, risk assessment, and performance evaluation under
+uncertain conditions.<a href="#section-3.8.1-2.3.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+              <dd class="break"></dd>
+</dl>
+</li>
+          </ol>
+</section>
+</div>
+<div id="goals-of-network-simulation">
+<section id="section-3.8.2">
+          <h4 id="name-goals-of-network-simulation">
+<a href="#section-3.8.2" class="section-number selfRef">3.8.2. </a><a href="#name-goals-of-network-simulation" class="section-name selfRef">Goals of Network Simulation</a>
+          </h4>
+<p id="section-3.8.2-1">The simulations can be also classified depending on the goal of the simulation.<a href="#section-3.8.2-1" class="pilcrow">¶</a></p>
+<div id="network-protocol-analysis">
+<section id="section-3.8.2.1">
+            <h5 id="name-network-protocol-analysis">
+<a href="#section-3.8.2.1" class="section-number selfRef">3.8.2.1. </a><a href="#name-network-protocol-analysis" class="section-name selfRef">Network Protocol Analysis</a>
+            </h5>
+<p id="section-3.8.2.1-1">This type of simulation focuses on simulating specific networking protocols (IS-IS, OSPF, BGP, SR) to understand
+how they perform under different conditions. It models the protocol operations and interactions among devices in
+the network. For example, simulation can be used to assess the impact of changing a link metric. Moreover, specific
+features of the networking protocol can be tested. For example, how fast-reroute performs in a given network topology.<a href="#section-3.8.2.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="traffic-simulation">
+<section id="section-3.8.2.2">
+            <h5 id="name-traffic-simulation">
+<a href="#section-3.8.2.2" class="section-number selfRef">3.8.2.2. </a><a href="#name-traffic-simulation" class="section-name selfRef">Traffic Simulation</a>
+            </h5>
+<p id="section-3.8.2.2-1">This simulation focuses on modelling traffic flow across the network, including packet generation, flow control,
+routing, and congestion. It aims to evaluate traffic's impact on network performance.<a href="#section-3.8.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.8.2.2-2">The main use is to model the impact of different types of traffic (e.g., voice, video, mobile data, web browsing) and
+understand how they affect the network's bandwidth and congestion levels. It can be used to identify bottlenecks and
+assist the capacity planning process.<a href="#section-3.8.2.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="simulation-of-different-topologies-under-normal-and-failure-scenarios">
+<section id="section-3.8.2.3">
+            <h5 id="name-simulation-of-different-top">
+<a href="#section-3.8.2.3" class="section-number selfRef">3.8.2.3. </a><a href="#name-simulation-of-different-top" class="section-name selfRef">Simulation of Different Topologies Under Normal and Failure Scenarios</a>
+            </h5>
+<p id="section-3.8.2.3-1">This type of simulation focuses on the structure and layout of the network itself. It simulates different network
+topologies and their impact on the network's performance.
+It can be used, together with the traffic simulation, to evaluate the most efficient topology for a network under
+normal conditions and considering factors like fault tolerance.<a href="#section-3.8.2.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="postmortem-replay">
+<section id="section-3.9">
+        <h3 id="name-postmortem-replay">
+<a href="#section-3.9" class="section-number selfRef">3.9. </a><a href="#name-postmortem-replay" class="section-name selfRef">Postmortem Replay</a>
+        </h3>
+<p id="section-3.9-1">For the postmortem replay use case, the client application will use the SIMAP APIs for the purpose of analysis of network Service property
+evolution based on recorded changes. A collection of relevant timestamped network events, such as routing updates,
+configuration changes, link status modifications, traffic metrics evolution, and Service characteristics, is being
+made accessible from and/or within a SIMAP to support investigation and automated processing.
+Using a structured format, the stored data can be replayed in sequence, allowing network operators to examine
+historical network behavior, diagnose issues, and assess the impact of such events on Service assurance.<a href="#section-3.9-1" class="pilcrow">¶</a></p>
+<p id="section-3.9-2">The mechanism supports correlation with external data sources to facilitate comprehensive post-mortem analysis.
+Beyond centralizing and correlating such various sources of information, the SIMAP can provide simulation of
+the network behaviour to assist investigations.<a href="#section-3.9-2" class="pilcrow">¶</a></p>
+<p id="section-3.9-3">In essence, this use case builds upon a collection of other SIMAP use cases, such as inventory queries,
+intent/service assurance, Service KPIs, capacity planning, and simulation, to provide a thorough understanding of
+a network event impacting Service assurance.<a href="#section-3.9-3" class="pilcrow">¶</a></p>
+<p id="section-3.9-4">Note that this use case may serve as a component of Service Disruption Detection fine tuning as described in
+<span>[<a href="#I-D.ietf-nmop-network-anomaly-architecture" class="cite xref">I-D.ietf-nmop-network-anomaly-architecture</a>]</span>.<a href="#section-3.9-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="network-digital-twin-ndt">
+<section id="section-3.10">
+        <h3 id="name-network-digital-twin-ndt">
+<a href="#section-3.10" class="section-number selfRef">3.10. </a><a href="#name-network-digital-twin-ndt" class="section-name selfRef">Network Digital Twin (NDT)</a>
+        </h3>
+<p id="section-3.10-1">Per <span>[<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>, Network Digital Twin (NDT) is a digital representation that is
+used in the context of Networking and whose physical counterpart is a data network (e.g., provider network or
+enterprise network). Also, as discussed in <span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11#section-9.2" class="relref">Section 9.2</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span>, network element
+models and topology models help generate a virtual twin of the network according to the network element configuration,
+operation data, network topology relationship, link state and other network information. The operation status can be
+monitored and displayed, the network configuration change and optimization strategy can be pre-verified and
+historical data can support e.g. postmorem replay (<a href="#postmortem-replay" class="auto internal xref">Section 3.9</a>))<a href="#section-3.10-1" class="pilcrow">¶</a></p>
+<p id="section-3.10-2"><span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11#section-9.4" class="relref">Section 9.4</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> further elaborates on the requirements on various
+interfaces:<a href="#section-3.10-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.10-3.1">
+            <p id="section-3.10-3.1.1">Network-facing interfaces are twin interfaces between the real network and its twin entity.
+They are responsible for the information exchange between a real network and NDT. SIMAP APIs can be used within
+such interfaces.<a href="#section-3.10-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.10-3.2">
+            <p id="section-3.10-3.2.1">Application-facing interfaces are between the NDT and applications. They are responsible for the information
+exchange between Network Digital Twin and network applications. SIMAP APIs can be used for specification of
+hypothetical network and service states for 'what-if' analysis, e.g.. for feasibility checks
+(<a href="#sec-feasibility" class="auto internal xref">Section 3.3</a>), simulation or emulation (<a href="#sec-emule" class="auto internal xref">Section 3.8</a>)). Such analysis may be used in support of
+e.g. network capacity planning (<a href="#network-capacity-planning" class="auto internal xref">Section 3.6</a>)) or network design (<a href="#network-design" class="auto internal xref">Section 3.7</a>)).<a href="#section-3.10-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.10-4"><span><a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11#section-9.4" class="relref">Section 9.4</a> of [<a href="#I-D.irtf-nmrg-network-digital-twin-arch" class="cite xref">I-D.irtf-nmrg-network-digital-twin-arch</a>]</span> recommends that these interfaces are open
+and standardized so as to avoid either hardware or software vendor lock and achieve interoperability.<a href="#section-3.10-4" class="pilcrow">¶</a></p>
+<p id="section-3.10-5">While network emulation (<a href="#sec-emule" class="auto internal xref">Section 3.8</a>) can be a component within an NDT, the NDT itself is a broader construct
+that integrates multiple modeling techniques, including emulation, simulation, and analytics, to support intelligent
+network operations. NDT uses network emulation and includes network emulation use case, but it also interacts with
+the real network to support intelligent operations, including predictive analytics, intent verification,
+and full lifecycle management of network and services.<a href="#section-3.10-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="simap-operator-requirements">
+<section id="section-4">
+      <h2 id="name-simap-operator-requirements">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-simap-operator-requirements" class="section-name selfRef">SIMAP Operator Requirements</a>
+      </h2>
+<p id="section-4-1">The SIMAP operator requirements are split into three groups for different target audiences:<a href="#section-4-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4-2.1">
+          <span class="break"></span><dl class="dlParallel" id="section-4-2.1.1">
+            <dt id="section-4-2.1.1.1">Functional requirements:</dt>
+            <dd style="margin-left: 1.5em" id="section-4-2.1.1.2">
+              <p id="section-4-2.1.1.2.1">These requirements are collected from the operators and derived from the operators' use cases.
+Some of the more specific semantic requirements were identified as <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> gaps during the Hackathons
+with operators and added as specific semantic requirements to the operator use cases.<a href="#section-4-2.1.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</li>
+        <li class="normal" id="section-4-2.2">
+          <span class="break"></span><dl class="dlParallel" id="section-4-2.2.1">
+            <dt id="section-4-2.2.1.1">Design requirements:</dt>
+            <dd style="margin-left: 1.5em" id="section-4-2.2.1.2">
+              <p id="section-4-2.2.1.2.1">These requirements are derived from the operator requirements. Although there is some duplication,
+these are focused on summarizing the operators' requirements for the design of the data model and API.
+These are functional requirements translated into low-level requirements for the model designers.
+The rationale for adopting this approach is to ensure that the data model is designed according to the operators'
+requirements and that they could be used for both design and review of the candidate data models.<a href="#section-4-2.2.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</li>
+        <li class="normal" id="section-4-2.3">
+          <span class="break"></span><dl class="dlParallel" id="section-4-2.3.1">
+            <dt id="section-4-2.3.1.1">Architecture requirements:</dt>
+            <dd style="margin-left: 1.5em" id="section-4-2.3.1.2">
+              <p id="section-4-2.3.1.2.1">Architectural (non-functional) requirements are captured as well, as operators identified performance needs,
+large scale support,  and network discovery. These are not data model requirements, but are requirements
+either to drive the APIs design itself (e.g., to better optimize performance) or for the SIMAP servers
+that expose a SIMAP API. Although, they may be common sense requirements
+not specific to SIMAP API,  they are listed here for completeness.<a href="#section-4-2.3.1.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+</dl>
+</li>
+      </ul>
+<div id="functional-requirements">
+<section id="section-4.1">
+        <h3 id="name-functional-requirements">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-functional-requirements" class="section-name selfRef">Functional Requirements</a>
+        </h3>
+<p id="section-4.1-1">The following are the operators' requirements for the SIMAP. Note that some of these requirements are supported by
+default by <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-2">
+          <dt id="section-4.1-2.1">REQ-BASIC-MODEL-SUPPORT:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.2">
+            <p id="section-4.1-2.2.1">Basic model with network, node, link, and termination point entity types.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.4">
+            <p id="section-4.1-2.4.1">This means that users of SIMAP
+must be able to reconstruct a topology at any layer in an unambiguous manner via these core concepts only,
+without the need to understand layer or technology specific information.<a href="#section-4.1-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.5">REQ-LAYERED-MODEL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.6">
+            <p id="section-4.1-2.6.1">Topology layers from physical layer up to Service layer.<a href="#section-4.1-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.7"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.8">
+            <p id="section-4.1-2.8.1">SIMAP must provide views for all layers of network topology, from physical network
+(ideally optical), Layer 2, Layer 3 up to  Service and intent views. It must provide flexibility
+to support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
+or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
+Multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-4.1-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.9">REQ-VIEWPOINTS:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.10">
+            <p id="section-4.1-2.10.1">SIMAP should provide different views to different client applications. For example, one client application
+may need to see Layer 2 and Layer 3 layers in a single network topology instance, while another client application may need to see
+them as separate network topology instances.<a href="#section-4.1-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.11">REQ-PASSIVE-TOPO:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.12">
+            <p id="section-4.1-2.12.1">SIMAP must support capability to model topology of the complete network. If the implementation requires
+passive topology to be part of the complete multi-layered topology, then SIMAP must support
+the capability to model the passive part of the network (in addition to the active part).<a href="#section-4.1-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.14">
+            <p id="section-4.1-2.14.1">For access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
+essential as it provides many advantages for optimized customer Service, reduced MTTR, and lower operational costs
+through truck roll reduction.<a href="#section-4.1-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.15"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.16">
+            <p id="section-4.1-2.16.1">The passive topology must be either implemented in the SIMAP (what cannot be discovered can be added using the write API)
+or accessible from the SIMAP. Whether the passive topology is included as part of the SIMAP or
+accessible from the SIMAP is left to the solutions.<a href="#section-4.1-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.17">REQ-PROG-OPEN-MODEL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.18">
+            <p id="section-4.1-2.18.1">Open and programmable SIMAP.<a href="#section-4.1-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.19"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.20">
+            <p id="section-4.1-2.20.1">This includes "read" operations to retrieve the view of the network, typically as application-facing interface of
+Software Defined Networking (SDN) controllers or orchestrators.<a href="#section-4.1-2.20.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.21"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.22">
+            <p id="section-4.1-2.22.1">It also includes "write" operations, not for the ability to directly change the live SIMAP data
+(e.g., changing the network or Service parameters), but for offline simulations, also known as what-if scenarios.<a href="#section-4.1-2.22.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.23"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.24">
+            <p id="section-4.1-2.24.1">Running a "what-if" analysis requires the ability to take
+snapshots and to switch easily between them.<a href="#section-4.1-2.24.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.25"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.26">
+            <p id="section-4.1-2.26.1">Note that there is a need to distinguish between a change on the SIMAP
+for future simulation and a change that reflects the current reality of the network.<a href="#section-4.1-2.26.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.27">REQ-STD-API-BASED:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.28">
+            <p id="section-4.1-2.28.1">Standard-based SIMAP and APIs, for multi-vendor support.<a href="#section-4.1-2.28.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.29"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.30">
+            <p id="section-4.1-2.30.1">SIMAP must provide the standard APIs that provide for read/write and queries.
+These APIs must also provide the capability to retrieve the links to external data/models.<a href="#section-4.1-2.30.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.31">REQ-COMMON-API:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.32">
+            <p id="section-4.1-2.32.1">SIMAP and common APIs, for multi-domain.<a href="#section-4.1-2.32.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.33"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.34">
+            <p id="section-4.1-2.34.1">SIMAP and its APIs must be common over different network domains (campus, core, data center, etc.).<a href="#section-4.1-2.34.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.35"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.36">
+            <p id="section-4.1-2.36.1">This means that clients of the SIMAP APIs must be able to understand the topology model of layers of any
+domain without having to understand the details of any technologies and domains.<a href="#section-4.1-2.36.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.37">REQ-GRAPH-TRAVERSAL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.38">
+            <p id="section-4.1-2.38.1">Topology graph traversal.to support both network path queries and other specific use case queries.
+This means that the SIMAP must provide an efficient means to retrieve network paths,
+to accommodate the difficulty operators experiences when retrieving network paths
+via the chain termination-point-&gt;link-&gt;termination-point, without having a direct adjacency relation.
+Additionally, SIMAP must enable efficient retrieval of the data required by other use case queries.<a href="#section-4.1-2.38.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.39">REQ-TOPOLOGY-ABSTRACTION:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.40">
+            <p id="section-4.1-2.40.1">Navigation across the abstraction levels.<a href="#section-4.1-2.40.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.41"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.42">
+            <p id="section-4.1-2.42.1">A network (even a single layer network) can be represented
+in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
+being able to navigate amongst the different levels of abstractions (e.g. to understand which set of nodes in the native
+topology are actually represented as a single node in an abstract topology being built on top of the native topology).
+This navigation is different and orthogonal to the multi-layer navigation where we need to report which Layer 2 path is
+supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via different
+topology APIs and model. Please refer to the <a href="#sec-topology-abstraction" class="auto internal xref">Appendix A.2</a> for some background on the
+topology abstraction.<a href="#section-4.1-2.42.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.43"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.44">
+            <p id="section-4.1-2.44.1">SIMAP must provide a mechanism to navigate across the abstraction levels.<a href="#section-4.1-2.44.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.45">REQ-LIVE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.46">
+            <p id="section-4.1-2.46.1">Live network topology.<a href="#section-4.1-2.46.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.47"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.48">
+            <p id="section-4.1-2.48.1">SIMAP must enable retrieval of multi-layered topology of a live network.<a href="#section-4.1-2.48.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.49"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.50">
+            <p id="section-4.1-2.50.1">Live network is the latest snapshot of the real network.<a href="#section-4.1-2.50.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.51">REQ-SNAPSHOT:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.52">
+            <p id="section-4.1-2.52.1">Network snapshot topology.<a href="#section-4.1-2.52.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.53"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.54">
+            <p id="section-4.1-2.54.1">SIMAP must enable retrieval of multi-layered topology of different snapshots<a href="#section-4.1-2.54.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.55"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.56">
+            <p id="section-4.1-2.56.1">Snapshot is the view of the network at any given point in time.<a href="#section-4.1-2.56.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.57">REQ-POTENTIAL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.58">
+            <p id="section-4.1-2.58.1">Potential new network topology.<a href="#section-4.1-2.58.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.59"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.60">
+            <p id="section-4.1-2.60.1">SIMAP must enable both retrieval and write access to the potential new network.<a href="#section-4.1-2.60.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.61"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.62">
+            <p id="section-4.1-2.62.1">A  potential network topology is a state generated by a simulation (online or offline)
+at a given point of time that includes any modifications from the snapshot and can be
+queried and modified for what-if planning.<a href="#section-4.1-2.62.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.63"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.64">
+            <p id="section-4.1-2.64.1">This view may contain either the full topology or just differences from the snapshot.<a href="#section-4.1-2.64.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.65">REQ-INTENDED:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.66">
+            <p id="section-4.1-2.66.1">Intended network topology.<a href="#section-4.1-2.66.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.67"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.68">
+            <p id="section-4.1-2.68.1">SIMAP must enable both retrieval and write access to the intended network topology that cannot be
+discovered from the real network (e.g., intended Layer 2 Topology, intended Layer 3 Topology, and passive topology that
+cannot be discovered).<a href="#section-4.1-2.68.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.69">REQ-SEMANTIC:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.70">
+            <p id="section-4.1-2.70.1">Network topology semantics.<a href="#section-4.1-2.70.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-2.71"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-2.72">
+            <p id="section-4.1-2.72.1">SIMAP must provide semantics for layered network topologies and for linking external models/data.<a href="#section-4.1-2.72.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<p id="section-4.1-3">The following requirements are more specific requirements for semantics:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-4">
+          <dt id="section-4.1-4.1">REQ-LAYER-NAVIGATE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.2">
+            <p id="section-4.1-4.2.1">SIMAP must provide capability to navigate both within a topology layer and between topology layers.<a href="#section-4.1-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.4">
+            <p id="section-4.1-4.4.1">Within-layer navigation means that SIMAP client applications should be able to move among entities that belong to the same layer.
+For example, in the IGP layer, the navigation should allow moving between OSPF/IS-IS management domains, OSPF/IS-IS areas,
+OSPF/IS-IS processes, OSPF/IS-IS interfaces, and OSPF/IS-IS links.<a href="#section-4.1-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.6">
+            <p id="section-4.1-4.6.1">Between‑layer navigation is the navigation across layers that should display the dependencies of entities in one layer on those in another.
+For instance, an IP interface that is supported by an Ethernet interface should be visible when moving between the corresponding layers.<a href="#section-4.1-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.7">REQ-EXTENSIBLE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.8">
+            <p id="section-4.1-4.8.1">SIMAP must be extensible with metadata. As examples, a controller or the client application could add a custom “location” attribute
+to a node to record its physical site, or a controller could attach a “vendorId” field to a device node.
+This demonstrates that arbitrary key‑value metadata can be appended to any element in the model without altering the core schema.<a href="#section-4.1-4.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.9">REQ-PLUGG:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.10">
+            <p id="section-4.1-4.10.1">SIMAP must be pluggable. That is,<a href="#section-4.1-4.10.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-4.10.2.1">
+                <p id="section-4.1-4.10.2.1.1">Must connect to other data models for device configuration, inventory, configuration, assurance, etc.
+The SIMAP does not contain the detailed device configuration, so a mechanism is needed to be able to link it from SIMAP.
+SIMAP should also be linked to a 'logical configuration inventory'. Several examples of the type of logical information
+to be linked from SIMAP: inventory of logical interfaces, inventory of ACLs, or inventory of routing policies.<a href="#section-4.1-4.10.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-4.10.2.2">
+                <p id="section-4.1-4.10.2.2.1">Given that not all involved components can be available using YANG, there is a need to connect
+SIMAP with other modelling mechanisms.<a href="#section-4.1-4.10.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.11">REQ-BIDIR:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.12">
+            <p id="section-4.1-4.12.1">SIMAP must provide a mechanism to model bidirectional
+links. While data flows are unidirectional, the bidirectional
+links are also common in networking.  Examples are Ethernet
+cables, bidirectional SONET rings, socket connection to the
+server, etc., where a link is modeled as bidirectional, which in turn
+might be supported as unidirectional links at the lower layer.<a href="#section-4.1-4.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.13">REQ-MULTI-POINT:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.14">
+            <p id="section-4.1-4.14.1">SIMAP must provide a mechanism to model multipoint links. A topology model should be able to model any topology type, including point to multipoint, bus, ring, star, tree, mesh, hybrid and daisy chain. A topology model should also be able to model any link cardinality, including point-to-point, point-to-multipoint, multipoint-to-multipoint<a href="#section-4.1-4.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.15">REQ-MULTI-DOMAIN:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.16">
+            <p id="section-4.1-4.16.1">SIMAP must provide a mechanism to model links and nodes between networks when the implementation
+requires multi-domain topologies, topologies with multiple IGP areas or any network partitioning.
+This requirement is about covering connectivity between different networks, sub-networks, or domains.<a href="#section-4.1-4.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.17">REQ-SUBNETWORK:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.18">
+            <p id="section-4.1-4.18.1">SIMAP must provide a mechanism to model network decomposition into sub-networks.
+The requirement is about modelling hierarchical networks , Autonomous Systems (ASes) with multiple areas, or a network
+with multiple domains (e.g., access, core, data center).<a href="#section-4.1-4.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.19"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.20">
+            <p id="section-4.1-4.20.1">The network can be partitioned by providing capability to have multiple child network instances as part of a
+single parent network, with a relation between the parent network and child networks.<a href="#section-4.1-4.20.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.21">REQ-SUPPORTING:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.22">
+            <p id="section-4.1-4.22.1">SIMAP must provide a mechanism to model supporting relationships between different types of topological entities
+(e.g., a termination point is supported by a node or a node is supported by a network). This may be required
+to model supporting relationships for termination points which are supported by physical devices (e.g., a loopback interface on IP router).<a href="#section-4.1-4.22.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.23">REQ-STATUS:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.24">
+            <p id="section-4.1-4.24.1">Links and nodes that are down must appear in the topology. The status of the nodes and links must be either
+implemented in the SIMAP or accessible from the SIMAP. Whether the status is included as part of the SIMAP or
+accessible from the SIMAP is left to the solutions.<a href="#section-4.1-4.24.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.25">REQ-DATA-PLANE-FLOW:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.26">
+            <p id="section-4.1-4.26.1">Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology<a href="#section-4.1-4.26.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.27"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.28">
+            <p id="section-4.1-4.28.1">An SRv6 example:<a href="#section-4.1-4.28.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.29"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.30">
+            <p id="section-4.1-4.30.1">In an SRv6‑enabled network, the sourceIPv6Address field appears twice in the IPFIX data‑template/data‑record
+for a captured flow on an SRv6‑enabled provider interface. Once in relation to provider data plane in the
+underlay, and once as relation to the customer data plane in the overlay.<a href="#section-4.1-4.30.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.31"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.32">
+            <p id="section-4.1-4.32.1">SIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and
+underlay network topology. Both topologies might not be uniquely addressed, the VPN context
+(in SRv6 these are the SID's, <span><a href="https://rfc-editor.org/rfc/rfc8986#section-3" class="relref">Section 3</a> of [<a href="#RFC8986" class="cite xref">RFC8986</a>]</span>) needs to be considered therefore as well.<a href="#section-4.1-4.32.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-4.33"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-4.34">
+            <p id="section-4.1-4.34.1">IPFIX protocol, defined in <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>, is the protocol for the exchange of flow information from
+an Exporting Process to a Collecting Process. <span><a href="https://rfc-editor.org/rfc/rfc7011#section-8" class="relref">Section 8</a> of [<a href="#RFC7011" class="cite xref">RFC7011</a>]</span> describes the management of
+Templates and Option templates at the Exporting and Collecting Processes, and states the following:<a href="#section-4.1-4.34.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<blockquote id="section-4.1-5">
+          <p id="section-4.1-5.1">If an Information Element is required more than once in a Template,
+the different occurrences of this Information Element SHOULD follow
+the logical order of their treatments by the Metering Process. For
+example, if a selected packet goes through two hash functions, and if
+the two hash values are sent within a single Template, the first
+occurrence of the hash value should belong to the first hash function
+in the Metering Process. For example, when exporting the two source
+IP addresses of an IPv4-in-IPv4 packet, the first sourceIPv4Address
+Information Element occurrence should be the IPv4 address of the
+outer header, while the second occurrence should be the address of
+the inner header. Collecting Processes MUST properly handle
+Templates with multiple identical Information Elements.<a href="#section-4.1-5.1" class="pilcrow">¶</a></p>
+</blockquote>
+<span class="break"></span><dl class="dlParallel" id="section-4.1-6">
+          <dt id="section-4.1-6.1">REQ-CONTROL-PLANE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.2">
+            <p id="section-4.1-6.2.1">Control‑plane routing state must be correlatable to the corresponding data‑plane topology. For example, the underlay control‑plane routing
+state must correlate to the underlay L3 topology, while the overlay control‑plane routing state must correlate to the overlay L3 network topology.<a href="#section-4.1-6.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-6.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.4">
+            <p id="section-4.1-6.4.1">A BMP/BGP example:<a href="#section-4.1-6.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.1-6.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.1-6.6">
+            <p id="section-4.1-6.6.1">The BMP peer distinguisher (<span><a href="https://rfc-editor.org/rfc/rfc7854#section-4.2" class="relref">Section 4.2</a> of [<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>) needs to be correlateable to the VRF
+of a node and the next-hop attribute of the NLRI in the BMP route-monitoring (<span><a href="https://rfc-editor.org/rfc/rfc7854#section-4.6" class="relref">Section 4.6</a> of [<a href="#RFC7854" class="cite xref">RFC7854</a>]</span>) encapsulated
+message to the underlay network topology while the path attribute of the NLRI in the BMP route-monitoring
+encapsulated message to the overlay topology.<a href="#section-4.1-6.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="design-requirements">
+<section id="section-4.2">
+        <h3 id="name-design-requirements">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-design-requirements" class="section-name selfRef">Design Requirements</a>
+        </h3>
+<p id="section-4.2-1">The following are the design requirements for the SIMAP data model:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.2-2">
+          <dt id="section-4.2-2.1">REQ-TOPO-ONLY:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.2">
+            <p id="section-4.2-2.2.1">SIMAP should contain only topological information.<a href="#section-4.2-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.4">
+            <p id="section-4.2-2.4.1">SIMAP is not required to contain all models and data required for
+all the management and use cases. However, it should be designed to support adequate pointers to other functional
+data and models to ease navigating in the overall system. For example:<a href="#section-4.2-2.4.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.2-2.4.2.1">
+                <p id="section-4.2-2.4.2.1.1">ACLs and Route Policies are not required to be supported in the SIMAP, they would be linked to the SIMAP.<a href="#section-4.2-2.4.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.2-2.4.2.2">
+                <p id="section-4.2-2.4.2.2.1">Dynamic paths may, depending on the solution, be either inside or outside of the SIMAP. If outside of SIMAP,
+dynamic paths could be linked to the SIMAP.<a href="#section-4.2-2.4.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.6">
+            <p id="section-4.2-2.6.1">SIMAP should ensure that it is possible to represent the paths/routes and leave the choice of what level of dynamics
+to represent to the specific solution/implementations. The model needs to be rich enough to represent any level of dynamics.
+However, from experience, we suspect it can be the same model for all level of dynamics.<a href="#section-4.2-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.7">REQ-PROPERTIES:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.8">
+            <p id="section-4.2-2.8.1">SIMAP entities should mainly contain properties used to identify topological entities at different layers,
+identify their roles, and topological relationships between them.<a href="#section-4.2-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-2.9"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-2.10">
+            <p id="section-4.2-2.10.1">SIMAP entities should also provide information required to define semantics for layered network topologies, such as:<a href="#section-4.2-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<ul class="normal">
+<li class="normal" id="section-4.2-3.1">
+            <p id="section-4.2-3.1.1">link directionality,<a href="#section-4.2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.2">
+            <p id="section-4.2-3.2.1">whether the links are multipoint or not and, if so, are whether these links are point-to-multipoint or multipoint-to-multipoint,<a href="#section-4.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.3">
+            <p id="section-4.2-3.3.1">role of the termination points in the link (source, destination, hub, spoke), and<a href="#section-4.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-3.4">
+            <p id="section-4.2-3.4.1">some generic mechanism to add metadata.<a href="#section-4.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<span class="break"></span><dl class="dlParallel" id="section-4.2-4">
+          <dt id="section-4.2-4.1">REQ-RELATIONSHIPS:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-4.2">
+            <p id="section-4.2-4.2.1">SIMAP should contain all topological relationships inside each layer or between the layers (underlay/overlay)<a href="#section-4.2-4.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-4.3"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-4.4">
+            <p id="section-4.2-4.4.1">SIMAP should contain links to other models/data to enable generic navigation to other data models in
+generic way.<a href="#section-4.2-4.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-4.5"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-4.6">
+            <p id="section-4.2-4.6.1">The SIMAP relationships should also provide information required to define semantics for layered network topologies,
+such as providing:<a href="#section-4.2-4.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+<ul class="normal">
+<li class="normal" id="section-4.2-5.1">
+            <p id="section-4.2-5.1.1">underlay and overlay relations between different types of topological entities,<a href="#section-4.2-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-5.2">
+            <p id="section-4.2-5.2.1">additional information that helps with navigation inside a layer and between the layers, for example, easy
+identification of resources at the physical layer in primary versus backup paths, if the underlay
+resources are used for load balancing or for backup,<a href="#section-4.2-5.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-5.3">
+            <p id="section-4.2-5.3.1">capability to model nodes, termination points, and links contained in a network, but also nodes and links shared between networks, and<a href="#section-4.2-5.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.2-5.4">
+            <p id="section-4.2-5.4.1">relationships between networks, either for modelling of underlay and overlay or modelling network that contains
+multiple networks.<a href="#section-4.2-5.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<span class="break"></span><dl class="dlParallel" id="section-4.2-6">
+          <dt id="section-4.2-6.1">REQ-CONDITIONAL:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-6.2">
+            <p id="section-4.2-6.2.1">Provide capability for conditional retrieval of parts of SIMAP.<a href="#section-4.2-6.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.2-6.3">REQ-TEMPO-HISTO:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.2-6.4">
+            <p id="section-4.2-6.4.1">Must support geo-spatial, temporal, and historical data.  The temporal and historical can also be supported
+external to the SIMAP.<a href="#section-4.2-6.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-arch">
+<section id="section-4.3">
+        <h3 id="name-architectural-requirements">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-architectural-requirements" class="section-name selfRef">Architectural Requirements</a>
+        </h3>
+<p id="section-4.3-1">The following are the architectural requirements for the SIMAP server implementations
+that provide SIMAP API, they are the non-functional requirements for
+the SIMAP APIs and SIMAP server implementations:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-4.3-2">
+          <dt id="section-4.3-2.1">REQ-SCALES:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.2">
+            <p id="section-4.3-2.2.1">The SIMAP APIs and SIMAP server implementations must be scalable, it must support any provider network, independent of its size.<a href="#section-4.3-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.3">REQ-PERFORMANCE:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.4">
+            <p id="section-4.3-2.4.1">The SIMAP APIs and SIMAP server implementations must be  performant, and have acceptable response-time. Although we are not to define the response time here.<a href="#section-4.3-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.5">REQ-USABILITY:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.6">
+            <p id="section-4.3-2.6.1">The SIMAP APIs must be simple and easy to integrate with the client applications, whose developers
+may not be networking experts.<a href="#section-4.3-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.7">REQ-DISCOVERY:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.8">
+            <p id="section-4.3-2.8.1">A network SIMAP server must perform the initial and on-demand discovery of a network in order to provide the layered
+topology via the SIMAP APIs to a client application.<a href="#section-4.3-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.9">REQ-SYNCH:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.10">
+            <p id="section-4.3-2.10.1">The SIMAP server must perform the sync with the network in order to provide up to date layered topology
+via SIMAP APIs to a client application<a href="#section-4.3-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.11">REQ-SECURITY:</dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.12">
+            <p id="section-4.3-2.12.1">The conventional NACM control access rules <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> should apply. This includes module control access rules,
+protocol operation control access rules, data node control access rules, and notification control access rules.<a href="#section-4.3-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="positioning-simap-in-the-context-of-the-ietf-work">
+<section id="section-5">
+      <h2 id="name-positioning-simap-in-the-co">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-positioning-simap-in-the-co" class="section-name selfRef">Positioning SIMAP in the Context of the IETF Work</a>
+      </h2>
+<p id="section-5-1"><span>[<a href="#RFC8199" class="cite xref">RFC8199</a>]</span> advocates for a consistent classification of YANG modules and introduces two abstraction layers for
+YANG modules:<a href="#section-5-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-2.1">
+          <p id="section-5-2.1.1">network element YANG modules<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-2.2">
+          <p id="section-5-2.2.1">network service YANG modules<a href="#section-5-2.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-3">The IRTF <span>[<a href="#RFC7426" class="cite xref">RFC7426</a>]</span> defines the SDN layers and architecture and proposes the following interfaces:<a href="#section-5-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-4.1">
+          <p id="section-5-4.1.1">southbound interfaces between the network devices and controllers/managers<a href="#section-5-4.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-4.2">
+          <p id="section-5-4.2.1">service interface between controllers/managers and applications<a href="#section-5-4.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-5"><span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span> defines where service model might fit into the SDN Architecture, although the service model
+does not require or preclude the use of SDN. It shows the following models at different layers of abstraction:<a href="#section-5-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-6.1">
+          <p id="section-5-6.1.1">device model, between network elements and controllers<a href="#section-5-6.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-6.2">
+          <p id="section-5-6.2.1">network model, between controllers and network orchestrators<a href="#section-5-6.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-6.3">
+          <p id="section-5-6.3.1">service model, between network orchestrators and service orchestrators<a href="#section-5-6.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-6.4">
+          <p id="section-5-6.4.1">customer service model, between service orchestrators and customer<a href="#section-5-6.4.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-7"><span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> describes the ACTN architecture in the context of the YANG service models. It shows how ACTN interfaces
+relate to device model, network model and customer service model.<a href="#section-5-7" class="pilcrow">¶</a></p>
+<p id="section-5-8"><span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> describes a framework for Service and network management automation that takes advantage of YANG
+modelling technologies. This framework is drawn from a network operator perspective irrespective of the origin of a
+data model. <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span> introduces "network service models" and describes the layering and representation of models
+within a network operator as follows:<a href="#section-5-8" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-9.1">
+          <p id="section-5-9.1.1">device model, between device and controller<a href="#section-5-9.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-9.2">
+          <p id="section-5-9.2.1">network model (operator oriented), between controller (that includes network orchestration function) and
+service orchestrator<a href="#section-5-9.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-9.3">
+          <p id="section-5-9.3.1">service model (customer oriented), between service orchestrator and customer, this is network service model<a href="#section-5-9.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-10">The SIMAP can be used at different layers of abstraction and SIMAP can provide topology at
+different interfaces. Although the SIMAP and APIs is primarily positioned as northbound multi-layered topology
+model from (SDN) Controllers, it can also be positioned as follows:<a href="#section-5-10" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-5-11.1">
+          <p id="section-5-11.1.1">In the context of <span>[<a href="#RFC8199" class="cite xref">RFC8199</a>]</span>, SIMAP can provide multi-layered topology YANG module as part of both network element
+and network service YANG modules<a href="#section-5-11.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-11.2">
+          <p id="section-5-11.2.1">In the context of <span>[<a href="#RFC7426" class="cite xref">RFC7426</a>]</span>, SIMAP can provide multi-layered topology interface as part of both Southbound and
+Service Interfaces<a href="#section-5-11.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-11.3">
+          <p id="section-5-11.3.1">In the context of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span>, SIMAP can provide multi-layered topology model as part of device model, network model,
+service model and customer service model<a href="#section-5-11.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-11.4">
+          <p id="section-5-11.4.1">In the context of <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>, SIMAP can provide multi-layered topology model as part of SBI (southbound interface to
+network), MPI (interface between multi-domain service coordinator and network controller) and CMI (interface between
+customer network controller and multi-domain service controller)<a href="#section-5-11.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-5-11.5">
+          <p id="section-5-11.5.1">In the context of <span>[<a href="#RFC8969" class="cite xref">RFC8969</a>]</span>, SIMAP can provide multi-layered topology model as part of device model, network model
+and network service model<a href="#section-5-11.5.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="section-5-12">Appendix A documents some other IETF activities related to topology modeling, it does not want to prescribe how SIMAP
+should be modeled or which base models should be used, and it is added for illustrational purposes only.
+Therefore it is not included in this section, but added to the Appendix.<a href="#section-5-12" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-6">
+      <h2 id="name-security-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-6-1">As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations other
+that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4.3</a>.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2"><span><a href="https://rfc-editor.org/rfc/rfc8345#section-8" class="relref">Section 8</a> of [<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> discusses security aspects that will be useful when designing the SIMAP solution.<a href="#section-6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-7">
+      <h2 id="name-iana-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-7-1">This document has no actions for IANA.<a href="#section-7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-8">
+      <h2 id="name-references">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-8.1">
+        <h3 id="name-normative-references">
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="RFC8341">[RFC8341]</dt>
+      <dd>
+<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-8.2">
+        <h3 id="name-informative-references">
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-ivy-network-inventory-topology">[I-D.ietf-ivy-network-inventory-topology]</dt>
+        <dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Zhou, C.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Network Data Model for Inventory Topology Mapping"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-topology-05</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology-05">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology-05</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-ivy-network-inventory-yang">[I-D.ietf-ivy-network-inventory-yang]</dt>
+        <dd>
+<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-14</span>, <time datetime="2026-02-05" class="refDate">5 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-14">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-14</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-nmop-network-anomaly-architecture">[I-D.ietf-nmop-network-anomaly-architecture]</dt>
+        <dd>
+<span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Du, W.</span>, <span class="refAuthor">Francois, P.</span>, and <span class="refAuthor">A. H. Feng</span>, <span class="refTitle">"A Framework for a Network Anomaly Detection Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-anomaly-architecture-07</span>, <time datetime="2026-01-18" class="refDate">18 January 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-07">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-anomaly-architecture-07</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-nmop-network-incident-yang">[I-D.ietf-nmop-network-incident-yang]</dt>
+        <dd>
+<span class="refAuthor">Hu, T.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Davis, N.</span>, and <span class="refAuthor">C. Feng</span>, <span class="refTitle">"A YANG Data Model for Network Incident Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-network-incident-yang-08</span>, <time datetime="2026-02-13" class="refDate">13 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-incident-yang-08">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-incident-yang-08</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-nmop-terminology">[I-D.ietf-nmop-terminology]</dt>
+        <dd>
+<span class="refAuthor">Davis, N.</span>, <span class="refAuthor">Farrel, A.</span>, <span class="refAuthor">Graf, T.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">C. Yu</span>, <span class="refTitle">"Some Key Terms for Network Fault and Problem Management"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-nmop-terminology-23</span>, <time datetime="2025-08-18" class="refDate">18 August 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-23">https://datatracker.ietf.org/doc/html/draft-ietf-nmop-terminology-23</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-ntw-attachment-circuit">[I-D.ietf-opsawg-ntw-attachment-circuit]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"A Network YANG Data Model for Attachment Circuits"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-ntw-attachment-circuit-16</span>, <time datetime="2025-01-23" class="refDate">23 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-16">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-ntw-attachment-circuit-16</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-opsawg-teas-attachment-circuit">[I-D.ietf-opsawg-teas-attachment-circuit]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Roberts, R.</span>, <span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">B. Wu</span>, <span class="refTitle">"YANG Data Models for Bearers and 'Attachment Circuits'-as-a-Service (ACaaS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-20</span>, <time datetime="2025-01-23" class="refDate">23 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-20">https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-teas-attachment-circuit-20</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-teas-te-topo-and-tunnel-modeling">[I-D.ietf-teas-te-topo-and-tunnel-modeling]</dt>
+        <dd>
+<span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Beeram, V. P.</span>, <span class="refAuthor">Saad, T.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"TE Topology and Tunnel Modeling for Transport Networks"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-te-topo-and-tunnel-modeling-06</span>, <time datetime="2020-07-12" class="refDate">12 July 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-te-topo-and-tunnel-modeling-06">https://datatracker.ietf.org/doc/html/draft-ietf-teas-te-topo-and-tunnel-modeling-06</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.irtf-nmrg-network-digital-twin-arch">[I-D.irtf-nmrg-network-digital-twin-arch]</dt>
+        <dd>
+<span class="refAuthor">Zhou, C.</span>, <span class="refAuthor">Yang, H.</span>, <span class="refAuthor">Duan, X.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Pastor, A.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">C. Jacquenet</span>, <span class="refTitle">"Network Digital Twin: Concepts and Reference Architecture"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-nmrg-network-digital-twin-arch-11</span>, <time datetime="2025-07-06" class="refDate">6 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11">https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-network-digital-twin-arch-11</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ogondio-nmop-isis-topology">[I-D.ogondio-nmop-isis-topology]</dt>
+        <dd>
+<span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Lopez, V.</span>, <span class="refAuthor">Ceccarelli, D.</span>, and <span class="refAuthor">B. Claise</span>, <span class="refTitle">"A YANG Data Model for Intermediate System to intermediate System (IS-IS) Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ogondio-nmop-isis-topology-01</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ogondio-nmop-isis-topology-01">https://datatracker.ietf.org/doc/html/draft-ogondio-nmop-isis-topology-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ogondio-opsawg-ospf-topology">[I-D.ogondio-opsawg-ospf-topology]</dt>
+        <dd>
+<span class="refAuthor">de Dios, O. G.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Data Model for Open Shortest Path First (OSPF) Topology"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ogondio-opsawg-ospf-topology-01</span>, <time datetime="2023-10-23" class="refDate">23 October 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-ospf-topology-01">https://datatracker.ietf.org/doc/html/draft-ogondio-opsawg-ospf-topology-01</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3444">[RFC3444]</dt>
+        <dd>
+<span class="refAuthor">Pras, A.</span> and <span class="refAuthor">J. Schoenwaelder</span>, <span class="refTitle">"On the Difference between Information Models and Data Models"</span>, <span class="seriesInfo">RFC 3444</span>, <span class="seriesInfo">DOI 10.17487/RFC3444</span>, <time datetime="2003-01" class="refDate">January 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3444">https://www.rfc-editor.org/rfc/rfc3444</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5136">[RFC5136]</dt>
+        <dd>
+<span class="refAuthor">Chimento, P.</span> and <span class="refAuthor">J. Ishac</span>, <span class="refTitle">"Defining Network Capacity"</span>, <span class="seriesInfo">RFC 5136</span>, <span class="seriesInfo">DOI 10.17487/RFC5136</span>, <time datetime="2008-02" class="refDate">February 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5136">https://www.rfc-editor.org/rfc/rfc5136</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7011">[RFC7011]</dt>
+        <dd>
+<span class="refAuthor">Claise, B., Ed.</span>, <span class="refAuthor">Trammell, B., Ed.</span>, and <span class="refAuthor">P. Aitken</span>, <span class="refTitle">"Specification of the IP Flow Information Export (IPFIX) Protocol for the Exchange of Flow Information"</span>, <span class="seriesInfo">STD 77</span>, <span class="seriesInfo">RFC 7011</span>, <span class="seriesInfo">DOI 10.17487/RFC7011</span>, <time datetime="2013-09" class="refDate">September 2013</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7011">https://www.rfc-editor.org/rfc/rfc7011</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7426">[RFC7426]</dt>
+        <dd>
+<span class="refAuthor">Haleplidis, E., Ed.</span>, <span class="refAuthor">Pentikousis, K., Ed.</span>, <span class="refAuthor">Denazis, S.</span>, <span class="refAuthor">Hadi Salim, J.</span>, <span class="refAuthor">Meyer, D.</span>, and <span class="refAuthor">O. Koufopavlou</span>, <span class="refTitle">"Software-Defined Networking (SDN): Layers and Architecture Terminology"</span>, <span class="seriesInfo">RFC 7426</span>, <span class="seriesInfo">DOI 10.17487/RFC7426</span>, <time datetime="2015-01" class="refDate">January 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7426">https://www.rfc-editor.org/rfc/rfc7426</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7854">[RFC7854]</dt>
+        <dd>
+<span class="refAuthor">Scudder, J., Ed.</span>, <span class="refAuthor">Fernando, R.</span>, and <span class="refAuthor">S. Stuart</span>, <span class="refTitle">"BGP Monitoring Protocol (BMP)"</span>, <span class="seriesInfo">RFC 7854</span>, <span class="seriesInfo">DOI 10.17487/RFC7854</span>, <time datetime="2016-06" class="refDate">June 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7854">https://www.rfc-editor.org/rfc/rfc7854</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7926">[RFC7926]</dt>
+        <dd>
+<span class="refAuthor">Farrel, A., Ed.</span>, <span class="refAuthor">Drake, J.</span>, <span class="refAuthor">Bitar, N.</span>, <span class="refAuthor">Swallow, G.</span>, <span class="refAuthor">Ceccarelli, D.</span>, and <span class="refAuthor">X. Zhang</span>, <span class="refTitle">"Problem Statement and Architecture for Information Exchange between Interconnected Traffic-Engineered Networks"</span>, <span class="seriesInfo">BCP 206</span>, <span class="seriesInfo">RFC 7926</span>, <span class="seriesInfo">DOI 10.17487/RFC7926</span>, <time datetime="2016-07" class="refDate">July 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7926">https://www.rfc-editor.org/rfc/rfc7926</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7950">[RFC7950]</dt>
+        <dd>
+<span class="refAuthor">Bjorklund, M., Ed.</span>, <span class="refTitle">"The YANG 1.1 Data Modeling Language"</span>, <span class="seriesInfo">RFC 7950</span>, <span class="seriesInfo">DOI 10.17487/RFC7950</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7950">https://www.rfc-editor.org/rfc/rfc7950</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8199">[RFC8199]</dt>
+        <dd>
+<span class="refAuthor">Bogdanovic, D.</span>, <span class="refAuthor">Claise, B.</span>, and <span class="refAuthor">C. Moberg</span>, <span class="refTitle">"YANG Module Classification"</span>, <span class="seriesInfo">RFC 8199</span>, <span class="seriesInfo">DOI 10.17487/RFC8199</span>, <time datetime="2017-07" class="refDate">July 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8199">https://www.rfc-editor.org/rfc/rfc8199</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8299">[RFC8299]</dt>
+        <dd>
+<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8299</span>, <span class="seriesInfo">DOI 10.17487/RFC8299</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8299">https://www.rfc-editor.org/rfc/rfc8299</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8309">[RFC8309]</dt>
+        <dd>
+<span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Liu, W.</span>, and <span class="refAuthor">A. Farrel</span>, <span class="refTitle">"Service Models Explained"</span>, <span class="seriesInfo">RFC 8309</span>, <span class="seriesInfo">DOI 10.17487/RFC8309</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8309">https://www.rfc-editor.org/rfc/rfc8309</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8345">[RFC8345]</dt>
+        <dd>
+<span class="refAuthor">Clemm, A.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Varga, R.</span>, <span class="refAuthor">Bahadur, N.</span>, <span class="refAuthor">Ananthakrishnan, H.</span>, and <span class="refAuthor">X. Liu</span>, <span class="refTitle">"A YANG Data Model for Network Topologies"</span>, <span class="seriesInfo">RFC 8345</span>, <span class="seriesInfo">DOI 10.17487/RFC8345</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8345">https://www.rfc-editor.org/rfc/rfc8345</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8453">[RFC8453]</dt>
+        <dd>
+<span class="refAuthor">Ceccarelli, D., Ed.</span> and <span class="refAuthor">Y. Lee, Ed.</span>, <span class="refTitle">"Framework for Abstraction and Control of TE Networks (ACTN)"</span>, <span class="seriesInfo">RFC 8453</span>, <span class="seriesInfo">DOI 10.17487/RFC8453</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8453">https://www.rfc-editor.org/rfc/rfc8453</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8466">[RFC8466]</dt>
+        <dd>
+<span class="refAuthor">Wen, B.</span>, <span class="refAuthor">Fioccola, G., Ed.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Jalil</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Virtual Private Network (L2VPN) Service Delivery"</span>, <span class="seriesInfo">RFC 8466</span>, <span class="seriesInfo">DOI 10.17487/RFC8466</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8466">https://www.rfc-editor.org/rfc/rfc8466</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8795">[RFC8795]</dt>
+        <dd>
+<span class="refAuthor">Liu, X.</span>, <span class="refAuthor">Bryskin, I.</span>, <span class="refAuthor">Beeram, V.</span>, <span class="refAuthor">Saad, T.</span>, <span class="refAuthor">Shah, H.</span>, and <span class="refAuthor">O. Gonzalez de Dios</span>, <span class="refTitle">"YANG Data Model for Traffic Engineering (TE) Topologies"</span>, <span class="seriesInfo">RFC 8795</span>, <span class="seriesInfo">DOI 10.17487/RFC8795</span>, <time datetime="2020-08" class="refDate">August 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8795">https://www.rfc-editor.org/rfc/rfc8795</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8944">[RFC8944]</dt>
+        <dd>
+<span class="refAuthor">Dong, J.</span>, <span class="refAuthor">Wei, X.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Boucadair, M.</span>, and <span class="refAuthor">A. Liu</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Network Topologies"</span>, <span class="seriesInfo">RFC 8944</span>, <span class="seriesInfo">DOI 10.17487/RFC8944</span>, <time datetime="2020-11" class="refDate">November 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8944">https://www.rfc-editor.org/rfc/rfc8944</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8969">[RFC8969]</dt>
+        <dd>
+<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Geng</span>, <span class="refTitle">"A Framework for Automating Service and Network Management with YANG"</span>, <span class="seriesInfo">RFC 8969</span>, <span class="seriesInfo">DOI 10.17487/RFC8969</span>, <time datetime="2021-01" class="refDate">January 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8969">https://www.rfc-editor.org/rfc/rfc8969</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8986">[RFC8986]</dt>
+        <dd>
+<span class="refAuthor">Filsfils, C., Ed.</span>, <span class="refAuthor">Camarillo, P., Ed.</span>, <span class="refAuthor">Leddy, J.</span>, <span class="refAuthor">Voyer, D.</span>, <span class="refAuthor">Matsushima, S.</span>, and <span class="refAuthor">Z. Li</span>, <span class="refTitle">"Segment Routing over IPv6 (SRv6) Network Programming"</span>, <span class="seriesInfo">RFC 8986</span>, <span class="seriesInfo">DOI 10.17487/RFC8986</span>, <time datetime="2021-02" class="refDate">February 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8986">https://www.rfc-editor.org/rfc/rfc8986</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9179">[RFC9179]</dt>
+        <dd>
+<span class="refAuthor">Hopps, C.</span>, <span class="refTitle">"A YANG Grouping for Geographic Locations"</span>, <span class="seriesInfo">RFC 9179</span>, <span class="seriesInfo">DOI 10.17487/RFC9179</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9179">https://www.rfc-editor.org/rfc/rfc9179</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9182">[RFC9182]</dt>
+        <dd>
+<span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Munoz, L.</span>, and <span class="refAuthor">A. Aguado</span>, <span class="refTitle">"A YANG Network Data Model for Layer 3 VPNs"</span>, <span class="seriesInfo">RFC 9182</span>, <span class="seriesInfo">DOI 10.17487/RFC9182</span>, <time datetime="2022-02" class="refDate">February 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9182">https://www.rfc-editor.org/rfc/rfc9182</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9291">[RFC9291]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O., Ed.</span>, <span class="refAuthor">Barguil, S.</span>, and <span class="refAuthor">L. Munoz</span>, <span class="refTitle">"A YANG Network Data Model for Layer 2 VPNs"</span>, <span class="seriesInfo">RFC 9291</span>, <span class="seriesInfo">DOI 10.17487/RFC9291</span>, <time datetime="2022-09" class="refDate">September 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9291">https://www.rfc-editor.org/rfc/rfc9291</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9408">[RFC9408]</dt>
+        <dd>
+<span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, <span class="refAuthor">Barguil, S.</span>, <span class="refAuthor">Wu, Q.</span>, and <span class="refAuthor">V. Lopez</span>, <span class="refTitle">"A YANG Network Data Model for Service Attachment Points (SAPs)"</span>, <span class="seriesInfo">RFC 9408</span>, <span class="seriesInfo">DOI 10.17487/RFC9408</span>, <time datetime="2023-06" class="refDate">June 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9408">https://www.rfc-editor.org/rfc/rfc9408</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9417">[RFC9417]</dt>
+        <dd>
+<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Voyer, D.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"Service Assurance for Intent-Based Networking Architecture"</span>, <span class="seriesInfo">RFC 9417</span>, <span class="seriesInfo">DOI 10.17487/RFC9417</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9417">https://www.rfc-editor.org/rfc/rfc9417</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9418">[RFC9418]</dt>
+        <dd>
+<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lucente, P.</span>, <span class="refAuthor">Fasano, P.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"A YANG Data Model for Service Assurance"</span>, <span class="seriesInfo">RFC 9418</span>, <span class="seriesInfo">DOI 10.17487/RFC9418</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9418">https://www.rfc-editor.org/rfc/rfc9418</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9522">[RFC9522]</dt>
+      <dd>
+<span class="refAuthor">Farrel, A., Ed.</span>, <span class="refTitle">"Overview and Principles of Internet Traffic Engineering"</span>, <span class="seriesInfo">RFC 9522</span>, <span class="seriesInfo">DOI 10.17487/RFC9522</span>, <time datetime="2024-01" class="refDate">January 2024</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9522">https://www.rfc-editor.org/rfc/rfc9522</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="related-ietf-activities">
+<section id="appendix-A">
+      <h2 id="name-related-ietf-activities">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-related-ietf-activities" class="section-name selfRef">Related IETF Activities</a>
+      </h2>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="appendix-A-1.1">
+          <p id="appendix-A-1.1.1">Note: The models cited in this section are provided for illustration purposes. It is out of scope to recomend
+which models will be used as base to build the SIMAP.<a href="#appendix-A-1.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<div id="sec-ntw-topo">
+<section id="appendix-A.1">
+        <h3 id="name-network-topology">
+<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-network-topology" class="section-name selfRef">Network Topology</a>
+        </h3>
+<p id="appendix-A.1-1">Interestingly, we could not find any network topology definition in
+   IETF RFCs (not even in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>) or Internet-Drafts.  However, it is mentioned
+   in multiple documents.  As an example, in Overview and Principles of
+   Internet Traffic Engineering <span>[<a href="#RFC9522" class="cite xref">RFC9522</a>]</span>, which
+   mentions:<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<blockquote id="appendix-A.1-2">
+          <p id="appendix-A.1-2.1">To conduct performance studies and to support planning of existing
+   and future networks, a routing analysis may be performed to determine
+   the paths the routing protocols will choose for various traffic
+   demands, and to ascertain the utilization of network resources as
+   traffic is routed through the network.  Routing analysis captures the
+   selection of paths through the network, the assignment of traffic
+   across multiple feasible routes, and the multiplexing of IP traffic
+   over traffic trunks (if such constructs exist) and over the
+   underlying network infrastructure.  A model of network topology is
+   necessary to perform routing analysis.  A network topology model may
+   be extracted from:<a href="#appendix-A.1-2.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A.1-2.2.1">
+              <p id="appendix-A.1-2.2.1.1">Network architecture documents<a href="#appendix-A.1-2.2.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A.1-2.2.2">
+              <p id="appendix-A.1-2.2.2.1">Network designs<a href="#appendix-A.1-2.2.2.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A.1-2.2.3">
+              <p id="appendix-A.1-2.2.3.1">Information contained in router configuration files<a href="#appendix-A.1-2.2.3.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A.1-2.2.4">
+              <p id="appendix-A.1-2.2.4.1">Routing databases such as the link state database of an interior gateway protocol (IGP)<a href="#appendix-A.1-2.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A.1-2.2.5">
+              <p id="appendix-A.1-2.2.5.1">Routing tables<a href="#appendix-A.1-2.2.5.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="appendix-A.1-2.2.6">
+              <p id="appendix-A.1-2.2.6.1">Automated tools that discover and collate network topology information.<a href="#appendix-A.1-2.2.6.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<p id="appendix-A.1-2.3">Topology information may also be derived from servers that monitor
+   network state, and from servers that perform provisioning functions.<a href="#appendix-A.1-2.3" class="pilcrow">¶</a></p>
+</blockquote>
+<p id="appendix-A.1-3">Another example is <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> that defines native topology, abstract topology, black topology, and grey topology,
+   but all in the context of actual topology and physical topology that are not specifically defined.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-topology-abstraction">
+<section id="appendix-A.2">
+        <h3 id="name-topology-abstraction">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-topology-abstraction" class="section-name selfRef">Topology Abstraction</a>
+        </h3>
+<p id="appendix-A.2-1">Please refer to the following documents for some background on topology abstractions:<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A.2-2.1">
+            <p id="appendix-A.2-2.1.1"><span>[<a href="#RFC7926" class="cite xref">RFC7926</a>]</span> defines topology abstraction.<a href="#appendix-A.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.2">
+            <p id="appendix-A.2-2.2.1"><span><a href="https://rfc-editor.org/rfc/rfc8453#section-5" class="relref">Section 5</a> of [<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> describes the topology abstraction methods and discusses topology abstraction factors,
+types, and their context in the ACTN architecture.<a href="#appendix-A.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.3">
+            <p id="appendix-A.2-2.3.1"><span><a href="https://rfc-editor.org/rfc/rfc8795#section-3.13" class="relref">Section 3.13</a> of [<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> defines abstract TE topologies.<a href="#appendix-A.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.4">
+            <p id="appendix-A.2-2.4.1"><span><a href="https://rfc-editor.org/rfc/rfc8795#section-4.1" class="relref">Section 4.1</a> of [<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> defines native TE topologies.<a href="#appendix-A.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.5">
+            <p id="appendix-A.2-2.5.1"><span><a href="https://rfc-editor.org/rfc/rfc8795#section-4.4" class="relref">Section 4.4</a> of [<a href="#RFC8795" class="cite xref">RFC8795</a>]</span> describes how to deal with multiple abstract TE topologies provided by the same provider.<a href="#appendix-A.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.2-2.6">
+            <p id="appendix-A.2-2.6.1"><span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-te-topo-and-tunnel-modeling-06#section-1.3" class="relref">Section 1.3</a> of [<a href="#I-D.ietf-teas-te-topo-and-tunnel-modeling" class="cite xref">I-D.ietf-teas-te-topo-and-tunnel-modeling</a>]</span> gives some background on topology abstraction.<a href="#appendix-A.2-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="sec-core">
+<section id="appendix-A.3">
+        <h3 id="name-core-simap-components">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-core-simap-components" class="section-name selfRef">Core SIMAP Components</a>
+        </h3>
+<p id="appendix-A.3-1">The following specifications are relevant to the core functions provided by the SIMAP:<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A.3-2.1">
+            <p id="appendix-A.3-2.1.1">IETF network model and network topology model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span><a href="#appendix-A.3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.3-2.2">
+            <p id="appendix-A.3-2.2.1">A YANG grouping for geographic location <span>[<a href="#RFC9179" class="cite xref">RFC9179</a>]</span><a href="#appendix-A.3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.3-2.3">
+            <p id="appendix-A.3-2.3.1">IETF modules that augment <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> for different technologies:<a href="#appendix-A.3-2.3.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A.3-2.3.2.1">
+                <p id="appendix-A.3-2.3.2.1.1">A YANG data model for Traffic Engineering (TE) Topologies <span>[<a href="#RFC8795" class="cite xref">RFC8795</a>]</span><a href="#appendix-A.3-2.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-A.3-2.3.2.2">
+                <p id="appendix-A.3-2.3.2.2.1">A YANG data model for Layer 2 network topologies <span>[<a href="#RFC8944" class="cite xref">RFC8944</a>]</span><a href="#appendix-A.3-2.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-A.3-2.3.2.3">
+                <p id="appendix-A.3-2.3.2.3.1">A YANG data model for OSFP topology  <span>[<a href="#I-D.ogondio-opsawg-ospf-topology" class="cite xref">I-D.ogondio-opsawg-ospf-topology</a>]</span><a href="#appendix-A.3-2.3.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="appendix-A.3-2.3.2.4">
+                <p id="appendix-A.3-2.3.2.4.1">A YANG data model for IS-IS topology <span>[<a href="#I-D.ogondio-nmop-isis-topology" class="cite xref">I-D.ogondio-nmop-isis-topology</a>]</span><a href="#appendix-A.3-2.3.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+        </ul>
+</section>
+</div>
+<div id="sec-add">
+<section id="appendix-A.4">
+        <h3 id="name-additional-simap-components">
+<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-additional-simap-components" class="section-name selfRef">Additional SIMAP Components</a>
+        </h3>
+<p id="appendix-A.4-1">The SIMAP may need to link to the following models, some are already augmenting <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>:<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-A.4-2.1">
+            <p id="appendix-A.4-2.1.1">Service Attachment Point (SAP) <span>[<a href="#RFC9408" class="cite xref">RFC9408</a>]</span>, augments 'ietf-network' data model <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> by adding the SAP.<a href="#appendix-A.4-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.4-2.2">
+            <p id="appendix-A.4-2.2.1">SAIN <span>[<a href="#RFC9417" class="cite xref">RFC9417</a>]</span> <span>[<a href="#RFC9418" class="cite xref">RFC9418</a>]</span><a href="#appendix-A.4-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.4-2.3">
+            <p id="appendix-A.4-2.3.1">Network Inventory Model <span>[<a href="#I-D.ietf-ivy-network-inventory-yang" class="cite xref">I-D.ietf-ivy-network-inventory-yang</a>]</span> focuses on physical and virtual inventory.
+Logical inventory is currently outside of the scope. It does not augment <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>.<a href="#appendix-A.4-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.4-2.4">
+            <p id="appendix-A.4-2.4.1"><span>[<a href="#I-D.ietf-ivy-network-inventory-topology" class="cite xref">I-D.ietf-ivy-network-inventory-topology</a>]</span> correlates the network inventory with the general topology via RFC8345 augmentations that reference inventory.<a href="#appendix-A.4-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.4-2.5">
+            <p id="appendix-A.4-2.5.1">KPIs: delay, jitter, loss<a href="#appendix-A.4-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.4-2.6">
+            <p id="appendix-A.4-2.6.1">Attachment Circuits (ACs) <span>[<a href="#I-D.ietf-opsawg-ntw-attachment-circuit" class="cite xref">I-D.ietf-opsawg-ntw-attachment-circuit</a>]</span> and <span>[<a href="#I-D.ietf-opsawg-teas-attachment-circuit" class="cite xref">I-D.ietf-opsawg-teas-attachment-circuit</a>]</span><a href="#appendix-A.4-2.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.4-2.7">
+            <p id="appendix-A.4-2.7.1">Configuration: The L2SM <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span>, L3SM <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span>, L2NM <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span>, and L3NM <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#appendix-A.4-2.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-A.4-2.8">
+            <p id="appendix-A.4-2.8.1">Incident Management for Network Services <span>[<a href="#I-D.ietf-nmop-network-incident-yang" class="cite xref">I-D.ietf-nmop-network-incident-yang</a>]</span><a href="#appendix-A.4-2.8.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-B">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-B-1">Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
+Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
+Many thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva,
+Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
+Sergio Belotti, Aihua Guo and many others for their contributions, suggestions and comments.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Many thanks to Nigel Davis <a href="mailto:ndavis@ciena.com">ndavis@ciena.com</a> for the valuable discussions and his confirmation of the
+modelling requirements.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="contributors">
+<section id="appendix-C">
+      <h2 id="name-contributors">
+<a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Ahmed Elhassany</span></div>
+<div dir="auto" class="left"><span class="org">Swisscom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:Ahmed.Elhassany@swisscom.com" class="email">Ahmed.Elhassany@swisscom.com</a>
+</div>
+</address>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-D">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Olga Havel</span></div>
+<div dir="auto" class="left"><span class="org">Huawei</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:olga.havel@huawei.com" class="email">olga.havel@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Benoit Claise</span></div>
+<div dir="auto" class="left"><span class="org">Everything OPS</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:benoit@everything-ops.net" class="email">benoit@everything-ops.net</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Oscar Gonzalez de Dios</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:oscar.gonzalezdedios@telefonica.com" class="email">oscar.gonzalezdedios@telefonica.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Thomas Graf</span></div>
+<div dir="auto" class="left"><span class="org">Swisscom</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:thomas.graf@swisscom.com" class="email">thomas.graf@swisscom.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
