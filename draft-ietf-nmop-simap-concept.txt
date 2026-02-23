@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 22 August 2026                                   Everything OPS
+Expires: 27 August 2026                                   Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        18 February 2026
+                                                        23 February 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 22 August 2026.
+   This Internet-Draft will expire on 27 August 2026.
 
 Copyright Notice
 
@@ -993,13 +993,14 @@ Table of Contents
       understand the topology model of layers of any domain without
       having to understand the details of any technologies and domains.
 
-   REQ-GRAPH-TRAVERSAL:  Topology graph traversal.
-
-      SIMAP must be optimized for graph traversal for paths and for
-      graph traversal for the specific use case queries.  This means
-      that only providing link nodes and source and sink relationships
-      to termination-points may not be sufficient, we may need to have
-      the direct relationship between the termination points or nodes.
+   REQ-GRAPH-TRAVERSAL:  Topology graph traversal.to support both
+      network path queries and other specific use case queries.  This
+      means that the SIMAP must provide an efficient means to retrieve
+      network paths, to accommodate the difficulty operators experiences
+      when retrieving network paths via the chain termination-
+      point->link->termination-point, without having a direct adjacency
+      relation.  Additionally, SIMAP must enable efficient retrieval of
+      the data required by other use case queries.
 
    REQ-TOPOLOGY-ABSTRACTION:  Navigation across the abstraction levels.
 
