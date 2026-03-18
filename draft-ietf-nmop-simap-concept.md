@@ -8,7 +8,7 @@ submissiontype: IETF
 number:
 date:
 consensus: true
-v: 3
+v: 9
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
@@ -64,7 +64,9 @@ informative:
 --- abstract
 
 This document defines the concept of Service & Infrastructure Maps (SIMAP) and identifies a set of SIMAP
-requirements and use cases. The SIMAP was previously known as Digital Map.
+requirements and use cases. The SIMAP was previously known as Digital Map. SIMAP evolves the earlier ‘Digital Map’
+concept by making explicit the ties between service and infrastructure layers, clarifying expected
+outcomes for operations and automation, and addressing ambiguity associated with the term ‘digital.’
 
 The document intends to be used as a reference for the assessment of the various topology modules to meet
 SIMAP requirements.
@@ -89,7 +91,11 @@ core topological properties, and topological relationships (both inside each lay
 and between the layers), to ensure a multi-layered topology can be reconstructed, validated and queried in an
 unambiguous and interoperable manner.
 The core topological entities are the minimal set of objects required to represent a layer's topology (e.g., network, node, termination point, and link).
-The core topological properties are the essential attributes associated with these entities to enable topological reasoning (e.g., identity, topology type, entity role in topology, directionality, cardinality, and cost/weight).
+The core topological properties are the essential attributes associated with these entities (e.g., identity, topology type, entity
+role in topology,   directionality, cardinality, and cost/weight), enabling analysis of how the network structure affects services
+and operations. For example, topological reasoning can answer questions such as: 'If link X fails, what services are impacted?' or
+'What is the full end-to-end data path of the service flow?'.
+
 The additional concepts or attributes (such as capacity, operational state, performance metrics, or inventory data) are modelled outside of SIMAP,
 the core set provides the necessary structure to support these extensions without losing architectural consistency.
 
@@ -112,7 +118,12 @@ The SIMAP also provides write operations with the same set of APIs, not to chang
 as a northbound interface from the controller, but for both online and offline simulations,
 before applying the changes to the network via the normal controller operations.
 
-Both real network, online-simulation and offline-simulation APIs can be built on the same data model.
+Both real network, online simulation, and offline simulation APIs can be built on the same data model.
+The real network API reflects actual changes in the topology as reported by the SIMAP server.
+Online simulation applies hypothetical changes to the current live model to assess immediate impacts
+(e.g., if link X fails, what services are disrupted), without altering the real network.
+Offline simulation applies hypothetical changes to a saved or alternate model,
+useful for planning, training, or evaluating changes before deployment.
 Each data source is reported as a distinct topology instance, but when desired the real network and
 online simulation data can be merged into a single topology instance, while the offline simulation
 remains separate. The simulated topology instance can be matched directly to the corresponding
@@ -168,7 +179,7 @@ Topology layer:
 : The service layer represents the Service view of the connectivity, that can differ for
   different types of Services and for different providers/solutions.
 : The application/flow layer represents the view of Service data flows for
-  different classes of service - video, voice and data traffiC.
+  different classes of service - video, voice and data traffic.
   The layers may differ depending on the solution, so the bottom and
   top layers may not be the same across all solutions. We can illustrate
   the concept of topology layers by listing the common set — e.g.,
@@ -250,8 +261,8 @@ The client is responsible for forming valid API calls, handling authentication/a
 and translating the SIMAP into its own internal representation.
 
 SIMAP server:
-: Provider of the SIMAP API . An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
-building it from live network state or simulation scenarios.. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
+: Provider of the SIMAP API. An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
+building it from live network state or simulation scenarios. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
 validates input against the data model schema, persists changes (if any), and returns responses that conform to the SIMAP API specification.
 The server’s implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system—or
 be a standalone application/system—depending on the solution architecture.
@@ -706,7 +717,7 @@ REQ-GRAPH-TRAVERSAL:
 : Topology graph traversal.
 : SIMAP must be optimized for graph traversal to support both network path queries and other specific use case queries.
 This means that the SIMAP must provide an efficient means to retrieve network paths,
-to accommodate the difficulty operators experiences when retrieving network paths
+to accommodate the difficulty operators experience when retrieving network paths
 via the chain termination-point->link->termination-point, without having a direct adjacency relation.
 Additionally, SIMAP must enable efficient retrieval of the data required by other use case queries.
 
