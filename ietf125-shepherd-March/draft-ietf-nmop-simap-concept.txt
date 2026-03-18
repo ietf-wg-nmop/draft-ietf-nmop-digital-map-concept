@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 17 September 2026                                Everything OPS
+Expires: 19 September 2026                                Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                           16 March 2026
+                                                           18 March 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 September 2026.
+   This Internet-Draft will expire on 19 September 2026.
 
 Copyright Notice
 
@@ -368,10 +368,10 @@ Table of Contents
       authorization, parsing responses, and translating the SIMAP into
       its own internal representation.
 
-   SIMAP server:  Provider of the SIMAP API . An application or a system
+   SIMAP server:  Provider of the SIMAP API.  An application or a system
       that implements the API endpoints to expose the SIMAP data model
       to external consumers, building it from live network state or
-      simulation scenarios.. The server accepts requests to create,
+      simulation scenarios.  The server accepts requests to create,
       read, update, delete, or query instances of the SIMAP topology,
       validates input against the data model schema, persists changes
       (if any), and returns responses that conform to the SIMAP API
@@ -1013,7 +1013,7 @@ Table of Contents
       SIMAP must be optimized for graph traversal to support both
       network path queries and other specific use case queries.  This
       means that the SIMAP must provide an efficient means to retrieve
-      network paths, to accommodate the difficulty operators experiences
+      network paths, to accommodate the difficulty operators experience
       when retrieving network paths via the chain termination-
       point->link->termination-point, without having a direct adjacency
       relation.  Additionally, SIMAP must enable efficient retrieval of
