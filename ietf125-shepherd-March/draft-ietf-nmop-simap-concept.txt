@@ -259,7 +259,7 @@ Table of Contents
 
       The application/flow layer represents the view of Service data
       flows for different classes of service - video, voice and data
-      traffiC.  The layers may differ depending on the solution, so the
+      traffic.  The layers may differ depending on the solution, so the
       bottom and top layers may not be the same across all solutions.
       We can illustrate the concept of topology layers by listing the
       common set — e.g.,
