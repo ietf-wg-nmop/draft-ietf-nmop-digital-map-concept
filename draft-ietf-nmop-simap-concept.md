@@ -261,8 +261,8 @@ The client is responsible for forming valid API calls, handling authentication/a
 and translating the SIMAP into its own internal representation.
 
 SIMAP server:
-: Provider of the SIMAP API . An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
-building it from live network state or simulation scenarios.. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
+: Provider of the SIMAP API. An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
+building it from live network state or simulation scenarios. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
 validates input against the data model schema, persists changes (if any), and returns responses that conform to the SIMAP API specification.
 The server’s implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system—or
 be a standalone application/system—depending on the solution architecture.
@@ -717,7 +717,7 @@ REQ-GRAPH-TRAVERSAL:
 : Topology graph traversal.
 : SIMAP must be optimized for graph traversal to support both network path queries and other specific use case queries.
 This means that the SIMAP must provide an efficient means to retrieve network paths,
-to accommodate the difficulty operators experiences when retrieving network paths
+to accommodate the difficulty operators experience when retrieving network paths
 via the chain termination-point->link->termination-point, without having a direct adjacency relation.
 Additionally, SIMAP must enable efficient retrieval of the data required by other use case queries.
 
