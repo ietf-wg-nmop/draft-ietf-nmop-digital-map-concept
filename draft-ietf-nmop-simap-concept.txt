@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 27 August 2026                                   Everything OPS
+Expires: 19 September 2026                                Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                        23 February 2026
+                                                           18 March 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -20,7 +20,11 @@ Abstract
 
    This document defines the concept of Service & Infrastructure Maps
    (SIMAP) and identifies a set of SIMAP requirements and use cases.
-   The SIMAP was previously known as Digital Map.
+   The SIMAP was previously known as Digital Map. SIMAP evolves the
+   earlier ‘Digital Map’ concept by making explicit the ties between
+   service and infrastructure layers, clarifying expected outcomes for
+   operations and automation, and addressing ambiguity associated with
+   the term ‘digital.’
 
    The document intends to be used as a reference for the assessment of
    the various topology modules to meet SIMAP requirements.
@@ -51,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 August 2026.
+   This Internet-Draft will expire on 19 September 2026.
 
 Copyright Notice
 
@@ -130,13 +134,18 @@ Table of Contents
    topological entities are the minimal set of objects required to
    represent a layer's topology (e.g., network, node, termination point,
    and link).  The core topological properties are the essential
-   attributes associated with these entities to enable topological
-   reasoning (e.g., identity, topology type, entity role in topology,
-   directionality, cardinality, and cost/weight).  The additional
-   concepts or attributes (such as capacity, operational state,
-   performance metrics, or inventory data) are modelled outside of
-   SIMAP, the core set provides the necessary structure to support these
-   extensions without losing architectural consistency.
+   attributes associated with these entities (e.g., identity, topology
+   type, entity role in topology, directionality, cardinality, and cost/
+   weight), enabling analysis of how the network structure affects
+   services and operations.  For example, topological reasoning can
+   answer questions such as: 'If link X fails, what services are
+   impacted?' or 'What is the full end-to-end data path of the service
+   flow?'.
+
+   The additional concepts or attributes (such as capacity, operational
+   state, performance metrics, or inventory data) are modelled outside
+   of SIMAP, the core set provides the necessary structure to support
+   these extensions without losing architectural consistency.
 
    The SIMAP modelling also defines how to access other external models
    from a topology.  SIMAP is a topological model that is linked to
@@ -166,15 +175,21 @@ Table of Contents
    before applying the changes to the network via the normal controller
    operations.
 
-   Both real network, online-simulation and offline-simulation APIs can
-   be built on the same data model.  Each data source is reported as a
-   distinct topology instance, but when desired the real network and
-   online simulation data can be merged into a single topology instance,
-   while the offline simulation remains separate.  The simulated
-   topology instance can be matched directly to the corresponding real
-   network topology for comparison.  This approach preserves
-   independence between real and simulated data while enabling side by
-   side analysis.
+   Both real network, online simulation, and offline simulation APIs can
+   be built on the same data model.  The real network API reflects
+   actual changes in the topology as reported by the SIMAP server.
+   Online simulation applies hypothetical changes to the current live
+   model to assess immediate impacts (e.g., if link X fails, what
+   services are disrupted), without altering the real network.  Offline
+   simulation applies hypothetical changes to a saved or alternate
+   model, useful for planning, training, or evaluating changes before
+   deployment.  Each data source is reported as a distinct topology
+   instance, but when desired the real network and online simulation
+   data can be merged into a single topology instance, while the offline
+   simulation remains separate.  The simulated topology instance can be
+   matched directly to the corresponding real network topology for
+   comparison.  This approach preserves independence between real and
+   simulated data while enabling side by side analysis.
 
    This document does not specify a SIMAP implementation approach and
    what modelling language to use.  Also, how implementations are
@@ -244,7 +259,7 @@ Table of Contents
 
       The application/flow layer represents the view of Service data
       flows for different classes of service - video, voice and data
-      traffiC.  The layers may differ depending on the solution, so the
+      traffic.  The layers may differ depending on the solution, so the
       bottom and top layers may not be the same across all solutions.
       We can illustrate the concept of topology layers by listing the
       common set — e.g.,
@@ -353,10 +368,10 @@ Table of Contents
       authorization, parsing responses, and translating the SIMAP into
       its own internal representation.
 
-   SIMAP server:  Provider of the SIMAP API . An application or a system
+   SIMAP server:  Provider of the SIMAP API.  An application or a system
       that implements the API endpoints to expose the SIMAP data model
       to external consumers, building it from live network state or
-      simulation scenarios.. The server accepts requests to create,
+      simulation scenarios.  The server accepts requests to create,
       read, update, delete, or query instances of the SIMAP topology,
       validates input against the data model schema, persists changes
       (if any), and returns responses that conform to the SIMAP API
@@ -998,7 +1013,7 @@ Table of Contents
       SIMAP must be optimized for graph traversal to support both
       network path queries and other specific use case queries.  This
       means that the SIMAP must provide an efficient means to retrieve
-      network paths, to accommodate the difficulty operators experiences
+      network paths, to accommodate the difficulty operators experience
       when retrieving network paths via the chain termination-
       point->link->termination-point, without having a direct adjacency
       relation.  Additionally, SIMAP must enable efficient retrieval of
@@ -1427,9 +1442,9 @@ Table of Contents
               Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A YANG
               Network Data Model for Inventory Topology Mapping", Work
               in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-topology-05, 20 October 2025,
+              inventory-topology-06, 28 February 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-topology-05>.
+              network-inventory-topology-06>.
 
    [I-D.ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1493,9 +1508,9 @@ Table of Contents
               Q., Boucadair, M., and C. Jacquenet, "Network Digital
               Twin: Concepts and Reference Architecture", Work in
               Progress, Internet-Draft, draft-irtf-nmrg-network-digital-
-              twin-arch-11, 6 July 2025,
+              twin-arch-12, 27 February 2026,
               <https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-
-              network-digital-twin-arch-11>.
+              network-digital-twin-arch-12>.
 
    [I-D.ogondio-nmop-isis-topology]
               de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
