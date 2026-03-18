@@ -179,7 +179,7 @@ Topology layer:
 : The service layer represents the Service view of the connectivity, that can differ for
   different types of Services and for different providers/solutions.
 : The application/flow layer represents the view of Service data flows for
-  different classes of service - video, voice and data traffiC.
+  different classes of service - video, voice and data traffic.
   The layers may differ depending on the solution, so the bottom and
   top layers may not be the same across all solutions. We can illustrate
   the concept of topology layers by listing the common set — e.g.,
