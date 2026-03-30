@@ -383,7 +383,7 @@ Table of Contents
       (if any), and returns responses that conform to the SIMAP API
       specification.  The server's implementation may reside inside a
       controller, orchestrator, device, service manager, or any other
-      application/system—or be a standalone application/system—depending
+      application/system-or be a standalone application/system-depending
       on the solution architecture.  The server may offer ancillary
       services such as authentication, rate limiting, versioning,
       logging, and monitoring, but its primary role is to expose the
