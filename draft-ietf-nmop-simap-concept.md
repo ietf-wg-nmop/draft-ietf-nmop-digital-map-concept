@@ -64,9 +64,9 @@ informative:
 --- abstract
 
 This document defines the concept of Service & Infrastructure Maps (SIMAP) and identifies a set of SIMAP
-requirements and use cases. The SIMAP was previously known as Digital Map. SIMAP evolves the earlier ‘Digital Map’
+requirements and use cases. The SIMAP was previously known as Digital Map. SIMAP evolves the earlier 'Digital Map'
 concept by making explicit the ties between service and infrastructure layers, clarifying expected
-outcomes for operations and automation, and addressing ambiguity associated with the term ‘digital.’
+outcomes for operations and automation, and addressing ambiguity associated with the term 'digital.'
 
 The document intends to be used as a reference for the assessment of the various topology modules to meet
 SIMAP requirements.
@@ -138,6 +138,12 @@ strategies, the development of such models is outside the scope of this document
 
 # Terminology
 
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+"SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+"OPTIONAL" in this document are to be interpreted as described in BCP
+14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all
+capitals, as shown here.
+
 This document makes use of the following terms:
 
 Topology:
@@ -182,7 +188,7 @@ Topology layer:
   different classes of service - video, voice and data traffic.
   The layers may differ depending on the solution, so the bottom and
   top layers may not be the same across all solutions. We can illustrate
-  the concept of topology layers by listing the common set — e.g.,
+  the concept of topology layers by listing the common set - e.g.,
 
   * physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),
   * data link: L2 for Ethernet, LAGs and VLAN,
@@ -264,7 +270,7 @@ SIMAP server:
 : Provider of the SIMAP API. An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
 building it from live network state or simulation scenarios. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
 validates input against the data model schema, persists changes (if any), and returns responses that conform to the SIMAP API specification.
-The server’s implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system—or
+The server's implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system—or
 be a standalone application/system—depending on the solution architecture.
 The server may offer ancillary services such as authentication, rate limiting, versioning, logging, and monitoring,
 but its primary role is to expose the SIMAP via programmable interface.
@@ -778,8 +784,8 @@ OSPF/IS-IS processes, OSPF/IS-IS interfaces, and OSPF/IS-IS links.
 For instance, an IP interface that is supported by an Ethernet interface should be visible when moving between the corresponding layers.
 
 REQ-EXTENSIBLE:
-: SIMAP must be extensible with metadata. As examples, a controller or the client application could add a custom “location” attribute
-to a node to record its physical site, or a controller could attach a “vendorId” field to a device node.
+: SIMAP must be extensible with metadata. As examples, a controller or the client application could add a custom "location" attribute
+to a node to record its physical site, or a controller could attach a "vendorId" field to a device node.
 This demonstrates that arbitrary key‑value metadata can be appended to any element in the model without altering the core schema.
 
 REQ-PLUGG:
@@ -997,7 +1003,7 @@ customer network controller and multi-domain service controller)
 + In the context of {{?RFC8969}}, SIMAP can provide multi-layered topology model as part of device model, network model
 and network service model
 
-Appendix A documents some other IETF activities related to topology modeling, it does not want to prescribe how SIMAP
+Appendix A documents some other IETF activities related to topology modeling, it does not want to prescribe how SIMAP
 should be modeled or which base models should be used, and it is added for illustrational purposes only.
 Therefore it is not included in this section, but added to the Appendix.
 
@@ -1115,7 +1121,7 @@ Many thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio Domin
 Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
 Sergio Belotti, Aihua Guo and many others for their contributions, suggestions and comments.
 
-Many thanks to Nigel Davis <ndavis@ciena.com> for the valuable discussions and his confirmation of the
+Many thanks to Nigel Davis for the valuable discussions and his confirmation of the
 modelling requirements.
 
 
