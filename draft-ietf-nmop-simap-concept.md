@@ -270,8 +270,8 @@ SIMAP server:
 : Provider of the SIMAP API. An application or a system that implements the API endpoints to expose the SIMAP data model to external consumers,
 building it from live network state or simulation scenarios. The server accepts requests to create, read, update, delete, or query instances of the SIMAP topology,
 validates input against the data model schema, persists changes (if any), and returns responses that conform to the SIMAP API specification.
-The server's implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system—or
-be a standalone application/system—depending on the solution architecture.
+The server's implementation may reside inside a controller, orchestrator, device, service manager, or any other application/system-or
+be a standalone application/system-depending on the solution architecture.
 The server may offer ancillary services such as authentication, rate limiting, versioning, logging, and monitoring,
 but its primary role is to expose the SIMAP via programmable interface.
 
