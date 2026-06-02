@@ -61,6 +61,15 @@ normative:
 
 informative:
 
+ETSI-ZSM-019:
+    title: "Zero-Touch Network and Service Management (ZSM); ZSM Framework for NaaS"
+    author:
+      - org: ETSI
+    date: 2026-01
+    seriesinfo:
+      ETSI: "GR ZSM 019 V1.1.1"
+    target: "https://www.etsi.org/deliver/etsi_gr/ZSM/001_099/019/01.01.01_60/gr_ZSM019v010101p.pdf"
+
 --- abstract
 
 This document defines the concept of Service & Infrastructure Maps (SIMAP) and identifies a set of SIMAP
@@ -295,7 +304,7 @@ the SIMAP client application will be able to determine what logical resources ar
 used by a Service.  The supporting relations to the lowest layer, provided by the SIMAP server, will
 help the SIMAP client application to determine what physical resources are used by
 the Service. This addresses a requirement for systems to be able to provide topology and resource views of services,
-at different levels of abstraction, using the SIMAP [REF: ETSI ZSM 019 Clause 6].
+at different levels of abstraction, using the SIMAP [ETSI-ZSM-019].
 Knowing the physical resources a service uses enables capacity planning, fault isolation, performance monitoring, and accurate billing.
 
 
