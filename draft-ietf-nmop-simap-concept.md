@@ -60,8 +60,7 @@ contributor:
 normative:
 
 informative:
-
-ETSI-ZSM-019:
+  ETSI-ZSM-019:
     title: "Zero-Touch Network and Service Management (ZSM); ZSM Framework for NaaS"
     author:
       - org: ETSI
@@ -69,6 +68,7 @@ ETSI-ZSM-019:
     seriesinfo:
       ETSI: "GR ZSM 019 V1.1.1"
     target: "https://www.etsi.org/deliver/etsi_gr/ZSM/001_099/019/01.01.01_60/gr_ZSM019v010101p.pdf"
+
 
 --- abstract
 
