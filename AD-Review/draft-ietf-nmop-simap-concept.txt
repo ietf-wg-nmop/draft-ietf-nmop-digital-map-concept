@@ -416,9 +416,9 @@ Table of Contents
    determine what physical resources are used by the Service.  This
    addresses a requirement for systems to be able to provide topology
    and resource views of services, at different levels of abstraction,
-   using the SIMAP [REF: ETSI ZSM 019 Clause 6].  Knowing the physical
-   resources a service uses enables capacity planning, fault isolation,
-   performance monitoring, and accurate billing.
+   using the SIMAP [ETSI-ZSM-019].  Knowing the physical resources a
+   service uses enables capacity planning, fault isolation, performance
+   monitoring, and accurate billing.
 
 3.1.2.  Resource -> Service
 
