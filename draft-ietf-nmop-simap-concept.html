@@ -17,7 +17,7 @@ outcomes for operations and automation, and addressing ambiguity associated with
        The document intends to be used as a reference for the assessment of the various topology modules to meet
 SIMAP requirements. 
     " name="description">
-<meta content="xml2rfc 3.32.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="Service &amp; Infrastructure Maps" name="keyword">
 <meta content="Service emulation" name="keyword">
 <meta content="Automation" name="keyword">
@@ -35,18 +35,18 @@ SIMAP requirements.
 <meta content="Multi-layer" name="keyword">
 <meta content="draft-ietf-nmop-simap-concept-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.32.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.9.4
+    platformdirs 4.9.6
     pycountry 24.6.1
     PyYAML 6.0.3
-    requests 2.32.5
-    wcwidth 0.6.0
+    requests 2.33.1
+    wcwidth 0.7.0
 -->
 <link href="draft-ietf-nmop-simap-concept.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -313,16 +313,19 @@ h1, h2, h3, h4, h5, h6 {
   font-size-adjust: 0.5;
   color: var(--title-color);
 }
-h1#title {
-  font-size: 32px;
-  line-height: 40px;
-  clear: both;
-}
-h1#title, h1#rfcnum {
-  margin: 1.5em 0 0.2em;
-}
-h1#rfcnum + h1#title {
-  margin: 0.2em 0;
+h1 {
+  &#title {
+    font-size: 32px;
+    line-height: 40px;
+    clear: both;
+    margin: 1.5em 0 0.2em;
+  }
+  &#rfcnum {
+    margin: 1.5em 0 0.2em;
+    & + h1#title {
+      margin: 0.2em 0;
+    }
+  }
 }
 
 h1, h2, h3 {
@@ -342,10 +345,10 @@ h4, h5, h6 {
 #abstract+p {
   font-size: 18px;
   line-height: 24px;
-}
-#abstract+p code, #abstract+p samp, #abstract+p tt {
-  font-size: 16px;
-  line-height: 0;
+  & code, & samp, & tt {
+    font-size: 16px;
+    line-height: 0;
+  }
 }
 
 p {
@@ -356,59 +359,59 @@ p {
 div {
   margin: 0;
 }
-.alignRight.art-text {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
-  padding: 0.5em 1em 0;
-  margin-bottom: 0.5em;
-}
-.alignRight.art-text pre {
-  padding: 0;
-  width: auto;
-}
 .alignRight {
   margin: 1em 0;
-}
-.alignRight > *:first-child {
-  border: none;
-  margin: 0;
-  float: right;
-  clear: both;
-}
-.alignRight > *:nth-child(2) {
-  clear: both;
-  display: block;
-  border: none;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    margin: 0;
+    float: right;
+    clear: both;
+  }
+  & > *:nth-child(2) {
+    clear: both;
+    display: block;
+    border: none;
+  }
 }
 svg {
   display: block;
-}
-/* font-family isn't space-separated, but =~ will have to do */
-svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
-  font-family: var(--font-mono);
-}
-.alignCenter.art-text {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
-  padding: 0.5em 1em 0;
-  margin-bottom: 0.5em;
-}
-.alignCenter.art-text pre {
-  padding: 0;
-  width: auto;
+  /* font-family isn't space-separated, but =~ will have to do */
+  &[font-family~="monospace" i], & [font-family~="monospace" i] {
+    font-family: var(--font-mono);
+  }
 }
 .alignCenter {
   margin: 1em 0;
-}
-.alignCenter > *:first-child {
-  border: none;
-  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
-     support flexbox yet.
-  */
-  display: table;
-  margin: 0 auto;
+  &.art-text {
+    background-color: var(--highlight-color);
+    border: 1px solid var(--line-color);
+    border-radius: 3px;
+    padding: 0.5em 1em 0;
+    margin-bottom: 0.5em;
+    & pre {
+      padding: 0;
+      width: auto;
+    }
+  }
+  & > *:first-child {
+    border: none;
+    /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+       support flexbox yet.
+    */
+    display: table;
+    margin: 0 auto;
+  }
 }
 
 /* lists */
@@ -446,26 +449,25 @@ dl {
     --indent: 5ch;
     & > dt {
       min-width: calc(var(--indent) - 2ch);
+      float: none;
     }
-  }
-  &.olPercent > dt {
-    float: none;
   }
 
   dl > dd > & {
     margin-top: 0.5em;
     margin-bottom: 0;
   }
-}
-dl:not(.dlNewline) > dt {
-  float: left;
-  margin-right: 2ch;
-  min-width: 8ch;
-}
-dl > dd {
-  margin-bottom: .8em;
-  margin-left: var(--indent) !important; /* stupid element overrides */
-  min-height: 2ex;
+
+  &:not(.dlNewline) > dt {
+    float: left;
+    margin-right: 2ch;
+    min-width: 8ch;
+  }
+  & > dd {
+    margin-bottom: .8em;
+    margin-left: var(--indent) !important; /* stupid element overrides */
+    min-height: 2ex;
+  }
 }
 :is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0;
@@ -481,20 +483,22 @@ dl > dd {
 }
 
 /* links */
-a, a[href].selfRef:hover {
+a {
   text-decoration: none;
+  &[href] {
+    color: var(--link-color);
+    &:hover { text-decoration: underline; }
+    &.selfRef {
+      color: var(--text-color);
+      &:hover {
+        text-decoration: none;
+        background-color: var(--highlight-color);
+      }
+    }
+  }
 }
-a[href] {
-  color: var(--link-color);
-}
-a[href].selfRef, .iref + a[href].internal {
+.iref + a[href].internal {
   color: var(--text-color);
-}
-a[href]:hover {
-  text-decoration: underline;
-}
-a[href].selfRef:hover {
-  background-color: var(--highlight-color);
 }
 a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
   white-space: nowrap;
@@ -530,9 +534,9 @@ img {
 figure {
   margin: 0.5em 0;
   padding: 0;
-}
-figure blockquote {
-  margin: 0.8em 0.4em 0.4em;
+  & blockquote {
+    margin: 0.8em 0.4em 0.4em;
+  }
 }
 figcaption, caption {
   font-style: italic;
@@ -542,17 +546,19 @@ figcaption, caption {
 }
 @media screen {
   /* Auto-collapse boilerplate. */
-  :is(#status-of-memo, #copyright) p {
-    margin: -2px 0;
-    max-height: 0;
-    transition: max-height 2s ease, margin 0.5s ease 0.5s;
-    overflow: hidden;
-  }
-  :is(#status-of-memo, #copyright):hover p,
-  :is(#status-of-memo, #copyright) h2:target ~ p {
-    margin: 0.5em 0;
-    max-height: 500px;
-    overflow: auto;
+  :is(#status-of-memo, #copyright) {
+    & p {
+      margin: -2px 0;
+      max-height: 0;
+      transition: max-height 2s ease, margin 0.5s ease 0.5s;
+      overflow: hidden;
+    }
+    &:hover p,
+    & h2:target ~ p {
+      margin: 0.5em 0;
+      max-height: 500px;
+      overflow: auto;
+    }
   }
   pre, svg {
     display: inline-block;
@@ -602,25 +608,17 @@ table {
   max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
-}
-table.right {
-  margin-left: auto;
-}
-table.center {
-  margin-left: auto;
-  margin-right: auto;
-}
-table.left {
-  margin-right: auto;
-}
-table .text-left {
-  text-align: left;
-}
-table .text-center {
-  text-align: center;
-}
-table .text-right {
-  text-align: right;
+  &.right { margin-left: auto; }
+  &.center { margin-left: auto; margin-right: auto; }
+  &.left { margin-right: auto; }
+  & .text-left { text-align: left; }
+  & .text-center { text-align: center; }
+  & .text-right { text-align: right; }
+  & caption {
+    margin: 0;
+    padding: 3px 0 3px 1em;
+  }
+  & p { margin: 0; }
 }
 
 thead, tbody {
@@ -640,13 +638,6 @@ th {
 :is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
   background-color: var(--highlight-color);
 }
-table caption {
-  margin: 0;
-  padding: 3px 0 3px 1em;
-}
-table p {
-  margin: 0;
-}
 
 /* pilcrow */
 a.pilcrow {
@@ -657,18 +648,16 @@ a.pilcrow {
     color: var(--pilcrow-weak);
     &:hover { text-decoration: none; }
   }
-}
-@media not print {
-  :hover > a.pilcrow, a.pilcrow:focus {
-    opacity: 1;
+  @media not print {
+    :hover > &, &:focus {
+      opacity: 1;
+    }
+    &[href]:hover {
+      color: var(--pilcrow-strong);
+      background-color: transparent;
+    }
   }
-  a.pilcrow[href]:hover {
-    color: var(--pilcrow-strong);
-    background-color: transparent;
-  }
-}
-@media print {
-  a.pilcrow {
+  @media print {
     display: none;
   }
 }
@@ -727,9 +716,9 @@ sub, sup {
   font-size: 0.9em;
   font-style: italic;
   margin-top: 2em;
-}
-.docInfo .prepared {
-  float: right;
+  & .prepared {
+    float: right;
+  }
 }
 
 /* table of contents */
@@ -819,23 +808,27 @@ hr.addr {
   max-width: calc(100% - 16px);
 }
 @media (min-width: 500px) {
-  #authors-addresses > section {
-    column-count: 2;
-    column-gap: 20px;
-  }
-  #authors-addresses > section > h2 {
-    column-span: all;
-  }
-  /* hack for break-inside: avoid-column */
-  #authors-addresses address {
-    display: inline-block;
-    break-inside: avoid-column;
+  #authors-addresses {
+    & > section {
+      column-count: 2;
+      column-gap: 20px;
+    }
+    & > section > h2 {
+      column-span: all;
+    }
+    /* hack for break-inside: avoid-column */
+    & address {
+      display: inline-block;
+      break-inside: avoid-column;
+    }
   }
 }
 
 /* Comments */
-.rfcEditorRemove p:first-of-type {
-  font-style: italic;
+.rfcEditorRemove {
+  & p:first-of-type {
+    font-style: italic;
+  }
 }
 .cref {
   background-color: rgba(249, 232, 105, 0.3);
@@ -846,19 +839,21 @@ hr.addr {
 }
 
 @media screen {
-  #toc nav {
-    font-family: var(--font-title);
-    font-weight: 360;
-    & > ul { margin-bottom: 2em; }
-    & ul {
-      margin: 0 0 0 4px;
-      & :is(p, li) {
-        margin: 2px 0;
+  #toc {
+    & nav {
+      font-family: var(--font-title);
+      font-weight: 360;
+      & > ul { margin-bottom: 2em; }
+      & ul {
+        margin: 0 0 0 4px;
+        & :is(p, li) {
+          margin: 2px 0;
+        }
       }
     }
-  }
-  #toc a.toplink {
-    float: right;
+    & a.toplink {
+      float: right;
+    }
   }
 }
 @media not screen {
@@ -879,54 +874,54 @@ hr.addr {
     margin: 0;
     border-bottom: 1px solid #ccc;
     opacity: 0.6;
-  }
-  #toc h2 {
-    margin: 0;
-    padding: 2px 0 2px 6px;
-    padding-right: 1em;
-    font-size: 18px;
-    line-height: 24px;
-    min-width: 190px;
-    text-align: right;
-    background-color: #444;
-    color: white;
-    cursor: pointer;
-    &::before { /* css hamburger */
-      float: right;
-      position: relative;
-      width: 1em;
-      height: 1px;
-      left: -164px;
-      margin: 8px 0 0 0;
-      background: white none repeat scroll 0 0;
-      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
-      content: "";
+    & h2 {
+      margin: 0;
+      padding: 2px 0 2px 6px;
+      padding-right: 1em;
+      font-size: 18px;
+      line-height: 24px;
+      min-width: 190px;
+      text-align: right;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      &::before { /* css hamburger */
+        float: right;
+        position: relative;
+        width: 1em;
+        height: 1px;
+        left: -164px;
+        margin: 8px 0 0 0;
+        background: white none repeat scroll 0 0;
+        box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+        content: "";
+      }
     }
-  }
-  #toc nav {
-    display: none;
-    background-color: var(--background-color);
-    padding: 0.5em 1em 1em;
-    overflow: auto;
-    overscroll-behavior: contain;
-    height: calc(100vh - 48px);
-    border-left: 1px solid #ddd;
-  }
-  #toc.active {
-    opacity: 1;
-    & nav { display: block; }
-  }
-  /* Make the collapsed ToC header render white on gray also when it's a link */
-  #toc h2 a,
-  #toc h2 a:is(:link, :focus, :hover),
-  #toc a.toplink,
-  #toc a.toplink:hover {
-    color: white;
-    background-color: #444;
-    text-decoration: none;
-  }
-  #toc a.toplink {
-    margin: 2px 0.5em 0;
+    & nav {
+      display: none;
+      background-color: var(--background-color);
+      padding: 0.5em 1em 1em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      height: calc(100vh - 48px);
+      border-left: 1px solid #ddd;
+    }
+    &.active {
+      opacity: 1;
+      & nav { display: block; }
+    }
+    /* Make the collapsed ToC header render white on gray also when it's a link */
+    & h2 a,
+    & h2 a:is(:link, :focus, :hover),
+    & a.toplink,
+    & a.toplink:hover {
+      color: white;
+      background-color: #444;
+      text-decoration: none;
+    }
+    & a.toplink {
+      margin: 2px 0.5em 0;
+    }
   }
 }
 
@@ -945,26 +940,26 @@ hr.addr {
     margin: 0;
     padding: 0;
     z-index: 1;
-  }
-  #toc h2 {
-    margin: 0;
-    padding: 0.25em 1em 1em 0;
-  }
-  #toc nav {
-    display: block;
-    height: calc(90vh - 84px);
-    bottom: 0;
-    padding: 0.5em 0 2em;
-    overflow: auto;
-    overscroll-behavior: contain;
-    scrollbar-width: thin;
+    & h2 {
+      margin: 0;
+      padding: 0.25em 1em 1em 0;
+    }
+    & nav {
+      display: block;
+      height: calc(90vh - 84px);
+      bottom: 0;
+      padding: 0.5em 0 2em;
+      overflow: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+    }
+    & a.toplink {
+      margin: 8px 0.5em 0;
+    }
   }
   img { /* future proofing */
     max-width: 100%;
     height: auto;
-  }
-  #toc a.toplink {
-    margin: 8px 0.5em 0;
   }
 }
 
@@ -980,12 +975,13 @@ hr.addr {
   #n-copyright-notice {
     border-bottom: none;
   }
-  #toc, #n-introduction {
-    page-break-before: always;
-  }
   #toc {
+    page-break-before: always;
     border-top: none;
     padding-top: 0;
+  }
+  #n-introduction {
+    page-break-before: always;
   }
   figure, pre, .vcard {
     page-break-inside: avoid;
@@ -1047,17 +1043,19 @@ hr.addr {
 }
 
 /* SVG Trick: a prefix match works because only black and white are allowed */
-svg :is([stroke="black"], [stroke^="#000"]) {
-  stroke: var(--text-color);
-}
-svg :is([stroke="white"], [stroke^="#fff"]) {
-  stroke: var(--background-color);
-}
-svg :is([fill="black"], [fill^="#000"], :not([fill])) {
-  fill: var(--text-color);
-}
-svg :is([fill="white"], [fill^="#fff"]) {
-  fill: var(--background-color);
+svg {
+  & :is([stroke="black"], [stroke^="#000"]) {
+    stroke: var(--text-color);
+  }
+  & :is([stroke="white"], [stroke^="#fff"]) {
+    stroke: var(--background-color);
+  }
+  & :is([fill="black"], [fill^="#000"], :not([fill])) {
+    fill: var(--text-color);
+  }
+  & :is([fill="white"], [fill^="#fff"]) {
+    fill: var(--background-color);
+  }
 }
 </style>
 
@@ -1067,11 +1065,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SIMAP Concept &amp; Needs</td>
-<td class="right">March 2026</td>
+<td class="right">June 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Havel, et al.</td>
-<td class="center">Expires 2 October 2026</td>
+<td class="center">Expires 5 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1084,12 +1082,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-nmop-simap-concept-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-03-31" class="published">31 March 2026</time>
+<time datetime="2026-06-03" class="published">3 June 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-10-02">2 October 2026</time></dd>
+<dd class="expires"><time datetime="2026-12-05">5 December 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1151,7 +1149,7 @@ SIMAP requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 5 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1317,10 +1315,13 @@ associated requirements and use cases.<a href="#section-1-1" class="pilcrow">¶<
 <p id="section-1-2">SIMAP is a data model that provides a topological view of the operator's networks and services,
 including how it is connected to other models (e.g., inventory) and external data sources (e.g., observability data, and
 operational knowledge). This model represents a multi-layered topology
-and offers mechanisms to navigate amongst layers and correlate between them.
-This includes layers from physical topology to service topology.
+and offers mechanisms to navigate amongst layers and correlate between them,
+including layers from physical to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
-technologies (Optical, IP, etc.).<a href="#section-1-2" class="pilcrow">¶</a></p>
+technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's
+intent that it be concretely
+implementable, the actual data model specification — including the choice of modelling language and
+implementation approach — is out of scope of this document and will be defined in companion specifications.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Specifically, the SIMAP modelling defines the core topological entities at each layer,
 core topological properties, and topological relationships (both inside each layer
 and between the layers), to ensure a multi-layered topology can be reconstructed, validated and queried in an
@@ -1359,10 +1360,6 @@ online simulation data can be merged into a single topology instance, while the 
 remains separate. The simulated topology instance can be matched directly to the corresponding
 real network topology for comparison. This approach preserves independence between real and
 simulated data while enabling side by side analysis.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">This document does not specify a SIMAP implementation approach and what modelling language to use.
-Also, how implementations are connected to SIMAP is implementation- and deployment- specific.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">While the requirements described herein may require various modeling
-strategies, the development of such models is outside the scope of this document.<a href="#section-1-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="terminology">
@@ -1377,149 +1374,159 @@ strategies, the development of such models is outside the scope of this document
 capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">This document makes use of the following terms:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-2-3">
-        <dt id="section-2-3.1">Topology:</dt>
+        <dt id="section-2-3.1">Domain:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.2">
-          <p id="section-2-3.2.1">Topology refers to the network and service topology.
+          <p id="section-2-3.2.1">A collection of network resources, services, and management
+functions that are administered under a common set of policies or operational
+control. Domains may correspond to technology boundaries (e.g., optical, IP),
+functional areas (e.g., access, core, data center), or administrative
+partitions. Multi‑domain SIMAP operations involve correlating topology and
+service information across such domains.<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.3">Topology:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.4">
+          <p id="section-2-3.4.1">Topology refers to the network and service topology.
 A network topology defines how physical or logical nodes, links and
 termination points are related and arranged. A Service topology defines how
 service components (e.g., VPN instances, customer interfaces, and
 customer links) between customer sites are interrelated and
-arranged.<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-3.3"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.4">
-          <p id="section-2-3.4.1">There are several types of topologies: point-to-point,
-bus, ring, star, tree, mesh, hybrid, and daisy chain.<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
+arranged.<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.5"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.6">
-          <p id="section-2-3.6.1">Topologies may be unidirectional (all links unidirectional) or bidirectional (all links bidirectional), or contain combination of unidirectional and bidirectional links.<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.6.1">There are several types of topologies: point-to-point,
+bus, ring, star, tree, mesh, hybrid, and daisy chain.<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.7">Multi-layered topology:</dt>
+<dt id="section-2-3.7"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.8">
-          <p id="section-2-3.8.1">A multi-layered topology models relationships between different topology layers,
+          <p id="section-2-3.8.1">Topologies may be unidirectional (all links unidirectional) or bidirectional (all links bidirectional), or contain combination of unidirectional and bidirectional links.<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.9">Multi-layered topology:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.10">
+          <p id="section-2-3.10.1">A multi-layered topology models relationships between different topology layers,
 where each layer represents a connectivity aspect of the network
 and services that needs to be configured, controlled and monitored.
-Each topology layer has a separate lifecycle.<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-3.9"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.10">
-          <p id="section-2-3.10.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> also refers to this multi-layered topology as topology hierarchy (stack). It
-also uses layers when describing supporting relations (represent layered network topologies),
-underlay/overlay, network nodes and layering information. <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> states that the model can be
-used for representation of layered network topologies.<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+Each topology layer has a separate lifecycle.<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.11"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.12">
-          <p id="section-2-3.12.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> is flexible and can support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
-or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
-Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.12.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> also refers to this multi-layered topology as topology hierarchy (stack). It
+also uses layers when describing supporting relations (represent layered network topologies),
+underlay/overlay, network nodes and layering information. <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> states that the model can be
+used for representation of layered network topologies.<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.13">Topology layer:</dt>
+<dt id="section-2-3.13"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.14">
-          <p id="section-2-3.14.1">A topology layer represents Topology at a single layer in the multi-layered topology.<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.14.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> is flexible and can support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
+or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
+Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.15"></dt>
+<dt id="section-2-3.15">Topology layer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.16">
-          <p id="section-2-3.16.1">The topology layer can also represent what needs to be managed by a
-specific user or client application, for example the IGP layer can be of interest to the operator
-troubleshooting or optimizing the routing, while the optical layer may be
-of interest to the user managing the optical network.<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.16.1">A topology layer represents Topology at a single layer in the multi-layered topology.<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.17"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.18">
-          <p id="section-2-3.18.1">Some topology layers may relate closely to OSI layers, like Layer 1 topology
-for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
-IPv6 topologies.<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.18.1">The topology layer can also represent what needs to be managed by a
+specific user or client application, for example the IGP layer can be of interest to the operator
+troubleshooting or optimizing the routing, while the optical layer may be
+of interest to the user managing the optical network.<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.19"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.20">
-          <p id="section-2-3.20.1">Some topology layers represent the network topology of Layer 3 control protocols, like OSPF, IS-IS, or BGP.<a href="#section-2-3.20.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.20.1">Some topology layers may relate closely to OSI layers, like Layer 1 topology
+for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
+IPv6 topologies.<a href="#section-2-3.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.21"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.22">
-          <p id="section-2-3.22.1">The service layer represents the Service view of the connectivity, that can differ for
-different types of Services and for different providers/solutions.<a href="#section-2-3.22.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.22.1">Some topology layers represent the network topology of Layer 3 control protocols, like OSPF, IS-IS, or BGP.<a href="#section-2-3.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.23"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.24">
-          <p id="section-2-3.24.1">The application/flow layer represents the view of Service data flows for
+          <p id="section-2-3.24.1">The service layer represents the Service view of the connectivity, that can differ for
+different types of Services and for different providers/solutions.<a href="#section-2-3.24.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.25"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.26">
+          <p id="section-2-3.26.1">The application/flow layer represents the view of Service data flows for
 different classes of service - video, voice and data traffic.
 The layers may differ depending on the solution, so the bottom and
 top layers may not be the same across all solutions. We can illustrate
-the concept of topology layers by listing the common set - e.g.,<a href="#section-2-3.24.1" class="pilcrow">¶</a></p>
+the concept of topology layers by listing the common set - e.g.,<a href="#section-2-3.26.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2-3.24.2.1">
-              <p id="section-2-3.24.2.1.1">physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),<a href="#section-2-3.24.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-2-3.26.2.1">
+              <p id="section-2-3.26.2.1.1">physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),<a href="#section-2-3.26.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.2">
-              <p id="section-2-3.24.2.2.1">data link: L2 for Ethernet, LAGs and VLAN,<a href="#section-2-3.24.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.2">
+              <p id="section-2-3.26.2.2.1">data link: L2 for Ethernet, LAGs and VLAN,<a href="#section-2-3.26.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.3">
-              <p id="section-2-3.24.2.3.1">network: L3 for IPv4 and IPv6,<a href="#section-2-3.24.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.3">
+              <p id="section-2-3.26.2.3.1">network: L3 for IPv4 and IPv6,<a href="#section-2-3.26.2.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.4">
-              <p id="section-2-3.24.2.4.1">IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,<a href="#section-2-3.24.2.4.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.4">
+              <p id="section-2-3.26.2.4.1">IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,<a href="#section-2-3.26.2.4.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.5">
-              <p id="section-2-3.24.2.5.1">tunnel: for transport tunnels and paths, for MPLS and SRv6,<a href="#section-2-3.24.2.5.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.5">
+              <p id="section-2-3.26.2.5.1">tunnel: for transport tunnels and paths, for MPLS and SRv6,<a href="#section-2-3.26.2.5.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.6">
-              <p id="section-2-3.24.2.6.1">service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,<a href="#section-2-3.24.2.6.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.6">
+              <p id="section-2-3.26.2.6.1">service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,<a href="#section-2-3.26.2.6.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.7">
-              <p id="section-2-3.24.2.7.1">application: for video, voice and data traffic flows.<a href="#section-2-3.24.2.7.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.7">
+              <p id="section-2-3.26.2.7.1">application: for video, voice and data traffic flows.<a href="#section-2-3.26.2.7.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-2-3.24.3">However, this list is illustrative only; it is not a prescriptive requirement.
+<p id="section-2-3.26.3">However, this list is illustrative only; it is not a prescriptive requirement.
 Different solutions may adopt alternative layering schemes or combine layers
 differently. Therefore, we will present the above as an example of one possible
-solution, while keeping the definition flexible enough to accommodate flexible layering.<a href="#section-2-3.24.3" class="pilcrow">¶</a></p>
+solution, while keeping the definition flexible enough to accommodate flexible layering.<a href="#section-2-3.26.3" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.25">Service:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.26">
-          <p id="section-2-3.26.1">A service represents network connectivity service provided over a network that enables devices, systems, or networks to
+<dt id="section-2-3.27">Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.28">
+          <p id="section-2-3.28.1">A service represents network connectivity service provided over a network that enables devices, systems, or networks to
 communicate and exchange data with each other. It provides the underlying infrastructure and mechanisms
 necessary for establishing, maintaining, and managing connections between different endpoints.
-The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-3.26.1" class="pilcrow">¶</a></p>
+The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-3.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.27">Resource:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.28">
-          <p id="section-2-3.28.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-3.28.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-3.29">Termination Point:</dt>
+<dt id="section-2-3.29">Resource:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.30">
-          <p id="section-2-3.30.1">Defined in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, as follows:<a href="#section-2-3.30.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.30.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-3.30.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.31"></dt>
+<dt id="section-2-3.31">Termination Point:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.32">
-          <p id="section-2-3.32.1">The network-topology module defines a topology graph and components from which it is
-composed: nodes, edges, and termination points.  Nodes (from the "ietf-network" module) represent
-graph vertices and links represent graph edges.  Nodes also contain termination points that anchor the
-links.<a href="#section-2-3.32.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.32.1">Defined in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, as follows:<a href="#section-2-3.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.33"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.34">
-          <p id="section-2-3.34.1">A node has a list of termination points that are used to terminate links. An example of a termination point might
+          <p id="section-2-3.34.1">The network-topology module defines a topology graph and components from which it is
+composed: nodes, edges, and termination points.  Nodes (from the "ietf-network" module) represent
+graph vertices and links represent graph edges.  Nodes also contain termination points that anchor the
+links.<a href="#section-2-3.34.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.35"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.36">
+          <p id="section-2-3.36.1">A node has a list of termination points that are used to terminate links. An example of a termination point might
 be a physical or logical port or, more generally, an interface.
 Like a node, a termination point can in turn be supported by an underlying termination point, contained in the
-supporting node of the underlay network.<a href="#section-2-3.34.1" class="pilcrow">¶</a></p>
+supporting node of the underlay network.<a href="#section-2-3.36.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
@@ -1623,7 +1630,7 @@ the SIMAP client application will be able to determine what logical resources ar
 used by a Service.  The supporting relations to the lowest layer, provided by the SIMAP server, will
 help the SIMAP client application to determine what physical resources are used by
 the Service. This addresses a requirement for systems to be able to provide topology and resource views of services,
-at different levels of abstraction, using the SIMAP [REF: ETSI ZSM 019 Clause 6].
+at different levels of abstraction, using the SIMAP <span>[<a href="#ETSI-ZSM-019" class="cite xref">ETSI-ZSM-019</a>]</span>.
 Knowing the physical resources a service uses enables capacity planning, fault isolation, performance monitoring, and accurate billing.<a href="#section-3.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2717,8 +2724,36 @@ via SIMAP APIs to a client application<a href="#section-4.3-2.10.1" class="pilcr
           <dd class="break"></dd>
 <dt id="section-4.3-2.11">REQ-SECURITY:</dt>
           <dd style="margin-left: 1.5em" id="section-4.3-2.12">
-            <p id="section-4.3-2.12.1">The conventional NACM control access rules <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> should apply. This includes module control access rules,
-protocol operation control access rules, data node control access rules, and notification control access rules.<a href="#section-4.3-2.12.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-2.12.1">Any SIMAP interface MUST support strong client authentication and authorization before granting
+access to SIMAP operations and data.<a href="#section-4.3-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.13"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.14">
+            <p id="section-4.3-2.14.1">For YANG-based Netconf and RESTCONF protocols, access control SHOULD follow the Network
+Configuration Access Control Model (NACM) [RFC8341].<a href="#section-4.3-2.14.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.15"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.16">
+            <p id="section-4.3-2.16.1">For non YANG protocols, implementations MUST provide an access control
+mechanism with similar level of protection to NACM, including fine grained
+authorization, role based access, and the ability to restrict access to
+sensitive topology and service and network data.<a href="#section-4.3-2.16.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.17"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.18">
+            <p id="section-4.3-2.18.1">Because SIMAP connects highly sensitive multi layer topology with
+service and network data, implementations MUST ensure confidentiality,
+integrity, and replay protection for all SIMAP interactions, using
+security mechanisms appropriate to the transport protocol (e.g., TLS, SSH).<a href="#section-4.3-2.18.1" class="pilcrow">¶</a></p>
+</dd>
+          <dd class="break"></dd>
+<dt id="section-4.3-2.19"></dt>
+          <dd style="margin-left: 1.5em" id="section-4.3-2.20">
+            <p id="section-4.3-2.20.1">SIMAP implementations MUST prevent unauthorized write or simulation operations
+and ensure that simulation functions cannot become unintended configuration changes.<a href="#section-4.3-2.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
@@ -2820,9 +2855,74 @@ Therefore it is not included in this section, but added to the Appendix.<a href=
       <h2 id="name-security-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-6-1">As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations other
-that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4.3</a>.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2"><span><a href="https://rfc-editor.org/rfc/rfc8345#section-8" class="relref">Section 8</a> of [<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> discusses security aspects that will be useful when designing the SIMAP solution.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-1">SIMAP provides a unified access point to multi layer topology, and relations to services
+and resources across network domains. Although this document defines concepts and
+implementation requirements rather than a concrete implementations and
+protocols, these requirements introduce significant security considerations
+that any SIMAP implementation or protocol MUST address.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="section-6-2">
+        <dt id="section-6-2.1">Data sensitivity:</dt>
+        <dd style="margin-left: 1.5em" id="section-6-2.2">
+          <p id="section-6-2.2.1">SIMAP aggregates information that is highly sensitive in operational
+environments, including physical/logical/service topology, logical to physical relations,
+service relations, identifiers such as SRv6 SIDs, and references to
+configuration, inventory, assurance, and telemetry systems. Unauthorized read
+access to this information could enable targeted attacks, lateral movement, or
+large scale service disruption. Implementations MUST ensure that
+confidentiality protections and fine grained access control policies are
+applied to all SIMAP data.<a href="#section-6-2.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-6-2.3">Authentication:</dt>
+        <dd style="margin-left: 1.5em" id="section-6-2.4">
+          <p id="section-6-2.4.1">Any SIMAP implementation, regardless of modelling language or protocol,
+MUST provide strong client authentication before granting access to SIMAP data or operations.
+Authentication mechanisms depend on the underlying protocol binding (e.g., TLS
+client certificates, SSH keys, OAuth based API authentication), but the
+requirement for strong authentication is universal.<a href="#section-6-2.4.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-6-2.5">Authorization and protocol binding scope:</dt>
+        <dd style="margin-left: 1.5em" id="section-6-2.6">
+          <p id="section-6-2.6.1">Because SIMAP explicitly allows non YANG protocol bindings (REQ PLUGG), NACM
+applies only to YANG based bindings. Non YANG bindings MUST provide an
+access control mechanism that offers protections equivalent to NACM, including
+role based authorization, fine grained access restrictions, and the ability to
+limit access to sensitive topology and service mapping information.<a href="#section-6-2.6.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-6-2.7">Write and simulation operations:</dt>
+        <dd style="margin-left: 1.5em" id="section-6-2.8">
+          <p id="section-6-2.8.1">SIMAP supports operations that may modify data or simulate modifications (e.g.,
+what if analysis). Even when write operations are limited to simulation,
+implementations MUST ensure that such operations cannot become unintended
+configuration changes, and that simulation results cannot be used to
+infer privileged or hidden information.<a href="#section-6-2.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-6-2.9">Cross domain aggregation:</dt>
+        <dd style="margin-left: 1.5em" id="section-6-2.10">
+          <p id="section-6-2.10.1">SIMAP may expose information aggregated from multiple administrative domains.
+Implementations MUST ensure that access control policies are consistently
+enforced across domains and that cross domain data leakage does not occur.
+Policy mismatches or inconsistent authorization models across domains can
+create unintended disclosure paths.<a href="#section-6-2.10.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-6-2.11">Transport security:</dt>
+        <dd style="margin-left: 1.5em" id="section-6-2.12">
+          <p id="section-6-2.12.1">SIMAP implementations MUST ensure confidentiality, integrity, and replay
+protection for all protocol exchanges, regardless of the underlying protocol
+binding. Transport layer security mechanisms such as TLS [RFC8446] or SSH
+[RFC4253] MUST be used where applicable.<a href="#section-6-2.12.1" class="pilcrow">¶</a></p>
+</dd>
+      <dd class="break"></dd>
+</dl>
+<p id="section-6-3">These considerations are not exhaustive; protocol specifications and
+implementations of SIMAP MUST define additional security mechanisms appropriate
+to their deployment environments.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4"><span><a href="https://rfc-editor.org/rfc/rfc8345#section-8" class="relref">Section 8</a> of [<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> discusses further security consideration for YANG, NECONF,
+RESTCONF and specifically for ietf-network and ietf-network-topology modules.<a href="#section-6-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -2849,12 +2949,8 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-        <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8341">[RFC8341]</dt>
       <dd>
-<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2865,13 +2961,17 @@ that those discussed in <a href="#sec-arch" class="auto internal xref">Section 4
 <a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
+<dt id="ETSI-ZSM-019">[ETSI-ZSM-019]</dt>
+        <dd>
+<span class="refAuthor">ETSI</span>, <span class="refTitle">"Zero-Touch Network and Service Management (ZSM); ZSM Framework for NaaS"</span>, <span class="seriesInfo">ETSI GR ZSM 019 V1.1.1</span>, <time datetime="2026-01" class="refDate">January 2026</time>, <span>&lt;<a href="https://www.etsi.org/deliver/etsi_gr/ZSM/001_099/019/01.01.01_60/gr_ZSM019v010101p.pdf">https://www.etsi.org/deliver/etsi_gr/ZSM/001_099/019/01.01.01_60/gr_ZSM019v010101p.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-ivy-network-inventory-topology">[I-D.ietf-ivy-network-inventory-topology]</dt>
         <dd>
-<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Zhou, C.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Network Data Model for Inventory Topology Mapping"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-topology-06</span>, <time datetime="2026-02-28" class="refDate">28 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology-06">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Wu, B.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Zhou, C.</span>, and <span class="refAuthor">Q. Wu</span>, <span class="refTitle">"A YANG Network Data Model for Inventory Topology Mapping"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-topology-07</span>, <time datetime="2026-05-19" class="refDate">19 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology-07">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-topology-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-ivy-network-inventory-yang">[I-D.ietf-ivy-network-inventory-yang]</dt>
         <dd>
-<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-14</span>, <time datetime="2026-02-05" class="refDate">5 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-14">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-14</a>&gt;</span>. </dd>
+<span class="refAuthor">Yu, C.</span>, <span class="refAuthor">Belotti, S.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Peruzzini, F.</span>, and <span class="refAuthor">P. Bedard</span>, <span class="refTitle">"A Base YANG Data Model for Network Inventory"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-ivy-network-inventory-yang-18</span>, <time datetime="2026-05-27" class="refDate">27 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-18">https://datatracker.ietf.org/doc/html/draft-ietf-ivy-network-inventory-yang-18</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-nmop-network-anomaly-architecture">[I-D.ietf-nmop-network-anomaly-architecture]</dt>
         <dd>
