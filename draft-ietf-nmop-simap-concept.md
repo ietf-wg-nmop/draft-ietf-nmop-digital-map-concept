@@ -160,7 +160,7 @@ Domain:
   functional areas (e.g., access, core, data center), or administrative
   partitions. Multi‑domain SIMAP operations involve correlating topology and
   service information across such domains.
-  
+
 Topology:
 : Topology refers to the network and service topology.
   A network topology defines how physical or logical nodes, links and
