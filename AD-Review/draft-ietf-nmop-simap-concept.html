@@ -1318,7 +1318,8 @@ operational knowledge). This model represents a multi-layered topology
 and offers mechanisms to navigate amongst layers and correlate between them,
 including layers from physical to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
-technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's intent that it be concretely
+technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's
+intent that it be concretely
 implementable, the actual data model specification — including the choice of modelling language and
 implementation approach — is out of scope of this document and will be defined in companion specifications.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Specifically, the SIMAP modelling defines the core topological entities at each layer,
@@ -1373,149 +1374,159 @@ simulated data while enabling side by side analysis.<a href="#section-1-8" class
 capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">This document makes use of the following terms:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-2-3">
-        <dt id="section-2-3.1">Topology:</dt>
+        <dt id="section-2-3.1">Domain:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.2">
-          <p id="section-2-3.2.1">Topology refers to the network and service topology.
+          <p id="section-2-3.2.1">A collection of network resources, services, and management
+functions that are administered under a common set of policies or operational
+control. Domains may correspond to technology boundaries (e.g., optical, IP),
+functional areas (e.g., access, core, data center), or administrative
+partitions. Multi‑domain SIMAP operations involve correlating topology and
+service information across such domains.<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.3">Topology:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.4">
+          <p id="section-2-3.4.1">Topology refers to the network and service topology.
 A network topology defines how physical or logical nodes, links and
 termination points are related and arranged. A Service topology defines how
 service components (e.g., VPN instances, customer interfaces, and
 customer links) between customer sites are interrelated and
-arranged.<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-3.3"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.4">
-          <p id="section-2-3.4.1">There are several types of topologies: point-to-point,
-bus, ring, star, tree, mesh, hybrid, and daisy chain.<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
+arranged.<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.5"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.6">
-          <p id="section-2-3.6.1">Topologies may be unidirectional (all links unidirectional) or bidirectional (all links bidirectional), or contain combination of unidirectional and bidirectional links.<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.6.1">There are several types of topologies: point-to-point,
+bus, ring, star, tree, mesh, hybrid, and daisy chain.<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.7">Multi-layered topology:</dt>
+<dt id="section-2-3.7"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.8">
-          <p id="section-2-3.8.1">A multi-layered topology models relationships between different topology layers,
+          <p id="section-2-3.8.1">Topologies may be unidirectional (all links unidirectional) or bidirectional (all links bidirectional), or contain combination of unidirectional and bidirectional links.<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.9">Multi-layered topology:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.10">
+          <p id="section-2-3.10.1">A multi-layered topology models relationships between different topology layers,
 where each layer represents a connectivity aspect of the network
 and services that needs to be configured, controlled and monitored.
-Each topology layer has a separate lifecycle.<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-3.9"></dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.10">
-          <p id="section-2-3.10.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> also refers to this multi-layered topology as topology hierarchy (stack). It
-also uses layers when describing supporting relations (represent layered network topologies),
-underlay/overlay, network nodes and layering information. <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> states that the model can be
-used for representation of layered network topologies.<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+Each topology layer has a separate lifecycle.<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.11"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.12">
-          <p id="section-2-3.12.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> is flexible and can support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
-or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
-Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.12.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> also refers to this multi-layered topology as topology hierarchy (stack). It
+also uses layers when describing supporting relations (represent layered network topologies),
+underlay/overlay, network nodes and layering information. <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> states that the model can be
+used for representation of layered network topologies.<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.13">Topology layer:</dt>
+<dt id="section-2-3.13"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.14">
-          <p id="section-2-3.14.1">A topology layer represents Topology at a single layer in the multi-layered topology.<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.14.1"><span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span> is flexible and can support both the same network topology instance with multiple layers (e.g., Layer 2 and Layer 3)
+or separate network topology instances with supporting relations between them (e.g., separate Layer 2 and Layer 3).
+Therefore, multiple topology layers can be grouped into the same network topology instance, if solution requires.<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.15"></dt>
+<dt id="section-2-3.15">Topology layer:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.16">
-          <p id="section-2-3.16.1">The topology layer can also represent what needs to be managed by a
-specific user or client application, for example the IGP layer can be of interest to the operator
-troubleshooting or optimizing the routing, while the optical layer may be
-of interest to the user managing the optical network.<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.16.1">A topology layer represents Topology at a single layer in the multi-layered topology.<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.17"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.18">
-          <p id="section-2-3.18.1">Some topology layers may relate closely to OSI layers, like Layer 1 topology
-for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
-IPv6 topologies.<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.18.1">The topology layer can also represent what needs to be managed by a
+specific user or client application, for example the IGP layer can be of interest to the operator
+troubleshooting or optimizing the routing, while the optical layer may be
+of interest to the user managing the optical network.<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.19"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.20">
-          <p id="section-2-3.20.1">Some topology layers represent the network topology of Layer 3 control protocols, like OSPF, IS-IS, or BGP.<a href="#section-2-3.20.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.20.1">Some topology layers may relate closely to OSI layers, like Layer 1 topology
+for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
+IPv6 topologies.<a href="#section-2-3.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.21"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.22">
-          <p id="section-2-3.22.1">The service layer represents the Service view of the connectivity, that can differ for
-different types of Services and for different providers/solutions.<a href="#section-2-3.22.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.22.1">Some topology layers represent the network topology of Layer 3 control protocols, like OSPF, IS-IS, or BGP.<a href="#section-2-3.22.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.23"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.24">
-          <p id="section-2-3.24.1">The application/flow layer represents the view of Service data flows for
+          <p id="section-2-3.24.1">The service layer represents the Service view of the connectivity, that can differ for
+different types of Services and for different providers/solutions.<a href="#section-2-3.24.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.25"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.26">
+          <p id="section-2-3.26.1">The application/flow layer represents the view of Service data flows for
 different classes of service - video, voice and data traffic.
 The layers may differ depending on the solution, so the bottom and
 top layers may not be the same across all solutions. We can illustrate
-the concept of topology layers by listing the common set - e.g.,<a href="#section-2-3.24.1" class="pilcrow">¶</a></p>
+the concept of topology layers by listing the common set - e.g.,<a href="#section-2-3.26.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-2-3.24.2.1">
-              <p id="section-2-3.24.2.1.1">physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),<a href="#section-2-3.24.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-2-3.26.2.1">
+              <p id="section-2-3.26.2.1.1">physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),<a href="#section-2-3.26.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.2">
-              <p id="section-2-3.24.2.2.1">data link: L2 for Ethernet, LAGs and VLAN,<a href="#section-2-3.24.2.2.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.2">
+              <p id="section-2-3.26.2.2.1">data link: L2 for Ethernet, LAGs and VLAN,<a href="#section-2-3.26.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.3">
-              <p id="section-2-3.24.2.3.1">network: L3 for IPv4 and IPv6,<a href="#section-2-3.24.2.3.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.3">
+              <p id="section-2-3.26.2.3.1">network: L3 for IPv4 and IPv6,<a href="#section-2-3.26.2.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.4">
-              <p id="section-2-3.24.2.4.1">IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,<a href="#section-2-3.24.2.4.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.4">
+              <p id="section-2-3.26.2.4.1">IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,<a href="#section-2-3.26.2.4.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.5">
-              <p id="section-2-3.24.2.5.1">tunnel: for transport tunnels and paths, for MPLS and SRv6,<a href="#section-2-3.24.2.5.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.5">
+              <p id="section-2-3.26.2.5.1">tunnel: for transport tunnels and paths, for MPLS and SRv6,<a href="#section-2-3.26.2.5.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.6">
-              <p id="section-2-3.24.2.6.1">service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,<a href="#section-2-3.24.2.6.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.6">
+              <p id="section-2-3.26.2.6.1">service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,<a href="#section-2-3.26.2.6.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-2-3.24.2.7">
-              <p id="section-2-3.24.2.7.1">application: for video, voice and data traffic flows.<a href="#section-2-3.24.2.7.1" class="pilcrow">¶</a></p>
+            <li class="normal" id="section-2-3.26.2.7">
+              <p id="section-2-3.26.2.7.1">application: for video, voice and data traffic flows.<a href="#section-2-3.26.2.7.1" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-2-3.24.3">However, this list is illustrative only; it is not a prescriptive requirement.
+<p id="section-2-3.26.3">However, this list is illustrative only; it is not a prescriptive requirement.
 Different solutions may adopt alternative layering schemes or combine layers
 differently. Therefore, we will present the above as an example of one possible
-solution, while keeping the definition flexible enough to accommodate flexible layering.<a href="#section-2-3.24.3" class="pilcrow">¶</a></p>
+solution, while keeping the definition flexible enough to accommodate flexible layering.<a href="#section-2-3.26.3" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.25">Service:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.26">
-          <p id="section-2-3.26.1">A service represents network connectivity service provided over a network that enables devices, systems, or networks to
+<dt id="section-2-3.27">Service:</dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.28">
+          <p id="section-2-3.28.1">A service represents network connectivity service provided over a network that enables devices, systems, or networks to
 communicate and exchange data with each other. It provides the underlying infrastructure and mechanisms
 necessary for establishing, maintaining, and managing connections between different endpoints.
-The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-3.26.1" class="pilcrow">¶</a></p>
+The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,<a href="#section-2-3.28.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.27">Resource:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-3.28">
-          <p id="section-2-3.28.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-3.28.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-3.29">Termination Point:</dt>
+<dt id="section-2-3.29">Resource:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.30">
-          <p id="section-2-3.30.1">Defined in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, as follows:<a href="#section-2-3.30.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.30.1">Defined in <span>[<a href="#I-D.ietf-nmop-terminology" class="cite xref">I-D.ietf-nmop-terminology</a>]</span><a href="#section-2-3.30.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-2-3.31"></dt>
+<dt id="section-2-3.31">Termination Point:</dt>
         <dd style="margin-left: 1.5em" id="section-2-3.32">
-          <p id="section-2-3.32.1">The network-topology module defines a topology graph and components from which it is
-composed: nodes, edges, and termination points.  Nodes (from the "ietf-network" module) represent
-graph vertices and links represent graph edges.  Nodes also contain termination points that anchor the
-links.<a href="#section-2-3.32.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.32.1">Defined in <span>[<a href="#RFC8345" class="cite xref">RFC8345</a>]</span>, as follows:<a href="#section-2-3.32.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-2-3.33"></dt>
         <dd style="margin-left: 1.5em" id="section-2-3.34">
-          <p id="section-2-3.34.1">A node has a list of termination points that are used to terminate links. An example of a termination point might
+          <p id="section-2-3.34.1">The network-topology module defines a topology graph and components from which it is
+composed: nodes, edges, and termination points.  Nodes (from the "ietf-network" module) represent
+graph vertices and links represent graph edges.  Nodes also contain termination points that anchor the
+links.<a href="#section-2-3.34.1" class="pilcrow">¶</a></p>
+</dd>
+        <dd class="break"></dd>
+<dt id="section-2-3.35"></dt>
+        <dd style="margin-left: 1.5em" id="section-2-3.36">
+          <p id="section-2-3.36.1">A node has a list of termination points that are used to terminate links. An example of a termination point might
 be a physical or logical port or, more generally, an interface.
 Like a node, a termination point can in turn be supported by an underlying termination point, contained in the
-supporting node of the underlay network.<a href="#section-2-3.34.1" class="pilcrow">¶</a></p>
+supporting node of the underlay network.<a href="#section-2-3.36.1" class="pilcrow">¶</a></p>
 </dd>
       <dd class="break"></dd>
 </dl>
