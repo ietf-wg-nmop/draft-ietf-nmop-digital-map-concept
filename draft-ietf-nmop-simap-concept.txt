@@ -438,7 +438,7 @@ Table of Contents
    resources and by navigating the supporting relationship bottom-up
    come to the Service and its nodes, termination points and links.
 
-   This APIs can be invoked for Service impact analysis, for example.
+   These APIs can be invoked for Service impact analysis, for example.
 
 3.1.3.  Traffic Engineering (TE)
 
@@ -458,7 +458,7 @@ Table of Contents
 3.1.4.  Closed Loop
 
    A network closed loop refers to an automated and intelligent system
-   where network operations are continuously monitored, analyzed, and
+   where network operations are continuously monitored, analysed, and
    optimized in real time through feedback mechanisms.  This self-
    adjusting cycle ensures that the network dynamically adapts to
    changes, resolves issues proactively, and maintains optimal
@@ -629,7 +629,7 @@ Table of Contents
 
 3.6.  Network Capacity Planning
 
-   Network capacity planning refers to the process of analyzing,
+   Network capacity planning refers to the process of analysing,
    predicting, and ensuring that the network has sufficient capacity
    (e.g., [RFC5136]), resources, and infrastructure to meet current and
    future demands.  It involves evaluating the network's ability to
@@ -645,7 +645,7 @@ Table of Contents
 
    Key aspects of network capacity planning include:
 
-   *  Traffic analysis: Monitoring and analyzing network traffic
+   *  Traffic analysis: Monitoring and analysing network traffic
       patterns to identify trends, peak usage periods, and areas of
       congestion.  For example, by generating a core traffic matrix with
       IPFIX flow record [RFC7011] or deducting an approximate traffic
@@ -793,7 +793,7 @@ Table of Contents
           links).
 
    3.  Monte Carlo simulation:  This type of simulation uses statistical
-          methods to model and analyze networks under uncertain or
+          methods to model and analyse networks under uncertain or
           variable conditions.  Monte Carlo simulations generate a large
           number of random samples to predict the performance of a
           network across multiple scenarios.  It is used for
@@ -810,7 +810,7 @@ Table of Contents
    This type of simulation focuses on simulating specific networking
    protocols (IS-IS, OSPF, BGP, SR) to understand how they perform under
    different conditions.  It models the protocol operations and
-   interactions among devices in the network.  For example, simulation
+   interactions amongst devices in the network.  For example, simulation
    can be used to assess the impact of changing a link metric.
    Moreover, specific features of the networking protocol can be tested.
    For example, how fast-reroute performs in a given network topology.
@@ -862,7 +862,7 @@ Table of Contents
    understanding of a network event impacting Service assurance.
 
    Note that this use case may serve as a component of Service
-   Disruption Detection fine tuning as described in
+   Disruption Detection fine-tuning as described in
    [I-D.ietf-nmop-network-anomaly-architecture].
 
 3.10.  Network Digital Twin (NDT)
@@ -1015,7 +1015,7 @@ Table of Contents
       to ensure that simulated changes cannot be interpreted as real
       network conditions or configuration.
 
-   REQ-STD-API-BASED:  Standard-based SIMAP and APIs, for multi-vendor
+   REQ-STD-API-BASED:  Standard-based SIMAP and APIs, for multivendor
       support.
 
       SIMAP must provide the standard APIs that provide for read/write
@@ -1111,7 +1111,7 @@ Table of Contents
       within a topology layer and between topology layers.
 
       Within-layer navigation means that SIMAP client applications
-      should be able to move among entities that belong to the same
+      should be able to move amongst entities that belong to the same
       layer.  For example, in the IGP layer, the navigation should allow
       moving between OSPF/IS-IS management domains, OSPF/IS-IS areas,
       OSPF/IS-IS processes, OSPF/IS-IS interfaces, and OSPF/IS-IS links.
@@ -1164,10 +1164,10 @@ Table of Contents
       nodes between networks when the implementation requires multi-
       domain topologies, topologies with multiple IGP areas or any
       network partitioning.  This requirement is about covering
-      connectivity between different networks, sub-networks, or domains.
+      connectivity between different networks, subnetworks, or domains.
 
    REQ-SUBNETWORK:  SIMAP must provide a mechanism to model network
-      decomposition into sub-networks.  The requirement is about
+      decomposition into subnetworks.  The requirement is about
       modelling hierarchical networks , Autonomous Systems (ASes) with
       multiple areas, or a network with multiple domains (e.g., access,
       core, data center).
@@ -1314,13 +1314,13 @@ Table of Contents
    REQ-CONDITIONAL:  Provide capability for conditional retrieval of
       parts of SIMAP.
 
-   REQ-TEMPO-HISTO:  Must support geo-spatial (geographic coordinates,
+   REQ-TEMPO-HISTO:  Must support geospatial (geographic coordinates,
       region, zone, etc.), temporal (when some fact is true, e.g., the
       topology or topological entity created at 12:00 UTC), and
       historical data (time-stamped historical changes, e.g. all changes
       from 2019-01-01 to 2023-06-30).
 
-      The geo-spatial, temporal and historical can also be supported
+      The geospatial, temporal and historical can also be supported
       external to the SIMAP.
 
 4.3.  Architectural Requirements
