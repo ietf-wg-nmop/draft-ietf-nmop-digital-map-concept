@@ -154,7 +154,7 @@ capitals, as shown here.
 The normative keywords in this document define requirements for future
 SIMAP specifications and implementations that claim conformance to SIMAP,
 and do not impose requirements on this document itself.
-  
+
 This document makes use of the following terms:
 
 Domain:
