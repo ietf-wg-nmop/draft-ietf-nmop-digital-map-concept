@@ -8,7 +8,7 @@ submissiontype: IETF
 number:
 date:
 consensus: true
-v: 10
+v: 11
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
@@ -60,6 +60,15 @@ contributor:
 normative:
 
 informative:
+  ETSI-ZSM-019:
+    title: "Zero-Touch Network and Service Management (ZSM); ZSM Framework for NaaS"
+    author:
+      - org: ETSI
+    date: 2026-01
+    seriesinfo:
+      ETSI: "GR ZSM 019 V1.1.1"
+    target: "https://www.etsi.org/deliver/etsi_gr/ZSM/001_099/019/01.01.01_60/gr_ZSM019v010101p.pdf"
+
 
 --- abstract
 
@@ -81,10 +90,12 @@ associated requirements and use cases.
 SIMAP is a data model that provides a topological view of the operator's networks and services,
 including how it is connected to other models (e.g., inventory) and external data sources (e.g., observability data, and
 operational knowledge). This model represents a multi-layered topology
-and offers mechanisms to navigate amongst layers and correlate between them.
-This includes layers from physical topology to service topology.
+and offers mechanisms to navigate amongst layers and correlate between them,
+including layers from physical to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
-technologies (Optical, IP, etc.).
+technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's intent that it be concretely
+implementable, the actual data model specification — including the choice of modelling language and
+implementation approach — is out of scope of this document and will be defined in companion specifications.
 
 Specifically, the SIMAP modelling defines the core topological entities at each layer,
 core topological properties, and topological relationships (both inside each layer
@@ -130,11 +141,6 @@ remains separate. The simulated topology instance can be matched directly to the
 real network topology for comparison. This approach preserves independence between real and
 simulated data while enabling side by side analysis.
 
-This document does not specify a SIMAP implementation approach and what modelling language to use.
-Also, how implementations are connected to SIMAP is implementation- and deployment- specific.
-
-While the requirements described herein may require various modeling
-strategies, the development of such models is outside the scope of this document.
 
 # Terminology
 
@@ -303,7 +309,7 @@ the SIMAP client application will be able to determine what logical resources ar
 used by a Service.  The supporting relations to the lowest layer, provided by the SIMAP server, will
 help the SIMAP client application to determine what physical resources are used by
 the Service. This addresses a requirement for systems to be able to provide topology and resource views of services,
-at different levels of abstraction, using the SIMAP [REF: ETSI ZSM 019 Clause 6].
+at different levels of abstraction, using the SIMAP [ETSI-ZSM-019].
 Knowing the physical resources a service uses enables capacity planning, fault isolation, performance monitoring, and accurate billing.
 
 
@@ -958,8 +964,24 @@ REQ-SYNCH:
 via SIMAP APIs to a client application
 
 REQ-SECURITY:
-: The conventional NACM control access rules {{!RFC8341}} should apply. This includes module control access rules,
-protocol operation control access rules, data node control access rules, and notification control access rules.
+: Any SIMAP interface MUST support strong client authentication and authorization before granting
+access to SIMAP operations and data.
+
+: For YANG-based Netconf and RESTCONF protocols, access control SHOULD follow the Network
+Configuration Access Control Model (NACM) [RFC8341].
+
+: For non YANG protocols, implementations MUST provide an access control
+mechanism with similar level of protection to NACM, including fine grained
+authorization, role based access, and the ability to restrict access to
+sensitive topology and service and network data.
+
+: Because SIMAP connects highly sensitive multi layer topology with
+service and network data, implementations MUST ensure confidentiality,
+integrity, and replay protection for all SIMAP interactions, using
+security mechanisms appropriate to the transport protocol (e.g., TLS, SSH).
+
+: SIMAP implementations MUST prevent unauthorized write or simulation operations
+and ensure that simulation functions cannot become unintended configuration changes.
 
 # Positioning SIMAP in the Context of the IETF Work
 
@@ -1018,10 +1040,62 @@ Therefore it is not included in this section, but added to the Appendix.
 
 # Security Considerations
 
-As this document covers the SIMAP concepts, requirements, and use cases, there is no specific security considerations other
-that those discussed in {{sec-arch}}.
+SIMAP provides a unified access point to multi layer topology, and relations to services
+and resources across network domains. Although this document defines concepts and
+implementation requirements rather than a concrete implementations and
+protocols, these requirements introduce significant security considerations
+that any SIMAP implementation or protocol MUST address.
 
-{{Section 8 of ?RFC8345}} discusses security aspects that will be useful when designing the SIMAP solution.
+Data sensitivity:
+: SIMAP aggregates information that is highly sensitive in operational
+  environments, including physical/logical/service topology, logical to physical relations,
+  service relations, identifiers such as SRv6 SIDs, and references to
+  configuration, inventory, assurance, and telemetry systems. Unauthorized read
+  access to this information could enable targeted attacks, lateral movement, or
+  large scale service disruption. Implementations MUST ensure that
+  confidentiality protections and fine grained access control policies are
+  applied to all SIMAP data.
+
+Authentication:
+: Any SIMAP implementation, regardless of modelling language or protocol,
+  MUST provide strong client authentication before granting access to SIMAP data or operations.
+  Authentication mechanisms depend on the underlying protocol binding (e.g., TLS
+  client certificates, SSH keys, OAuth based API authentication), but the
+  requirement for strong authentication is universal.
+
+Authorization and protocol binding scope:
+: Because SIMAP explicitly allows non YANG protocol bindings (REQ PLUGG), NACM
+  applies only to YANG based bindings. Non YANG bindings MUST provide an
+  access control mechanism that offers protections equivalent to NACM, including
+  role based authorization, fine grained access restrictions, and the ability to
+  limit access to sensitive topology and service mapping information.
+
+Write and simulation operations:
+: SIMAP supports operations that may modify data or simulate modifications (e.g.,
+  what if analysis). Even when write operations are limited to simulation,
+  implementations MUST ensure that such operations cannot become unintended
+  configuration changes, and that simulation results cannot be used to
+  infer privileged or hidden information.
+
+Cross domain aggregation:
+: SIMAP may expose information aggregated from multiple administrative domains.
+  Implementations MUST ensure that access control policies are consistently
+  enforced across domains and that cross domain data leakage does not occur.
+  Policy mismatches or inconsistent authorization models across domains can
+  create unintended disclosure paths.
+
+Transport security:
+: SIMAP implementations MUST ensure confidentiality, integrity, and replay
+  protection for all protocol exchanges, regardless of the underlying protocol
+  binding. Transport layer security mechanisms such as TLS [RFC8446] or SSH
+  [RFC4253] MUST be used where applicable.
+
+These considerations are not exhaustive; protocol specifications and
+implementations of SIMAP MUST define additional security mechanisms appropriate
+to their deployment environments.
+
+{{Section 8 of ?RFC8345}} discusses further security consideration for YANG, NECONF,
+RESTCONF and specifically for ietf-network and ietf-network-topology modules.
 
 # IANA Considerations
 
