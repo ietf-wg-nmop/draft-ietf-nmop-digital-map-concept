@@ -146,6 +146,14 @@ capitals, as shown here.
 
 This document makes use of the following terms:
 
+Domain:
+: A collection of network resources, services, and management
+  functions that are administered under a common set of policies or operational
+  control. Domains may correspond to technology boundaries (e.g., optical, IP),
+  functional areas (e.g., access, core, data center), or administrative
+  partitions. Multi‑domain SIMAP operations involve correlating topology and
+  service information across such domains.
+  
 Topology:
 : Topology refers to the network and service topology.
   A network topology defines how physical or logical nodes, links and
