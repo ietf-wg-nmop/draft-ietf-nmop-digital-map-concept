@@ -93,7 +93,8 @@ operational knowledge). This model represents a multi-layered topology
 and offers mechanisms to navigate amongst layers and correlate between them,
 including layers from physical to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
-technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's intent that it be concretely
+technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's
+intent that it be concretely
 implementable, the actual data model specification — including the choice of modelling language and
 implementation approach — is out of scope of this document and will be defined in companion specifications.
 
@@ -151,6 +152,14 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 capitals, as shown here.
 
 This document makes use of the following terms:
+
+Domain:
+: A collection of network resources, services, and management
+  functions that are administered under a common set of policies or operational
+  control. Domains may correspond to technology boundaries (e.g., optical, IP),
+  functional areas (e.g., access, core, data center), or administrative
+  partitions. Multi‑domain SIMAP operations involve correlating topology and
+  service information across such domains.
 
 Topology:
 : Topology refers to the network and service topology.
