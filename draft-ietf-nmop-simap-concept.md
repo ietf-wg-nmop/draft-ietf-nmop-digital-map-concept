@@ -90,10 +90,12 @@ associated requirements and use cases.
 SIMAP is a data model that provides a topological view of the operator's networks and services,
 including how it is connected to other models (e.g., inventory) and external data sources (e.g., observability data, and
 operational knowledge). This model represents a multi-layered topology
-and offers mechanisms to navigate amongst layers and correlate between them.
-This includes layers from physical topology to service topology.
+and offers mechanisms to navigate amongst layers and correlate between them,
+including layers from physical to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
-technologies (Optical, IP, etc.).
+technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's intent that it be concretely
+implementable, the actual data model specification — including the choice of modelling language and
+implementation approach — is out of scope of this document and will be defined in companion specifications.
 
 Specifically, the SIMAP modelling defines the core topological entities at each layer,
 core topological properties, and topological relationships (both inside each layer
@@ -139,11 +141,6 @@ remains separate. The simulated topology instance can be matched directly to the
 real network topology for comparison. This approach preserves independence between real and
 simulated data while enabling side by side analysis.
 
-This document does not specify a SIMAP implementation approach and what modelling language to use.
-Also, how implementations are connected to SIMAP is implementation- and deployment- specific.
-
-While the requirements described herein may require various modeling
-strategies, the development of such models is outside the scope of this document.
 
 # Terminology
 
