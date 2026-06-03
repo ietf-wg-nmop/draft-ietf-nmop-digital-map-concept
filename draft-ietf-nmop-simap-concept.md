@@ -151,6 +151,10 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 14 {{!RFC2119}} {{!RFC8174}} when, and only when, they appear in all
 capitals, as shown here.
 
+The normative keywords in this document define requirements for future
+SIMAP specifications and implementations that claim conformance to SIMAP,
+and do not impose requirements on this document itself.
+  
 This document makes use of the following terms:
 
 Domain:
