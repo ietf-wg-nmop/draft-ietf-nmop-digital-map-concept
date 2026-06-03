@@ -954,7 +954,11 @@ REQ-SCALES:
 : The SIMAP APIs and SIMAP server implementations must be scalable, it must support any provider network, independent of its size.
 
 REQ-PERFORMANCE:
-: The SIMAP APIs and SIMAP server implementations must be  performant, and have acceptable response-time. Although we are not to define the response time here.
+: The SIMAP APIs and SIMAP server implementations MUST support mechanisms that allow efficient retrieval of large topologies, including
+incremental, filtered, or paginated access to data. Implementations SHOULD support streaming or subscription‑based mechanisms when appropriate
+to the protocol binding, to avoid requiring full‑dataset retrieval for every request.
+
+: This requirement ensures that SIMAP can operate effectively in environments with large‑scale, multi‑layer topologies without mandating specific latency targets or performance metrics.
 
 REQ-USABILITY:
 : The SIMAP APIs must be simple and easy to integrate with the client applications, whose developers
