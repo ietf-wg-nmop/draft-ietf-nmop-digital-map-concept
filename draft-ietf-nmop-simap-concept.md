@@ -726,6 +726,11 @@ Software Defined Networking (SDN) controllers or orchestrators.
 snapshots and to switch easily between them.
 : Note that there is a need to distinguish between a change on the SIMAP
 for future simulation and a change that reflects the current reality of the network.
+: SIMAP implementations and specifications MUST provide an unambiguous
+separation between real network topology state and simulation state.
+Simulation data MUST NOT overwrite, obscure, or be exposed as operational
+network state, and mechanisms MUST exist to ensure that simulated changes
+cannot be interpreted as real network conditions or configuration.
 
 REQ-STD-API-BASED:
 : Standard-based SIMAP and APIs, for multi-vendor support.
