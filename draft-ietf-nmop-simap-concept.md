@@ -8,7 +8,7 @@ submissiontype: IETF
 number:
 date:
 consensus: true
-v: 11
+v: 12
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
