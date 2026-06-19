@@ -212,9 +212,9 @@ Topology layer:
   * physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),
   * data link: L2 for Ethernet, LAGs and VLAN,
   * network: L3 for IPv4 and IPv6,
-  * IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,
+  * IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
   * tunnel: for transport tunnels and paths, for MPLS and SRv6,
-  * service: for different overlay services, like L2 VPNs, L3 VPNs, slices, SD-WAN,
+  * service: for different overlay services, like L2VPNs, L3VPNs, slices, SD-WAN,
   * application: for video, voice and data traffic flows.
 
   However, this list is illustrative only; it is not a prescriptive requirement.
@@ -275,7 +275,7 @@ SIMAP data:
 : The SIMAP data can be historical, real-time, or future data for 'what-if' scenarios.
 
 SIMAP API:
-: SIMAP API is the set of interfaces that allow the client applications to create, read, update, and delete data that comforms to the SIMAP.
+: SIMAP API is the set of interfaces that allow the client applications to create, read, update, and delete data that conforms to the SIMAP.
 
 SIMAP client application:
 : Consumer of the SIMAP API. An application that consumes the SIMAP API.
@@ -396,7 +396,7 @@ response it will be able to retrieve the physical inventory of individual device
 information, if applicable.
 
 The SIMAP client application may request either one or multiple topology layers via the SIMAP APIs and from the response
-it will be able to navigate to any other data modes outside of the core SIMAP topology to retrieve both physical and logical inventory.
+it will be able to navigate to any other data models outside of the core SIMAP topology to retrieve both physical and logical inventory.
 
 For access network providers the ability to have linkage in the SIMAP of the complete network (active + passive) is
 essential as it provides many advantages for optimized customer Service, reduced Mean Time To Repair (MTTR), and
@@ -410,11 +410,11 @@ The IVY working group is a good source of information for inventory information.
 ## Service Placement Feasibility Checks {#sec-feasibility}
 
 Service placement feasibility checks refer to the process of evaluating whether a specific Service can be deployed
-and operated effectively in a given network. This includes accessing the various factors to ensure that the
+and operated effectively in a given network. This includes assessing the various factors to ensure that the
 service will function as intended (e.g., based on traffic performance requirements) without causing network disruptions
-or inefficiencies and effecting other Services already provisioned on the network.
+or inefficiencies and affecting other Services already provisioned on the network.
 
-Some of the factors that need assesing are network capabilities, status, limitations, resource usage and availability.
+Some of the factors that need assessing are network capabilities, status, limitations, resource usage and availability.
 The Service could be simulated during the feasibility checks to identify if there are any potential issues.
 The load testing could be done to evaluate performance under stress.
 
@@ -629,7 +629,7 @@ enterprise network). Also, as discussed in {{Section 9.2 of ?I-D.irtf-nmrg-netwo
 models and topology models help generate a virtual twin of the network according to the network element configuration,
 operation data, network topology relationship, link state and other network information. The operation status can be
 monitored and displayed, the network configuration change and optimization strategy can be pre-verified and
-historical data can support e.g. postmorem replay ({{postmortem-replay}}))
+historical data can support e.g. postmortem replay ({{postmortem-replay}}))
 
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} further elaborates on the requirements on various
 interfaces:
@@ -640,7 +640,7 @@ interfaces:
 
    * Application-facing interfaces are between the NDT and applications. They are responsible for the information
      exchange between Network Digital Twin and network applications. SIMAP APIs can be used for specification of
-     hypothetical network and service states for 'what-if' analysis, e.g.. for feasibility checks
+     hypothetical network and service states for 'what-if' analysis, e.g. for feasibility checks
      ({{sec-feasibility}}), simulation or emulation ({{sec-emule}})). Such analysis may be used in support of
      e.g. network capacity planning ({{network-capacity-planning}})) or network design ({{network-design}})).
 
@@ -888,7 +888,7 @@ REQ-CONTROL-PLANE:
 state must correlate to the underlay L3 topology, while the overlay control‑plane routing state must correlate to the overlay L3 network topology.
 
 : A BMP/BGP example:
-: The BMP peer distinguisher ({{Section 4.2 of ?RFC7854}}) needs to be correlateable to the VRF
+: The BMP peer distinguisher ({{Section 4.2 of ?RFC7854}}) needs to be correlatable to the VRF
 of a node and the next-hop attribute of the NLRI in the BMP route-monitoring ({{Section 4.6 of ?RFC7854}}) encapsulated
 message to the underlay network topology while the path attribute of the NLRI in the BMP route-monitoring
 encapsulated message to the overlay topology.
@@ -982,7 +982,7 @@ REQ-SECURITY:
 access to SIMAP operations and data.
 
 : For YANG-based Netconf and RESTCONF protocols, access control SHOULD follow the Network
-Configuration Access Control Model (NACM) [RFC8341].
+Configuration Access Control Model (NACM) {{!RFC8341}}.
 
 : For non YANG protocols, implementations MUST provide an access control
 mechanism with similar level of protection to NACM, including fine grained
@@ -1101,14 +1101,14 @@ Cross domain aggregation:
 Transport security:
 : SIMAP implementations MUST ensure confidentiality, integrity, and replay
   protection for all protocol exchanges, regardless of the underlying protocol
-  binding. Transport layer security mechanisms such as TLS [RFC8446] or SSH
-  [RFC4253] MUST be used where applicable.
+  binding. Transport layer security mechanisms such as TLS {{!RFC8446}} or SSH
+  {{!RFC4253}} MUST be used where applicable.
 
 These considerations are not exhaustive; protocol specifications and
 implementations of SIMAP MUST define additional security mechanisms appropriate
 to their deployment environments.
 
-{{Section 8 of ?RFC8345}} discusses further security consideration for YANG, NECONF,
+{{Section 8 of ?RFC8345}} discusses further security consideration for YANG, NETCONF,
 RESTCONF and specifically for ietf-network and ietf-network-topology modules.
 
 # IANA Considerations
@@ -1119,7 +1119,7 @@ This document has no actions for IANA.
 
 #  Related IETF Activities
 
-> Note: The models cited in this section are provided for illustration purposes. It is out of scope to recomend
+> Note: The models cited in this section are provided for illustration purposes. It is out of scope to recommend
 > which models will be used as base to build the SIMAP.
 
 ##  Network Topology {#sec-ntw-topo}
@@ -1183,7 +1183,7 @@ types, and their context in the ACTN architecture.
 
        *  A YANG data model for Layer 2 network topologies {{?RFC8944}}
 
-       *  A YANG data model for OSFP topology  {{?I-D.ogondio-opsawg-ospf-topology}}
+       *  A YANG data model for OSPF topology  {{?I-D.ogondio-opsawg-ospf-topology}}
 
        *  A YANG data model for IS-IS topology {{?I-D.ogondio-nmop-isis-topology}}
 
@@ -1214,7 +1214,7 @@ Logical inventory is currently outside of the scope. It does not augment {{?RFC8
 Many thanks to Mohamed Boucadair and Reshad Rahman for their valuable contributions, reviews, and comments.
 Many thanks to Adrian Farrel for his SIMAP suggestion and helping to agree the terminology.
 Many thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio Dominguez Martinez-Casanueva,
-Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
+Alex Huang Feng, Italo Busi, Wu Bo, Sherif Mostafa, Christopher Janz, Rob Evans, Daniele Ceccarelli,
 Sergio Belotti, Aihua Guo and many others for their contributions, suggestions and comments.
 
 Many thanks to Nigel Davis for the valuable discussions and his confirmation of the
