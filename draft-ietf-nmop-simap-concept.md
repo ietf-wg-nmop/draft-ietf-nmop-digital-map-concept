@@ -1089,7 +1089,7 @@ Transport security:
 : SIMAP implementations MUST ensure confidentiality, integrity, and replay
   protection for all protocol exchanges, regardless of the underlying protocol
   binding. Transport layer security mechanisms such as TLS {{RFC8446}} or SSH
-  {{RFC4253}} MUST be used where applicable.
+  {{!RFC4253}} MUST be used where applicable.
 
 These considerations are not exhaustive; protocol specifications and
 implementations of SIMAP MUST define additional security mechanisms appropriate
