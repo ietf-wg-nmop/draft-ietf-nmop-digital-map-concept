@@ -969,7 +969,7 @@ REQ-SECURITY:
 access to SIMAP operations and data.
 
 : For YANG-based Netconf and RESTCONF protocols, access control SHOULD follow the Network
-Configuration Access Control Model (NACM) [RFC8341].
+Configuration Access Control Model (NACM) {{!RFC8341}}.
 
 : For non YANG protocols, implementations MUST provide an access control
 mechanism with similar level of protection to NACM, including fine grained
@@ -1088,8 +1088,8 @@ Cross domain aggregation:
 Transport security:
 : SIMAP implementations MUST ensure confidentiality, integrity, and replay
   protection for all protocol exchanges, regardless of the underlying protocol
-  binding. Transport layer security mechanisms such as TLS [RFC8446] or SSH
-  [RFC4253] MUST be used where applicable.
+  binding. Transport layer security mechanisms such as TLS {{!RFC8446}} or SSH
+  {{!RFC4253}} MUST be used where applicable.
 
 These considerations are not exhaustive; protocol specifications and
 implementations of SIMAP MUST define additional security mechanisms appropriate
