@@ -804,13 +804,13 @@ REQ-LAYER-NAVIGATE:
 : Within-layer navigation means that SIMAP client applications should be able to move amongst entities that belong to the same layer.
 For example, in the IGP layer, the navigation should allow moving between OSPF/IS-IS management domains, OSPF/IS-IS areas,
 OSPF/IS-IS processes, OSPF/IS-IS interfaces, and OSPF/IS-IS links.
-: Between‑layer navigation is the navigation across layers that should display the dependencies of entities in one layer on those in another.
+: Between-layer navigation is the navigation across layers that should display the dependencies of entities in one layer on those in another.
 For instance, an IP interface that is supported by an Ethernet interface should be visible when moving between the corresponding layers.
 
 REQ-EXTENSIBLE:
 : SIMAP must be extensible with metadata. As examples, a controller or the client application could add a custom "location" attribute
 to a node to record its physical site, or a controller could attach a "vendorId" field to a device node.
-This demonstrates that arbitrary key‑value metadata can be appended to any element in the model without altering the core schema.
+This demonstrates that arbitrary key-value metadata can be appended to any element in the model without altering the core schema.
 
 REQ-PLUGG:
 : SIMAP must be pluggable. That is,
@@ -884,8 +884,8 @@ the inner header. Collecting Processes MUST properly handle
 Templates with multiple identical Information Elements.
 
 REQ-CONTROL-PLANE:
-: Control‑plane routing state must be correlatable to the corresponding data‑plane topology. For example, the underlay control‑plane routing
-state must correlate to the underlay L3 topology, while the overlay control‑plane routing state must correlate to the overlay L3 network topology.
+: Control-plane routing state must be correlatable to the corresponding data-plane topology. For example, the underlay control-plane routing
+state must correlate to the underlay L3 topology, while the overlay control-plane routing state must correlate to the overlay L3 network topology.
 
 : A BMP/BGP example:
 : The BMP peer distinguisher ({{Section 4.2 of ?RFC7854}}) needs to be correlatable to the VRF
@@ -960,10 +960,10 @@ REQ-SCALES:
 
 REQ-PERFORMANCE:
 : The SIMAP APIs and SIMAP server implementations MUST support mechanisms that allow efficient retrieval of large topologies, including
-incremental, filtered, or paginated access to data. Implementations SHOULD support streaming or subscription‑based mechanisms when appropriate
-to the protocol binding, to avoid requiring full‑dataset retrieval for every request.
+incremental, filtered, or paginated access to data. Implementations SHOULD support streaming or subscription-based mechanisms when appropriate
+to the protocol binding, to avoid requiring full-dataset retrieval for every request.
 
-: This requirement ensures that SIMAP can operate effectively in environments with large‑scale, multi‑layer topologies without mandating specific latency targets or performance metrics.
+: This requirement ensures that SIMAP can operate effectively in environments with large‑scale, multi-layer topologies without mandating specific latency targets or performance metrics.
 
 REQ-USABILITY:
 : The SIMAP APIs must be simple and easy to integrate with the client applications, whose developers
