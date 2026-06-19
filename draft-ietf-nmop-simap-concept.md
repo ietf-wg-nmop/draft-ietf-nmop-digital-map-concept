@@ -95,8 +95,8 @@ including layers from physical to service topology.
 This model is applicable to multiple domains (access, core, data center, etc.) and
 technologies (Optical, IP, etc.). While this document refers to SIMAP as a data model to reflect the Working Group's
 intent that it be concretely
-implementable, the actual data model specification — including the choice of modelling language and
-implementation approach — is out of scope of this document and will be defined in companion specifications.
+implementable, the actual data model specification - including the choice of modelling language and
+implementation approach - is out of scope of this document and will be defined in companion specifications.
 
 Specifically, the SIMAP modelling defines the core topological entities at each layer,
 core topological properties, and topological relationships (both inside each layer
@@ -118,7 +118,7 @@ Traffic-Engineering (TE), different behaviors and actions, simulation, emulation
 AI algorithms, etc. These other models exist outside of the SIMAP and are not defined during SIMAP modelling.
 
 The SIMAP data consists of instances of network and service topologies at different layers.
-There may be a separate topology instance for each layer in a multi‑layered network,
+There may be a separate topology instance for each layer in a multi-layered network,
 or a single topology instance that encompasses multiple layers.
 Since SIMAP is a data model and data models can generate APIs {{?RFC3444}}{{?RFC7950}},
 the SIMAP provides access to this data via standard APIs for both read and write access, typically
@@ -858,8 +858,8 @@ accessible from the SIMAP is left to the solutions.
 REQ-DATA-PLANE-FLOW:
 : Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology
 : An SRv6 example:
-: In an SRv6‑enabled network, the sourceIPv6Address field appears twice in the IPFIX data‑template/data‑record
-for a captured flow on an SRv6‑enabled provider interface. Once in relation to provider data plane in the
+: In an SRv6-enabled network, the sourceIPv6Address field appears twice in the IPFIX data‑template/data‑record
+for a captured flow on an SRv6-enabled provider interface. Once in relation to provider data plane in the
 underlay, and once as relation to the customer data plane in the overlay.
 : SIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and
 underlay network topology. Both topologies might not be uniquely addressed, the VPN context
@@ -963,7 +963,7 @@ REQ-PERFORMANCE:
 incremental, filtered, or paginated access to data. Implementations SHOULD support streaming or subscription-based mechanisms when appropriate
 to the protocol binding, to avoid requiring full-dataset retrieval for every request.
 
-: This requirement ensures that SIMAP can operate effectively in environments with large‑scale, multi-layer topologies without mandating specific latency targets or performance metrics.
+: This requirement ensures that SIMAP can operate effectively in environments with large-scale, multi-layer topologies without mandating specific latency targets or performance metrics.
 
 REQ-USABILITY:
 : The SIMAP APIs must be simple and easy to integrate with the client applications, whose developers
