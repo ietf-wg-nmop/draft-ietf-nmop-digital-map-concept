@@ -126,8 +126,8 @@ Table of Contents
    domains (access, core, data center, etc.) and technologies (Optical,
    IP, etc.).  While this document refers to SIMAP as a data model to
    reflect the Working Group's intent that it be concretely
-   implementable, the actual data model specification — including the
-   choice of modelling language and implementation approach — is out of
+   implementable, the actual data model specification - including the
+   choice of modelling language and implementation approach - is out of
    scope of this document and will be defined in companion
    specifications.
 
