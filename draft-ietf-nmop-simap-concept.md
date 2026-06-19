@@ -981,7 +981,7 @@ REQ-SECURITY:
 : Any SIMAP interface MUST support strong client authentication and authorization before granting
 access to SIMAP operations and data.
 
-: For YANG-based Netconf and RESTCONF protocols, access control SHOULD follow the Network
+: For YANG-based NETCONF and RESTCONF protocols, access control SHOULD follow the Network
 Configuration Access Control Model (NACM) {{!RFC8341}}.
 
 : For non YANG protocols, implementations MUST provide an access control
