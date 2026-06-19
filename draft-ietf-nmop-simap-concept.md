@@ -969,7 +969,7 @@ REQ-SECURITY:
 access to SIMAP operations and data.
 
 : For YANG-based Netconf and RESTCONF protocols, access control SHOULD follow the Network
-Configuration Access Control Model (NACM) {{RFC8341}}.
+Configuration Access Control Model (NACM) {{!RFC8341}}.
 
 : For non YANG protocols, implementations MUST provide an access control
 mechanism with similar level of protection to NACM, including fine grained
