@@ -162,7 +162,7 @@ Domain:
   functions that are administered under a common set of policies or operational
   control. Domains may correspond to technology boundaries (e.g., optical, IP),
   functional areas (e.g., access, core, data center), or administrative
-  partitions. Multi‑domain SIMAP operations involve correlating topology and
+  partitions. Multi-domain SIMAP operations involve correlating topology and
   service information across such domains.
 
 Topology:
@@ -858,7 +858,7 @@ accessible from the SIMAP is left to the solutions.
 REQ-DATA-PLANE-FLOW:
 : Provider data plane (Flow) needs to be correlatable to underlay and customer data plane to overlay topology
 : An SRv6 example:
-: In an SRv6-enabled network, the sourceIPv6Address field appears twice in the IPFIX data‑template/data‑record
+: In an SRv6-enabled network, the sourceIPv6Address field appears twice in the IPFIX data-template/data-record
 for a captured flow on an SRv6-enabled provider interface. Once in relation to provider data plane in the
 underlay, and once as relation to the customer data plane in the overlay.
 : SIMAP must provide the semantic capability that each sourceIPv6Address can be mapped to the overlay and
