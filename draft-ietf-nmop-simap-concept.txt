@@ -289,11 +289,11 @@ Table of Contents
       *  network: L3 for IPv4 and IPv6,
 
       *  IGP/EGP: for routing inside or between ASs, different layers
-         for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,
+         for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
 
       *  tunnel: for transport tunnels and paths, for MPLS and SRv6,
 
-      *  service: for different overlay services, like L2 VPNs, L3 VPNs,
+      *  service: for different overlay services, like L2VPNs, L3VPNs,
          slices, SD-WAN,
 
       *  application: for video, voice and data traffic flows.
@@ -371,7 +371,7 @@ Table of Contents
 
    SIMAP API:  SIMAP API is the set of interfaces that allow the client
       applications to create, read, update, and delete data that
-      comforms to the SIMAP.
+      conforms to the SIMAP.
 
    SIMAP client application:  Consumer of the SIMAP API.  An application
       that consumes the SIMAP API.  It sends requests to a SIMAP server,
@@ -541,7 +541,7 @@ Table of Contents
 
    The SIMAP client application may request either one or multiple
    topology layers via the SIMAP APIs and from the response it will be
-   able to navigate to any other data modes outside of the core SIMAP
+   able to navigate to any other data models outside of the core SIMAP
    topology to retrieve both physical and logical inventory.
 
    For access network providers the ability to have linkage in the SIMAP
@@ -562,13 +562,13 @@ Table of Contents
 
    Service placement feasibility checks refer to the process of
    evaluating whether a specific Service can be deployed and operated
-   effectively in a given network.  This includes accessing the various
+   effectively in a given network.  This includes assessing the various
    factors to ensure that the service will function as intended (e.g.,
    based on traffic performance requirements) without causing network
-   disruptions or inefficiencies and effecting other Services already
+   disruptions or inefficiencies and affecting other Services already
    provisioned on the network.
 
-   Some of the factors that need assesing are network capabilities,
+   Some of the factors that need assessing are network capabilities,
    status, limitations, resource usage and availability.  The Service
    could be simulated during the feasibility checks to identify if there
    are any potential issues.  The load testing could be done to evaluate
@@ -877,7 +877,7 @@ Table of Contents
    data, network topology relationship, link state and other network
    information.  The operation status can be monitored and displayed,
    the network configuration change and optimization strategy can be
-   pre-verified and historical data can support e.g. postmorem replay
+   pre-verified and historical data can support e.g. postmortem replay
    (Section 3.9))
 
    Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] further
@@ -892,7 +892,7 @@ Table of Contents
       applications.  They are responsible for the information exchange
       between Network Digital Twin and network applications.  SIMAP APIs
       can be used for specification of hypothetical network and service
-      states for 'what-if' analysis, e.g.. for feasibility checks
+      states for 'what-if' analysis, e.g. for feasibility checks
       (Section 3.3), simulation or emulation (Section 3.8)).  Such
       analysis may be used in support of e.g. network capacity planning
       (Section 3.6)) or network design (Section 3.7)).
@@ -1237,7 +1237,7 @@ Table of Contents
       A BMP/BGP example:
 
       The BMP peer distinguisher (Section 4.2 of [RFC7854]) needs to be
-      correlateable to the VRF of a node and the next-hop attribute of
+      correlatable to the VRF of a node and the next-hop attribute of
       the NLRI in the BMP route-monitoring (Section 4.6 of [RFC7854])
       encapsulated message to the underlay network topology while the
       path attribute of the NLRI in the BMP route-monitoring
@@ -1525,7 +1525,7 @@ Table of Contents
    appropriate to their deployment environments.
 
    Section 8 of [RFC8345] discusses further security consideration for
-   YANG, NECONF, RESTCONF and specifically for ietf-network and ietf-
+   YANG, NETCONF, RESTCONF and specifically for ietf-network and ietf-
    network-topology modules.
 
 7.  IANA Considerations
@@ -1541,9 +1541,22 @@ Table of Contents
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
 
+   [RFC4253]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
+              Transport Layer Protocol", RFC 4253, DOI 10.17487/RFC4253,
+              January 2006, <https://www.rfc-editor.org/rfc/rfc4253>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
+              Access Control Model", STD 91, RFC 8341,
+              DOI 10.17487/RFC8341, March 2018,
+              <https://www.rfc-editor.org/rfc/rfc8341>.
+
+   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/rfc/rfc8446>.
 
 8.2.  Informative References
 
@@ -1767,7 +1780,7 @@ Table of Contents
 Appendix A.  Related IETF Activities
 
       Note: The models cited in this section are provided for
-      illustration purposes.  It is out of scope to recomend which
+      illustration purposes.  It is out of scope to recommend which
       models will be used as base to build the SIMAP.
 
 A.1.  Network Topology
@@ -1849,7 +1862,7 @@ A.3.  Core SIMAP Components
 
       -  A YANG data model for Layer 2 network topologies [RFC8944]
 
-      -  A YANG data model for OSFP topology
+      -  A YANG data model for OSPF topology
          [I-D.ogondio-opsawg-ospf-topology]
 
       -  A YANG data model for IS-IS topology
@@ -1891,7 +1904,7 @@ Acknowledgments
    for his SIMAP suggestion and helping to agree the terminology.  Many
    thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio
    Dominguez Martinez-Casanueva, Alex Huang Feng, Italo Busi, Wu Bo,
-   Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
+   Sherif Mostafa, Christopher Janz, Rob Evans, Daniele Ceccarelli,
    Sergio Belotti, Aihua Guo and many others for their contributions,
    suggestions and comments.
 
