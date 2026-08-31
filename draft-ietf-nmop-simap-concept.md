@@ -1,14 +1,14 @@
 ---
 title: "SIMAP: Concept, Requirements, and Use Cases"
 abbrev: SIMAP Concept & Needs
-docname: draft-ietf-nmop-simap-concept-latest
+docname: draft-ietf-nmop-simap-concept-13
 category: info
 
 submissiontype: IETF
 number:
 date:
 consensus: true
-v: 12
+v: 13
 area: "Operations and Management"
 workgroup: "Network Management Operations"
 keyword:
@@ -142,6 +142,10 @@ remains separate. The simulated topology instance can be matched directly to the
 real network topology for comparison. This approach preserves independence between real and
 simulated data while enabling side by side analysis.
 
+These simulation capabilities, together with the different levels of abstraction at which a SIMAP
+can represent a network, are among the building blocks of a Network Digital Twin. The relationship
+between SIMAP and the Network Digital Twin concept is discussed in {{sec-ndt}}.
+
 
 # Terminology
 
@@ -172,9 +176,13 @@ Topology:
   service components (e.g., VPN instances, customer interfaces, and
   customer links) between customer sites are interrelated and
   arranged.
-: There are several types of topologies: point-to-point,
+: There are several types of topologies, for example: point-to-point,
   bus, ring, star, tree, mesh, hybrid, and daisy chain.
 : Topologies may be unidirectional (all links unidirectional) or bidirectional (all links bidirectional), or contain combination of unidirectional and bidirectional links.
+: Where a link is bidirectional, the two directions may or may not be supported by the same underlay
+  resources. Both cases, co-routed and non-co-routed (also referred to as associated) bidirectionality,
+  need to be distinguishable, since they differ in fate sharing and therefore change the outcome of
+  any impact analysis.
 
 Multi-layered topology:
 : A multi-layered topology models relationships between different topology layers,
@@ -199,7 +207,10 @@ Topology layer:
   of interest to the user managing the optical network.
 : Some topology layers may relate closely to OSI layers, like Layer 1 topology
   for physical topology, Layer 2 for link topology and Layer 3 for IPv4 and
-  IPv6 topologies.
+  IPv6 topologies. The correspondence is deliberately loose: as defined above, each
+  topology layer represents a connectivity aspect of the network and services that needs
+  to be configured, controlled and monitored, and such layers are not required to map
+  one to one onto the OSI layers.
 : Some topology layers represent the network topology of Layer 3 control protocols, like OSPF, IS-IS, or BGP.
 : The service layer represents the Service view of the connectivity, that can differ for
   different types of Services and for different providers/solutions.
@@ -213,7 +224,8 @@ Topology layer:
   * data link: L2 for Ethernet, LAGs and VLAN,
   * network: L3 for IPv4 and IPv6,
   * IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
-  * tunnel: for transport tunnels and paths, for MPLS and SRv6,
+  * tunnel/transport: for transport tunnels, paths and policies, for example GRE, IPsec,
+    pseudowires, MPLS-TE LSPs, and SR/SRv6 policies,
   * service: for different overlay services, like L2VPNs, L3VPNs, slices, SD-WAN,
   * application: for video, voice and data traffic flows.
 
@@ -298,6 +310,12 @@ but its primary role is to expose the SIMAP via programmable interface.
 
 The following subsections provide a non-exhaustive list of SIMAP use cases, with a focus on the related SIMAP client application requirements
 and its interactions with SIMAP server, in order to extract the SIMAP-related requirements (Section 4).
+
+In this section, the ability to retrieve "a topology layer" or "the topology at any layer" is always
+subject to what the client application is authorized to see: a SIMAP server may hide layers, or expose
+an abstraction of a layer in place of the layer itself, for security, administrative, or commercial
+reasons. Where the underlying resources are not disclosed, the client is presented with an abstract
+topology and navigates that instead (REQ-TOPOLOGY-ABSTRACTION).
 
 ## Common Enablers for SIMAP
 
@@ -621,7 +639,7 @@ a network event impacting Service assurance.
 Note that this use case may serve as a component of Service Disruption Detection fine-tuning as described in
 {{?I-D.ietf-nmop-network-anomaly-architecture}}.
 
-## Network Digital Twin (NDT)
+## Network Digital Twin (NDT) {#sec-ndt}
 
 Per {{?I-D.irtf-nmrg-network-digital-twin-arch}}, Network Digital Twin (NDT) is a digital representation that is
 used in the context of Networking and whose physical counterpart is a data network (e.g., provider network or
@@ -1101,7 +1119,7 @@ Cross domain aggregation:
 Transport security:
 : SIMAP implementations MUST ensure confidentiality, integrity, and replay
   protection for all protocol exchanges, regardless of the underlying protocol
-  binding. Transport layer security mechanisms such as TLS {{!RFC8446}} or SSH
+  binding. Transport layer security mechanisms such as TLS {{!RFC9846}} or SSH
   {{!RFC4253}} MUST be used where applicable.
 
 These considerations are not exhaustive; protocol specifications and
