@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 7 August 2026                                    Everything OPS
+Expires: 4 March 2027                                     Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                         3 February 2026
+                                                          31 August 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -20,7 +20,11 @@ Abstract
 
    This document defines the concept of Service & Infrastructure Maps
    (SIMAP) and identifies a set of SIMAP requirements and use cases.
-   The SIMAP was previously known as Digital Map.
+   The SIMAP was previously known as Digital Map. SIMAP evolves the
+   earlier 'Digital Map' concept by making explicit the ties between
+   service and infrastructure layers, clarifying expected outcomes for
+   operations and automation, and addressing ambiguity associated with
+   the term 'digital.'
 
    The document intends to be used as a reference for the assessment of
    the various topology modules to meet SIMAP requirements.
@@ -51,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 August 2026.
+   This Internet-Draft will expire on 4 March 2027.
 
 Copyright Notice
 
@@ -88,8 +92,8 @@ Table of Contents
        3.8.2.  Goals of Network Simulation
      3.9.  Postmortem Replay
      3.10. Network Digital Twin (NDT)
-   4.  SIMAP Requirements
-     4.1.  Operator Requirements
+   4.  SIMAP Operator Requirements
+     4.1.  Functional Requirements
      4.2.  Design Requirements
      4.3.  Architectural Requirements
    5.  Positioning SIMAP in the Context of the IETF Work
@@ -114,13 +118,18 @@ Table of Contents
 
    SIMAP is a data model that provides a topological view of the
    operator's networks and services, including how it is connected to
-   other models/data (e.g., inventory, observability sources, and
-   operational knowledge).  This model represents a multi-layered
-   topology and offers mechanisms to navigate amongst layers and
-   correlate between them.  This includes layers from physical topology
-   to service topology.  This model is applicable to multiple domains
-   (access, core, data center, etc.) and technologies (Optical, IP,
-   etc.).
+   other models (e.g., inventory) and external data sources (e.g.,
+   observability data, and operational knowledge).  This model
+   represents a multi-layered topology and offers mechanisms to navigate
+   amongst layers and correlate between them, including layers from
+   physical to service topology.  This model is applicable to multiple
+   domains (access, core, data center, etc.) and technologies (Optical,
+   IP, etc.).  While this document refers to SIMAP as a data model to
+   reflect the Working Group's intent that it be concretely
+   implementable, the actual data model specification - including the
+   choice of modelling language and implementation approach - is out of
+   scope of this document and will be defined in companion
+   specifications.
 
    Specifically, the SIMAP modelling defines the core topological
    entities at each layer, core topological properties, and topological
@@ -130,13 +139,18 @@ Table of Contents
    topological entities are the minimal set of objects required to
    represent a layer's topology (e.g., network, node, termination point,
    and link).  The core topological properties are the essential
-   attributes associated with these entities to enable topological
-   reasoning (e.g., identity, topology type, entity role in topology,
-   directionality, cardinality, and cost/weight).  The additional
-   concepts or attributes (such as capacity, operational state,
-   performance metrics, or inventory data) are modelled outside of
-   SIMAP, the core set provides the necessary structure to support these
-   extensions without losing architectural consistency.
+   attributes associated with these entities (e.g., identity, topology
+   type, entity role in topology, directionality, cardinality, and cost/
+   weight), enabling analysis of how the network structure affects
+   services and operations.  For example, topological reasoning can
+   answer questions such as: 'If link X fails, what services are
+   impacted?' or 'What is the full end-to-end data path of the service
+   flow?'.
+
+   The additional concepts or attributes (such as capacity, operational
+   state, performance metrics, or inventory data) are modelled outside
+   of SIMAP, the core set provides the necessary structure to support
+   these extensions without losing architectural consistency.
 
    The SIMAP modelling also defines how to access other external models
    from a topology.  SIMAP is a topological model that is linked to
@@ -166,27 +180,50 @@ Table of Contents
    before applying the changes to the network via the normal controller
    operations.
 
-   Both real network, online-simulation and offline-simulation APIs can
-   be built on the same data model.  Each data source is reported as a
-   distinct topology instance, but when desired the real network and
-   online simulation data can be merged into a single topology instance,
-   while the offline simulation remains separate.  The simulated
-   topology instance can be matched directly to the corresponding real
-   network topology for comparison.  This approach preserves
-   independence between real and simulated data while enabling side by
-   side analysis.
+   Both real network, online simulation, and offline simulation APIs can
+   be built on the same data model.  The real network API reflects
+   actual changes in the topology as reported by the SIMAP server.
+   Online simulation applies hypothetical changes to the current live
+   model to assess immediate impacts (e.g., if link X fails, what
+   services are disrupted), without altering the real network.  Offline
+   simulation applies hypothetical changes to a saved or alternate
+   model, useful for planning, training, or evaluating changes before
+   deployment.  Each data source is reported as a distinct topology
+   instance, but when desired the real network and online simulation
+   data can be merged into a single topology instance, while the offline
+   simulation remains separate.  The simulated topology instance can be
+   matched directly to the corresponding real network topology for
+   comparison.  This approach preserves independence between real and
+   simulated data while enabling side by side analysis.
 
-   This document does not specify a SIMAP implementation approach and
-   what modelling language to use.  Also, how implementations are
-   connected to SIMAP is implementation- and deployment- specific.
-
-   While the requirements described herein may require various modeling
-   strategies, the development of such models is outside the scope of
-   this document.
+   These simulation capabilities, together with the different levels of
+   abstraction at which a SIMAP can represent a network, are among the
+   building blocks of a Network Digital Twin.  The relationship between
+   SIMAP and the Network Digital Twin concept is discussed in
+   Section 3.10.
 
 2.  Terminology
 
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+   The normative keywords in this document define requirements for
+   future SIMAP specifications and implementations that claim
+   conformance to SIMAP, and do not impose requirements on this document
+   itself.
+
    This document makes use of the following terms:
+
+   Domain:  A collection of network resources, services, and management
+      functions that are administered under a common set of policies or
+      operational control.  Domains may correspond to technology
+      boundaries (e.g., optical, IP), functional areas (e.g., access,
+      core, data center), or administrative partitions.  Multi-domain
+      SIMAP operations involve correlating topology and service
+      information across such domains.
 
    Topology:  Topology refers to the network and service topology.  A
       network topology defines how physical or logical nodes, links and
@@ -195,12 +232,19 @@ Table of Contents
       interfaces, and customer links) between customer sites are
       interrelated and arranged.
 
-      There are several types of topologies: point-to-point, bus, ring,
-      star, tree, mesh, hybrid, and daisy chain.
+      There are several types of topologies, for example: point-to-
+      point, bus, ring, star, tree, mesh, hybrid, and daisy chain.
 
       Topologies may be unidirectional (all links unidirectional) or
       bidirectional (all links bidirectional), or contain combination of
       unidirectional and bidirectional links.
+
+      Where a link is bidirectional, the two directions may or may not
+      be supported by the same underlay resources.  Both cases, co-
+      routed and non-co-routed (also referred to as associated)
+      bidirectionality, need to be distinguishable, since they differ in
+      fate sharing and therefore change the outcome of any impact
+      analysis.
 
    Multi-layered topology:  A multi-layered topology models
       relationships between different topology layers, where each layer
@@ -233,7 +277,11 @@ Table of Contents
 
       Some topology layers may relate closely to OSI layers, like Layer
       1 topology for physical topology, Layer 2 for link topology and
-      Layer 3 for IPv4 and IPv6 topologies.
+      Layer 3 for IPv4 and IPv6 topologies.  The correspondence is
+      deliberately loose: as defined above, each topology layer
+      represents a connectivity aspect of the network and services that
+      needs to be configured, controlled and monitored, and such layers
+      are not required to map one to one onto the OSI layers.
 
       Some topology layers represent the network topology of Layer 3
       control protocols, like OSPF, IS-IS, or BGP.
@@ -244,10 +292,10 @@ Table of Contents
 
       The application/flow layer represents the view of Service data
       flows for different classes of service - video, voice and data
-      traffiC.  The layers may differ depending on the solution, so the
+      traffic.  The layers may differ depending on the solution, so the
       bottom and top layers may not be the same across all solutions.
       We can illustrate the concept of topology layers by listing the
-      common set — e.g.,
+      common set - e.g.,
 
       *  physical: L1, one or multiple layers, if fully modelling
          different optical layers.  Used for WSON, OTN optical, OTN
@@ -258,11 +306,13 @@ Table of Contents
       *  network: L3 for IPv4 and IPv6,
 
       *  IGP/EGP: for routing inside or between ASs, different layers
-         for underlay and overlay, for ISIS, OSPF, iBGP. eBGP,
+         for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
 
-      *  tunnel: for transport tunnels and paths, for MPLS and SRv6,
+      *  tunnel/transport: for transport tunnels, paths and policies,
+         for example GRE, IPsec, pseudowires, MPLS-TE LSPs, and SR/SRv6
+         policies,
 
-      *  service: for different overlay services, like L2 VPNs, L3 VPNs,
+      *  service: for different overlay services, like L2VPNs, L3VPNs,
          slices, SD-WAN,
 
       *  application: for video, voice and data traffic flows.
@@ -302,14 +352,14 @@ Table of Contents
 
    Service & Infrastructure Maps (SIMAP):  SIMAP is a data model that
       provides a topological view of the operator's networks and
-      services, including how it is connected to other models/data
-      (e.g., inventory, observability sources, and operational
-      knowledge).  It specifically provides an approach to model multi-
-      layered topology and an appropriate mechanism to navigate amongst
-      layers and correlate between them.  This includes layers from
-      physical topology to service topology.  This model is applicable
-      to multiple domains (access, core, data centers, etc.) and
-      technologies (Optical, IP, etc.)
+      services, including how it is connected to other models (e.g.,
+      inventory) and external data sources (e.g., observability data,
+      and operational knowledge).  It specifically provides an approach
+      to model multi-layered topology and an appropriate mechanism to
+      navigate amongst layers and correlate between them.  This includes
+      layers from physical topology to service topology.  This model is
+      applicable to multiple domains (access, core, data centers, etc.)
+      and technologies (Optical, IP, etc.)
 
       Therefore, SIMAP defines the core topological entities, their role
       in the network, core topological properties, and relationships
@@ -332,15 +382,15 @@ Table of Contents
       networks, nodes, links and termination points, topological
       relationships between nodes, links and termination points inside a
       network, relationships between instances belonging to different
-      networks, links to functional data for the instances, including
-      configuration, health, symptoms.
+      networks, links to other non-topological data for the instances
+      (e.g., inventory, configuration, health, symptoms).
 
       The SIMAP data can be historical, real-time, or future data for
       'what-if' scenarios.
 
    SIMAP API:  SIMAP API is the set of interfaces that allow the client
       applications to create, read, update, and delete data that
-      comforms to the SIMAP.
+      conforms to the SIMAP.
 
    SIMAP client application:  Consumer of the SIMAP API.  An application
       that consumes the SIMAP API.  It sends requests to a SIMAP server,
@@ -353,16 +403,16 @@ Table of Contents
       authorization, parsing responses, and translating the SIMAP into
       its own internal representation.
 
-   SIMAP server:  Provider of the SIMAP API . An application or a system
+   SIMAP server:  Provider of the SIMAP API.  An application or a system
       that implements the API endpoints to expose the SIMAP data model
       to external consumers, building it from live network state or
-      simulation scenarios.. The server accepts requests to create,
+      simulation scenarios.  The server accepts requests to create,
       read, update, delete, or query instances of the SIMAP topology,
       validates input against the data model schema, persists changes
       (if any), and returns responses that conform to the SIMAP API
-      specification.  The server’s implementation may reside inside a
+      specification.  The server's implementation may reside inside a
       controller, orchestrator, device, service manager, or any other
-      application/system—or be a standalone application/system—depending
+      application/system-or be a standalone application/system-depending
       on the solution architecture.  The server may offer ancillary
       services such as authentication, rate limiting, versioning,
       logging, and monitoring, but its primary role is to expose the
@@ -374,6 +424,15 @@ Table of Contents
    cases, with a focus on the related SIMAP client application
    requirements and its interactions with SIMAP server, in order to
    extract the SIMAP-related requirements (Section 4).
+
+   In this section, the ability to retrieve "a topology layer" or "the
+   topology at any layer" is always subject to what the client
+   application is authorized to see: a SIMAP server may hide layers, or
+   expose an abstraction of a layer in place of the layer itself, for
+   security, administrative, or commercial reasons.  Where the
+   underlying resources are not disclosed, the client is presented with
+   an abstract topology and navigates that instead (REQ-TOPOLOGY-
+   ABSTRACTION).
 
 3.1.  Common Enablers for SIMAP
 
@@ -395,9 +454,9 @@ Table of Contents
    determine what physical resources are used by the Service.  This
    addresses a requirement for systems to be able to provide topology
    and resource views of services, at different levels of abstraction,
-   using the SIMAP [REF: ETSI ZSM 019 Clause 6].  Knowing the physical
-   resources a service uses enables capacity planning, fault isolation,
-   performance monitoring, and accurate billing.
+   using the SIMAP [ETSI-ZSM-019].  Knowing the physical resources a
+   service uses enables capacity planning, fault isolation, performance
+   monitoring, and accurate billing.
 
 3.1.2.  Resource -> Service
 
@@ -407,7 +466,7 @@ Table of Contents
    resources and by navigating the supporting relationship bottom-up
    come to the Service and its nodes, termination points and links.
 
-   This APIs can be invoked for Service impact analysis, for example.
+   These APIs can be invoked for Service impact analysis, for example.
 
 3.1.3.  Traffic Engineering (TE)
 
@@ -427,7 +486,7 @@ Table of Contents
 3.1.4.  Closed Loop
 
    A network closed loop refers to an automated and intelligent system
-   where network operations are continuously monitored, analyzed, and
+   where network operations are continuously monitored, analysed, and
    optimized in real time through feedback mechanisms.  This self-
    adjusting cycle ensures that the network dynamically adapts to
    changes, resolves issues proactively, and maintains optimal
@@ -510,7 +569,7 @@ Table of Contents
 
    The SIMAP client application may request either one or multiple
    topology layers via the SIMAP APIs and from the response it will be
-   able to navigate to any other data modes outside of the core SIMAP
+   able to navigate to any other data models outside of the core SIMAP
    topology to retrieve both physical and logical inventory.
 
    For access network providers the ability to have linkage in the SIMAP
@@ -531,13 +590,13 @@ Table of Contents
 
    Service placement feasibility checks refer to the process of
    evaluating whether a specific Service can be deployed and operated
-   effectively in a given network.  This includes accessing the various
+   effectively in a given network.  This includes assessing the various
    factors to ensure that the service will function as intended (e.g.,
    based on traffic performance requirements) without causing network
-   disruptions or inefficiencies and effecting other Services already
+   disruptions or inefficiencies and affecting other Services already
    provisioned on the network.
 
-   Some of the factors that need assesing are network capabilities,
+   Some of the factors that need assessing are network capabilities,
    status, limitations, resource usage and availability.  The Service
    could be simulated during the feasibility checks to identify if there
    are any potential issues.  The load testing could be done to evaluate
@@ -598,7 +657,7 @@ Table of Contents
 
 3.6.  Network Capacity Planning
 
-   Network capacity planning refers to the process of analyzing,
+   Network capacity planning refers to the process of analysing,
    predicting, and ensuring that the network has sufficient capacity
    (e.g., [RFC5136]), resources, and infrastructure to meet current and
    future demands.  It involves evaluating the network's ability to
@@ -614,7 +673,7 @@ Table of Contents
 
    Key aspects of network capacity planning include:
 
-   *  Traffic analysis: Monitoring and analyzing network traffic
+   *  Traffic analysis: Monitoring and analysing network traffic
       patterns to identify trends, peak usage periods, and areas of
       congestion.  For example, by generating a core traffic matrix with
       IPFIX flow record [RFC7011] or deducting an approximate traffic
@@ -762,7 +821,7 @@ Table of Contents
           links).
 
    3.  Monte Carlo simulation:  This type of simulation uses statistical
-          methods to model and analyze networks under uncertain or
+          methods to model and analyse networks under uncertain or
           variable conditions.  Monte Carlo simulations generate a large
           number of random samples to predict the performance of a
           network across multiple scenarios.  It is used for
@@ -779,7 +838,7 @@ Table of Contents
    This type of simulation focuses on simulating specific networking
    protocols (IS-IS, OSPF, BGP, SR) to understand how they perform under
    different conditions.  It models the protocol operations and
-   interactions among devices in the network.  For example, simulation
+   interactions amongst devices in the network.  For example, simulation
    can be used to assess the impact of changing a link metric.
    Moreover, specific features of the networking protocol can be tested.
    For example, how fast-reroute performs in a given network topology.
@@ -831,7 +890,7 @@ Table of Contents
    understanding of a network event impacting Service assurance.
 
    Note that this use case may serve as a component of Service
-   Disruption Detection fine tuning as described in
+   Disruption Detection fine-tuning as described in
    [I-D.ietf-nmop-network-anomaly-architecture].
 
 3.10.  Network Digital Twin (NDT)
@@ -846,7 +905,7 @@ Table of Contents
    data, network topology relationship, link state and other network
    information.  The operation status can be monitored and displayed,
    the network configuration change and optimization strategy can be
-   pre-verified and historical data can support e.g. postmorem replay
+   pre-verified and historical data can support e.g. postmortem replay
    (Section 3.9))
 
    Section 9.4 of [I-D.irtf-nmrg-network-digital-twin-arch] further
@@ -861,7 +920,7 @@ Table of Contents
       applications.  They are responsible for the information exchange
       between Network Digital Twin and network applications.  SIMAP APIs
       can be used for specification of hypothetical network and service
-      states for 'what-if' analysis, e.g.. for feasibility checks
+      states for 'what-if' analysis, e.g. for feasibility checks
       (Section 3.3), simulation or emulation (Section 3.8)).  Such
       analysis may be used in support of e.g. network capacity planning
       (Section 3.6)) or network design (Section 3.7)).
@@ -879,20 +938,19 @@ Table of Contents
    including predictive analytics, intent verification, and full
    lifecycle management of network and services.
 
-4.  SIMAP Requirements
+4.  SIMAP Operator Requirements
 
-   The SIMAP requirements are split into three groups for different
-   target audiences:
+   The SIMAP operator requirements are split into three groups for
+   different target audiences:
 
-   *  Operator requirements:  These requirements are collected from the
-         operators.  They are functional requirements derived from the
-         operators' use cases.  Some of the more specific semantic
-         requirements were identified as [RFC8345] gaps during the
-         Hackathons with operators and added as specific semantic
-         requirements to the operator use cases.
+   *  Functional requirements:  These requirements are collected from
+         the operators and derived from the operators' use cases.  Some
+         of the more specific semantic requirements were identified as
+         [RFC8345] gaps during the Hackathons with operators and added
+         as specific semantic requirements to the operator use cases.
 
    *  Design requirements:  These requirements are derived from the
-         operators' requirements.  Although there is some duplication,
+         operator requirements.  Although there is some duplication,
          these are focused on summarizing the operators' requirements
          for the design of the data model and API.  These are functional
          requirements translated into low-level requirements for the
@@ -906,12 +964,11 @@ Table of Contents
          performance needs, large scale support, and network discovery.
          These are not data model requirements, but are requirements
          either to drive the APIs design itself (e.g., to better
-         optimize performance) or for the network controllers and
-         orchestrators that expose a SIMAP API.  Although, they may be
-         common sense requirements not specific to SIMAP API, they are
-         listed here for completeness.
+         optimize performance) or for the SIMAP servers that expose a
+         SIMAP API.  Although, they may be common sense requirements not
+         specific to SIMAP API, they are listed here for completeness.
 
-4.1.  Operator Requirements
+4.1.  Functional Requirements
 
    The following are the operators' requirements for the SIMAP.  Note
    that some of these requirements are supported by default by
@@ -920,10 +977,10 @@ Table of Contents
    REQ-BASIC-MODEL-SUPPORT:  Basic model with network, node, link, and
       termination point entity types.
 
-      This means that users of SIMAP must be able to understand a
-      topology model at any layer via these core concepts only, without
-      having to go to the details of the specific augmentations to
-      understand the topology.
+      This means that users of SIMAP must be able to reconstruct a
+      topology at any layer in an unambiguous manner via these core
+      concepts only, without the need to understand layer or technology
+      specific information.
 
    REQ-LAYERED-MODEL:  Topology layers from physical layer up to Service
       layer.
@@ -979,7 +1036,14 @@ Table of Contents
       SIMAP for future simulation and a change that reflects the current
       reality of the network.
 
-   REQ-STD-API-BASED:  Standard-based SIMAP and APIs, for multi-vendor
+      SIMAP implementations and specifications MUST provide an
+      unambiguous separation between real network topology state and
+      simulation state.  Simulation data MUST NOT overwrite, obscure, or
+      be exposed as operational network state, and mechanisms MUST exist
+      to ensure that simulated changes cannot be interpreted as real
+      network conditions or configuration.
+
+   REQ-STD-API-BASED:  Standard-based SIMAP and APIs, for multivendor
       support.
 
       SIMAP must provide the standard APIs that provide for read/write
@@ -997,11 +1061,14 @@ Table of Contents
 
    REQ-GRAPH-TRAVERSAL:  Topology graph traversal.
 
-      SIMAP must be optimized for graph traversal for paths and for
-      graph traversal for the specific use case queries.  This means
-      that only providing link nodes and source and sink relationships
-      to termination-points may not be sufficient, we may need to have
-      the direct relationship between the termination points or nodes.
+      SIMAP must be optimized for graph traversal to support both
+      network path queries and other specific use case queries.  This
+      means that the SIMAP must provide an efficient means to retrieve
+      network paths, to accommodate the difficulty operators experience
+      when retrieving network paths via the chain termination-
+      point->link->termination-point, without having a direct adjacency
+      relation.  Additionally, SIMAP must enable efficient retrieval of
+      the data required by other use case queries.
 
    REQ-TOPOLOGY-ABSTRACTION:  Navigation across the abstraction levels.
 
@@ -1037,16 +1104,16 @@ Table of Contents
 
    REQ-POTENTIAL:  Potential new network topology.
 
-      SIMAP must enable both retrieval and write access to the potential
-      new network.
+      SIMAP must enable both retrieval and write access to a potential
+      network topology.
 
-      A potential network topology is a state generated by a simulation
-      (online or offline) at a given point of time that includes any
-      modifications from the snapshot and can be queried and modified
-      for what-if planning.
+      A potential new network topology is a provisional view at a given
+      point in time that incorporates modifications relative to the
+      current snapshot.  It may represent the full topology or only the
+      differences from the snapshot.
 
-      This view may contain either the full topology or just differences
-      from the snapshot.
+      The view is needed for what-if analysis, pre-configuration, and
+      simulation.
 
    REQ-INTENDED:  Intended network topology.
 
@@ -1054,6 +1121,11 @@ Table of Contents
       network topology that cannot be discovered from the real network
       (e.g., intended Layer 2 Topology, intended Layer 3 Topology, and
       passive topology that cannot be discovered).
+
+      The intended topology represents the desired topology, without
+      always detailing the intermediate hops, devices or detailed links
+      that the current live topology contains.  It can be used to verify
+      if the live topology complies with the intent.
 
    REQ-SEMANTIC:  Network topology semantics.
 
@@ -1067,7 +1139,7 @@ Table of Contents
       within a topology layer and between topology layers.
 
       Within-layer navigation means that SIMAP client applications
-      should be able to move among entities that belong to the same
+      should be able to move amongst entities that belong to the same
       layer.  For example, in the IGP layer, the navigation should allow
       moving between OSPF/IS-IS management domains, OSPF/IS-IS areas,
       OSPF/IS-IS processes, OSPF/IS-IS interfaces, and OSPF/IS-IS links.
@@ -1080,8 +1152,8 @@ Table of Contents
 
    REQ-EXTENSIBLE:  SIMAP must be extensible with metadata.  As
       examples, a controller or the client application could add a
-      custom “location” attribute to a node to record its physical site,
-      or a controller could attach a “vendorId” field to a device node.
+      custom "location" attribute to a node to record its physical site,
+      or a controller could attach a "vendorId" field to a device node.
       This demonstrates that arbitrary key-value metadata can be
       appended to any element in the model without altering the core
       schema.
@@ -1094,8 +1166,8 @@ Table of Contents
          needed to be able to link it from SIMAP.  SIMAP should also be
          linked to a 'logical configuration inventory'.  Several
          examples of the type of logical information to be linked from
-         SIMAP: inventory of logical interfaces, inventory of ACLs, or
-         inventory of routing policies.
+         SIMAP: inventory of logical interfaces, inventory of ACLs,
+         inventory of routing policies, or geographic location.
 
       *  Given that not all involved components can be available using
          YANG, there is a need to connect SIMAP with other modelling
@@ -1116,14 +1188,14 @@ Table of Contents
       model any link cardinality, including point-to-point, point-to-
       multipoint, multipoint-to-multipoint
 
-   REQ-MULTI-DOMAIN:  SIMAP must provide a mechanism to model links
-      between networks when the implementation requires multi-domain
-      topologies, topologies with multiple IGP areas or any network
-      partitioning.  This requirement is about covering connectivity
-      between different networks, sub-networks, or domains.
+   REQ-MULTI-DOMAIN:  SIMAP must provide a mechanism to model links and
+      nodes between networks when the implementation requires multi-
+      domain topologies, topologies with multiple IGP areas or any
+      network partitioning.  This requirement is about covering
+      connectivity between different networks, subnetworks, or domains.
 
    REQ-SUBNETWORK:  SIMAP must provide a mechanism to model network
-      decomposition into sub-networks.  The requirement is about
+      decomposition into subnetworks.  The requirement is about
       modelling hierarchical networks , Autonomous Systems (ASes) with
       multiple areas, or a network with multiple domains (e.g., access,
       core, data center).
@@ -1132,9 +1204,6 @@ Table of Contents
       multiple child network instances as part of a single parent
       network, with a relation between the parent network and child
       networks.
-
-   REQ-SHARED:  SIMAP must provide a mechanism to share nodes, links,
-      and termination points between different networks.
 
    REQ-SUPPORTING:  SIMAP must provide a mechanism to model supporting
       relationships between different types of topological entities
@@ -1196,7 +1265,7 @@ Table of Contents
       A BMP/BGP example:
 
       The BMP peer distinguisher (Section 4.2 of [RFC7854]) needs to be
-      correlateable to the VRF of a node and the next-hop attribute of
+      correlatable to the VRF of a node and the next-hop attribute of
       the NLRI in the BMP route-monitoring (Section 4.6 of [RFC7854])
       encapsulated message to the underlay network topology while the
       path attribute of the NLRI in the BMP route-monitoring
@@ -1273,40 +1342,72 @@ Table of Contents
    REQ-CONDITIONAL:  Provide capability for conditional retrieval of
       parts of SIMAP.
 
-   REQ-TEMPO-HISTO:  Must support geo-spatial, temporal, and historical
-      data.  The temporal and historical can also be supported external
-      to the SIMAP.
+   REQ-TEMPO-HISTO:  Must support geospatial (geographic coordinates,
+      region, zone, etc.), temporal (when some fact is true, e.g., the
+      topology or topological entity created at 12:00 UTC), and
+      historical data (time-stamped historical changes, e.g. all changes
+      from 2019-01-01 to 2023-06-30).
+
+      The geospatial, temporal and historical can also be supported
+      external to the SIMAP.
 
 4.3.  Architectural Requirements
 
-   The following are the architectural requirements for the controller
+   The following are the architectural requirements for the SIMAP server
    implementations that provide SIMAP API, they are the non-functional
-   requirements for the SIMAP APIs and controller implementations:
+   requirements for the SIMAP APIs and SIMAP server implementations:
 
-   REQ-SCALES:  The SIMAP APIs and controller implementations must be
+   REQ-SCALES:  The SIMAP APIs and SIMAP server implementations must be
       scalable, it must support any provider network, independent of its
       size.
 
-   REQ-PERFORMANCE:  The SIMAP APIs and controller implementations must
-      be performant, and have acceptable response-time.  Although we are
-      not to define the response time here.
+   REQ-PERFORMANCE:  The SIMAP APIs and SIMAP server implementations
+      MUST support mechanisms that allow efficient retrieval of large
+      topologies, including incremental, filtered, or paginated access
+      to data.  Implementations SHOULD support streaming or
+      subscription-based mechanisms when appropriate to the protocol
+      binding, to avoid requiring full-dataset retrieval for every
+      request.
+
+      This requirement ensures that SIMAP can operate effectively in
+      environments with large-scale, multi-layer topologies without
+      mandating specific latency targets or performance metrics.
 
    REQ-USABILITY:  The SIMAP APIs must be simple and easy to integrate
       with the client applications, whose developers may not be
       networking experts.
 
-   REQ-DISCOVERY:  A network controller must perform the initial and on-
-      demand discovery of a network in order to provide the layered
+   REQ-DISCOVERY:  A network SIMAP server must perform the initial and
+      on-demand discovery of a network in order to provide the layered
       topology via the SIMAP APIs to a client application.
 
-   REQ-SYNCH:  The controller must perform the sync with the network in
-      order to provide up to date layered topology via SIMAP APIs to a
-      client application
+   REQ-SYNCH:  The SIMAP server must perform the sync with the network
+      in order to provide up to date layered topology via SIMAP APIs to
+      a client application
 
-   REQ-SECURITY:  The conventional NACM control access rules [RFC8341]
-      should apply.  This includes module control access rules, protocol
-      operation control access rules, data node control access rules,
-      and notification control access rules.
+   REQ-SECURITY:  Any SIMAP interface MUST support strong client
+      authentication and authorization before granting access to SIMAP
+      operations and data.
+
+      For YANG-based NETCONF and RESTCONF protocols, access control
+      SHOULD follow the Network Configuration Access Control Model
+      (NACM) [RFC8341].
+
+      For non YANG protocols, implementations MUST provide an access
+      control mechanism with similar level of protection to NACM,
+      including fine grained authorization, role based access, and the
+      ability to restrict access to sensitive topology and service and
+      network data.
+
+      Because SIMAP connects highly sensitive multi layer topology with
+      service and network data, implementations MUST ensure
+      confidentiality, integrity, and replay protection for all SIMAP
+      interactions, using security mechanisms appropriate to the
+      transport protocol (e.g., TLS, SSH).
+
+      SIMAP implementations MUST prevent unauthorized write or
+      simulation operations and ensure that simulation functions cannot
+      become unintended configuration changes.
 
 5.  Positioning SIMAP in the Context of the IETF Work
 
@@ -1385,7 +1486,7 @@ Table of Contents
       topology model as part of device model, network model and network
       service model
 
-   Appendix A documents some other IETF activities related to topology
+   Appendix A documents some other IETF activities related to topology
    modeling, it does not want to prescribe how SIMAP should be modeled
    or which base models should be used, and it is added for
    illustrational purposes only.  Therefore it is not included in this
@@ -1393,12 +1494,67 @@ Table of Contents
 
 6.  Security Considerations
 
-   As this document covers the SIMAP concepts, requirements, and use
-   cases, there is no specific security considerations other that those
-   discussed in Section 4.3.
+   SIMAP provides a unified access point to multi layer topology, and
+   relations to services and resources across network domains.  Although
+   this document defines concepts and implementation requirements rather
+   than a concrete implementations and protocols, these requirements
+   introduce significant security considerations that any SIMAP
+   implementation or protocol MUST address.
 
-   Section 8 of [RFC8345] discusses security aspects that will be useful
-   when designing the SIMAP solution.
+   Data sensitivity:  SIMAP aggregates information that is highly
+      sensitive in operational environments, including physical/logical/
+      service topology, logical to physical relations, service
+      relations, identifiers such as SRv6 SIDs, and references to
+      configuration, inventory, assurance, and telemetry systems.
+      Unauthorized read access to this information could enable targeted
+      attacks, lateral movement, or large scale service disruption.
+      Implementations MUST ensure that confidentiality protections and
+      fine grained access control policies are applied to all SIMAP
+      data.
+
+   Authentication:  Any SIMAP implementation, regardless of modelling
+      language or protocol, MUST provide strong client authentication
+      before granting access to SIMAP data or operations.
+      Authentication mechanisms depend on the underlying protocol
+      binding (e.g., TLS client certificates, SSH keys, OAuth based API
+      authentication), but the requirement for strong authentication is
+      universal.
+
+   Authorization and protocol binding scope:  Because SIMAP explicitly
+      allows non YANG protocol bindings (REQ PLUGG), NACM applies only
+      to YANG based bindings.  Non YANG bindings MUST provide an access
+      control mechanism that offers protections equivalent to NACM,
+      including role based authorization, fine grained access
+      restrictions, and the ability to limit access to sensitive
+      topology and service mapping information.
+
+   Write and simulation operations:  SIMAP supports operations that may
+      modify data or simulate modifications (e.g., what if analysis).
+      Even when write operations are limited to simulation,
+      implementations MUST ensure that such operations cannot become
+      unintended configuration changes, and that simulation results
+      cannot be used to infer privileged or hidden information.
+
+   Cross domain aggregation:  SIMAP may expose information aggregated
+      from multiple administrative domains.  Implementations MUST ensure
+      that access control policies are consistently enforced across
+      domains and that cross domain data leakage does not occur.  Policy
+      mismatches or inconsistent authorization models across domains can
+      create unintended disclosure paths.
+
+   Transport security:  SIMAP implementations MUST ensure
+      confidentiality, integrity, and replay protection for all protocol
+      exchanges, regardless of the underlying protocol binding.
+      Transport layer security mechanisms such as TLS [RFC9846] or SSH
+      [RFC4253] MUST be used where applicable.
+
+   These considerations are not exhaustive; protocol specifications and
+   implementations of SIMAP MUST define additional security mechanisms
+   appropriate to their deployment environments.
+
+   Section 8 of [RFC8345] discusses further security consideration for
+   YANG, NETCONF, RESTCONF and specifically for ietf-network and ietf-
+   network-topology modules.
 
 7.  IANA Considerations
 
@@ -1408,44 +1564,67 @@ Table of Contents
 
 8.1.  Normative References
 
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC4253]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
+              Transport Layer Protocol", RFC 4253, DOI 10.17487/RFC4253,
+              January 2006, <https://www.rfc-editor.org/rfc/rfc4253>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
    [RFC8341]  Bierman, A. and M. Bjorklund, "Network Configuration
               Access Control Model", STD 91, RFC 8341,
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8341>.
 
+   [RFC9846]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 9846, DOI 10.17487/RFC9846, July 2026,
+              <https://www.rfc-editor.org/rfc/rfc9846>.
+
 8.2.  Informative References
+
+   [ETSI-ZSM-019]
+              ETSI, "Zero-Touch Network and Service Management (ZSM);
+              ZSM Framework for NaaS", ETSI GR ZSM 019 V1.1.1, January
+              2026, <https://www.etsi.org/deliver/etsi_gr/
+              ZSM/001_099/019/01.01.01_60/gr_ZSM019v010101p.pdf>.
 
    [I-D.ietf-ivy-network-inventory-topology]
               Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A YANG
               Network Data Model for Inventory Topology Mapping", Work
               in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-topology-05, 20 October 2025,
+              inventory-topology-10, 27 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-topology-05>.
+              network-inventory-topology-10>.
 
    [I-D.ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
               Bedard, "A Base YANG Data Model for Network Inventory",
               Work in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-yang-13, 27 January 2026,
+              inventory-yang-18, 27 May 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-yang-13>.
+              network-inventory-yang-18>.
 
    [I-D.ietf-nmop-network-anomaly-architecture]
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-07, 18 January 2026,
+              anomaly-architecture-08, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-07>.
+              network-anomaly-architecture-08>.
 
    [I-D.ietf-nmop-network-incident-yang]
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
               "A YANG Data Model for Network Incident Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-network-
-              incident-yang-07, 3 January 2026,
+              incident-yang-14, 18 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-incident-yang-07>.
+              network-incident-yang-14>.
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
@@ -1482,12 +1661,12 @@ Table of Contents
 
    [I-D.irtf-nmrg-network-digital-twin-arch]
               Zhou, C., Yang, H., Duan, X., Lopez, D., Pastor, A., Wu,
-              Q., Boucadair, M., and C. Jacquenet, "Network Digital
-              Twin: Concepts and Reference Architecture", Work in
+              Q., Boucadair, M., and C. Jacquenet, "Network Digital Twin
+              (NDT): Concepts and Reference Architecture", Work in
               Progress, Internet-Draft, draft-irtf-nmrg-network-digital-
-              twin-arch-11, 6 July 2025,
+              twin-arch-13, 1 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-
-              network-digital-twin-arch-11>.
+              network-digital-twin-arch-13>.
 
    [I-D.ogondio-nmop-isis-topology]
               de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
@@ -1629,7 +1808,7 @@ Table of Contents
 Appendix A.  Related IETF Activities
 
       Note: The models cited in this section are provided for
-      illustration purposes.  It is out of scope to recomend which
+      illustration purposes.  It is out of scope to recommend which
       models will be used as base to build the SIMAP.
 
 A.1.  Network Topology
@@ -1711,7 +1890,7 @@ A.3.  Core SIMAP Components
 
       -  A YANG data model for Layer 2 network topologies [RFC8944]
 
-      -  A YANG data model for OSFP topology
+      -  A YANG data model for OSPF topology
          [I-D.ogondio-opsawg-ospf-topology]
 
       -  A YANG data model for IS-IS topology
@@ -1753,13 +1932,12 @@ Acknowledgments
    for his SIMAP suggestion and helping to agree the terminology.  Many
    thanks to Chongfeng Xie, Dan Voyer, Brad Peters, Diego Lopez, Ignacio
    Dominguez Martinez-Casanueva, Alex Huang Feng, Italo Busi, Wu Bo,
-   Sherif Mostafa, Christopher Janz, Rob Evans, Danielle Ceccarelli,
+   Sherif Mostafa, Christopher Janz, Rob Evans, Daniele Ceccarelli,
    Sergio Belotti, Aihua Guo and many others for their contributions,
    suggestions and comments.
 
-   Many thanks to Nigel Davis ndavis@ciena.com (mailto:ndavis@ciena.com)
-   for the valuable discussions and his confirmation of the modelling
-   requirements.
+   Many thanks to Nigel Davis for the valuable discussions and his
+   confirmation of the modelling requirements.
 
 Contributors
 
