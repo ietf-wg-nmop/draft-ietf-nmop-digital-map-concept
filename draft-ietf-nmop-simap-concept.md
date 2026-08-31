@@ -1,7 +1,7 @@
 ---
 title: "SIMAP: Concept, Requirements, and Use Cases"
 abbrev: SIMAP Concept & Needs
-docname: draft-ietf-nmop-simap-concept-13
+docname: draft-ietf-nmop-simap-concept-latest
 category: info
 
 submissiontype: IETF
