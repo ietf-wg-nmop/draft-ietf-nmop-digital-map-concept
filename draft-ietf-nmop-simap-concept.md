@@ -97,6 +97,9 @@ technologies (Optical, IP, etc.). While this document refers to SIMAP as a data 
 intent that it be concretely
 implementable, the actual data model specification - including the choice of modelling language and
 implementation approach - is out of scope of this document and will be defined in companion specifications.
+In particular, SIMAP is not restricted to YANG. YANG is the expected first realization of SIMAP in the
+IETF context, and this document refers to YANG modules where that helps the reader, but the concept and
+the requirements in {{sec-requirements}} are intended to be independent of the modelling language.
 
 Specifically, the SIMAP modelling defines the core topological entities at each layer,
 core topological properties, and topological relationships (both inside each layer
@@ -120,15 +123,19 @@ AI algorithms, etc. These other models exist outside of the SIMAP and are not de
 The SIMAP data consists of instances of network and service topologies at different layers.
 There may be a separate topology instance for each layer in a multi-layered network,
 or a single topology instance that encompasses multiple layers.
-Since SIMAP is a data model and data models can generate APIs {{?RFC3444}}{{?RFC7950}},
+Since SIMAP is a data model {{?RFC3444}}{{?RFC7950}} and data models can drive APIs
+({{Section 1.3 of ?RFC8040}} describes such a data-model-driven API, where a client derives resource
+URLs and message structure from the YANG modules),
 the SIMAP provides access to this data via standard APIs for both read and write access, typically
 from a controller, with query capabilities and links to other data models (e.g., Service Assurance for
 Intent-based Networking (SAIN) {{?RFC9417}}, Service Attachment Points (SAPs) {{?RFC9408}},
 Inventory {{?I-D.ietf-ivy-network-inventory-yang}}, and potentially linking to non-YANG models).
 
-The SIMAP also provides write operations with the same set of APIs, not to change a topology layer on the fly
-as a northbound interface from the controller, but for both online and offline simulations,
-before applying the changes to the network via the normal controller operations.
+The SIMAP also provides write operations with the same set of APIs. These are not intended to change the
+live network by writing to the topology, as a configuration northbound interface from the controller would;
+changes are applied to the network via the normal controller operations. Write access serves two other
+purposes: online and offline simulation, and recording topology that cannot be discovered from the network,
+such as the intended topology and the passive topology.
 
 Both real network, online simulation, and offline simulation APIs can be built on the same data model.
 The real network API reflects actual changes in the topology as reported by the SIMAP server.
@@ -147,7 +154,12 @@ can represent a network, are among the building blocks of a Network Digital Twin
 between SIMAP and the Network Digital Twin concept is discussed in {{sec-ndt}}.
 
 
-# Terminology
+{{sec-related}} summarizes other IETF work related to topology modelling, including {{?RFC8345}},
+and how it relates to the SIMAP. It is informative: this document does not prescribe which models
+are used as the basis for a SIMAP.
+
+
+# Terminology {#sec-terminology}
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -222,7 +234,8 @@ Topology layer:
 
   * physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),
   * data link: L2 for Ethernet, LAGs and VLAN,
-  * network: L3 for IPv4 and IPv6,
+  * network: L3 for IPv4 and IPv6. IPv4 and IPv6 may be modelled as a single topology layer or as
+    separate topology layers, since the two topologies are not necessarily congruent,
   * IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
   * tunnel/transport: for transport tunnels, paths and policies, for example GRE, IPsec,
     pseudowires, MPLS-TE LSPs, and SR/SRv6 policies,
@@ -241,7 +254,10 @@ necessary for establishing, maintaining, and managing connections between differ
 The example services are: L2VPN, L3VPN, EVPN, VPLS, VPWS,
 
 Resource:
-: Defined in {{?I-D.ietf-nmop-terminology}}
+: Defined in {{?RFC9940}}
+
+Intent:
+: Defined in {{Section 3.1 of ?RFC9315}}.
 
 Termination Point:
 : Defined in {{?RFC8345}}, as follows:
@@ -285,6 +301,9 @@ SIMAP data:
    links to other non-topological data for the instances (e.g., inventory,
    configuration, health, symptoms).
 : The SIMAP data can be historical, real-time, or future data for 'what-if' scenarios.
+: There may be multiple SIMAP data instances of the same kind at the same time, for example
+  several snapshots, several potential topologies, or several intended topologies, each
+  identifiable and retrievable independently.
 
 SIMAP API:
 : SIMAP API is the set of interfaces that allow the client applications to create, read, update, and delete data that conforms to the SIMAP.
@@ -572,8 +591,9 @@ using generic software.
 
 ### Types of Network Simulation
 
-There are several types of network simulations, each designed to address specific needs and use cases. Below are
-the main categories of network simulation:
+There are several types of network simulations, each designed to address specific needs and use cases. The
+categories below are provided as background, to illustrate the range of simulation a SIMAP may be asked to
+support; this document does not define a new classification of network simulation.
 
 1. Discrete event simulation:
 : This is the most common type of network simulation. It models a series of events that occur at specific points
@@ -618,6 +638,25 @@ This type of simulation focuses on the structure and layout of the network itsel
 topologies and their impact on the network's performance.
 It can be used, together with the traffic simulation, to evaluate the most efficient topology for a network under
 normal conditions and considering factors like fault tolerance.
+
+### Use of the SIMAP for Simulation and Emulation
+
+Whichever type of simulation is used, the SIMAP client application will be able to retrieve a topology layer,
+and any network/node/termination point/link instances, from the SIMAP server via the SIMAP APIs, and to
+navigate from those entities to the other models needed to parameterize the simulation, such as traffic
+metrics, capacity, or status. The hypothetical changes to be evaluated (e.g., removing a link, adding a node,
+or changing a link metric) are expressed by writing a potential network topology via the
+SIMAP APIs, either as a full topology or as the differences from the current snapshot, and the results are
+compared against the corresponding real network topology. Because a potential topology is distinct from the
+live one, the simulation does not alter the real network, and multiple alternative topologies can be
+evaluated and compared concurrently.
+
+For network emulation, the SIMAP serves as the source of the topology from which the emulated environment
+is built: the client application retrieves the multi-layered topology, at the layers relevant to the
+protocols being emulated, and instantiates the emulated nodes, links and termination points from it. The
+intended network topology can be used for this purpose where the emulation is to reflect a design
+rather than the current live network, as described in {{network-design}}. The emulation itself, including
+the choice of software images and the runtime environment, is outside the scope of the SIMAP.
 
 ## Postmortem Replay {#postmortem-replay}
 
@@ -672,7 +711,7 @@ the real network to support intelligent operations, including predictive analyti
 and full lifecycle management of network and services.
 
 
-# SIMAP Operator Requirements
+# SIMAP Operator Requirements {#sec-requirements}
 
 The SIMAP operator requirements are split into three groups for different target audiences:
 
@@ -695,8 +734,14 @@ either to drive the APIs design itself (e.g., to better optimize performance) or
 that expose a SIMAP API. Although, they may be common sense requirements
 not specific to SIMAP API,  they are listed here for completeness.
 
+The requirements in {{sec-functional}} and {{sec-design}} are written in lower case. They record what
+operators need from a SIMAP and are input to future SIMAP specifications, rather than conformance
+statements binding an implementation directly. Where this document does bind future specifications or
+implementations, the normative keywords of {{sec-terminology}} are used in upper case, as in
+{{sec-arch}} and {{sec-security}}.
 
-## Functional Requirements
+
+## Functional Requirements {#sec-functional}
 
 The following are the operators' requirements for the SIMAP. Note that some of these requirements are supported by
 default by {{?RFC8345}}.
@@ -738,8 +783,10 @@ REQ-PROG-OPEN-MODEL:
 : Open and programmable SIMAP.
 : This includes "read" operations to retrieve the view of the network, typically as application-facing interface of
 Software Defined Networking (SDN) controllers or orchestrators.
-: It also includes "write" operations, not for the ability to directly change the live SIMAP data
-(e.g., changing the network or Service parameters), but for offline simulations, also known as what-if scenarios.
+: It also includes "write" operations. These are not for directly changing the live network by writing to
+the SIMAP (e.g., changing the network or Service parameters), but for offline simulations, also known as
+what-if scenarios, and for recording topology that cannot be discovered from the network
+(see REQ-INTENDED and REQ-PASSIVE-TOPO).
 :  Running a "what-if" analysis requires the ability to take
 snapshots and to switch easily between them.
 : Note that there is a need to distinguish between a change on the SIMAP
@@ -752,7 +799,7 @@ cannot be interpreted as real network conditions or configuration.
 
 REQ-STD-API-BASED:
 : Standard-based SIMAP and APIs, for multivendor support.
-:  SIMAP must provide the standard APIs that provide for read/write and queries.
+:  SIMAP must provide the standard APIs that provide for read, write, and query operations.
 These APIs must also provide the capability to retrieve the links to external data/models.
 
 REQ-COMMON-API:
@@ -911,7 +958,7 @@ of a node and the next-hop attribute of the NLRI in the BMP route-monitoring ({{
 message to the underlay network topology while the path attribute of the NLRI in the BMP route-monitoring
 encapsulated message to the overlay topology.
 
-## Design Requirements
+## Design Requirements {#sec-design}
 
 The following are the design requirements for the SIMAP data model:
 
@@ -1070,7 +1117,7 @@ should be modeled or which base models should be used, and it is added for illus
 Therefore it is not included in this section, but added to the Appendix.
 
 
-# Security Considerations
+# Security Considerations {#sec-security}
 
 SIMAP provides a unified access point to multi layer topology, and relations to services
 and resources across network domains. Although this document defines concepts and
@@ -1135,7 +1182,7 @@ This document has no actions for IANA.
 
 --- back
 
-#  Related IETF Activities
+#  Related IETF Activities {#sec-related}
 
 > Note: The models cited in this section are provided for illustration purposes. It is out of scope to recommend
 > which models will be used as base to build the SIMAP.
@@ -1220,7 +1267,7 @@ Logical inventory is currently outside of the scope. It does not augment {{?RFC8
 
 *  KPIs: delay, jitter, loss
 
-*  Attachment Circuits (ACs) {{?I-D.ietf-opsawg-ntw-attachment-circuit}} and {{?I-D.ietf-opsawg-teas-attachment-circuit}}
+*  Attachment Circuits (ACs) {{?RFC9835}} and {{?RFC9834}}
 
 *  Configuration: The L2SM {{?RFC8466}}, L3SM {{?RFC8299}}, L2NM {{?RFC9291}}, and L3NM {{?RFC9182}}
 
