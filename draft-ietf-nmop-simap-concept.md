@@ -153,6 +153,7 @@ These simulation capabilities, together with the different levels of abstraction
 can represent a network, are among the building blocks of a Network Digital Twin. The relationship
 between SIMAP and the Network Digital Twin concept is discussed in {{sec-ndt}}.
 
+
 {{sec-related}} summarizes other IETF work related to topology modelling, including {{?RFC8345}},
 and how it relates to the SIMAP. It is informative: this document does not prescribe which models
 are used as the basis for a SIMAP.
