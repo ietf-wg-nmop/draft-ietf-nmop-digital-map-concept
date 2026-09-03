@@ -5,12 +5,12 @@
 Network Management Operations                                   O. Havel
 Internet-Draft                                                    Huawei
 Intended status: Informational                                 B. Claise
-Expires: 21 December 2026                                 Everything OPS
+Expires: 7 March 2027                                     Everything OPS
                                                            O. G. D. Dios
                                                               Telefonica
                                                                  T. Graf
                                                                 Swisscom
-                                                            19 June 2026
+                                                        3 September 2026
 
 
               SIMAP: Concept, Requirements, and Use Cases
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 December 2026.
+   This Internet-Draft will expire on 7 March 2027.
 
 Copyright Notice
 
@@ -196,6 +196,12 @@ Table of Contents
    comparison.  This approach preserves independence between real and
    simulated data while enabling side by side analysis.
 
+   These simulation capabilities, together with the different levels of
+   abstraction at which a SIMAP can represent a network, are among the
+   building blocks of a Network Digital Twin.  The relationship between
+   SIMAP and the Network Digital Twin concept is discussed in
+   Section 3.10.
+
 2.  Terminology
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -226,12 +232,19 @@ Table of Contents
       interfaces, and customer links) between customer sites are
       interrelated and arranged.
 
-      There are several types of topologies: point-to-point, bus, ring,
-      star, tree, mesh, hybrid, and daisy chain.
+      There are several types of topologies, for example: point-to-
+      point, bus, ring, star, tree, mesh, hybrid, and daisy chain.
 
       Topologies may be unidirectional (all links unidirectional) or
       bidirectional (all links bidirectional), or contain combination of
       unidirectional and bidirectional links.
+
+      Where a link is bidirectional, the two directions may or may not
+      be supported by the same underlay resources.  Both cases, co-
+      routed and non-co-routed (also referred to as associated)
+      bidirectionality, need to be distinguishable, since they differ in
+      fate sharing and therefore change the outcome of any impact
+      analysis.
 
    Multi-layered topology:  A multi-layered topology models
       relationships between different topology layers, where each layer
@@ -264,7 +277,11 @@ Table of Contents
 
       Some topology layers may relate closely to OSI layers, like Layer
       1 topology for physical topology, Layer 2 for link topology and
-      Layer 3 for IPv4 and IPv6 topologies.
+      Layer 3 for IPv4 and IPv6 topologies.  The correspondence is
+      deliberately loose: as defined above, each topology layer
+      represents a connectivity aspect of the network and services that
+      needs to be configured, controlled and monitored, and such layers
+      are not required to map one to one onto the OSI layers.
 
       Some topology layers represent the network topology of Layer 3
       control protocols, like OSPF, IS-IS, or BGP.
@@ -291,7 +308,9 @@ Table of Contents
       *  IGP/EGP: for routing inside or between ASs, different layers
          for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
 
-      *  tunnel: for transport tunnels and paths, for MPLS and SRv6,
+      *  tunnel/transport: for transport tunnels, paths and policies,
+         for example GRE, IPsec, pseudowires, MPLS-TE LSPs, and SR/SRv6
+         policies,
 
       *  service: for different overlay services, like L2VPNs, L3VPNs,
          slices, SD-WAN,
@@ -405,6 +424,15 @@ Table of Contents
    cases, with a focus on the related SIMAP client application
    requirements and its interactions with SIMAP server, in order to
    extract the SIMAP-related requirements (Section 4).
+
+   In this section, the ability to retrieve "a topology layer" or "the
+   topology at any layer" is always subject to what the client
+   application is authorized to see: a SIMAP server may hide layers, or
+   expose an abstraction of a layer in place of the layer itself, for
+   security, administrative, or commercial reasons.  Where the
+   underlying resources are not disclosed, the client is presented with
+   an abstract topology and navigates that instead (REQ-TOPOLOGY-
+   ABSTRACTION).
 
 3.1.  Common Enablers for SIMAP
 
@@ -1517,7 +1545,7 @@ Table of Contents
    Transport security:  SIMAP implementations MUST ensure
       confidentiality, integrity, and replay protection for all protocol
       exchanges, regardless of the underlying protocol binding.
-      Transport layer security mechanisms such as TLS [RFC8446] or SSH
+      Transport layer security mechanisms such as TLS [RFC9846] or SSH
       [RFC4253] MUST be used where applicable.
 
    These considerations are not exhaustive; protocol specifications and
@@ -1554,9 +1582,9 @@ Table of Contents
               DOI 10.17487/RFC8341, March 2018,
               <https://www.rfc-editor.org/rfc/rfc8341>.
 
-   [RFC8446]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
-              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
-              <https://www.rfc-editor.org/rfc/rfc8446>.
+   [RFC9846]  Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 9846, DOI 10.17487/RFC9846, July 2026,
+              <https://www.rfc-editor.org/rfc/rfc9846>.
 
 8.2.  Informative References
 
@@ -1570,9 +1598,9 @@ Table of Contents
               Wu, B., Boucadair, M., Zhou, C., and Q. Wu, "A YANG
               Network Data Model for Inventory Topology Mapping", Work
               in Progress, Internet-Draft, draft-ietf-ivy-network-
-              inventory-topology-07, 19 May 2026,
+              inventory-topology-10, 27 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-ivy-
-              network-inventory-topology-07>.
+              network-inventory-topology-10>.
 
    [I-D.ietf-ivy-network-inventory-yang]
               Yu, C., Belotti, S., Bouquier, J., Peruzzini, F., and P.
@@ -1586,17 +1614,17 @@ Table of Contents
               Graf, T., Du, W., Francois, P., and A. H. Feng, "A
               Framework for a Network Anomaly Detection Architecture",
               Work in Progress, Internet-Draft, draft-ietf-nmop-network-
-              anomaly-architecture-07, 18 January 2026,
+              anomaly-architecture-08, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-anomaly-architecture-07>.
+              network-anomaly-architecture-08>.
 
    [I-D.ietf-nmop-network-incident-yang]
               Hu, T., Contreras, L. M., Wu, Q., Davis, N., and C. Feng,
               "A YANG Data Model for Network Incident Management", Work
               in Progress, Internet-Draft, draft-ietf-nmop-network-
-              incident-yang-08, 13 February 2026,
+              incident-yang-14, 18 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              network-incident-yang-08>.
+              network-incident-yang-14>.
 
    [I-D.ietf-nmop-terminology]
               Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
@@ -1633,12 +1661,12 @@ Table of Contents
 
    [I-D.irtf-nmrg-network-digital-twin-arch]
               Zhou, C., Yang, H., Duan, X., Lopez, D., Pastor, A., Wu,
-              Q., Boucadair, M., and C. Jacquenet, "Network Digital
-              Twin: Concepts and Reference Architecture", Work in
+              Q., Boucadair, M., and C. Jacquenet, "Network Digital Twin
+              (NDT): Concepts and Reference Architecture", Work in
               Progress, Internet-Draft, draft-irtf-nmrg-network-digital-
-              twin-arch-12, 27 February 2026,
+              twin-arch-13, 1 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-irtf-nmrg-
-              network-digital-twin-arch-12>.
+              network-digital-twin-arch-13>.
 
    [I-D.ogondio-nmop-isis-topology]
               de Dios, O. G., Barguil, S., Lopez, V., Ceccarelli, D.,
