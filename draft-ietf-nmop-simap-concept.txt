@@ -90,6 +90,7 @@ Table of Contents
      3.8.  Network Simulation and Network Emulation
        3.8.1.  Types of Network Simulation
        3.8.2.  Goals of Network Simulation
+       3.8.3.  Use of the SIMAP for Simulation and Emulation
      3.9.  Postmortem Replay
      3.10. Network Digital Twin (NDT)
    4.  SIMAP Operator Requirements
@@ -129,7 +130,11 @@ Table of Contents
    implementable, the actual data model specification - including the
    choice of modelling language and implementation approach - is out of
    scope of this document and will be defined in companion
-   specifications.
+   specifications.  In particular, SIMAP is not restricted to YANG.
+   YANG is the expected first realization of SIMAP in the IETF context,
+   and this document refers to YANG modules where that helps the reader,
+   but the concept and the requirements in Section 4 are intended to be
+   independent of the modelling language.
 
    Specifically, the SIMAP modelling defines the core topological
    entities at each layer, core topological properties, and topological
@@ -165,20 +170,25 @@ Table of Contents
    topologies at different layers.  There may be a separate topology
    instance for each layer in a multi-layered network, or a single
    topology instance that encompasses multiple layers.  Since SIMAP is a
-   data model and data models can generate APIs [RFC3444][RFC7950], the
-   SIMAP provides access to this data via standard APIs for both read
-   and write access, typically from a controller, with query
-   capabilities and links to other data models (e.g., Service Assurance
-   for Intent-based Networking (SAIN) [RFC9417], Service Attachment
-   Points (SAPs) [RFC9408], Inventory
+   data model [RFC3444][RFC7950] and data models can drive APIs
+   (Section 1.3 of [RFC8040] describes such a data-model-driven API,
+   where a client derives resource URLs and message structure from the
+   YANG modules), the SIMAP provides access to this data via standard
+   APIs for both read and write access, typically from a controller,
+   with query capabilities and links to other data models (e.g., Service
+   Assurance for Intent-based Networking (SAIN) [RFC9417], Service
+   Attachment Points (SAPs) [RFC9408], Inventory
    [I-D.ietf-ivy-network-inventory-yang], and potentially linking to
    non-YANG models).
 
-   The SIMAP also provides write operations with the same set of APIs,
-   not to change a topology layer on the fly as a northbound interface
-   from the controller, but for both online and offline simulations,
-   before applying the changes to the network via the normal controller
-   operations.
+   The SIMAP also provides write operations with the same set of APIs.
+   These are not intended to change the live network by writing to the
+   topology, as a configuration northbound interface from the controller
+   would; changes are applied to the network via the normal controller
+   operations.  Write access serves two other purposes: online and
+   offline simulation, and recording topology that cannot be discovered
+   from the network, such as the intended topology and the passive
+   topology.
 
    Both real network, online simulation, and offline simulation APIs can
    be built on the same data model.  The real network API reflects
@@ -201,6 +211,11 @@ Table of Contents
    building blocks of a Network Digital Twin.  The relationship between
    SIMAP and the Network Digital Twin concept is discussed in
    Section 3.10.
+
+   Appendix A summarizes other IETF work related to topology modelling,
+   including [RFC8345], and how it relates to the SIMAP.  It is
+   informative: this document does not prescribe which models are used
+   as the basis for a SIMAP.
 
 2.  Terminology
 
@@ -303,7 +318,9 @@ Table of Contents
 
       *  data link: L2 for Ethernet, LAGs and VLAN,
 
-      *  network: L3 for IPv4 and IPv6,
+      *  network: L3 for IPv4 and IPv6.  IPv4 and IPv6 may be modelled
+         as a single topology layer or as separate topology layers,
+         since the two topologies are not necessarily congruent,
 
       *  IGP/EGP: for routing inside or between ASs, different layers
          for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
@@ -331,7 +348,9 @@ Table of Contents
       different endpoints.  The example services are: L2VPN, L3VPN,
       EVPN, VPLS, VPWS,
 
-   Resource:  Defined in [I-D.ietf-nmop-terminology]
+   Resource:  Defined in [RFC9940]
+
+   Intent:  Defined in Section 3.1 of [RFC9315].
 
    Termination Point:  Defined in [RFC8345], as follows:
 
@@ -387,6 +406,11 @@ Table of Contents
 
       The SIMAP data can be historical, real-time, or future data for
       'what-if' scenarios.
+
+      There may be multiple SIMAP data instances of the same kind at the
+      same time, for example several snapshots, several potential
+      topologies, or several intended topologies, each identifiable and
+      retrievable independently.
 
    SIMAP API:  SIMAP API is the set of interfaces that allow the client
       applications to create, read, update, and delete data that
@@ -799,8 +823,10 @@ Table of Contents
 3.8.1.  Types of Network Simulation
 
    There are several types of network simulations, each designed to
-   address specific needs and use cases.  Below are the main categories
-   of network simulation:
+   address specific needs and use cases.  The categories below are
+   provided as background, to illustrate the range of simulation a SIMAP
+   may be asked to support; this document does not define a new
+   classification of network simulation.
 
    1.  Discrete event simulation:  This is the most common type of
           network simulation.  It models a series of events that occur
@@ -864,6 +890,32 @@ Table of Contents
    the traffic simulation, to evaluate the most efficient topology for a
    network under normal conditions and considering factors like fault
    tolerance.
+
+3.8.3.  Use of the SIMAP for Simulation and Emulation
+
+   Whichever type of simulation is used, the SIMAP client application
+   will be able to retrieve a topology layer, and any network/node/
+   termination point/link instances, from the SIMAP server via the SIMAP
+   APIs, and to navigate from those entities to the other models needed
+   to parameterize the simulation, such as traffic metrics, capacity, or
+   status.  The hypothetical changes to be evaluated (e.g., removing a
+   link, adding a node, or changing a link metric) are expressed by
+   writing a potential network topology via the SIMAP APIs, either as a
+   full topology or as the differences from the current snapshot, and
+   the results are compared against the corresponding real network
+   topology.  Because a potential topology is distinct from the live
+   one, the simulation does not alter the real network, and multiple
+   alternative topologies can be evaluated and compared concurrently.
+
+   For network emulation, the SIMAP serves as the source of the topology
+   from which the emulated environment is built: the client application
+   retrieves the multi-layered topology, at the layers relevant to the
+   protocols being emulated, and instantiates the emulated nodes, links
+   and termination points from it.  The intended network topology can be
+   used for this purpose where the emulation is to reflect a design
+   rather than the current live network, as described in Section 3.7.
+   The emulation itself, including the choice of software images and the
+   runtime environment, is outside the scope of the SIMAP.
 
 3.9.  Postmortem Replay
 
@@ -968,6 +1020,13 @@ Table of Contents
          SIMAP API.  Although, they may be common sense requirements not
          specific to SIMAP API, they are listed here for completeness.
 
+   The requirements in Section 4.1 and Section 4.2 are written in lower
+   case.  They record what operators need from a SIMAP and are input to
+   future SIMAP specifications, rather than conformance statements
+   binding an implementation directly.  Where this document does bind
+   future specifications or implementations, the normative keywords of
+   Section 2 are used in upper case, as in Section 4.3 and Section 6.
+
 4.1.  Functional Requirements
 
    The following are the operators' requirements for the SIMAP.  Note
@@ -1024,10 +1083,12 @@ Table of Contents
       network, typically as application-facing interface of Software
       Defined Networking (SDN) controllers or orchestrators.
 
-      It also includes "write" operations, not for the ability to
-      directly change the live SIMAP data (e.g., changing the network or
-      Service parameters), but for offline simulations, also known as
-      what-if scenarios.
+      It also includes "write" operations.  These are not for directly
+      changing the live network by writing to the SIMAP (e.g., changing
+      the network or Service parameters), but for offline simulations,
+      also known as what-if scenarios, and for recording topology that
+      cannot be discovered from the network (see REQ-INTENDED and REQ-
+      PASSIVE-TOPO).
 
       Running a "what-if" analysis requires the ability to take
       snapshots and to switch easily between them.
@@ -1046,9 +1107,9 @@ Table of Contents
    REQ-STD-API-BASED:  Standard-based SIMAP and APIs, for multivendor
       support.
 
-      SIMAP must provide the standard APIs that provide for read/write
-      and queries.  These APIs must also provide the capability to
-      retrieve the links to external data/models.
+      SIMAP must provide the standard APIs that provide for read, write,
+      and query operations.  These APIs must also provide the capability
+      to retrieve the links to external data/models.
 
    REQ-COMMON-API:  SIMAP and common APIs, for multi-domain.
 
@@ -1626,31 +1687,6 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
               network-incident-yang-14>.
 
-   [I-D.ietf-nmop-terminology]
-              Davis, N., Farrel, A., Graf, T., Wu, Q., and C. Yu, "Some
-              Key Terms for Network Fault and Problem Management", Work
-              in Progress, Internet-Draft, draft-ietf-nmop-terminology-
-              23, 18 August 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-nmop-
-              terminology-23>.
-
-   [I-D.ietf-opsawg-ntw-attachment-circuit]
-              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
-              and B. Wu, "A Network YANG Data Model for Attachment
-              Circuits", Work in Progress, Internet-Draft, draft-ietf-
-              opsawg-ntw-attachment-circuit-16, 23 January 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              ntw-attachment-circuit-16>.
-
-   [I-D.ietf-opsawg-teas-attachment-circuit]
-              Boucadair, M., Roberts, R., de Dios, O. G., Barguil, S.,
-              and B. Wu, "YANG Data Models for Bearers and 'Attachment
-              Circuits'-as-a-Service (ACaaS)", Work in Progress,
-              Internet-Draft, draft-ietf-opsawg-teas-attachment-circuit-
-              20, 23 January 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-opsawg-
-              teas-attachment-circuit-20>.
-
    [I-D.ietf-teas-te-topo-and-tunnel-modeling]
               Bryskin, I., Beeram, V. P., Saad, T., and X. Liu, "TE
               Topology and Tunnel Modeling for Transport Networks", Work
@@ -1722,6 +1758,10 @@ Table of Contents
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/rfc/rfc7950>.
 
+   [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
+              Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
+              <https://www.rfc-editor.org/rfc/rfc8040>.
+
    [RFC8199]  Bogdanovic, D., Claise, B., and C. Moberg, "YANG Module
               Classification", RFC 8199, DOI 10.17487/RFC8199, July
               2017, <https://www.rfc-editor.org/rfc/rfc8199>.
@@ -1786,6 +1826,11 @@ Table of Contents
               VPNs", RFC 9291, DOI 10.17487/RFC9291, September 2022,
               <https://www.rfc-editor.org/rfc/rfc9291>.
 
+   [RFC9315]  Clemm, A., Ciavaglia, L., Granville, L. Z., and J.
+              Tantsura, "Intent-Based Networking - Concepts and
+              Definitions", RFC 9315, DOI 10.17487/RFC9315, October
+              2022, <https://www.rfc-editor.org/rfc/rfc9315>.
+
    [RFC9408]  Boucadair, M., Ed., Gonzalez de Dios, O., Barguil, S., Wu,
               Q., and V. Lopez, "A YANG Network Data Model for Service
               Attachment Points (SAPs)", RFC 9408, DOI 10.17487/RFC9408,
@@ -1804,6 +1849,22 @@ Table of Contents
    [RFC9522]  Farrel, A., Ed., "Overview and Principles of Internet
               Traffic Engineering", RFC 9522, DOI 10.17487/RFC9522,
               January 2024, <https://www.rfc-editor.org/rfc/rfc9522>.
+
+   [RFC9834]  Boucadair, M., Ed., Roberts, R., Ed., Gonzalez de Dios,
+              O., Barguil, S., and B. Wu, "YANG Data Models for Bearers
+              and Attachment Circuits as a Service (ACaaS)", RFC 9834,
+              DOI 10.17487/RFC9834, September 2025,
+              <https://www.rfc-editor.org/rfc/rfc9834>.
+
+   [RFC9835]  Boucadair, M., Ed., Roberts, R., Gonzalez de Dios, O.,
+              Barguil, S., and B. Wu, "A Network YANG Data Model for
+              Attachment Circuits", RFC 9835, DOI 10.17487/RFC9835,
+              September 2025, <https://www.rfc-editor.org/rfc/rfc9835>.
+
+   [RFC9940]  Davis, N., Ed., Farrel, A., Ed., Graf, T., Wu, Q., and C.
+              Yu, "Some Key Terms for Network Fault and Problem
+              Management", RFC 9940, DOI 10.17487/RFC9940, April 2026,
+              <https://www.rfc-editor.org/rfc/rfc9940>.
 
 Appendix A.  Related IETF Activities
 
@@ -1916,8 +1977,7 @@ A.4.  Additional SIMAP Components
 
    *  KPIs: delay, jitter, loss
 
-   *  Attachment Circuits (ACs) [I-D.ietf-opsawg-ntw-attachment-circuit]
-      and [I-D.ietf-opsawg-teas-attachment-circuit]
+   *  Attachment Circuits (ACs) [RFC9835] and [RFC9834]
 
    *  Configuration: The L2SM [RFC8466], L3SM [RFC8299], L2NM [RFC9291],
       and L3NM [RFC9182]
