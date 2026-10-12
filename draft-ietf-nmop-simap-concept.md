@@ -233,8 +233,8 @@ Topology layer:
   the concept of topology layers by listing the common set - e.g.,
 
   * physical: L1, one or multiple layers, if fully modelling different optical layers. Used for WSON, OTN optical, OTN digital),
-  * data link: L2 for Ethernet, LAGs and VLAN,
-  * network: L3 for IPv4 and IPv6. IPv4 and IPv6 may be modelled as a single topology layer or as
+  * data link: Layer 2 for Ethernet, LAGs and VLAN,
+  * network: Layer 3 for IPv4 and IPv6. IPv4 and IPv6 may be modelled as a single topology layer or as
     separate topology layers, since the two topologies are not necessarily congruent,
   * IGP/EGP: for routing inside or between ASs, different layers for underlay and overlay, for ISIS, OSPF, iBGP, eBGP,
   * tunnel/transport: for transport tunnels, paths and policies, for example GRE, IPsec,
@@ -558,15 +558,15 @@ certain constraints on port optic speed, type (LR vs SR for instance), etc.
 The network design application can (via SIMAP API):
 
 * Write the intended network interconnect (topology + rules), this is the intent of the network topology that cannot
-be retrieved from the real network (e.g. our L2 topology interconnect intent, or L3 topology interconnect intent).
+be retrieved from the real network (e.g., Layer 2 topology interconnect intent, or Layer 3 topology interconnect intent).
 One network (in case of small network) or interconnect of multiple networks (bigger networks).
 
 * Retrieve the proposed network interconnect (topology + rules)
 
-  * Use case can be for purpose of traffic simulation, testing behavior under failures. Network simulation
+  * A use case can be for purpose of traffic simulation, testing behavior under failures. Network simulation
 use case is described in {{sec-emule}}.
-  * Use case can be for purpose of comparing different proposed network interconnects.
-  * Use case can be to build a simulated environment using this design. Network simulation
+  * A use case can be for purpose of comparing different proposed network interconnects.
+  * A use case can be to build a simulated environment using this design. Network simulation
 use case is described in {{sec-emule}}.
 
 * Retrieve the intended network interconnect (topology + rules)
@@ -628,7 +628,7 @@ features of the networking protocol can be tested. For example, how fast-reroute
 This simulation focuses on modelling traffic flow across the network, including packet generation, flow control,
 routing, and congestion. It aims to evaluate traffic's impact on network performance.
 
-The main use is to model the impact of different types of traffic (e.g., voice, video, mobile data, web browsing) and
+The main use is to model the impact of different types of traffic (e.g., voice, video, mobile data, and web browsing) and
 understand how they affect the network's bandwidth and congestion levels. It can be used to identify bottlenecks and
 assist the capacity planning process.
 
@@ -686,7 +686,7 @@ enterprise network). Also, as discussed in {{Section 9.2 of ?I-D.irtf-nmrg-netwo
 models and topology models help generate a virtual twin of the network according to the network element configuration,
 operation data, network topology relationship, link state and other network information. The operation status can be
 monitored and displayed, the network configuration change and optimization strategy can be pre-verified and
-historical data can support e.g. postmortem replay ({{postmortem-replay}}))
+historical data can support, e.g., postmortem replay ({{postmortem-replay}}).
 
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} further elaborates on the requirements on various
 interfaces:
@@ -697,9 +697,9 @@ interfaces:
 
    * Application-facing interfaces are between the NDT and applications. They are responsible for the information
      exchange between Network Digital Twin and network applications. SIMAP APIs can be used for specification of
-     hypothetical network and service states for 'what-if' analysis, e.g. for feasibility checks
-     ({{sec-feasibility}}), simulation or emulation ({{sec-emule}})). Such analysis may be used in support of
-     e.g. network capacity planning ({{network-capacity-planning}})) or network design ({{network-design}})).
+     hypothetical network and service states for 'what-if' analysis, e.g., for feasibility checks
+     ({{sec-feasibility}}), simulation or emulation ({{sec-emule}})). Such analysis may be used in support of,
+     e.g., network capacity planning ({{network-capacity-planning}}) or network design ({{network-design}}).
 
 {{Section 9.4 of ?I-D.irtf-nmrg-network-digital-twin-arch}} recommends that these interfaces are open
 and standardized so as to avoid either hardware or software vendor lock and achieve interoperability.
@@ -821,7 +821,7 @@ REQ-TOPOLOGY-ABSTRACTION:
 
 : A network (even a single layer network) can be represented
 in multiple ways providing different abstraction views of the same network. In such a case, it would be beneficial
-being able to navigate amongst the different levels of abstractions (e.g. to understand which set of nodes in the native
+being able to navigate amongst the different levels of abstractions (e.g., to understand which set of nodes in the native
 topology are actually represented as a single node in an abstract topology being built on top of the native topology).
 This navigation is different and orthogonal to the multi-layer navigation where we need to report which Layer 2 path is
 supporting a given Layer 3 node or link. Nevertheless, it would not be the best practice to expose it via different
@@ -906,7 +906,7 @@ This requirement is about covering connectivity between different networks, subn
 REQ-SUBNETWORK:
 : SIMAP must provide a mechanism to model network decomposition into subnetworks.
 The requirement is about modelling hierarchical networks , Autonomous Systems (ASes) with multiple areas, or a network
-with multiple domains (e.g., access, core, data center).
+with multiple domains (e.g., access, core, and data center).
 : The network can be partitioned by providing capability to have multiple child network instances as part of a
 single parent network, with a relation between the parent network and child networks.
 
@@ -950,7 +950,7 @@ Templates with multiple identical Information Elements.
 
 REQ-CONTROL-PLANE:
 : Control-plane routing state must be correlatable to the corresponding data-plane topology. For example, the underlay control-plane routing
-state must correlate to the underlay L3 topology, while the overlay control-plane routing state must correlate to the overlay L3 network topology.
+state must correlate to the underlay Layer 3 topology, while the overlay control-plane routing state must correlate to the overlay Layer 3 network topology.
 
 : A BMP/BGP example:
 : The BMP peer distinguisher ({{Section 4.2 of ?RFC7854}}) needs to be correlatable to the VRF
@@ -1010,7 +1010,7 @@ REQ-CONDITIONAL:
 REQ-TEMPO-HISTO:
 : Must support geospatial (geographic coordinates, region, zone, etc.),
 temporal (when some fact is true, e.g., the topology or topological entity created at 12:00 UTC),
-and historical data (time-stamped historical changes, e.g. all changes from 2019-01-01 to 2023-06-30).
+and historical data (time-stamped historical changes, e.g., all changes from 2019-01-01 to 2023-06-30).
 
 : The geospatial, temporal and historical can also be supported external to the SIMAP.
 
@@ -1057,7 +1057,7 @@ sensitive topology and service and network data.
 : Because SIMAP connects highly sensitive multi layer topology with
 service and network data, implementations MUST ensure confidentiality,
 integrity, and replay protection for all SIMAP interactions, using
-security mechanisms appropriate to the transport protocol (e.g., TLS, SSH).
+security mechanisms appropriate to the transport protocol (e.g., TLS or SSH).
 
 : SIMAP implementations MUST prevent unauthorized write or simulation operations
 and ensure that simulation functions cannot become unintended configuration changes.
@@ -1151,7 +1151,7 @@ Authorization and protocol binding scope:
 
 Write and simulation operations:
 : SIMAP supports operations that may modify data or simulate modifications (e.g.,
-  what if analysis). Even when write operations are limited to simulation,
+  'what-if' analysis). Even when write operations are limited to simulation,
   implementations MUST ensure that such operations cannot become unintended
   configuration changes, and that simulation results cannot be used to
   infer privileged or hidden information.
